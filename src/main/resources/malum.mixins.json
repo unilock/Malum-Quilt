@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.sterner.malum.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "ArmorMaterialsMixin",
+    "ConfiguredFeatureUtilMixin"
+  ],
+  "client": [
+    "client.MinecraftClientMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}

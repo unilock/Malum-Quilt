@@ -1,25 +1,34 @@
 {
 	"schema_version": 1,
 	"quilt_loader": {
-		"group": "com.example",
-		"id": "example_mod",
+		"group": "dev.sterner",
+		"id": "malum",
 		"version": "${version}",
+		"provides": [
+			{
+				"id": "fabric_asm",
+				"version": "v2.3"
+			}
+		],
 		"metadata": {
-			"name": "Mod Name",
+			"name": "Malum",
 			"description": "A short description of your mod.",
 			"contributors": {
-				"Your name here": "Owner"
+				"MrSterner": "Owner"
 			},
 			"contact": {
 				"homepage": "https://example.com/",
 				"issues": "https://github.com/QuiltMC/quilt-template-mod/issues",
 				"sources": "https://github.com/QuiltMC/quilt-template-mod"
 			},
-			"icon": "assets/example_mod/icon.png"
+			"icon": "assets/malum/icon.png"
 		},
 		"intermediate_mappings": "net.fabricmc:intermediary",
 		"entrypoints": {
-			"init": "com.example.example_mod.ExampleMod"
+			"init": "dev.sterner.malum.Malum",
+			"client_init": "dev.sterner.malum.MalumClient",
+			"cardinal-components-entity": "dev.sterner.malum.common.component.MalumComponents",
+			"mm:early_risers": "dev.sterner.malum.MalumEarlyRiser"
 		},
 		"depends": [
 			{
@@ -28,7 +37,7 @@
 			},
 			{
 				"id": "quilted_fabric_api",
-				"versions": ">=5.0.0-"
+				"versions": ">=4.0.0-"
 			},
 			{
 				"id": "minecraft",
@@ -36,5 +45,10 @@
 			}
 		]
 	},
-	"mixin": "example_mod.mixins.json"
+	"access_widener": "malum.accesswidener",
+	"mixin": "malum.mixins.json",
+	"cardinal-components": [
+		"malum:spirit",
+		"malum:player"
+	]
 }

@@ -7,32 +7,70 @@ archivesBaseName = project.archives_base_name
 version = "${project.version}+${libs.versions.minecraft.get()}"
 group = project.maven_group
 
-repositories {
-	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
-	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
+loom {
+	accessWidenerPath = file("src/main/resources/malum.accesswidener")
 }
 
-// All the dependencies are declared at gradle/libs.version.toml and referenced with "libs.<id>"
-// See https://docs.gradle.org/current/userguide/platforms.html for information on how version catalogs work.
+
+repositories {
+	maven {
+		url 'https://api.modrinth.com/maven'
+		content {
+			includeGroup 'maven.modrinth'
+		}
+	}
+	maven { url 'https://maven.quiltmc.org/repository/snapshot' }
+	maven { url 'https://maven.terraformersmc.com' }
+	maven { url 'https://ladysnake.jfrog.io/artifactory/mods' }
+	maven { url 'https://jitpack.io' }
+	maven { url "https://maven.shedaniel.me" }
+	maven {
+		name "reach entity attributes"
+		url "https://maven.jamieswhiteshirt.com/libs-release"
+	}
+	mavenCentral()
+}
+
 dependencies {
 	minecraft libs.minecraft
 	mappings variantOf(libs.quilt.mappings) { classifier 'intermediary-v2' }
-	// Replace the above line with the block below if you want to use Mojang mappings as your primary mappings, falling back on QM for parameters and Javadocs
 	/*
 	mappings loom.layered {
 		mappings "org.quiltmc:quilt-mappings:${libs.versions.quilt.mappings.get()}:intermediary-v2"
 		officialMojangMappings()
 	}
-	*/
+
+	 */
+
 	modImplementation libs.quilt.loader
 
-	// QSL is not a complete API; You will need Quilted Fabric API to fill in the gaps.
-	// Quilted Fabric API will automatically pull in the correct QSL version.
+
 	modImplementation libs.quilted.fabric.api
-	// modImplementation libs.bundles.quilted.fabric.api // If you wish to use Fabric API's deprecated modules, you can replace the above line with this one
+
+	modRuntimeOnly("maven.modrinth:sodium:mc1.19.3-0.4.6")
+
+	modImplementation(libs.trinkets) {
+		exclude group: "net.fabricmc"
+		exclude group: "net.fabricmc.fabric-api"
+		exclude group: "com.terraformersmc"
+	}
+
+	modImplementation(libs.cardinal.components.entity) {
+		exclude group: "net.fabricmc"
+		exclude group: "net.fabricmc.fabric-api"
+	}
+	modImplementation(libs.cardinal.components.base) {
+		exclude group: "net.fabricmc"
+		exclude group: "net.fabricmc.fabric-api"
+	}
+
+	include(libs.fabric.asm)
+	include(libs.satin)
+	modImplementation include("maven.modrinth:midnightlib:$midnightlib_version")
+	modImplementation include("com.github.mrsterner:LodestoneLib-Quilt:$lodestone_version")
+	implementation(libs.mixin.extras)
+	include(libs.mixin.extras)
+	annotationProcessor(libs.mixin.extras)
 }
 
 processResources {
