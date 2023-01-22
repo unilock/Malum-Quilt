@@ -1,0 +1,33 @@
+{
+  "object_supplier": "malum:important_entry_object",
+  "pages": [
+    {
+      "headline_translation_key": "malum.gui.book.entry.page.headline.introduction",
+      "description_translation_key": "malum.gui.book.entry.page.text.introduction_a",
+      "type": "malum:headline"
+    },
+    {
+      "translation_key": "malum.gui.book.entry.page.text.introduction_b",
+      "type": "malum:text"
+    },
+    {
+      "translation_key": "malum.gui.book.entry.page.text.introduction_c",
+      "type": "malum:text"
+    },
+    {
+      "translation_key": "malum.gui.book.entry.page.text.introduction_d",
+      "type": "malum:text"
+    }
+  ],
+  "translation_key": "malum.gui.book.entry.introduction",
+  "description_translation_key": "malum.gui.book.entry.introduction.description",
+  "name": "malum:introduction",
+  "icon_stacks": [
+    {
+      "id": "malum:encyclopedia_arcana",
+      "Count": 1
+    }
+  ],
+  "x_offset": 0,
+  "y_offset": 0
+}

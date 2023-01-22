@@ -22,33 +22,36 @@ public final class MalumEarlyRiser implements Runnable {
 		MixinExtrasBootstrap.init();
 
 		final MappingResolver mappings = QuiltLoader.getMappingResolver();
-		final String type = mappings.mapClassName("intermediary", "net.minecraft.class_1690$class_1692");
 		final String enchantmentTarget = mappings.mapClassName("intermediary", "net.minecraft.class_1886");
 		final String toolMaterialsTarget = mappings.mapClassName("intermediary", "net.minecraft.class_1834");
-		final String boatParam1 = "L" + mappings.mapClassName("intermediary", "net.minecraft.class_2248") + ";";
 		final String armorMaterialsTarget = mappings.mapClassName("intermediary", "net.minecraft.class_1740");
 		final String armorParam5 = "L" + mappings.mapClassName("intermediary", "net.minecraft.class_3414") + ";";
 
+		/*TODO
 		ClassTinkerers.enumBuilder(type, boatParam1, String.class)
 				.addEnum("RUNEWOOD", () -> new Object[]{RUNEWOOD_PLANKS, "runewood"})
 				.addEnum("SOULWOOD", () -> new Object[]{SOULWOOD_PLANKS, "soulwood"}).build();
 
+		 */
+
 		//enchantmentTarget
 		ClassTinkerers.enumBuilder(enchantmentTarget, new Class[0])
-				.addEnumSubclass("SCYTHE", "ca.rttv.malum.enchantment.ScytheEnchantmentTarget")
-				.addEnumSubclass("REBOUND_SCYTHE", "ca.rttv.malum.enchantment.ReboundScytheEnchantmentTarget")
-				.addEnumSubclass("SOUL_HUNTER", "ca.rttv.malum.enchantment.SoulHunterWeaponEnchantmentTarget")
+				.addEnumSubclass("SCYTHE", "dev.sterner.malum.common.enchantment.ScytheEnchantmentTarget")
+				.addEnumSubclass("REBOUND_SCYTHE", "dev.sterner.malum.common.enchantment.ReboundScytheEnchantmentTarget")
+				.addEnumSubclass("SOUL_HUNTER", "dev.sterner.malum.common.enchantment.SoulHunterWeaponEnchantmentTarget")
 				.build();
+
+
 
 		ClassTinkerers.enumBuilder(armorMaterialsTarget, String.class, int.class, int[].class, int.class, armorParam5, float.class, float.class, Supplier.class)
 				.addEnumSubclass(
 						"SOUL_CLOAK",
-						"ca.rttv.malum.item.SoulCloakArmorMaterial",
+						"dev.sterner.malum.common.item.SoulCloakArmorMaterial",
 						() -> (new Object[]{"soul_cloak", 5, new int[]{1, 2, 3, 1}, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, (Supplier) () -> Ingredient.ofItems(SPIRIT_FABRIC)})
 				)
 				.addEnumSubclass(
 						"SOUL_STAINED_STEEL",
-						"ca.rttv.malum.item.SoulStainedSteelArmorMaterial",
+						"dev.sterner.malum.common.item.SoulStainedSteelArmorMaterial",
 						() -> (new Object[]{"soul_stained_steel", 22, new int[]{2, 6, 7, 3}, 13, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0f, 0.0f, (Supplier) () -> Ingredient.ofItems(SOUL_STAINED_STEEL_INGOT)})
 				)
 				.build();

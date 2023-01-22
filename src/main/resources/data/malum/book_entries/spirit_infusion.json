@@ -1,0 +1,173 @@
+{
+  "object_supplier": "malum:important_entry_object",
+  "pages": [
+    {
+      "headline_translation_key": "malum.gui.book.entry.page.headline.spirit_infusion",
+      "description_translation_key": "malum.gui.book.entry.page.text.spirit_infusion_a",
+      "type": "malum:headline"
+    },
+    {
+      "translation_key": "malum.gui.book.entry.page.text.spirit_infusion_b",
+      "type": "malum:text"
+    },
+    {
+      "translation_key": "malum.gui.book.entry.page.text.spirit_infusion_c",
+      "type": "malum:text"
+    },
+    {
+      "output": {
+        "id": "malum:spirit_altar",
+        "Count": 1
+      },
+      "input": [
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "malum:processed_soulstone",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:gold_ingot",
+          "Count": 1
+        },
+        {
+          "id": "malum:runewood_planks",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:gold_ingot",
+          "Count": 1
+        },
+        {
+          "id": "malum:runewood_planks",
+          "Count": 1
+        },
+        {
+          "id": "malum:runewood_planks",
+          "Count": 1
+        },
+        {
+          "id": "malum:runewood_planks",
+          "Count": 1
+        }
+      ],
+      "type": "malum:crafting"
+    },
+    {
+      "output": {
+        "id": "malum:runewood_item_pedestal",
+        "Count": 1
+      },
+      "input": [
+        {
+          "id": "malum:runewood_planks_slab",
+          "Count": 1
+        },
+        {
+          "id": "malum:runewood_planks_slab",
+          "Count": 1
+        },
+        {
+          "id": "malum:runewood_planks_slab",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "malum:runewood_planks",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "malum:runewood_planks_slab",
+          "Count": 1
+        },
+        {
+          "id": "malum:runewood_planks_slab",
+          "Count": 1
+        },
+        {
+          "id": "malum:runewood_planks_slab",
+          "Count": 1
+        }
+      ],
+      "type": "malum:crafting"
+    },
+    {
+      "output": {
+        "id": "malum:runewood_item_stand",
+        "Count": 1
+      },
+      "input": [
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "malum:runewood_planks_slab",
+          "Count": 1
+        },
+        {
+          "id": "malum:runewood_planks_slab",
+          "Count": 1
+        },
+        {
+          "id": "malum:runewood_planks_slab",
+          "Count": 1
+        },
+        {
+          "id": "malum:runewood_planks",
+          "Count": 1
+        },
+        {
+          "id": "malum:runewood_planks",
+          "Count": 1
+        },
+        {
+          "id": "malum:runewood_planks",
+          "Count": 1
+        }
+      ],
+      "type": "malum:crafting"
+    },
+    {
+      "headline_translation_key": "malum.gui.book.entry.page.headline.hex_ash",
+      "description_translation_key": "malum.gui.book.entry.page.text.hex_ash",
+      "type": "malum:headline"
+    },
+    {
+      "recipe": "malum:spirit_infusion/hex_ash",
+      "type": "malum:spirit_infusion"
+    }
+  ],
+  "translation_key": "malum.gui.book.entry.spirit_infusion",
+  "description_translation_key": "malum.gui.book.entry.spirit_infusion.description",
+  "name": "malum:spirit_infusion",
+  "icon_stacks": [
+    {
+      "id": "malum:spirit_altar",
+      "Count": 1
+    }
+  ],
+  "x_offset": 0,
+  "y_offset": 5
+}

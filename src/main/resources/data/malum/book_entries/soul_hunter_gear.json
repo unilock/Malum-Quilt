@@ -1,0 +1,40 @@
+{
+  "object_supplier": "malum:entry_object",
+  "pages": [
+    {
+      "headline_translation_key": "malum.gui.book.entry.page.headline.soul_hunter_armor",
+      "description_translation_key": "malum.gui.book.entry.page.text.soul_hunter_armor",
+      "type": "malum:headline"
+    },
+    {
+      "recipe": "malum:spirit_infusion/soul_hunter_cloak",
+      "type": "malum:spirit_infusion"
+    },
+    {
+      "recipe": "malum:spirit_infusion/soul_hunter_robe",
+      "type": "malum:spirit_infusion"
+    },
+    {
+      "recipe": "malum:spirit_infusion/soul_hunter_leggings",
+      "type": "malum:spirit_infusion"
+    },
+    {
+      "recipe": "malum:spirit_infusion/soul_hunter_boots",
+      "type": "malum:spirit_infusion"
+    }
+  ],
+  "translation_key": "malum.gui.book.entry.soul_hunter_gear",
+  "description_translation_key": "malum.gui.book.entry.soul_hunter_gear.description",
+  "name": "malum:soul_hunter_gear",
+  "icon_stacks": [
+    {
+      "id": "malum:soul_hunter_cloak",
+      "Count": 1,
+      "tag": {
+        "Damage": 0
+      }
+    }
+  ],
+  "x_offset": 4,
+  "y_offset": 7
+}

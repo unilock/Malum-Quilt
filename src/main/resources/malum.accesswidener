@@ -87,3 +87,4 @@ accessible method com/mojang/blaze3d/vertex/BufferBuilder isBuilding ()Z
 accessible method net/minecraft/registry/Registries registerSimple (Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/registry/Registries$RegistryBootstrap;)Lnet/minecraft/registry/Registry;
 accessible class net/minecraft/registry/Registries$RegistryBootstrap
 accessible class net/minecraft/particle/DefaultParticleType
+extendable class net/minecraft/enchantment/EnchantmentTarget

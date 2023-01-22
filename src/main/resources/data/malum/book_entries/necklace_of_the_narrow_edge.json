@@ -1,0 +1,25 @@
+{
+  "object_supplier": "malum:entry_object",
+  "pages": [
+    {
+      "headline_translation_key": "malum.gui.book.entry.page.headline.necklace_of_the_narrow_edge",
+      "description_translation_key": "malum.gui.book.entry.page.text.necklace_of_the_narrow_edge",
+      "type": "malum:headline"
+    },
+    {
+      "recipe": "malum:spirit_infusion/necklace_of_the_narrow_edge",
+      "type": "malum:spirit_infusion"
+    }
+  ],
+  "translation_key": "malum.gui.book.entry.necklace_of_the_narrow_edge",
+  "description_translation_key": "malum.gui.book.entry.necklace_of_the_narrow_edge.description",
+  "name": "malum:necklace_of_the_narrow_edge",
+  "icon_stacks": [
+    {
+      "id": "malum:necklace_of_the_narrow_edge",
+      "Count": 1
+    }
+  ],
+  "x_offset": -8,
+  "y_offset": 7
+}

@@ -30,10 +30,10 @@ public class MalumConfiguredFeatureRegistry {
 	public static RegistryKey<ConfiguredFeature<?, ?>> CONFIGURED_SOULWOOD_TREE_FEATURE = ConfiguredFeatureUtil.m_qoarwirv("soulwood_tree");
 
 	public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> bootstrapContext) {
-		ConfiguredFeatureUtil.m_rajyrrbd(bootstrapContext, SURFACE_SOULSTONE_CONFIGURED, Feature.ORE, new OreFeatureConfig(SOULSTONE_ORE_TARGETS, 4));
-		ConfiguredFeatureUtil.m_rajyrrbd(bootstrapContext, UNDERGROUND_SOULSTONE_CONFIGURED, Feature.ORE, new OreFeatureConfig(SOULSTONE_ORE_TARGETS, 4));
-		ConfiguredFeatureUtil.m_rajyrrbd(bootstrapContext, BRILLIANT_STONE_VEIN_CONFIGURED, Feature.ORE, new OreFeatureConfig(BRILLIANCE_ORE_TARGETS, 2));
-		ConfiguredFeatureUtil.m_rajyrrbd(bootstrapContext, BLAZING_QUARTZ_VEIN_CONFIGURED, Feature.ORE, new OreFeatureConfig(BLAZING_QUARTZ_TARGETS, 2));
+		ConfiguredFeatureUtil.m_rajyrrbd(bootstrapContext, SURFACE_SOULSTONE_CONFIGURED, Feature.ORE, new OreFeatureConfig(SOULSTONE_ORE_TARGETS, 6));
+		ConfiguredFeatureUtil.m_rajyrrbd(bootstrapContext, UNDERGROUND_SOULSTONE_CONFIGURED, Feature.ORE, new OreFeatureConfig(SOULSTONE_ORE_TARGETS, 12));
+		ConfiguredFeatureUtil.m_rajyrrbd(bootstrapContext, BRILLIANT_STONE_VEIN_CONFIGURED, Feature.ORE, new OreFeatureConfig(BRILLIANCE_ORE_TARGETS, 4));
+		ConfiguredFeatureUtil.m_rajyrrbd(bootstrapContext, BLAZING_QUARTZ_VEIN_CONFIGURED, Feature.ORE, new OreFeatureConfig(BLAZING_QUARTZ_TARGETS, 14));
 		ConfiguredFeatureUtil.m_fpwwfrjz(bootstrapContext, CONFIGURED_RUNEWOOD_TREE_FEATURE, RUNEWOOD_TREE_FEATURE);
 		ConfiguredFeatureUtil.m_fpwwfrjz(bootstrapContext, CONFIGURED_SOULWOOD_TREE_FEATURE, SOULWOOD_TREE_FEATURE);
 	}

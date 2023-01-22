@@ -5,9 +5,23 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "ArmorMaterialsMixin",
-    "ConfiguredFeatureUtilMixin"
+    "BlockEntityMixin",
+    "ConfiguredFeatureUtilMixin",
+    "CookingRecipeSerializerMixin",
+    "DefaultBiomeFeaturesMixin",
+    "EnchantingTableBlockMixin",
+    "EnchantmentScreenHandlerMixin",
+    "ItemStackMixin",
+    "LivingEntityMixin",
+    "PlacedFeatureUtilMixin",
+    "PlayerEntityMixin",
+    "WorldChunkMixin"
   ],
   "client": [
+    "client.InGameHudMixin",
+    "client.ItemColorsMixin",
+    "client.EnchantmentTargetMixin",
+    "client.ItemRendererMixin",
     "client.MinecraftClientMixin"
   ],
   "injectors": {

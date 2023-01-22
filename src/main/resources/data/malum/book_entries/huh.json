@@ -1,0 +1,66 @@
+{
+  "object_supplier": "malum:vanishing_entry_object",
+  "pages": [
+    {
+      "headline_translation_key": "malum.gui.book.entry.page.headline.the_device",
+      "description_translation_key": "malum.gui.book.entry.page.text.the_device",
+      "type": "malum:headline"
+    },
+    {
+      "output": {
+        "id": "malum:the_device",
+        "Count": 1
+      },
+      "input": [
+        {
+          "id": "malum:twisted_rock",
+          "Count": 1
+        },
+        {
+          "id": "malum:tainted_rock",
+          "Count": 1
+        },
+        {
+          "id": "malum:twisted_rock",
+          "Count": 1
+        },
+        {
+          "id": "malum:tainted_rock",
+          "Count": 1
+        },
+        {
+          "id": "malum:twisted_rock",
+          "Count": 1
+        },
+        {
+          "id": "malum:tainted_rock",
+          "Count": 1
+        },
+        {
+          "id": "malum:twisted_rock",
+          "Count": 1
+        },
+        {
+          "id": "malum:tainted_rock",
+          "Count": 1
+        },
+        {
+          "id": "malum:twisted_rock",
+          "Count": 1
+        }
+      ],
+      "type": "malum:crafting"
+    }
+  ],
+  "translation_key": "malum.gui.book.entry.huh",
+  "description_translation_key": "malum.gui.book.entry.huh.description",
+  "name": "malum:huh",
+  "icon_stacks": [
+    {
+      "id": "malum:the_device",
+      "Count": 1
+    }
+  ],
+  "x_offset": 0,
+  "y_offset": -10
+}

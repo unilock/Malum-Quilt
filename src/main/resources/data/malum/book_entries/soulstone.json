@@ -1,0 +1,74 @@
+{
+  "object_supplier": "malum:entry_object",
+  "pages": [
+    {
+      "headline_translation_key": "malum.gui.book.entry.page.headline.soulstone",
+      "description_translation_key": "malum.gui.book.entry.page.text.soulstone_a",
+      "type": "malum:headline"
+    },
+    {
+      "translation_key": "malum.gui.book.entry.page.text.soulstone_b",
+      "type": "malum:text"
+    },
+    {
+      "translation_key": "malum.gui.book.entry.page.text.soulstone_c",
+      "type": "malum:text"
+    },
+    {
+      "output": {
+        "id": "malum:block_of_soulstone",
+        "Count": 1
+      },
+      "input": [
+        {
+          "id": "malum:processed_soulstone",
+          "Count": 1
+        },
+        {
+          "id": "malum:processed_soulstone",
+          "Count": 1
+        },
+        {
+          "id": "malum:processed_soulstone",
+          "Count": 1
+        },
+        {
+          "id": "malum:processed_soulstone",
+          "Count": 1
+        },
+        {
+          "id": "malum:processed_soulstone",
+          "Count": 1
+        },
+        {
+          "id": "malum:processed_soulstone",
+          "Count": 1
+        },
+        {
+          "id": "malum:processed_soulstone",
+          "Count": 1
+        },
+        {
+          "id": "malum:processed_soulstone",
+          "Count": 1
+        },
+        {
+          "id": "malum:processed_soulstone",
+          "Count": 1
+        }
+      ],
+      "type": "malum:crafting"
+    }
+  ],
+  "translation_key": "malum.gui.book.entry.soulstone",
+  "description_translation_key": "malum.gui.book.entry.soulstone.description",
+  "name": "malum:soulstone",
+  "icon_stacks": [
+    {
+      "id": "malum:processed_soulstone",
+      "Count": 1
+    }
+  ],
+  "x_offset": -1,
+  "y_offset": 2
+}

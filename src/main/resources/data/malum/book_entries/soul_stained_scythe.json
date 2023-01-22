@@ -1,0 +1,28 @@
+{
+  "object_supplier": "malum:entry_object",
+  "pages": [
+    {
+      "headline_translation_key": "malum.gui.book.entry.page.headline.soul_stained_scythe",
+      "description_translation_key": "malum.gui.book.entry.page.text.soul_stained_scythe",
+      "type": "malum:headline"
+    },
+    {
+      "recipe": "malum:spirit_infusion/soul_stained_steel_scythe",
+      "type": "malum:spirit_infusion"
+    }
+  ],
+  "translation_key": "malum.gui.book.entry.soul_stained_scythe",
+  "description_translation_key": "malum.gui.book.entry.soul_stained_scythe.description",
+  "name": "malum:soul_stained_scythe",
+  "icon_stacks": [
+    {
+      "id": "malum:soul_stained_steel_scythe",
+      "Count": 1,
+      "tag": {
+        "Damage": 0
+      }
+    }
+  ],
+  "x_offset": -4,
+  "y_offset": 5
+}

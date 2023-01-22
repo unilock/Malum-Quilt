@@ -1,0 +1,36 @@
+{
+  "object_supplier": "malum:entry_object",
+  "pages": [
+    {
+      "headline_translation_key": "malum.gui.book.entry.page.headline.tyrving",
+      "description_translation_key": "malum.gui.book.entry.page.text.tyrving_a",
+      "type": "malum:headline"
+    },
+    {
+      "recipe": "malum:spirit_infusion/tyrving",
+      "type": "malum:spirit_infusion"
+    },
+    {
+      "translation_key": "malum.gui.book.entry.page.text.tyrving_b",
+      "type": "malum:text"
+    },
+    {
+      "recipe": "malum:spirit_crucible/repair/tyrving",
+      "type": "malum:spirit_repair"
+    }
+  ],
+  "translation_key": "malum.gui.book.entry.tyrving",
+  "description_translation_key": "malum.gui.book.entry.tyrving.description",
+  "name": "malum:tyrving",
+  "icon_stacks": [
+    {
+      "id": "malum:tyrving",
+      "Count": 1,
+      "tag": {
+        "Damage": 0
+      }
+    }
+  ],
+  "x_offset": -1,
+  "y_offset": 15
+}

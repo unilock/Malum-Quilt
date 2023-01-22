@@ -1,0 +1,7 @@
+{
+  "parent": "malum:block/templates/template_item_stand",
+  "textures": {
+    "particle": "malum:block/tainted_rock",
+    "stand": "malum:block/tainted_rock_item_stand"
+  }
+}

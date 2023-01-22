@@ -12,6 +12,7 @@ import dev.sterner.malum.common.component.MalumComponents;
 import dev.sterner.malum.common.entity.spirit.PlayerBoundItemEntity;
 import dev.sterner.malum.common.recipe.SpiritWithCount;
 import dev.sterner.malum.common.registry.MalumAttributeRegistry;
+import dev.sterner.malum.common.registry.MalumEnchantmentRegistry;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
 import net.minecraft.client.MinecraftClient;
@@ -187,14 +188,14 @@ public final class SpiritHelper {
 			spiritBonus += attacker.getAttributeValue(MalumAttributeRegistry.SPIRIT_SPOILS);
 		}
 		if (!harvestStack.isEmpty()) {
-			//TODO int spiritPlunder = EnchantmentHelper.getLevel(MalumEnchantments.SPIRIT_PLUNDER, harvestStack);
-			/*
+			int spiritPlunder = EnchantmentHelper.getLevel(MalumEnchantmentRegistry.SPIRIT_PLUNDER, harvestStack);
+
 			if (spiritPlunder > 0) {
 				harvestStack.damage(spiritPlunder, attacker, (e) -> e.sendEquipmentBreakStatus(MAINHAND));
 			}
 			spiritBonus += spiritPlunder;
 
-			 */
+
 		}
 		for (int i = 0; i < spiritBonus * spoilsMultiplier; i++) {
 			int random = attacker.world.random.nextInt(spirits.size());

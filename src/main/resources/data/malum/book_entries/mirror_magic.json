@@ -1,0 +1,25 @@
+{
+  "object_supplier": "malum:important_entry_object",
+  "pages": [
+    {
+      "headline_translation_key": "malum.gui.book.entry.page.headline.mirror_magic",
+      "description_translation_key": "malum.gui.book.entry.page.text.mirror_magic",
+      "type": "malum:headline"
+    },
+    {
+      "recipe": "malum:spirit_infusion/spectral_lens",
+      "type": "malum:spirit_infusion"
+    }
+  ],
+  "translation_key": "malum.gui.book.entry.mirror_magic",
+  "description_translation_key": "malum.gui.book.entry.mirror_magic.description",
+  "name": "malum:mirror_magic",
+  "icon_stacks": [
+    {
+      "id": "malum:spectral_lens",
+      "Count": 1
+    }
+  ],
+  "x_offset": -6,
+  "y_offset": 10
+}

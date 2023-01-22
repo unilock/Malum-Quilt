@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "malum:block/runewood_item_stand",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "malum:block/runewood_item_stand",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "malum:block/runewood_item_stand",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "malum:block/runewood_item_stand",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "malum:block/runewood_item_stand"
+    },
+    "facing=west": {
+      "model": "malum:block/runewood_item_stand",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

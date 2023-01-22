@@ -11,6 +11,7 @@ import dev.sterner.malum.client.render.entity.FloatingItemEntityRenderer;
 import dev.sterner.malum.client.render.entity.ScytheBoomerangEntityRenderer;
 import dev.sterner.malum.client.render.entity.VividNitrateEntityRenderer;
 import dev.sterner.malum.client.render.item.ScytheItemRenderer;
+import dev.sterner.malum.client.screen.SpiritPouchScreen;
 import dev.sterner.malum.common.block.MalumLeavesBlock;
 import dev.sterner.malum.common.blockentity.EtherBlockEntity;
 import dev.sterner.malum.common.network.packet.s2c.block.*;
@@ -18,16 +19,16 @@ import dev.sterner.malum.common.network.packet.s2c.block.blight.BlightMistPartic
 import dev.sterner.malum.common.network.packet.s2c.block.blight.BlightTransformItemParticlePacket;
 import dev.sterner.malum.common.network.packet.s2c.block.functional.AltarConsumeParticlePacket;
 import dev.sterner.malum.common.network.packet.s2c.block.functional.AltarCraftParticlePacket;
-import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
-import dev.sterner.malum.common.registry.MalumEntityRegistry;
-import dev.sterner.malum.common.registry.MalumItemRegistry;
-import dev.sterner.malum.common.registry.MalumParticleRegistry;
+import dev.sterner.malum.common.registry.*;
 import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.particle.ParticleFactory;
 import net.minecraft.client.particle.SpriteProvider;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.RenderLayers;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.ModelIdentifier;
@@ -40,6 +41,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.client.ClientModInitializer;
+import org.quiltmc.qsl.block.extensions.api.client.BlockRenderLayerMap;
 import org.quiltmc.qsl.networking.api.client.ClientPlayNetworking;
 import org.quiltmc.qsl.resource.loader.api.ResourceLoader;
 
@@ -101,6 +103,34 @@ public class MalumClient implements ClientModInitializer {
 		ClientPlayNetworking.registerGlobalReceiver(MinorBlockSparkleParticlePacket.ID, MinorBlockSparkleParticlePacket::handle);
 		ClientPlayNetworking.registerGlobalReceiver(TotemBaseActivationParticlePacket.ID, TotemBaseActivationParticlePacket::handle);
 		ClientPlayNetworking.registerGlobalReceiver(VoidConduitParticlePacket.ID, VoidConduitParticlePacket::handle);
+
+		HandledScreens.register(MalumScreenHandlerRegistry.SPIRIT_POUCH_SCREEN_HANDLER, SpiritPouchScreen::new);
+
+		BlockRenderLayerMap.put(RenderLayer.getCutout(),
+				RUNEWOOD_SAPLING,
+				RUNEWOOD_DOOR,
+				SOULWOOD_DOOR,
+				RUNEWOOD_TRAPDOOR,
+				SOULWOOD_TRAPDOOR,
+				ETHER_TORCH,
+				ETHER_SCONCE,
+				WALL_ETHER_TORCH,
+				WALL_ETHER_SCONCE,
+				WALL_BLAZING_TORCH,
+				BLAZING_TORCH,
+				TAINTED_ETHER_BRAZIER,
+				TWISTED_ETHER_BRAZIER,
+				IRIDESCENT_ETHER_TORCH,
+				IRIDESCENT_WALL_ETHER_TORCH,
+				IRIDESCENT_WALL_ETHER_SCONCE,
+				TAINTED_IRIDESCENT_ETHER_BRAZIER,
+				TWISTED_IRIDESCENT_ETHER_BRAZIER,
+				BRILLIANT_DEEPSLATE,
+				BRILLIANT_STONE,
+				BLAZING_QUARTZ_ORE,
+				SPIRIT_ALTAR
+		);
+		registerColors();
 	}
 
 	private void registerColors() {

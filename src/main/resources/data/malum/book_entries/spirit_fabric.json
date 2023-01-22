@@ -1,0 +1,75 @@
+{
+  "object_supplier": "malum:entry_object",
+  "pages": [
+    {
+      "headline_translation_key": "malum.gui.book.entry.page.headline.spirit_fabric",
+      "description_translation_key": "malum.gui.book.entry.page.text.spirit_fabric",
+      "type": "malum:headline"
+    },
+    {
+      "recipe": "malum:spirit_infusion/spirit_fabric",
+      "type": "malum:spirit_infusion"
+    },
+    {
+      "headline_translation_key": "malum.gui.book.entry.page.headline.spirit_pouch",
+      "description_translation_key": "malum.gui.book.entry.page.text.spirit_pouch",
+      "type": "malum:headline"
+    },
+    {
+      "output": {
+        "id": "malum:spirit_pouch",
+        "Count": 1
+      },
+      "input": [
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:string",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "malum:spirit_fabric",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:soul_sand",
+          "Count": 1
+        },
+        {
+          "id": "malum:spirit_fabric",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "malum:spirit_fabric",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        }
+      ],
+      "type": "malum:crafting"
+    }
+  ],
+  "translation_key": "malum.gui.book.entry.spirit_fabric",
+  "description_translation_key": "malum.gui.book.entry.spirit_fabric.description",
+  "name": "malum:spirit_fabric",
+  "icon_stacks": [
+    {
+      "id": "malum:spirit_fabric",
+      "Count": 1
+    }
+  ],
+  "x_offset": 4,
+  "y_offset": 5
+}

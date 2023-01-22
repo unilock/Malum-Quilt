@@ -1,0 +1,59 @@
+{
+  "object_supplier": "malum:entry_object",
+  "pages": [
+    {
+      "headline_translation_key": "malum.gui.book.entry.page.headline.sacred_spirit",
+      "description_translation_key": "malum.gui.book.entry.page.text.sacred_spirit_a",
+      "item": {
+        "id": "malum:sacred_spirit",
+        "Count": 1
+      },
+      "type": "malum:item"
+    },
+    {
+      "translation_key": "malum.gui.book.entry.page.text.sacred_spirit_b",
+      "type": "malum:text"
+    },
+    {
+      "headline_translation_key": "malum.gui.book.entry.page.headline.wicked_spirit",
+      "description_translation_key": "malum.gui.book.entry.page.text.wicked_spirit_a",
+      "item": {
+        "id": "malum:wicked_spirit",
+        "Count": 1
+      },
+      "type": "malum:item"
+    },
+    {
+      "translation_key": "malum.gui.book.entry.page.text.wicked_spirit_b",
+      "type": "malum:text"
+    },
+    {
+      "headline_translation_key": "malum.gui.book.entry.page.headline.arcane_spirit",
+      "description_translation_key": "malum.gui.book.entry.page.text.arcane_spirit_a",
+      "item": {
+        "id": "malum:arcane_spirit",
+        "Count": 1
+      },
+      "type": "malum:item"
+    },
+    {
+      "translation_key": "malum.gui.book.entry.page.text.arcane_spirit_b",
+      "type": "malum:text"
+    },
+    {
+      "translation_key": "malum.gui.book.entry.page.text.arcane_spirit_c",
+      "type": "malum:text"
+    }
+  ],
+  "translation_key": "malum.gui.book.entry.primary_arcana",
+  "description_translation_key": "malum.gui.book.entry.primary_arcana.description",
+  "name": "malum:primary_arcana",
+  "icon_stacks": [
+    {
+      "id": "malum:arcane_spirit",
+      "Count": 1
+    }
+  ],
+  "x_offset": -2,
+  "y_offset": 4
+}

@@ -1,0 +1,422 @@
+{
+  "object_supplier": "malum:entry_object",
+  "pages": [
+    {
+      "headline_translation_key": "malum.gui.book.entry.page.headline.hallowed_gold",
+      "description_translation_key": "malum.gui.book.entry.page.text.hallowed_gold_a",
+      "type": "malum:headline"
+    },
+    {
+      "translation_key": "malum.gui.book.entry.page.text.hallowed_gold_b",
+      "type": "malum:text"
+    },
+    {
+      "recipe": "malum:spirit_infusion/hallowed_gold_ingot",
+      "type": "malum:spirit_infusion"
+    },
+    {
+      "output": {
+        "id": "malum:hallowed_spirit_resonator",
+        "Count": 1
+      },
+      "input": [
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "malum:runewood_planks",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "malum:hallowed_gold_ingot",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:quartz",
+          "Count": 1
+        },
+        {
+          "id": "malum:hallowed_gold_ingot",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "malum:runewood_planks",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        }
+      ],
+      "type": "malum:crafting"
+    },
+    {
+      "headline_translation_key": "malum.gui.book.entry.page.headline.spirit_jar",
+      "description_translation_key": "malum.gui.book.entry.page.text.spirit_jar",
+      "type": "malum:headline"
+    },
+    {
+      "output": {
+        "id": "malum:spirit_jar",
+        "Count": 1
+      },
+      "input": [
+        {
+          "id": "minecraft:glass_pane",
+          "Count": 1
+        },
+        {
+          "id": "malum:hallowed_gold_ingot",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:glass_pane",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:glass_pane",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:glass_pane",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:glass_pane",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:glass_pane",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:glass_pane",
+          "Count": 1
+        }
+      ],
+      "type": "malum:crafting"
+    },
+    {
+      "headline_translation_key": "malum.gui.book.entry.page.headline.soul_stained_steel",
+      "description_translation_key": "malum.gui.book.entry.page.text.soul_stained_steel_a",
+      "type": "malum:headline"
+    },
+    {
+      "translation_key": "malum.gui.book.entry.page.text.soul_stained_steel_b",
+      "type": "malum:text"
+    },
+    {
+      "recipe": "malum:spirit_infusion/soul_stained_steel_ingot",
+      "type": "malum:spirit_infusion"
+    },
+    {
+      "output": {
+        "id": "malum:stained_spirit_resonator",
+        "Count": 1
+      },
+      "input": [
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "malum:runewood_planks",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "malum:soul_stained_steel_ingot",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:quartz",
+          "Count": 1
+        },
+        {
+          "id": "malum:soul_stained_steel_ingot",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "malum:runewood_planks",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        }
+      ],
+      "type": "malum:crafting"
+    },
+    {
+      "output": {
+        "id": "malum:soul_stained_steel_pickaxe",
+        "Count": 1,
+        "tag": {
+          "Damage": 0
+        }
+      },
+      "input": [
+        {
+          "id": "malum:soul_stained_steel_ingot",
+          "Count": 1
+        },
+        {
+          "id": "malum:soul_stained_steel_ingot",
+          "Count": 1
+        },
+        {
+          "id": "malum:soul_stained_steel_ingot",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:stick",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:stick",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        }
+      ],
+      "type": "malum:crafting"
+    },
+    {
+      "output": {
+        "id": "malum:soul_stained_steel_axe",
+        "Count": 1,
+        "tag": {
+          "Damage": 0
+        }
+      },
+      "input": [
+        {
+          "id": "malum:soul_stained_steel_ingot",
+          "Count": 1
+        },
+        {
+          "id": "malum:soul_stained_steel_ingot",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "malum:soul_stained_steel_ingot",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:stick",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:stick",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        }
+      ],
+      "type": "malum:crafting"
+    },
+    {
+      "output": {
+        "id": "malum:soul_stained_steel_hoe",
+        "Count": 1,
+        "tag": {
+          "Damage": 0
+        }
+      },
+      "input": [
+        {
+          "id": "malum:soul_stained_steel_ingot",
+          "Count": 1
+        },
+        {
+          "id": "malum:soul_stained_steel_ingot",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:stick",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:stick",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        }
+      ],
+      "type": "malum:crafting"
+    },
+    {
+      "output": {
+        "id": "malum:soul_stained_steel_shovel",
+        "Count": 1,
+        "tag": {
+          "Damage": 0
+        }
+      },
+      "input": [
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "malum:soul_stained_steel_ingot",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:stick",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:stick",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        }
+      ],
+      "type": "malum:crafting"
+    },
+    {
+      "output": {
+        "id": "malum:soul_stained_steel_sword",
+        "Count": 1,
+        "tag": {
+          "Damage": 0
+        }
+      },
+      "input": [
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "malum:soul_stained_steel_ingot",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "malum:soul_stained_steel_ingot",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:stick",
+          "Count": 1
+        },
+        {
+          "id": "minecraft:air",
+          "Count": 1
+        }
+      ],
+      "type": "malum:crafting"
+    }
+  ],
+  "translation_key": "malum.gui.book.entry.spirit_metals",
+  "description_translation_key": "malum.gui.book.entry.spirit_metals.description",
+  "name": "malum:spirit_metals",
+  "icon_stacks": [
+    {
+      "id": "malum:soul_stained_steel_ingot",
+      "Count": 1
+    }
+  ],
+  "x_offset": -3,
+  "y_offset": 6
+}

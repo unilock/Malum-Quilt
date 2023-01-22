@@ -1,0 +1,29 @@
+{
+  "object_supplier": "malum:entry_object",
+  "pages": [
+    {
+      "headline_translation_key": "malum.gui.book.entry.page.headline.trans_rite",
+      "description_translation_key": "malum.gui.book.entry.page.text.trans_rite",
+      "type": "malum:headline"
+    },
+    {
+      "rite": "malum:trans_rite",
+      "type": "malum:rite"
+    }
+  ],
+  "translation_key": "malum.gui.book.entry.trans_rite",
+  "description_translation_key": "malum.gui.book.entry.trans_rite.description",
+  "name": "malum:trans_rite",
+  "icon_stacks": [
+    {
+      "id": "malum:aerial_spirit",
+      "Count": 1
+    },
+    {
+      "id": "malum:sacred_spirit",
+      "Count": 1
+    }
+  ],
+  "x_offset": 0,
+  "y_offset": 14
+}

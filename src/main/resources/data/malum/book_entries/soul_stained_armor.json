@@ -1,0 +1,48 @@
+{
+  "object_supplier": "malum:entry_object",
+  "pages": [
+    {
+      "headline_translation_key": "malum.gui.book.entry.page.headline.soul_stained_armor",
+      "description_translation_key": "malum.gui.book.entry.page.text.soul_stained_armor_a",
+      "type": "malum:headline"
+    },
+    {
+      "translation_key": "malum.gui.book.entry.page.text.soul_stained_armor_b",
+      "type": "malum:text"
+    },
+    {
+      "translation_key": "malum.gui.book.entry.page.text.soul_stained_armor_c",
+      "type": "malum:text"
+    },
+    {
+      "recipe": "malum:spirit_infusion/soul_stained_steel_helmet",
+      "type": "malum:spirit_infusion"
+    },
+    {
+      "recipe": "malum:spirit_infusion/soul_stained_steel_chestplate",
+      "type": "malum:spirit_infusion"
+    },
+    {
+      "recipe": "malum:spirit_infusion/soul_stained_steel_leggings",
+      "type": "malum:spirit_infusion"
+    },
+    {
+      "recipe": "malum:spirit_infusion/soul_stained_steel_boots",
+      "type": "malum:spirit_infusion"
+    }
+  ],
+  "translation_key": "malum.gui.book.entry.soul_stained_armor",
+  "description_translation_key": "malum.gui.book.entry.soul_stained_armor.description",
+  "name": "malum:soul_stained_armor",
+  "icon_stacks": [
+    {
+      "id": "malum:soul_stained_steel_helmet",
+      "Count": 1,
+      "tag": {
+        "Damage": 0
+      }
+    }
+  ],
+  "x_offset": -4,
+  "y_offset": 7
+}

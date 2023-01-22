@@ -1,0 +1,44 @@
+{
+  "object_supplier": "malum:entry_object",
+  "pages": [
+    {
+      "headline_translation_key": "malum.gui.book.entry.page.headline.totem_corruption",
+      "description_translation_key": "malum.gui.book.entry.page.text.totem_corruption_a",
+      "type": "malum:headline"
+    },
+    {
+      "translation_key": "malum.gui.book.entry.page.text.totem_corruption_b",
+      "type": "malum:text"
+    },
+    {
+      "first_headline_translation_key": "malum.gui.book.entry.page.headline.rite_effect",
+      "first_description_translation_key": "malum.gui.book.entry.page.text.arcane_rite",
+      "second_headline_translation_key": "malum.gui.book.entry.page.headline.corrupted_rite_effect",
+      "second_description_translation_key": "malum.gui.book.entry.page.text.corrupted_arcane_rite",
+      "type": "malum:double_headline"
+    },
+    {
+      "rite": "malum:arcane_rite",
+      "type": "malum:rite"
+    },
+    {
+      "translation_key": "malum.gui.book.entry.page.text.totem_corruption_c",
+      "type": "malum:text"
+    },
+    {
+      "recipe": "malum:spirit_infusion/soulwood_totem_base",
+      "type": "malum:spirit_infusion"
+    }
+  ],
+  "translation_key": "malum.gui.book.entry.arcane_rite",
+  "description_translation_key": "malum.gui.book.entry.arcane_rite.description",
+  "name": "malum:arcane_rite",
+  "icon_stacks": [
+    {
+      "id": "malum:arcane_spirit",
+      "Count": 1
+    }
+  ],
+  "x_offset": 0,
+  "y_offset": 11
+}

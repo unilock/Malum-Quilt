@@ -2,6 +2,7 @@ package dev.sterner.malum.common.entity.boomerang;
 
 import com.sammy.lodestone.helpers.ItemHelper;
 import dev.sterner.malum.common.item.tools.MalumScytheItem;
+import dev.sterner.malum.common.registry.MalumEnchantmentRegistry;
 import dev.sterner.malum.common.registry.MalumEntityRegistry;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -172,7 +173,7 @@ public class ScytheBoomerangEntity extends ThrownItemEntity {
                     if (isAlive()) {
                         owner.giveItemStack(scythe);
                         if (!owner.getAbilities().creativeMode) {
-                           int cooldown = 100; //TODO int cooldown = 100 - 25 * (EnchantmentHelper.getLevel(MalumEnchantments.REBOUND, scythe) - 1);
+                            int cooldown = 100 - 25 * (EnchantmentHelper.getLevel(MalumEnchantmentRegistry.REBOUND, scythe) - 1);
                             owner.getItemCooldownManager().set(scythe.getItem(), cooldown);
                         }
                         remove(RemovalReason.DISCARDED);

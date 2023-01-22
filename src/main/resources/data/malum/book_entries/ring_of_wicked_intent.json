@@ -1,0 +1,25 @@
+{
+  "object_supplier": "malum:entry_object",
+  "pages": [
+    {
+      "headline_translation_key": "malum.gui.book.entry.page.headline.ring_of_wicked_intent",
+      "description_translation_key": "malum.gui.book.entry.page.text.ring_of_wicked_intent",
+      "type": "malum:headline"
+    },
+    {
+      "recipe": "malum:spirit_infusion/ring_of_wicked_intent",
+      "type": "malum:spirit_infusion"
+    }
+  ],
+  "translation_key": "malum.gui.book.entry.ring_of_wicked_intent",
+  "description_translation_key": "malum.gui.book.entry.ring_of_wicked_intent.description",
+  "name": "malum:ring_of_wicked_intent",
+  "icon_stacks": [
+    {
+      "id": "malum:ring_of_wicked_intent",
+      "Count": 1
+    }
+  ],
+  "x_offset": -7,
+  "y_offset": 8
+}
