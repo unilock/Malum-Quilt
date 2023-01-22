@@ -25,6 +25,7 @@ import java.util.List;
 
 public class BlightMistParticlePacket {
     public static final Identifier ID = new Identifier(Malum.MODID, "blight_mist_particles");
+
     public static void send(PlayerEntity player, BlockPos pos) {
         PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
 

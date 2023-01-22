@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TotemBaseActivationParticlePacket {
-    public static final Identifier ID = new Identifier(Malum.MODID, "block_totem_base_Activation_particle");
+    public static final Identifier ID = new Identifier(Malum.MODID, "block_totem_base_activation_particle");
 
     public static void send(PlayerEntity player, List<Color> colors, BlockPos pos) {
         PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());

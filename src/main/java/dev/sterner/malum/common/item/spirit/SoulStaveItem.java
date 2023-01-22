@@ -58,6 +58,7 @@ public class SoulStaveItem extends Item implements ISoulContainerItem {
     }
 
 
+	@Override
     public TypedActionResult<ItemStack> interactWithSoul(PlayerEntity player, Hand hand, SoulEntity soul) {
         ItemStack stack = player.getStackInHand(hand);
         ItemStack otherStack = player.getStackInHand(hand.equals(Hand.MAIN_HAND) ? Hand.OFF_HAND : Hand.MAIN_HAND);
@@ -83,7 +84,7 @@ public class SoulStaveItem extends Item implements ISoulContainerItem {
                         user.setCurrentHand(hand);
                     }
                 } else {
-                    //TODO fetchSoul(user, hand);
+                    fetchSoul(user, hand);
                 }
             });
         }

@@ -1,5 +1,7 @@
 package dev.sterner.malum.api.interfaces.item;
 
+import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+import dev.sterner.malum.common.entity.spirit.SoulEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
@@ -9,7 +11,7 @@ import net.minecraft.util.math.Vec3d;
 import java.util.ArrayList;
 
 public interface ISoulContainerItem {
-    /*
+
     TypedActionResult<ItemStack> interactWithSoul(PlayerEntity player, Hand hand, SoulEntity soul);
 
     default TypedActionResult<ItemStack> fetchSoul(PlayerEntity player, Hand hand) {
@@ -33,5 +35,5 @@ public interface ISoulContainerItem {
         return TypedActionResult.pass(player.getStackInHand(hand));
     }
 
-     */
+
 }

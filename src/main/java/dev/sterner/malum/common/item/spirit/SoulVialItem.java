@@ -79,6 +79,7 @@ public class SoulVialItem extends BlockItem implements ISoulContainerItem {
     }
 
 
+	@Override
     public TypedActionResult<ItemStack> interactWithSoul(PlayerEntity player, Hand hand, SoulEntity soul) {
         ItemStack stack = player.getStackInHand(hand);
         if (!soul.spiritData.equals(MalumEntitySpiritData.EMPTY) && (!stack.hasNbt() || (stack.hasNbt() && !stack.getOrCreateNbt().contains(MalumEntitySpiritData.SOUL_DATA)))) {
@@ -90,10 +91,5 @@ public class SoulVialItem extends BlockItem implements ISoulContainerItem {
             return TypedActionResult.success(player.getStackInHand(hand));
         }
         return TypedActionResult.fail(player.getStackInHand(hand));
-    }
-
-
-    public TypedActionResult<ItemStack> fetchSoul(PlayerEntity player, Hand hand) {
-        return null;
     }
 }
