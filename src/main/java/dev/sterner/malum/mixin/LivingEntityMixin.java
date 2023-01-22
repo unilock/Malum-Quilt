@@ -1,6 +1,8 @@
 package dev.sterner.malum.mixin;
 
-import dev.sterner.malum.common.registry.MalumItemRegistry;
+import com.sammy.lodestone.setup.LodestoneAttributeRegistry;
+import dev.sterner.malum.common.registry.MalumAttributeRegistry;
+import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.spirit.SpiritHarvestHandler;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.entity.Entity;
@@ -29,8 +31,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Optional;
-
-import static com.sammy.lodestone.setup.LodestoneAttributeRegistry.ATTRIBUTES;
 import static com.sammy.lodestone.setup.LodestoneAttributeRegistry.MAGIC_RESISTANCE;
 
 @Mixin(LivingEntity.class)
@@ -59,8 +59,9 @@ abstract class LivingEntityMixin extends Entity {
 
 	@Inject(method = "createLivingAttributes", at = @At("RETURN"))
 	private static void malum$createLivingAttributes(CallbackInfoReturnable<DefaultAttributeContainer.Builder> info) {
-		ATTRIBUTES.forEach((id, entityAttribute) -> info.getReturnValue().add(entityAttribute));
+		MalumAttributeRegistry.ATTRIBUTES.forEach((id, entityAttribute) -> info.getReturnValue().add(entityAttribute));
 	}
+
 
 	@Inject(method = "onDeath", at = @At("HEAD"))
 	private void malum$onDeath(DamageSource source, CallbackInfo ci) {

@@ -126,16 +126,11 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity {
         }
     });
 
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        return ActionResult.PASS;
-    }
-
-    public void clientTick(World world1, BlockPos pos, BlockState state1) {
-    }
 
 
 	@Override
 	public ActionResult onUse(PlayerEntity player, Hand hand) {
+		System.out.println("onUse: " + inventory.getValueUnsafer().getStack(0));
 		if (getWorld() == null)
 			return ActionResult.PASS;
 

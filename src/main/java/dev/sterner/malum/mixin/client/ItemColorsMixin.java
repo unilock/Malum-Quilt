@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import static dev.sterner.malum.common.registry.MalumItemRegistry.*;
+import static dev.sterner.malum.common.registry.MalumObjects.*;
 
 @Mixin(ItemColors.class)
 public class ItemColorsMixin {

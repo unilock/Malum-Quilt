@@ -3,7 +3,7 @@ package dev.sterner.malum.common.item.spirit;
 import com.sammy.lodestone.systems.item.tools.LodestoneSwordItem;
 import dev.emi.trinkets.api.TrinketsApi;
 import dev.sterner.malum.api.interfaces.item.SpiritCollectActivity;
-import dev.sterner.malum.common.registry.MalumItemRegistry;
+import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.spirit.SpiritHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
@@ -59,7 +59,7 @@ public class TyrvingItem extends LodestoneSwordItem {
                                                                                            .mapToInt(ItemStack::getCount)
                                                                                            .reduce(0, Integer::sum) + 0.5f * attacker.getAttributeValue(MAGIC_PROFICIENCY)));
         target.lastDamageTaken += lastDamageTaken;
-        if ((TrinketsApi.getTrinketComponent(attacker).orElseThrow().isEquipped(MalumItemRegistry.NECKLACE_OF_THE_MYSTIC_MIRROR))) {
+        if ((TrinketsApi.getTrinketComponent(attacker).orElseThrow().isEquipped(MalumObjects.NECKLACE_OF_THE_MYSTIC_MIRROR))) {
             TrinketsApi.getTrinketComponent(attacker).orElseThrow().forEach((slot, trinket) -> {
                 if (trinket.getItem() instanceof SpiritCollectActivity spiritCollectActivity) {
                     spiritCollectActivity.collect(stack, attacker, slot, trinket, 1);//TODO arcaneResonance

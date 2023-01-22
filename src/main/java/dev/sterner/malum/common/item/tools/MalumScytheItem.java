@@ -36,7 +36,7 @@ public class MalumScytheItem extends SwordItem {
     @Override
     public void hurtEvent(LivingHurtEvent event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         //TODO: convert this to a ToolAction, or something alike
-        boolean canSweep = !CurioHelper.hasCurioEquipped(attacker, MalumItemRegistry.NECKLACE_OF_THE_NARROW_EDGE) && !CurioHelper.hasCurioEquipped(attacker, MalumItemRegistry.NECKLACE_OF_THE_HIDDEN_BLADE);
+        boolean canSweep = !CurioHelper.hasCurioEquipped(attacker, MalumObjects.NECKLACE_OF_THE_NARROW_EDGE) && !CurioHelper.hasCurioEquipped(attacker, MalumObjects.NECKLACE_OF_THE_HIDDEN_BLADE);
         if (attacker instanceof PlayerEntity player) {
             SoundEvent sound;
             if (canSweep) {

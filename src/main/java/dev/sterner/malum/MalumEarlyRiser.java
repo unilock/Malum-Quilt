@@ -11,9 +11,9 @@ import org.quiltmc.loader.api.QuiltLoader;
 
 import java.util.function.Supplier;
 
-import static dev.sterner.malum.common.registry.MalumBlockRegistry.RUNEWOOD_PLANKS;
-import static dev.sterner.malum.common.registry.MalumBlockRegistry.SOULWOOD_PLANKS;
-import static dev.sterner.malum.common.registry.MalumItemRegistry.*;
+import static dev.sterner.malum.common.registry.MalumObjects.RUNEWOOD_PLANKS;
+import static dev.sterner.malum.common.registry.MalumObjects.SOULWOOD_PLANKS;
+import static dev.sterner.malum.common.registry.MalumObjects.*;
 
 public final class MalumEarlyRiser implements Runnable {
 	@SuppressWarnings("rawtypes")

@@ -6,7 +6,7 @@ import com.sammy.lodestone.helpers.DataHelper;
 import com.sammy.lodestone.systems.worldgen.LodestoneBlockFiller;
 import dev.sterner.malum.common.block.BlockTagRegistry;
 import dev.sterner.malum.common.block.MalumLeavesBlock;
-import dev.sterner.malum.common.registry.MalumBlockRegistry;
+import dev.sterner.malum.common.registry.MalumObjects;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -65,11 +65,11 @@ public class SoulwoodTreeFeature extends Feature<DefaultFeatureConfig> {
         var world = ctx.getWorld();
         BlockPos pos = ctx.getOrigin();
         RandomGenerator rand = ctx.getRandom();
-        if (world.isAir(pos.down()) || !MalumBlockRegistry.SOULWOOD_GROWTH.getDefaultState().canPlaceAt(world, pos)) {
+        if (world.isAir(pos.down()) || !MalumObjects.SOULWOOD_GROWTH.getDefaultState().canPlaceAt(world, pos)) {
             return false;
         }
-        BlockState defaultLog = MalumBlockRegistry.SOULWOOD_LOG.getDefaultState();
-        BlockState blightedLog = MalumBlockRegistry.BLIGHTED_SOULWOOD.getDefaultState();
+        BlockState defaultLog = MalumObjects.SOULWOOD_LOG.getDefaultState();
+        BlockState blightedLog = MalumObjects.BLIGHTED_SOULWOOD.getDefaultState();
 
         LodestoneBlockFiller treeFiller = new LodestoneBlockFiller(false);
         LodestoneBlockFiller blightFiller = new LodestoneBlockFiller(false);
@@ -181,7 +181,7 @@ public class SoulwoodTreeFeature extends Feature<DefaultFeatureConfig> {
         int sapBlockCount = minimumSapBlockCount + rand.nextInt(extraSapBlockCount + 1);
         int[] sapBlockIndexes = DataHelper.nextInts(sapBlockCount, treeFiller.entries.size());
         for (Integer index : sapBlockIndexes) {
-            treeFiller.replace(index, e -> e.replaceState(BlockHelper.getBlockStateWithExistingProperties(e.state, MalumBlockRegistry.EXPOSED_SOULWOOD_LOG.getDefaultState())));
+            treeFiller.replace(index, e -> e.replaceState(BlockHelper.getBlockStateWithExistingProperties(e.state, MalumObjects.EXPOSED_SOULWOOD_LOG.getDefaultState())));
         }
 
         blightFiller.fill(world);
@@ -192,8 +192,8 @@ public class SoulwoodTreeFeature extends Feature<DefaultFeatureConfig> {
     }
 
     public static boolean downwardsTrunk(StructureWorldAccess worldAccess, LodestoneBlockFiller filler, BlockPos pos) {
-        BlockState defaultLog = MalumBlockRegistry.SOULWOOD_LOG.getDefaultState();
-        BlockState blightedLog = MalumBlockRegistry.BLIGHTED_SOULWOOD.getDefaultState();
+        BlockState defaultLog = MalumObjects.SOULWOOD_LOG.getDefaultState();
+        BlockState blightedLog = MalumObjects.BLIGHTED_SOULWOOD.getDefaultState();
         int i = 0;
         do {
             i++;
@@ -231,7 +231,7 @@ public class SoulwoodTreeFeature extends Feature<DefaultFeatureConfig> {
                 }
                 BlockPos leavesPos = new BlockPos(pos).add(x, 0, z);
                 int offsetColor = leavesColor + MathHelper.nextInt(rand, leavesColor == 0 ? 0 : -1, leavesColor == 4 ? 0 : 1);
-                filler.entries.add(new LodestoneBlockFiller.BlockStateEntry(MalumBlockRegistry.SOULWOOD_LEAVES.getDefaultState().with(MalumLeavesBlock.COLOR, offsetColor), leavesPos));
+                filler.entries.add(new LodestoneBlockFiller.BlockStateEntry(MalumObjects.SOULWOOD_LEAVES.getDefaultState().with(MalumLeavesBlock.COLOR, offsetColor), leavesPos));
             }
         }
     }
@@ -294,9 +294,9 @@ public class SoulwoodTreeFeature extends Feature<DefaultFeatureConfig> {
 
                     BlockPos immutable = blockPos.toImmutable();
                     if (worldAccess.getBlockState(immutable).isIn(MOSS_REPLACEABLE)) {
-                        filler.entries.add(new LodestoneBlockFiller.BlockStateEntry(MalumBlockRegistry.BLIGHTED_SOIL.getDefaultState(), immutable));
+                        filler.entries.add(new LodestoneBlockFiller.BlockStateEntry(MalumObjects.BLIGHTED_SOIL.getDefaultState(), immutable));
                         if (worldAccess.getBlockState(immutable.down()).isIn(DIRT)) {
-                            filler.entries.add(new LodestoneBlockFiller.BlockStateEntry(MalumBlockRegistry.BLIGHTED_EARTH.getDefaultState(), immutable.down()));
+                            filler.entries.add(new LodestoneBlockFiller.BlockStateEntry(MalumObjects.BLIGHTED_EARTH.getDefaultState(), immutable.down()));
                         }
                         if (worldAccess.getRandom().nextFloat() < 0.8f) {
                             BlockPos plantPos = immutable.up();
@@ -305,7 +305,7 @@ public class SoulwoodTreeFeature extends Feature<DefaultFeatureConfig> {
                                 if (lastSaplingPos == null || lastSaplingPos.squaredDistanceTo(plantPos.getX(), plantPos.getY(), plantPos.getZ()) > 5) {
                                     if (BlockHelper.fromBlockPos(center).squaredDistanceTo(plantPos.getX(), plantPos.getY(), plantPos.getZ()) > 4) {
                                         if (worldAccess.getRandom().nextFloat() < 0.5f / (Math.pow(saplingsPlaced + 1, 2))) {
-                                            filler.entries.add(new LodestoneBlockFiller.BlockStateEntry(MalumBlockRegistry.SOULWOOD_GROWTH.getDefaultState(), plantPos));
+                                            filler.entries.add(new LodestoneBlockFiller.BlockStateEntry(MalumObjects.SOULWOOD_GROWTH.getDefaultState(), plantPos));
                                             lastSaplingPos = new Vec3d(plantPos.getX(), plantPos.getY(), plantPos.getZ());
                                             saplingsPlaced++;
                                         }
@@ -314,7 +314,7 @@ public class SoulwoodTreeFeature extends Feature<DefaultFeatureConfig> {
                                 }
                             }
                             if (blockState.isAir() && !blockState.isIn(BlockTagRegistry.BLIGHTED_PLANTS)) {
-                                filler.entries.add(new LodestoneBlockFiller.BlockStateEntry((worldAccess.getRandom().nextFloat() < 0.2f ? MalumBlockRegistry.BLIGHTED_TUMOR : MalumBlockRegistry.BLIGHTED_WEED).getDefaultState(), plantPos));
+                                filler.entries.add(new LodestoneBlockFiller.BlockStateEntry((worldAccess.getRandom().nextFloat() < 0.2f ? MalumObjects.BLIGHTED_TUMOR : MalumObjects.BLIGHTED_WEED).getDefaultState(), plantPos));
                             }
                         }
                     }

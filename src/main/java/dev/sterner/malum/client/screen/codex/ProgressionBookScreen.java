@@ -43,7 +43,7 @@ import java.util.stream.Collectors;
 
 import static com.sammy.lodestone.systems.rendering.particle.screen.base.ScreenParticle.RenderOrder.BEFORE_TOOLTIPS;
 import static dev.sterner.malum.Malum.id;
-import static dev.sterner.malum.common.registry.MalumItemRegistry.*;
+import static dev.sterner.malum.common.registry.MalumObjects.*;
 import static net.minecraft.client.util.ColorUtil.ARGB32.getArgb;
 import static net.minecraft.item.Items.*;
 import static org.lwjgl.opengl.GL11C.GL_SCISSOR_TEST;
@@ -108,15 +108,16 @@ public class ProgressionBookScreen extends Screen {
 		);
 
 		ENTRIES.add(new BookEntry(
-				"runewood", RUNEWOOD_SAPLING, 1, 2)
-				.addPage(new HeadlineTextItemPage("runewood", "runewood.1", RUNEWOOD_SAPLING))
+				"runewood", RUNEWOOD_SAPLING.asItem(), 1, 2)
+				.addPage(new HeadlineTextItemPage("runewood", "runewood.1", RUNEWOOD_SAPLING.asItem()))
 				.addPage(new HeadlineTextPage("runewood.arcane_charcoal", "runewood.arcane_charcoal.1"))
-				.addPage(new SmeltingBookPage(RUNEWOOD_LOG, ARCANE_CHARCOAL))
-				.addPage(CraftingBookPage.fullPage(BLOCK_OF_ARCANE_CHARCOAL, ARCANE_CHARCOAL))
+				.addPage(new SmeltingBookPage(RUNEWOOD_LOG.asItem(), ARCANE_CHARCOAL.asItem()))
+				.addPage(CraftingBookPage.fullPage(BLOCK_OF_ARCANE_CHARCOAL.asItem(), ARCANE_CHARCOAL.asItem()))
 				.addPage(new HeadlineTextPage("runewood.holy_sap", "runewood.holy_sap.1"))
 				.addPage(new SmeltingBookPage(HOLY_SAP, HOLY_SYRUP))
 				.addPage(new CraftingBookPage(new ItemStack(HOLY_SAPBALL, 3), Items.SLIME_BALL, HOLY_SAP))
 		);
+		/*
 
 		ENTRIES.add(new BookEntry(
 				"natural_quartz", NATURAL_QUARTZ, 3, 1)
@@ -124,11 +125,13 @@ public class ProgressionBookScreen extends Screen {
 				.addPage(new HeadlineTextItemPage("natural_quartz", "natural_quartz.1", NATURAL_QUARTZ))
 		);
 
+		 */
+
 		ENTRIES.add(new BookEntry(
 				"blazing_quartz", BLAZING_QUARTZ, 4, 2)
 				.setObjectSupplier(MinorEntryObject::new)
 				.addPage(new HeadlineTextItemPage("blazing_quartz", "blazing_quartz.1", BLAZING_QUARTZ))
-				.addPage(CraftingBookPage.fullPage(BLOCK_OF_BLAZING_QUARTZ, BLAZING_QUARTZ))
+				.addPage(CraftingBookPage.fullPage(BLOCK_OF_BLAZING_QUARTZ.asItem(), BLAZING_QUARTZ.asItem()))
 		);
 
 		ENTRIES.add(new BookEntry(
@@ -136,7 +139,7 @@ public class ProgressionBookScreen extends Screen {
 				.setObjectSupplier(MinorEntryObject::new)
 				.addPage(new HeadlineTextItemPage("brilliance", "brilliance.1", CLUSTER_OF_BRILLIANCE))
 				.addPage(new TextPage("brilliance.2"))
-				.addPage(CraftingBookPage.fullPage(BLOCK_OF_BRILLIANCE, CLUSTER_OF_BRILLIANCE))
+				.addPage(CraftingBookPage.fullPage(BLOCK_OF_BRILLIANCE.asItem(), CLUSTER_OF_BRILLIANCE))
 				.addPage(new SmeltingBookPage(new ItemStack(CLUSTER_OF_BRILLIANCE), new ItemStack(CHUNK_OF_BRILLIANCE, 2)))
 		);
 
@@ -151,8 +154,8 @@ public class ProgressionBookScreen extends Screen {
 				.addPage(new HeadlineTextItemPage("soulstone", "soulstone.1", PROCESSED_SOULSTONE))
 				.addPage(new TextPage("soulstone.2"))
 				.addPage(new SmeltingBookPage(new ItemStack(RAW_SOULSTONE), new ItemStack(PROCESSED_SOULSTONE, 2)))
-				.addPage(CraftingBookPage.fullPage(BLOCK_OF_SOULSTONE, PROCESSED_SOULSTONE))
-				.addPage(CraftingBookPage.fullPage(BLOCK_OF_RAW_SOULSTONE, RAW_SOULSTONE))
+				.addPage(CraftingBookPage.fullPage(BLOCK_OF_SOULSTONE.asItem(), PROCESSED_SOULSTONE))
+				.addPage(CraftingBookPage.fullPage(BLOCK_OF_RAW_SOULSTONE.asItem(), RAW_SOULSTONE))
 		);
 
 		ENTRIES.add(new BookEntry(
@@ -165,21 +168,21 @@ public class ProgressionBookScreen extends Screen {
 				.addPage(new HeadlineTextPage("scythes.enchanting.spirit_plunder", "scythes.enchanting.spirit_plunder.1"))
 				.addPage(new HeadlineTextPage("scythes.enchanting.rebound", "scythes.enchanting.rebound.1"))
 		);
-/*
+
 		ENTRIES.add(new BookEntry(
-				"spirit_infusion", SPIRIT_ALTAR, 0, 5)
+				"spirit_infusion", SPIRIT_ALTAR.asItem(), 0, 5)
 				.setObjectSupplier(ImportantEntryObject::new)
 				.addPage(new HeadlineTextPage("spirit_infusion", "spirit_infusion.1"))
-				.addPage(new CraftingBookPage(SPIRIT_ALTAR, AIR, PROCESSED_SOULSTONE, AIR, GOLD_INGOT, RUNEWOOD_PLANKS, GOLD_INGOT, RUNEWOOD_PLANKS, RUNEWOOD_PLANKS, RUNEWOOD_PLANKS))
+				.addPage(new CraftingBookPage(SPIRIT_ALTAR.asItem(), AIR, PROCESSED_SOULSTONE, AIR, GOLD_INGOT, RUNEWOOD_PLANKS.asItem(), GOLD_INGOT, RUNEWOOD_PLANKS.asItem(), RUNEWOOD_PLANKS.asItem(), RUNEWOOD_PLANKS.asItem()))
 				.addPage(new TextPage("spirit_infusion.2"))
 				.addPage(new TextPage("spirit_infusion.3"))
-				.addPage(CraftingBookPage.itemPedestalPage(RUNEWOOD_ITEM_PEDESTAL, RUNEWOOD_PLANKS, RUNEWOOD_PLANKS_SLAB))
-				.addPage(CraftingBookPage.itemStandPage(RUNEWOOD_ITEM_STAND, RUNEWOOD_PLANKS, RUNEWOOD_PLANKS_SLAB))
+				.addPage(CraftingBookPage.itemPedestalPage(RUNEWOOD_ITEM_PEDESTAL.asItem(), RUNEWOOD_PLANKS.asItem(), RUNEWOOD_PLANKS_SLAB.asItem()))
+				.addPage(CraftingBookPage.itemStandPage(RUNEWOOD_ITEM_STAND.asItem(), RUNEWOOD_PLANKS.asItem(), RUNEWOOD_PLANKS_SLAB.asItem()))
 				.addPage(new HeadlineTextPage("spirit_infusion.hex_ash", "spirit_infusion.hex_ash.1"))
 				.addPage(SpiritInfusionPage.fromOutput(HEX_ASH))
 		);
 
- */
+
 
 		ENTRIES.add(new BookEntry(
 				"esoteric_reaping", ROTTING_ESSENCE, 0, 6)
@@ -223,30 +226,30 @@ public class ProgressionBookScreen extends Screen {
 		);
 
 		ENTRIES.add(new BookEntry(
-				"spirit_stones", TAINTED_ROCK, 3, 6)
+				"spirit_stones", TAINTED_ROCK.asItem(), 3, 6)
 				.addPage(new HeadlineTextPage("spirit_stones.tainted_rock", "spirit_stones.tainted_rock.1"))
-				.addPage(SpiritInfusionPage.fromOutput(TAINTED_ROCK))
-				.addPage(CraftingBookPage.itemPedestalPage(TAINTED_ROCK_ITEM_PEDESTAL, TAINTED_ROCK, TAINTED_ROCK_SLAB))
-				.addPage(CraftingBookPage.itemStandPage(TAINTED_ROCK_ITEM_STAND, TAINTED_ROCK, TAINTED_ROCK_SLAB))
+				.addPage(SpiritInfusionPage.fromOutput(TAINTED_ROCK.asItem()))
+				.addPage(CraftingBookPage.itemPedestalPage(TAINTED_ROCK_ITEM_PEDESTAL.asItem(), TAINTED_ROCK.asItem(), TAINTED_ROCK_SLAB.asItem()))
+				.addPage(CraftingBookPage.itemStandPage(TAINTED_ROCK_ITEM_STAND.asItem(), TAINTED_ROCK.asItem(), TAINTED_ROCK_SLAB.asItem()))
 				.addPage(new HeadlineTextPage("spirit_stones.twisted_rock", "spirit_stones.twisted_rock.1"))
-				.addPage(SpiritInfusionPage.fromOutput(TWISTED_ROCK))
-				.addPage(CraftingBookPage.itemPedestalPage(TWISTED_ROCK_ITEM_PEDESTAL, TWISTED_ROCK, TWISTED_ROCK_SLAB))
-				.addPage(CraftingBookPage.itemStandPage(TWISTED_ROCK_ITEM_STAND, TWISTED_ROCK, TWISTED_ROCK_SLAB))
+				.addPage(SpiritInfusionPage.fromOutput(TWISTED_ROCK.asItem()))
+				.addPage(CraftingBookPage.itemPedestalPage(TWISTED_ROCK_ITEM_PEDESTAL.asItem(), TWISTED_ROCK.asItem(), TWISTED_ROCK_SLAB.asItem()))
+				.addPage(CraftingBookPage.itemStandPage(TWISTED_ROCK_ITEM_STAND.asItem(), TWISTED_ROCK.asItem(), TWISTED_ROCK_SLAB.asItem()))
 		);
 		ENTRIES.add(new BookEntry(
-				"ether", ETHER, 5, 6)
+				"ether", ETHER.asItem(), 5, 6)
 				.addPage(new HeadlineTextPage("ether", "ether.1"))
-				.addPage(SpiritInfusionPage.fromOutput(ETHER))
+				.addPage(SpiritInfusionPage.fromOutput(ETHER.asItem()))
 				.addPage(new TextPage("ether.2"))
-				.addPage(new CraftingBookPage(ETHER_TORCH, EMPTY, EMPTY, EMPTY, EMPTY, ETHER, EMPTY, EMPTY, STICK, EMPTY))
-				.addPage(new CraftingBookPage(TAINTED_ETHER_BRAZIER, EMPTY, EMPTY, EMPTY, TAINTED_ROCK, ETHER, TAINTED_ROCK, STICK, TAINTED_ROCK, STICK))
-				.addPage(new CraftingBookPage(TWISTED_ETHER_BRAZIER, EMPTY, EMPTY, EMPTY, TWISTED_ROCK, ETHER, TWISTED_ROCK, STICK, TWISTED_ROCK, STICK))
+				.addPage(new CraftingBookPage(ETHER_TORCH.asItem(), EMPTY, EMPTY, EMPTY, EMPTY, ETHER.asItem(), EMPTY, EMPTY, STICK, EMPTY))
+				.addPage(new CraftingBookPage(TAINTED_ETHER_BRAZIER.asItem(), EMPTY, EMPTY, EMPTY, TAINTED_ROCK.asItem(), ETHER.asItem(), TAINTED_ROCK.asItem(), STICK, TAINTED_ROCK.asItem(), STICK))
+				.addPage(new CraftingBookPage(TWISTED_ETHER_BRAZIER.asItem(), EMPTY, EMPTY, EMPTY, TWISTED_ROCK.asItem(), ETHER.asItem(), TWISTED_ROCK.asItem(), STICK, TWISTED_ROCK.asItem(), STICK))
 				.addPage(new HeadlineTextPage("ether.iridescent", "ether.iridescent.1"))
 				.addPage(new TextPage("ether.iridescent.2"))
-				.addPage(SpiritInfusionPage.fromOutput(IRIDESCENT_ETHER))
-				.addPage(new CraftingBookPage(IRIDESCENT_ETHER_TORCH, EMPTY, EMPTY, EMPTY, EMPTY, IRIDESCENT_ETHER, EMPTY, EMPTY, STICK, EMPTY))
-				.addPage(new CraftingBookPage(TAINTED_IRIDESCENT_ETHER_BRAZIER, EMPTY, EMPTY, EMPTY, TAINTED_ROCK, IRIDESCENT_ETHER, TAINTED_ROCK, STICK, TAINTED_ROCK, STICK))
-				.addPage(new CraftingBookPage(TWISTED_IRIDESCENT_ETHER_BRAZIER, EMPTY, EMPTY, EMPTY, TWISTED_ROCK, IRIDESCENT_ETHER, TWISTED_ROCK, STICK, TWISTED_ROCK, STICK))
+				.addPage(SpiritInfusionPage.fromOutput(IRIDESCENT_ETHER.asItem()))
+				.addPage(new CraftingBookPage(IRIDESCENT_ETHER_TORCH.asItem(), EMPTY, EMPTY, EMPTY, EMPTY, IRIDESCENT_ETHER.asItem(), EMPTY, EMPTY, STICK, EMPTY))
+				.addPage(new CraftingBookPage(TAINTED_IRIDESCENT_ETHER_BRAZIER.asItem(), EMPTY, EMPTY, EMPTY, TAINTED_ROCK.asItem(), IRIDESCENT_ETHER.asItem(), TAINTED_ROCK.asItem(), STICK, TAINTED_ROCK.asItem(), STICK))
+				.addPage(new CraftingBookPage(TWISTED_IRIDESCENT_ETHER_BRAZIER.asItem(), EMPTY, EMPTY, EMPTY, TWISTED_ROCK.asItem(), IRIDESCENT_ETHER.asItem(), TWISTED_ROCK.asItem(), STICK, TWISTED_ROCK.asItem(), STICK))
 		);
 
 		ENTRIES.add(new BookEntry(
@@ -273,10 +276,10 @@ public class ProgressionBookScreen extends Screen {
 		);
 
 		ENTRIES.add(new BookEntry(
-				"spirit_focusing", SPIRIT_CRUCIBLE, 7, 6)
-				.addPage(new HeadlineTextItemPage("spirit_focusing", "spirit_focusing.1", SPIRIT_CRUCIBLE))
+				"spirit_focusing", SPIRIT_CRUCIBLE.asItem(), 7, 6)
+				.addPage(new HeadlineTextItemPage("spirit_focusing", "spirit_focusing.1", SPIRIT_CRUCIBLE.asItem()))
 				.addPage(new TextPage("spirit_focusing.2"))
-				.addPage(SpiritInfusionPage.fromOutput(SPIRIT_CRUCIBLE))
+				.addPage(SpiritInfusionPage.fromOutput(SPIRIT_CRUCIBLE.asItem()))
 				.addPage(SpiritInfusionPage.fromOutput(ALCHEMICAL_IMPETUS))
 		);
 
@@ -326,18 +329,18 @@ public class ProgressionBookScreen extends Screen {
 		);
 
 		ENTRIES.add(new BookEntry(
-				"crucible_acceleration", SPIRIT_CATALYZER, 7, 4)
+				"crucible_acceleration", SPIRIT_CATALYZER.asItem(), 7, 4)
 				.addPage(new HeadlineTextPage("crucible_acceleration", "crucible_acceleration.1"))
 				.addPage(new TextPage("crucible_acceleration.2"))
 				.addPage(new TextPage("crucible_acceleration.3"))
-				.addPage(SpiritInfusionPage.fromOutput(SPIRIT_CATALYZER))
+				.addPage(SpiritInfusionPage.fromOutput(SPIRIT_CATALYZER.asItem()))
 		);
 
 		ENTRIES.add(new BookEntry(
-				"arcane_restoration", TWISTED_TABLET, 7, 8)
+				"arcane_restoration", TWISTED_TABLET.asItem(), 7, 8)
 				.addPage(new HeadlineTextPage("arcane_restoration", "arcane_restoration.1"))
 				.addPage(new TextPage("arcane_restoration.2"))
-				.addPage(SpiritInfusionPage.fromOutput(TWISTED_TABLET))
+				.addPage(SpiritInfusionPage.fromOutput(TWISTED_TABLET.asItem()))
 				.addPage(SpiritRepairPage.fromInput(CRACKED_ALCHEMICAL_IMPETUS))
 				.addPage(SpiritRepairPage.fromInput(CRACKED_COPPER_IMPETUS))
 				.addPage(SpiritRepairPage.fromInput(WOODEN_PICKAXE))
@@ -357,13 +360,13 @@ public class ProgressionBookScreen extends Screen {
 				.addPage(new HeadlineTextItemPage("spirit_metals.hallowed_gold", "spirit_metals.hallowed_gold.1", HALLOWED_GOLD_INGOT))
 				.addPage(new TextPage("spirit_metals.hallowed_gold.2"))
 				.addPage(SpiritInfusionPage.fromOutput(HALLOWED_GOLD_INGOT))
-				.addPage(CraftingBookPage.resonatorPage(HALLOWED_SPIRIT_RESONATOR, QUARTZ, HALLOWED_GOLD_INGOT, RUNEWOOD_PLANKS))
+				.addPage(CraftingBookPage.resonatorPage(HALLOWED_SPIRIT_RESONATOR, QUARTZ, HALLOWED_GOLD_INGOT, RUNEWOOD_PLANKS.asItem()))
 				.addPage(new HeadlineTextPage("spirit_metals.hallowed_gold.spirit_jar", "spirit_metals.hallowed_gold.spirit_jar.1"))
-				.addPage(new CraftingBookPage(SPIRIT_JAR, GLASS_PANE, HALLOWED_GOLD_INGOT, GLASS_PANE, GLASS_PANE, EMPTY, GLASS_PANE, GLASS_PANE, GLASS_PANE, GLASS_PANE))
+				.addPage(new CraftingBookPage(SPIRIT_JAR.asItem(), GLASS_PANE, HALLOWED_GOLD_INGOT, GLASS_PANE, GLASS_PANE, EMPTY, GLASS_PANE, GLASS_PANE, GLASS_PANE, GLASS_PANE))
 				.addPage(new HeadlineTextItemPage("spirit_metals.soulstained_steel", "spirit_metals.soulstained_steel.1", SOUL_STAINED_STEEL_INGOT))
 				.addPage(new TextPage("spirit_metals.soulstained_steel.2"))
 				.addPage(SpiritInfusionPage.fromOutput(SOUL_STAINED_STEEL_INGOT))
-				.addPage(CraftingBookPage.resonatorPage(STAINED_SPIRIT_RESONATOR, QUARTZ, SOUL_STAINED_STEEL_INGOT, RUNEWOOD_PLANKS))
+				.addPage(CraftingBookPage.resonatorPage(STAINED_SPIRIT_RESONATOR, QUARTZ, SOUL_STAINED_STEEL_INGOT, RUNEWOOD_PLANKS.asItem()))
 				.addPage(CraftingBookPage.toolPage(SOUL_STAINED_STEEL_PICKAXE, SOUL_STAINED_STEEL_INGOT))
 				.addPage(CraftingBookPage.toolPage(SOUL_STAINED_STEEL_AXE, SOUL_STAINED_STEEL_INGOT))
 				.addPage(CraftingBookPage.toolPage(SOUL_STAINED_STEEL_HOE, SOUL_STAINED_STEEL_INGOT))
@@ -471,22 +474,22 @@ public class ProgressionBookScreen extends Screen {
 		);
 
 		ENTRIES.add(new BookEntry(
-				"altar_acceleration", RUNEWOOD_OBELISK, -1, 8)
+				"altar_acceleration", RUNEWOOD_OBELISK.asItem(), -1, 8)
 				.addPage(new HeadlineTextPage("altar_acceleration.runewood_obelisk", "altar_acceleration.runewood_obelisk.1"))
-				.addPage(SpiritInfusionPage.fromOutput(RUNEWOOD_OBELISK))
+				.addPage(SpiritInfusionPage.fromOutput(RUNEWOOD_OBELISK.asItem()))
 				.addPage(new HeadlineTextPage("altar_acceleration.brilliant_obelisk", "altar_acceleration.brilliant_obelisk.1"))
-				.addPage(SpiritInfusionPage.fromOutput(BRILLIANT_OBELISK))
+				.addPage(SpiritInfusionPage.fromOutput(BRILLIANT_OBELISK.asItem()))
 		);
 
 		ENTRIES.add(new BookEntry(
-				"totem_magic", RUNEWOOD_TOTEM_BASE, 0, 9)
+				"totem_magic", RUNEWOOD_TOTEM_BASE.asItem(), 0, 9)
 				.setObjectSupplier(ImportantEntryObject::new)
-				.addPage(new HeadlineTextItemPage("totem_magic", "totem_magic.1", RUNEWOOD_TOTEM_BASE))
+				.addPage(new HeadlineTextItemPage("totem_magic", "totem_magic.1", RUNEWOOD_TOTEM_BASE.asItem()))
 				.addPage(new TextPage("totem_magic.2"))
 				.addPage(new TextPage("totem_magic.3"))
 				.addPage(new TextPage("totem_magic.4"))
 				.addPage(new TextPage("totem_magic.5"))
-				.addPage(SpiritInfusionPage.fromOutput(RUNEWOOD_TOTEM_BASE))
+				.addPage(SpiritInfusionPage.fromOutput(RUNEWOOD_TOTEM_BASE.asItem()))
 		);
 /*TODO
 		ENTRIES.add(new BookEntry(
@@ -612,6 +615,7 @@ public class ProgressionBookScreen extends Screen {
 				.addPage(SpiritInfusionPage.fromOutput(SOULWOOD_TOTEM_BASE))
 		);
 */
+		/*
 		ENTRIES.add(new BookEntry(
 				"blight", BLIGHTED_GUNK, -1, 12).setSoulwood()
 				.setObjectSupplier(MinorEntryObject::new)
@@ -621,8 +625,10 @@ public class ProgressionBookScreen extends Screen {
 				.addPage(new HeadlineTextPage("blight.arcane_rite", "blight.arcane_rite.1"))
 		);
 
+
+		 */
 		ENTRIES.add(new BookEntry(
-				"soulwood", SOULWOOD_GROWTH, 1, 12).setSoulwood()
+				"soulwood", SOULWOOD_GROWTH.asItem(), 1, 12).setSoulwood()
 				.setObjectSupplier(MinorEntryObject::new)
 				.addPage(new HeadlineTextPage("soulwood.intro", "soulwood.intro.1"))
 				.addPage(new HeadlineTextPage("soulwood.bonemeal", "soulwood.bonemeal.1"))
@@ -631,7 +637,7 @@ public class ProgressionBookScreen extends Screen {
 				.addPage(new HeadlineTextPage("soulwood.sap", "soulwood.sap.1"))
 		);
 		ENTRIES.add(new BookEntry(
-				"transmutation", BLIGHTED_SOIL, 0, 13).setSoulwood()
+				"transmutation", BLIGHTED_SOIL.asItem(), 0, 13).setSoulwood()
 				.addPage(new HeadlineTextPage("transmutation", "transmutation.intro.1"))
 				.addPage(new TextPage("transmutation.intro.2"))
 				.addPage(new SpiritTransmutationPage("transmutation.stone", STONE))
@@ -690,10 +696,10 @@ public class ProgressionBookScreen extends Screen {
 		);
 
 		ENTRIES.add(new BookEntry(
-				"the_device", THE_DEVICE, 0, -10)
+				"the_device", THE_DEVICE.asItem(), 0, -10)
 				.setObjectSupplier(VanishingEntryObject::new)
 				.addPage(new HeadlineTextPage("the_device", "the_device"))
-				.addPage(new CraftingBookPage(THE_DEVICE, TWISTED_ROCK, TAINTED_ROCK, TWISTED_ROCK, TAINTED_ROCK, TWISTED_ROCK, TAINTED_ROCK, TWISTED_ROCK, TAINTED_ROCK, TWISTED_ROCK))
+				.addPage(new CraftingBookPage(THE_DEVICE.asItem(), TWISTED_ROCK.asItem(), TAINTED_ROCK.asItem(), TWISTED_ROCK.asItem(), TAINTED_ROCK.asItem(), TWISTED_ROCK.asItem(), TAINTED_ROCK.asItem(), TWISTED_ROCK.asItem(), TAINTED_ROCK.asItem(), TWISTED_ROCK.asItem()))
 		);
 	}
 

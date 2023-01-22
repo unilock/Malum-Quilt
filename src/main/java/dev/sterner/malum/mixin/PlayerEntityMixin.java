@@ -5,7 +5,7 @@ import dev.emi.trinkets.api.TrinketsApi;
 import dev.sterner.malum.common.item.spirit.TyrvingItem;
 import dev.sterner.malum.common.item.tools.MalumScytheItem;
 import dev.sterner.malum.common.registry.MalumDamageSourceRegistry;
-import dev.sterner.malum.common.registry.MalumItemRegistry;
+import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.registry.MalumParticleRegistry;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
 import dev.sterner.malum.common.spirit.affinity.ArcaneAffinity;
@@ -75,7 +75,7 @@ abstract class PlayerEntityMixin extends LivingEntity {
 	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getStackInHand(Lnet/minecraft/util/Hand;)Lnet/minecraft/item/ItemStack;"))
 	private void malum$attack(Entity target, CallbackInfo ci) {
 		if (this.getStackInHand(Hand.MAIN_HAND).getItem() instanceof MalumScytheItem) {
-			boolean canSweep = !this.getComponent(TrinketsApi.TRINKET_COMPONENT).isEquipped(MalumItemRegistry.NECKLACE_OF_THE_NARROW_EDGE);
+			boolean canSweep = !this.getComponent(TrinketsApi.TRINKET_COMPONENT).isEquipped(MalumObjects.NECKLACE_OF_THE_NARROW_EDGE);
 			SoundEvent sound;
 			if (canSweep) {
 				spawnSweepParticles((PlayerEntity) (Object) this, MalumParticleRegistry.SCYTHE_SWEEP_ATTACK_PARTICLE);

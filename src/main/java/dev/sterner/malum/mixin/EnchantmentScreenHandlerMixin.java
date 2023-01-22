@@ -12,7 +12,8 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
-import static dev.sterner.malum.common.registry.MalumBlockRegistry.BRILLIANT_OBELISK;
+import static dev.sterner.malum.common.registry.MalumObjects.BRILLIANT_OBELISK;
+
 
 @Mixin(EnchantmentScreenHandler.class)
 public abstract class EnchantmentScreenHandlerMixin {

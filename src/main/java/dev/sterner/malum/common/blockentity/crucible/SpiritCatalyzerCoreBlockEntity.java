@@ -9,7 +9,7 @@ import com.sammy.lodestone.systems.multiblock.MultiBlockStructure;
 import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
 import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
-import dev.sterner.malum.common.registry.MalumBlockRegistry;
+import dev.sterner.malum.common.registry.MalumObjects;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -26,7 +26,7 @@ import java.awt.*;
 import java.util.function.Supplier;
 
 public class SpiritCatalyzerCoreBlockEntity extends MultiBlockCoreEntity implements ICrucibleAccelerator {
-    public static final Supplier<HorizontalDirectionStructure> STRUCTURE = () -> HorizontalDirectionStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumBlockRegistry.SPIRIT_CATALYZER_COMPONENT.getDefaultState()));
+    public static final Supplier<HorizontalDirectionStructure> STRUCTURE = () -> HorizontalDirectionStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumObjects.SPIRIT_CATALYZER_COMPONENT.getDefaultState()));
 
     public static final ICrucibleAccelerator.CrucibleAcceleratorType CATALYZER = new ICrucibleAccelerator.ArrayCrucibleAcceleratorType("catalyzer",
         new float[]{0.2f, 0.25f, 0.3f, 0.4f, 0.45f, 0.5f, 0.6f, 0.8f},

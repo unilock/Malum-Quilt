@@ -5,7 +5,7 @@ import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketItem;
 import dev.emi.trinkets.api.TrinketsApi;
 import dev.sterner.malum.api.interfaces.item.SpiritCollectActivity;
-import dev.sterner.malum.common.registry.MalumItemRegistry;
+import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.registry.MalumStatusEffectRegistry;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
@@ -24,7 +24,7 @@ public class CurioAlchemicalRing extends TrinketItem implements SpiritCollectAct
     public static void onPotionApplied(LivingEntity livingEntity) {
         var v = TrinketsApi.getTrinketComponent(livingEntity);
         if(v.isPresent()){
-            if (v.get().isEquipped(MalumItemRegistry.RING_OF_ALCHEMICAL_MASTERY)) {
+            if (v.get().isEquipped(MalumObjects.RING_OF_ALCHEMICAL_MASTERY)) {
                 Collection<StatusEffectInstance> effect = livingEntity.getStatusEffects();
 
                 effect.forEach(statusEffectInstance -> {

@@ -16,7 +16,7 @@ public class CurioHarmonyNecklace extends TrinketItem {
 
             var v = TrinketsApi.getTrinketComponent(target);
             if(v.isPresent()){
-                if (v.get().isEquipped(MalumItemRegistry.NECKLACE_OF_BLISSFUL_HARMONY)) {
+                if (v.get().isEquipped(MalumObjects.NECKLACE_OF_BLISSFUL_HARMONY)) {
                     MalumEntitySpiritData data = SpiritHelper.getEntitySpiritData(watcher);
                     float visibilityModifier = data == null ? 0.5f : 0.5f / (1+data.dataEntries.stream().map(s -> s.type.equals(MalumSpiritType.WICKED_SPIRIT) ? 1 : 0).count());
                     event.modifyVisibility(visibilityModifier);

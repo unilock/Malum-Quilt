@@ -1,5 +1,7 @@
 package dev.sterner.malum.common.block.storage;
 
+import com.sammy.lodestone.forge.ItemHandlerHelper;
+import com.sammy.lodestone.helpers.BlockHelper;
 import com.sammy.lodestone.systems.block.WaterLoggedEntityBlock;
 import dev.sterner.malum.common.blockentity.storage.SpiritJarBlockEntity;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
@@ -32,14 +34,37 @@ import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("deprecation")
 public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedEntityBlock<T> {
-    public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
     }
 
-    public static final VoxelShape SHAPE = VoxelShapes.union(Block.createCuboidShape(5.5d, -0.5d, 5.5d, 10.5d, 2.0d, 10.5d),
+	@Override
+	public void onBlockBreakStart(BlockState state, World world, BlockPos pos, PlayerEntity player) {
+		handleAttack(world, pos, player);
+		super.onBlockBreakStart(state, world, pos, player);
+	}
+
+	public boolean handleAttack(World pLevel, BlockPos pPos, PlayerEntity pPlayer) {
+		BlockEntity be = pLevel.getBlockEntity(pPos);
+		if (be instanceof SpiritJarBlockEntity jar) {
+			var jarHandler = jar.inventory.getValueUnsafer();
+			ItemStack item = jarHandler.extractItemStack(0, pPlayer.isSneaking() ? 64 : 1, false);
+
+			if (!item.isEmpty()) {
+				ItemHandlerHelper.giveItemToPlayer(pPlayer, item, pPlayer.getInventory().selectedSlot);
+
+				if (!pLevel.isClient()) {
+					BlockHelper.updateAndNotifyState(pLevel, pPos);
+				}
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static final VoxelShape SHAPE = VoxelShapes.union(Block.createCuboidShape(5.5d, -0.5d, 5.5d, 10.5d, 2.0d, 10.5d),
                                                              Block.createCuboidShape(2.5d, 0.5d, 2.5d, 13.5d, 13.5d, 13.5d),
                                                              Block.createCuboidShape(4.5d, 13.5d, 4.5d, 11.5d, 14.5d, 11.5d),
                                                              Block.createCuboidShape(3.5d, 14.5d, 3.5d, 12.5d, 16.5d, 12.5d));
@@ -52,24 +77,6 @@ public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedE
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
     }
-
-    @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        SpiritJarBlockEntity blockEntity = (SpiritJarBlockEntity) world.getBlockEntity(pos);
-
-        //noinspection ConstantConditions
-        return blockEntity.onUse(state, world, pos, player, hand, hit);
-    }
-
-
-
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return world.isClient ? checkType(type, MalumBlockEntityRegistry.SPIRIT_JAR, (world1, pos, state1, blockEntity) -> blockEntity.clientTick(world1, pos, state1)) : null;
-    }
-
-
 
     @Override
     public boolean hasComparatorOutput(BlockState state) {

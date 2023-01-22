@@ -8,7 +8,7 @@ import com.sammy.lodestone.systems.multiblock.MultiBlockStructure;
 import dev.sterner.malum.api.interfaces.item.ISoulContainerItem;
 import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
-import dev.sterner.malum.common.registry.MalumBlockRegistry;
+import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.spirit.MalumEntitySpiritData;
 import dev.sterner.malum.common.spirit.SpiritHelper;
 import net.minecraft.block.BlockState;
@@ -25,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.Supplier;
 
 public class PlinthCoreBlockEntity extends MultiBlockCoreEntity {
-    public static final Supplier<MultiBlockStructure> STRUCTURE = () -> MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumBlockRegistry.SOULWOOD_PLINTH_COMPONENT.getDefaultState()));
+    public static final Supplier<MultiBlockStructure> STRUCTURE = () -> MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumObjects.SOULWOOD_PLINTH_COMPONENT.getDefaultState()));
 
     public LodestoneBlockEntityInventory inventory;
     public MalumEntitySpiritData data;

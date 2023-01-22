@@ -6,7 +6,7 @@ import com.sammy.lodestone.systems.multiblock.MultiBlockStructure;
 import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
 import dev.sterner.malum.common.blockentity.spirit_altar.IAltarAccelerator;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
-import dev.sterner.malum.common.registry.MalumBlockRegistry;
+import dev.sterner.malum.common.registry.MalumObjects;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -16,7 +16,7 @@ import java.util.function.Supplier;
 
 public class RunewoodObeliskBlockEntity extends ObeliskCoreBlockEntity implements IAltarAccelerator {
 	public static final AltarAcceleratorType OBELISK = new AltarAcceleratorType(4, "obelisk");
-	public static final Supplier<MultiBlockStructure> STRUCTURE = () ->  (MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumBlockRegistry.RUNEWOOD_OBELISK_COMPONENT.getDefaultState())));
+	public static final Supplier<MultiBlockStructure> STRUCTURE = () ->  (MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumObjects.RUNEWOOD_OBELISK_COMPONENT.getDefaultState())));
 
 	public RunewoodObeliskBlockEntity(BlockPos pos, BlockState state) {
 		super(MalumBlockEntityRegistry.RUNEWOOD_OBELISK, STRUCTURE.get(), pos, state);

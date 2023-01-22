@@ -17,21 +17,15 @@ import net.minecraft.world.World;
 
 public class PlinthComponentBlock extends MultiBlockComponentBlock {
     public static final VoxelShape SHAPE = makeShape();
-    private final Item cloneStack;
 
-    public PlinthComponentBlock(Settings settings, Item cloneStack) {
+
+    public PlinthComponentBlock(Settings settings) {
         super(settings);
-        this.cloneStack = cloneStack;
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
-    }
-
-    @Override
-    public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-        return cloneStack.getDefaultStack();
     }
 
     @Override

@@ -3,7 +3,7 @@ package dev.sterner.malum.common.spirit;
 import com.sammy.lodestone.helpers.ColorHelper;
 import dev.sterner.malum.Malum;
 import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
-import dev.sterner.malum.common.registry.MalumBlockRegistry;
+import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -77,7 +77,7 @@ public class MalumSpiritType {
 	}
 
 	public BlockState getBlockState(boolean isCorrupt, BlockHitResult hit) {
-		Block base = isCorrupt ? MalumBlockRegistry.SOULWOOD_TOTEM_POLE : MalumBlockRegistry.RUNEWOOD_TOTEM_POLE;
+		Block base = isCorrupt ? MalumObjects.SOULWOOD_TOTEM_POLE : MalumObjects.RUNEWOOD_TOTEM_POLE;
 		return base.getDefaultState().with(Properties.HORIZONTAL_FACING, hit.getSide()).with(MalumSpiritTypeRegistry.SPIRIT_TYPE_PROPERTY, identifier);
 	}
 }

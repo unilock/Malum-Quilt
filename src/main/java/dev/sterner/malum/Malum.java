@@ -1,6 +1,7 @@
 package dev.sterner.malum;
 
 import com.chocohead.mm.api.ClassTinkerers;
+import com.sammy.lodestone.setup.LodestoneAttributeRegistry;
 import dev.sterner.malum.client.screen.SpiritPouchScreen;
 import dev.sterner.malum.common.enchantment.ReboundEnchantment;
 import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
@@ -26,7 +27,8 @@ import org.quiltmc.qsl.resource.loader.api.reloader.IdentifiableResourceReloader
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static dev.sterner.malum.common.registry.MalumItemRegistry.*;
+import static dev.sterner.malum.common.registry.MalumObjects.*;
+
 
 public class Malum implements ModInitializer {
 	public static final RandomGenerator RANDOM = RandomGenerator.createLegacy();
@@ -46,8 +48,7 @@ public class Malum implements ModInitializer {
 		MalumSoundRegistry.init();
 
 		MalumBlockEntityRegistry.init();
-		MalumBlockRegistry.init();
-		MalumItemRegistry.init();
+		MalumObjects.init();
 
 		MalumEntityRegistry.init();
 		MalumStatusEffectRegistry.init();
@@ -79,7 +80,7 @@ public class Malum implements ModInitializer {
 
 				entries.addItem(NATURAL_QUARTZ_ORE);
 				entries.addItem(DEEPSLATE_QUARTZ_ORE);
-				entries.addItem(NATURAL_QUARTZ);
+				//entries.addItem(NATURAL_QUARTZ);
 
 				entries.addItem(BRILLIANT_STONE);
 				entries.addItem(BRILLIANT_DEEPSLATE);
@@ -190,7 +191,7 @@ public class Malum implements ModInitializer {
 
 
 
-		ItemGroupEvents.modifyEntriesEvent(MALUM_SPIRITS).register(entries -> ITEMS.forEach((identifier, item) -> {
+		ItemGroupEvents.modifyEntriesEvent(MALUM_SPIRITS).register(entries -> ITEMS.forEach((item, identifier) -> {
 			if(item instanceof MalumSpiritItem){
 				entries.addItem(item);
 			}

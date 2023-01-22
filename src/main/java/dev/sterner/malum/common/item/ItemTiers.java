@@ -1,7 +1,7 @@
 package dev.sterner.malum.common.item;
 
 
-import dev.sterner.malum.common.registry.MalumItemRegistry;
+import dev.sterner.malum.common.registry.MalumObjects;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;

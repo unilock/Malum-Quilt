@@ -2,7 +2,7 @@ package dev.sterner.malum.common.block.spirit_crucible;
 
 import com.sammy.lodestone.systems.multiblock.MultiBlockComponentBlock;
 import com.sammy.lodestone.systems.multiblock.MultiBlockComponentEntity;
-import dev.sterner.malum.common.registry.MalumItemRegistry;
+import dev.sterner.malum.common.registry.MalumObjects;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
@@ -25,7 +25,7 @@ public class SpiritCrucibleComponentBlock extends MultiBlockComponentBlock {
 
     @Override
     public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-        return MalumItemRegistry.SPIRIT_CRUCIBLE.getDefaultStack();
+        return MalumObjects.SPIRIT_CRUCIBLE.asItem().getDefaultStack();
     }
 
     @Override

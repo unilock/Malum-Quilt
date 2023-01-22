@@ -1,6 +1,6 @@
 package dev.sterner.malum.common.block;
 
-import dev.sterner.malum.common.registry.MalumItemRegistry;
+import dev.sterner.malum.common.registry.MalumObjects;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
@@ -44,7 +44,7 @@ public class MalumLeavesBlock extends LeavesBlock {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (player.getStackInHand(hand).getItem().equals(MalumItemRegistry.INFERNAL_SPIRIT)) {
+        if (player.getStackInHand(hand).getItem().equals(MalumObjects.INFERNAL_SPIRIT)) {
             world.setBlockState(pos, state.with(COLOR, (state.get(COLOR) + 1) % 5));
             player.swingHand(hand);
             player.playSound(SoundEvents.ENTITY_BLAZE_SHOOT, 1F, 1.5f + RANDOM.nextFloat() * 0.5f);

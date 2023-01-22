@@ -13,22 +13,14 @@ import net.minecraft.world.BlockView;
 
 public class ObeliskComponentBlock extends MultiBlockComponentBlock {
 	public static final VoxelShape SHAPE = makeShape();
-	private final Item cloneStack;
-	public ObeliskComponentBlock(Settings properties, Item cloneStack) {
+	public ObeliskComponentBlock(Settings properties) {
 		super(properties);
-		this.cloneStack = cloneStack;
 	}
 
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
 	}
-
-	@Override
-	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-		return cloneStack.getDefaultStack();
-	}
-
 
 	public static VoxelShape makeShape(){
 		VoxelShape shape = VoxelShapes.empty();

@@ -11,7 +11,7 @@ import net.minecraft.world.gen.feature.util.ConfiguredFeatureUtil;
 
 import java.util.List;
 
-import static dev.sterner.malum.common.registry.MalumBlockRegistry.*;
+import static dev.sterner.malum.common.registry.MalumObjects.*;
 import static dev.sterner.malum.common.registry.MalumFeatureRegistry.RUNEWOOD_TREE_FEATURE;
 import static dev.sterner.malum.common.registry.MalumFeatureRegistry.SOULWOOD_TREE_FEATURE;
 import static net.minecraft.registry.tag.BlockTags.DEEPSLATE_ORE_REPLACEABLES;

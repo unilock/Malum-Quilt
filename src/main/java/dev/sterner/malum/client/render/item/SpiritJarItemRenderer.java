@@ -2,7 +2,7 @@ package dev.sterner.malum.client.render.item;
 
 import dev.sterner.malum.common.blockentity.storage.SpiritJarBlockEntity;
 import dev.sterner.malum.common.item.spirit.SpiritJarItem;
-import dev.sterner.malum.common.registry.MalumBlockRegistry;
+import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.spirit.MalumSpiritType;
 import dev.sterner.malum.common.spirit.SpiritHelper;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 
 public class SpiritJarItemRenderer extends BuiltinModelItemRenderer {
-	private final SpiritJarBlockEntity jar = new SpiritJarBlockEntity(BlockPos.ORIGIN, MalumBlockRegistry.SPIRIT_JAR.getDefaultState());
+	private final SpiritJarBlockEntity jar = new SpiritJarBlockEntity(BlockPos.ORIGIN, MalumObjects.SPIRIT_JAR.getDefaultState());
 	private final BlockEntityRenderDispatcher blockEntityRenderDispatcher;
 
 	public SpiritJarItemRenderer(BlockEntityRenderDispatcher blockEntityRenderDispatcher, EntityModelLoader entityModelLoader) {

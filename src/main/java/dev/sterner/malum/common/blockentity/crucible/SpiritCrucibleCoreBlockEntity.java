@@ -19,7 +19,7 @@ import dev.sterner.malum.common.recipe.SpiritFocusingRecipe;
 import dev.sterner.malum.common.recipe.SpiritRepairRecipe;
 import dev.sterner.malum.common.recipe.SpiritWithCount;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
-import dev.sterner.malum.common.registry.MalumBlockRegistry;
+import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
 import dev.sterner.malum.common.spirit.SpiritHelper;
 import net.minecraft.block.BlockState;
@@ -47,7 +47,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implements IAccelerationTarget, ITabletTracker {
-    public static final Supplier<MultiBlockStructure> STRUCTURE = () ->  MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumBlockRegistry.SPIRIT_CRUCIBLE_COMPONENT.getDefaultState()));
+    public static final Supplier<MultiBlockStructure> STRUCTURE = () ->  MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumObjects.SPIRIT_CRUCIBLE_COMPONENT.getDefaultState()));
 
     public LodestoneBlockEntityInventory inventory;
     public LodestoneBlockEntityInventory spiritInventory;

@@ -3,7 +3,7 @@ package dev.sterner.malum.common.statuseffect;
 import com.sammy.lodestone.helpers.ColorHelper;
 import dev.sterner.malum.common.item.tools.MalumScytheItem;
 import dev.sterner.malum.common.registry.MalumAttributeRegistry;
-import dev.sterner.malum.common.registry.MalumItemRegistry;
+import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
 import dev.sterner.malum.common.registry.MalumStatusEffectRegistry;
 import net.minecraft.entity.LivingEntity;
@@ -34,11 +34,11 @@ public class WickedIntentEffect extends StatusEffect {
             if (effect != null) {
                 World world = livingEntity.getWorld();
                 if (livingEntity instanceof PlayerEntity player) {
-                    if (player.getItemCooldownManager().isCoolingDown(MalumItemRegistry.NECKLACE_OF_THE_HIDDEN_BLADE)) {
+                    if (player.getItemCooldownManager().isCoolingDown(MalumObjects.NECKLACE_OF_THE_HIDDEN_BLADE)) {
                         return;
                     }
                     int pTicks = (effect.getAmplifier()) > 4 ? 160 : 40;
-                    player.getItemCooldownManager().set(MalumItemRegistry.NECKLACE_OF_THE_HIDDEN_BLADE, pTicks);
+                    player.getItemCooldownManager().set(MalumObjects.NECKLACE_OF_THE_HIDDEN_BLADE, pTicks);
                 }
                 livingEntity.removeStatusEffect(effect.getEffectType());
                 world.playSound(null, livingEntity.getBlockPos(), MalumSoundRegistry.HIDDEN_BLADE_STRIKES, SoundCategory.PLAYERS, 2.5f, 1 + world.random.nextFloat() * 0.15f);

@@ -11,7 +11,7 @@ import dev.sterner.malum.common.block.totem.TotemPoleBlock;
 import dev.sterner.malum.common.blockentity.storage.ItemStandBlockEntity;
 import dev.sterner.malum.common.network.packet.s2c.block.BlockParticlePacket;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
-import dev.sterner.malum.common.registry.MalumItemRegistry;
+import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
 import dev.sterner.malum.common.spirit.MalumSpiritType;
 import dev.sterner.malum.common.spirit.SpiritHelper;
@@ -94,7 +94,7 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
     @Override
     public ActionResult onUse(PlayerEntity player, Hand hand) {
         ItemStack heldStack = player.getStackInHand(hand);
-        if (heldStack.getItem().equals(MalumItemRegistry.HEX_ASH) && !haunted) {
+        if (heldStack.getItem().equals(MalumObjects.HEX_ASH) && !haunted) {
             if (world.isClient()) {
                 return ActionResult.SUCCESS;
             }

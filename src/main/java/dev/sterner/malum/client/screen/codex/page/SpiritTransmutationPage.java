@@ -5,7 +5,7 @@ import com.sammy.lodestone.systems.recipe.WrappedIngredient;
 import dev.sterner.malum.Malum;
 import dev.sterner.malum.client.screen.codex.ProgressionBookScreen;
 import dev.sterner.malum.common.recipe.SpiritTransmutationRecipe;
-import dev.sterner.malum.common.registry.MalumItemRegistry;
+import dev.sterner.malum.common.registry.MalumObjects;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.Item;
@@ -30,7 +30,7 @@ public class SpiritTransmutationPage extends BookPage {
 		SpiritTransmutationRecipe recipe = SpiritTransmutationRecipe.getRecipe(MinecraftClient.getInstance().world, start);
 		while (true) {
 			if (recipe == null) {
-				itemTree.add(new WrappedIngredient(Ingredient.ofItems(MalumItemRegistry.BLIGHTED_SOIL)));
+				itemTree.add(new WrappedIngredient(Ingredient.ofItems(MalumObjects.BLIGHTED_SOIL)));
 				break;
 			}
 			itemTree.add(new WrappedIngredient(recipe.ingredient));

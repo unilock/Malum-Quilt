@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 
 import java.awt.*;
 
-import static dev.sterner.malum.common.registry.MalumItemRegistry.SACRED_SPIRIT;
+import static dev.sterner.malum.common.registry.MalumObjects.SACRED_SPIRIT;
 
 
 public class FloatingItemEntity extends FloatingEntity {

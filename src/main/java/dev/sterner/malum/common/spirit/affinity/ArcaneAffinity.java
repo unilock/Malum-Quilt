@@ -34,7 +34,7 @@ import org.joml.Vector4f;
 
 import java.util.Objects;
 
-import static dev.sterner.malum.common.registry.MalumItemRegistry.BELT_OF_THE_MAGEBANE;
+import static dev.sterner.malum.common.registry.MalumObjects.BELT_OF_THE_MAGEBANE;
 import static dev.sterner.malum.common.registry.MalumSpiritTypeRegistry.ARCANE_SPIRIT;
 
 public class ArcaneAffinity extends MalumSpiritAffinity {

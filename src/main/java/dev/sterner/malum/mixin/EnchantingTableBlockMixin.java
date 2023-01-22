@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static dev.sterner.malum.common.registry.MalumBlockRegistry.BRILLIANT_OBELISK;
+import static dev.sterner.malum.common.registry.MalumObjects.BRILLIANT_OBELISK;
 
 @Mixin(EnchantingTableBlock.class)
 public abstract class EnchantingTableBlockMixin {

@@ -2,7 +2,7 @@ package dev.sterner.malum.common.item.equipment.trinket;
 
 import dev.emi.trinkets.api.TrinketItem;
 import dev.emi.trinkets.api.TrinketsApi;
-import dev.sterner.malum.common.registry.MalumItemRegistry;
+import dev.sterner.malum.common.registry.MalumObjects;
 import net.minecraft.entity.LivingEntity;
 
 public class CurioDemolitionistRing extends TrinketItem {
@@ -13,7 +13,7 @@ public class CurioDemolitionistRing extends TrinketItem {
     public static float increaseExplosionRadius(LivingEntity source, float original) {
         var v = TrinketsApi.getTrinketComponent(source);
         if(v.isPresent()){
-            if(v.get().isEquipped(MalumItemRegistry.RING_OF_THE_DEMOLITIONIST)){
+            if(v.get().isEquipped(MalumObjects.RING_OF_THE_DEMOLITIONIST)){
                 return original + 1;
             }
         }

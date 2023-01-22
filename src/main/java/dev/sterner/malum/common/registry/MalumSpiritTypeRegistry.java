@@ -12,14 +12,14 @@ import java.util.List;
 public class MalumSpiritTypeRegistry {
 	public static Map<String, MalumSpiritType> SPIRITS = new LinkedHashMap<>();
 
-	public static MalumSpiritType SACRED_SPIRIT = create("sacred", new Color(243, 40, 143), MalumItemRegistry.SACRED_SPIRIT);
-	public static MalumSpiritType WICKED_SPIRIT = create("wicked", new Color(155, 62, 245), MalumItemRegistry.WICKED_SPIRIT);
-	public static MalumSpiritType ARCANE_SPIRIT = create("arcane", new Color(212, 55, 255), MalumItemRegistry.ARCANE_SPIRIT);
-	public static MalumSpiritType ELDRITCH_SPIRIT = create("eldritch", new Color(125, 29, 215), new Color(39, 201, 103), MalumItemRegistry.ELDRITCH_SPIRIT);
-	public static MalumSpiritType AERIAL_SPIRIT = create("aerial", new Color(75, 243, 218), MalumItemRegistry.AERIAL_SPIRIT);
-	public static MalumSpiritType AQUEOUS_SPIRIT = create("aqueous", new Color(29, 100, 232), MalumItemRegistry.AQUEOUS_SPIRIT);
-	public static MalumSpiritType INFERNAL_SPIRIT = create("infernal", new Color(210, 134, 39), MalumItemRegistry.INFERNAL_SPIRIT);
-	public static MalumSpiritType EARTHEN_SPIRIT = create("earthen", new Color(73, 234, 27), MalumItemRegistry.EARTHEN_SPIRIT);
+	public static MalumSpiritType SACRED_SPIRIT = create("sacred", new Color(243, 40, 143), MalumObjects.SACRED_SPIRIT);
+	public static MalumSpiritType WICKED_SPIRIT = create("wicked", new Color(155, 62, 245), MalumObjects.WICKED_SPIRIT);
+	public static MalumSpiritType ARCANE_SPIRIT = create("arcane", new Color(212, 55, 255), MalumObjects.ARCANE_SPIRIT);
+	public static MalumSpiritType ELDRITCH_SPIRIT = create("eldritch", new Color(125, 29, 215), new Color(39, 201, 103), MalumObjects.ELDRITCH_SPIRIT);
+	public static MalumSpiritType AERIAL_SPIRIT = create("aerial", new Color(75, 243, 218), MalumObjects.AERIAL_SPIRIT);
+	public static MalumSpiritType AQUEOUS_SPIRIT = create("aqueous", new Color(29, 100, 232), MalumObjects.AQUEOUS_SPIRIT);
+	public static MalumSpiritType INFERNAL_SPIRIT = create("infernal", new Color(210, 134, 39), MalumObjects.INFERNAL_SPIRIT);
+	public static MalumSpiritType EARTHEN_SPIRIT = create("earthen", new Color(73, 234, 27), MalumObjects.EARTHEN_SPIRIT);
 
 	public static SpiritTypeProperty SPIRIT_TYPE_PROPERTY = new SpiritTypeProperty("spirit_type", SPIRITS.values());
 

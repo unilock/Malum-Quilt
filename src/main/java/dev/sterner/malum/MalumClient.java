@@ -50,15 +50,15 @@ import java.awt.*;
 import java.util.function.Function;
 
 import static dev.sterner.malum.Malum.MODID;
-import static dev.sterner.malum.common.registry.MalumBlockRegistry.*;
+import static dev.sterner.malum.common.registry.MalumObjects.*;
 
 public class MalumClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient(ModContainer mod) {
 		EntityModelLayerRegistry.registerModelLayer(SpiritHunterArmorModel.LAYER, SpiritHunterArmorModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(SoulStainedSteelArmorModel.LAYER, SoulStainedSteelArmorModel::getTexturedModelData);
-		ArmorRenderer.register(new CloakArmorRenderer(DataHelper.prefix("textures/armor/spirit_hunter_reforged.png")), MalumItemRegistry.SOUL_HUNTER_CLOAK, MalumItemRegistry.SOUL_HUNTER_ROBE, MalumItemRegistry.SOUL_HUNTER_LEGGINGS, MalumItemRegistry.SOUL_HUNTER_BOOTS);
-		ArmorRenderer.register(new SteelArmorRenderer(DataHelper.prefix("textures/armor/soul_stained_steel.png")), MalumItemRegistry.SOUL_STAINED_STEEL_HELMET, MalumItemRegistry.SOUL_STAINED_STEEL_CHESTPLATE, MalumItemRegistry.SOUL_STAINED_STEEL_LEGGINGS, MalumItemRegistry.SOUL_STAINED_STEEL_BOOTS);
+		ArmorRenderer.register(new CloakArmorRenderer(DataHelper.prefix("textures/armor/spirit_hunter_reforged.png")), MalumObjects.SOUL_HUNTER_CLOAK, MalumObjects.SOUL_HUNTER_ROBE, MalumObjects.SOUL_HUNTER_LEGGINGS, MalumObjects.SOUL_HUNTER_BOOTS);
+		ArmorRenderer.register(new SteelArmorRenderer(DataHelper.prefix("textures/armor/soul_stained_steel.png")), MalumObjects.SOUL_STAINED_STEEL_HELMET, MalumObjects.SOUL_STAINED_STEEL_CHESTPLATE, MalumObjects.SOUL_STAINED_STEEL_LEGGINGS, MalumObjects.SOUL_STAINED_STEEL_BOOTS);
 		EntityRendererRegistry.register(MalumEntityRegistry.SCYTHE_BOOMERANG, ScytheBoomerangEntityRenderer::new);
 		EntityRendererRegistry.register(MalumEntityRegistry.NATURAL_SPIRIT, FloatingItemEntityRenderer::new);
 		EntityRendererRegistry.register(MalumEntityRegistry.ETHERIC_NITRATE, EthericNitrateEntityRenderer::new);
@@ -78,7 +78,7 @@ public class MalumClient implements ClientModInitializer {
 		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.SOUL_VIAL, SoulVialRenderer::new);
 
 
-		for (Item item : MalumItemRegistry.SCYTHES) {
+		for (Item item : MalumObjects.SCYTHES) {
 			Identifier scytheId = Registries.ITEM.getId(item);
 			ScytheItemRenderer scytheItemRenderer = new ScytheItemRenderer(scytheId);
 			ResourceLoader.get(ResourceType.CLIENT_RESOURCES).registerReloader(scytheItemRenderer);
@@ -113,16 +113,13 @@ public class MalumClient implements ClientModInitializer {
 				RUNEWOOD_TRAPDOOR,
 				SOULWOOD_TRAPDOOR,
 				ETHER_TORCH,
-				ETHER_SCONCE,
 				WALL_ETHER_TORCH,
-				WALL_ETHER_SCONCE,
 				WALL_BLAZING_TORCH,
 				BLAZING_TORCH,
 				TAINTED_ETHER_BRAZIER,
 				TWISTED_ETHER_BRAZIER,
 				IRIDESCENT_ETHER_TORCH,
 				IRIDESCENT_WALL_ETHER_TORCH,
-				IRIDESCENT_WALL_ETHER_SCONCE,
 				TAINTED_IRIDESCENT_ETHER_BRAZIER,
 				TWISTED_IRIDESCENT_ETHER_BRAZIER,
 				BRILLIANT_DEEPSLATE,
