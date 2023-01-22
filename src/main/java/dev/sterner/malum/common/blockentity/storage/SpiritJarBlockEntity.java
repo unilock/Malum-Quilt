@@ -5,12 +5,18 @@ import com.sammy.lodestone.forge.LazyOptional;
 import com.sammy.lodestone.helpers.BlockHelper;
 import com.sammy.lodestone.setup.LodestoneParticles;
 import com.sammy.lodestone.systems.blockentity.LodestoneBlockEntity;
+import com.sammy.lodestone.systems.container.ItemInventory;
 import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
 import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
+import dev.sterner.malum.common.item.spirit.SpiritPouchItem;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import dev.sterner.malum.common.spirit.MalumSpiritType;
+import dev.sterner.malum.common.spirit.SpiritHelper;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SimpleInventory;
@@ -128,238 +134,140 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity {
     }
 
 
+	@Override
+	public ActionResult onUse(PlayerEntity player, Hand hand) {
+		if (getWorld() == null)
+			return ActionResult.PASS;
 
-    /*
-    @Override
-    public boolean canPush(ItemStack stack) {
-        return !stack.isEmpty() && stack.getCount() <= getRemainingSpace()
-            && (getItem() == Items.AIR || stack.getItem().equals(getItem()))
-            && stack.getItem() instanceof MalumSpiritItem;
-    }
-    public Item getItem() {
-        return items.size() > 0 ? items.get(0).getItem() : Items.AIR;
-    }
-    private int getRemainingSpace(){
-        return 2147483647 - this.getSize();
-    }
-    public int getSize() {
-        int size = 0;
-        if (items.size() > 0) for(ItemStack stack : this.items) {
-            size += stack.getCount();
-        }
-        return size;
-    }
-    @Override
-    public void pushStack(ItemStack stack) {
-        for (ItemStack s : items) {
-            if (s != null && ItemStack.canCombine(s, stack) && s.getCount() < s.getMaxCount()) {
-                int diff = s.getMaxCount() - s.getCount();
-                int available = stack.getCount();
-                int toAdd = Math.min(diff, available);
-                s.increment(toAdd);
-                stack.decrement(toAdd);
-                this.markDirty();
-            }
-        }
-        if(!stack.isEmpty()) {
-            items.add(0, stack);
-            this.markDirty();
-        }
-    }
+		int count;
+		if (getWorld().getTime() - lastClickTime < 10 && player.getUuid().equals(lastClickUUID))
+			count = insertAllSpirits(player);
+		else
+			count = insertHeldItem(player);
 
-    @Override
-    public ItemStack takeStack() {
-        if (items.size() > 1 && ItemStack.canCombine(getStack(0), getStack(1))) { //if the top two stacks are combinable
-            return takeStack(getItem().getMaxCount()); //grab a full stack
-        } else if (items.size() < 1) {
-            return ItemStack.EMPTY;
-        } else {
-            return takeStack(items.get(0).getCount()); //otherwise grab the top stack
-        }
-    }
+		lastClickTime = getWorld().getTime();
+		lastClickUUID = player.getUuid();
 
-    @Override
-    public ItemStack takeStack(int amount) {
-        if (items.size() < 1) {
-            return ItemStack.EMPTY;
-        }
-        ItemStack top = getStack(0);
-        ItemStack extracted = top.split(amount); //grab items from the top stack
-        if(top.isEmpty()) {
-            items.remove(0);
-        }
-        if(extracted.getCount() < amount && ItemStack.canCombine(extracted, getStack(0))) { //if there's room for more...
-            int diff = amount - extracted.getCount();
-            items.get(0).decrement(diff); //take the difference from the next stack
-            if(items.get(0).getCount() == 0) { //and delete that stack if it's emptied, though that should never happen
-                items.remove(0);
-            }
-            extracted.increment(diff); //then add those items to the new stack
-        }
+		if (count != 0) {
+			if (player.world.isClient) {
+				spawnUseParticles(world, pos, type);
+			} else {
+				BlockHelper.updateAndNotifyState(world, pos);
+			}
+		}
 
-        this.markDirty();
-        return extracted;
-    }
+		return ActionResult.success(player.world.isClient);
+	}
 
-    public void clientTick(World world, BlockPos pos, BlockState state) {
-        if (this.getItem() instanceof MalumSpiritItem item) {
-            Vec3d vec = DataHelper.fromBlockPos(pos).add(new Vec3d(0.5f, 0.5f, 0.5f));
-            double x = vec.x;
-            double y = vec.y + Math.sin(world.getTime() / 20f) * 0.1f;
-            double z = vec.z;
-            SpiritHelper.spawnSpiritParticles(world, x, y, z, item.type.color, item.type.endColor);
-        }
-    }
+	public int insertHeldItem(PlayerEntity player) {
+		int count = 0;
+		ItemStack playerStack = player.getInventory().getMainHandStack();
+		if (!playerStack.isEmpty())
+			count = insertFromStack(playerStack);
 
-    @Override
-    public World getWorld() {
-        return super.getWorld();
-    }
+		return count;
+	}
 
-    @Override
-    public BlockPos getPos() {
-        return super.getPos();
-    }
+	public int insertAllSpirits(PlayerEntity player) {
+		if (type == null)
+			return 0;
 
-    @Override
-    public BlockState getCachedState() {
-        return super.getCachedState();
-    }
+		int count = 0;
+		for (int i = 0, n = player.getInventory().size(); i < n; i++) {
+			ItemStack subStack = player.getInventory().getStack(i);
+			if (!subStack.isEmpty()) {
+				int subCount = insertFromStack(subStack);
+				if (subCount > 0 && subStack.getCount() == 0)
+					player.getInventory().setStack(i, ItemStack.EMPTY);
 
-    @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        this.clear();
-        NbtList list = nbt.getList("spirits", NbtElement.COMPOUND_TYPE);
-        for(NbtElement e : list) {
-            ItemStack stack = ItemStack.fromNbt((NbtCompound) e);
-            this.pushStack(stack);
-        }
-    }
+				count += subCount;
+			}
+		}
 
-    @Override
-    protected void writeNbt(NbtCompound nbt) {
-        NbtList list = new NbtList();
-        for(ItemStack stack : items){
-            NbtCompound c = new NbtCompound();
-            stack.writeNbt(c);
-            list.add(0, c);
-        }
-        nbt.put("spirits", list);
-    }
+		return count;
+	}
 
-    @Override
-    public NbtCompound toSyncedNbt() {
-        NbtCompound tag = super.toSyncedNbt();
-        writeNbt(tag);
-        return tag;
-    }
+	public int insertFromStack(ItemStack stack) {
+		int inserted = 0;
+		if (stack.getItem() instanceof SpiritPouchItem) {
+			if (type != null) {
+				ItemInventory inventory = SpiritPouchItem.getInventory(stack);
+				for (int i = 0; i < inventory.size(); i++) {
+					ItemStack spiritStack = inventory.getStack(i);
+					if (spiritStack.getItem() instanceof MalumSpiritItem spiritItem) {
+						MalumSpiritType type = spiritItem.type;
+						if (type.identifier.equals(this.type.identifier)) {
+							inventory.setStack(i, ItemStack.EMPTY);
+							inserted += spiritStack.getCount();
+							count += spiritStack.getCount();
+						}
+					}
+				}
+			}
+		} else if (stack.getItem() instanceof MalumSpiritItem spiritSplinterItem) {
+			if (type == null || type.equals(spiritSplinterItem.type)) {
+				type = spiritSplinterItem.type;
+				inserted += stack.getCount();
+				count += stack.getCount();
+				stack.decrement(stack.getCount());
+			}
+		}
+		return inserted;
 
-    @Nullable
-    @Override
-    public Packet<ClientPlayPacketListener> toUpdatePacket() {
-        return BlockEntityUpdateS2CPacket.of(this);
-    }
+	}
 
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        ItemStack heldStack = player.getStackInHand(hand);
-        MalumSpiritType type = this.getItem() instanceof MalumSpiritItem sp ? sp.type : null;
-        Item heldItem = heldStack.getItem();
-        if (heldItem instanceof SpiritPouchItem) {
-            if (type != null) {
-                DefaultedList<ItemStack> stacks = DefaultedList.ofSize(27, ItemStack.EMPTY);
-                NbtCompound nbt = heldStack.getOrCreateNbt();
-                if (nbt != null) {
-                    Inventories.readNbt(nbt, stacks);
-                }
-                SimpleInventory inventory = new SimpleInventory(stacks.delegate.toArray(ItemStack[]::new));
-                boolean successful = false;
-                for (int i = 0; i < inventory.size(); i++) {
-                    ItemStack stack = inventory.getStack(i);
-                    if (stack.getItem() instanceof MalumSpiritItem malumSpiritItem) {
-                        MalumSpiritType spType = malumSpiritItem.type;
-                        if(spType.id.equals(type.id)) {
-                            if(this.tryPush(stack)) {
-                                type = spType;
-                                inventory.setStack(i, ItemStack.EMPTY);
-                            }
-                            successful = true;
-                        }
-                    }
-                }
-                Inventories.writeNbt(nbt, inventory.stacks);
-                if (successful) {
-                    if (player.world.isClient) {
-                        spawnUseParticles(world, pos, type);
-                    }
-                    return ActionResult.SUCCESS;
-                } else {
-                    return ActionResult.PASS;
-                }
-            }
-        }
-        else if (heldItem instanceof MalumSpiritItem spiritSplinterItem) {
-            if (type == null || type.equals(spiritSplinterItem.type)) {
-                type = spiritSplinterItem.type;
-                if (this.tryPush(heldStack.copy())) {
-                    heldStack.decrement(heldStack.getCount());
-                }
-                if (!player.world.isClient) {
-                    BlockHelper.updateAndNotifyState(world, pos);
-                } else {
-                    spawnUseParticles(world, pos, type);
-                }
-                return ActionResult.SUCCESS;
-            }
-        } else if(type != null) {
-            ItemStack grabbed = this.takeStack();
-            System.out.println(player.isSneaking());
-            if (!player.world.isClient) {
-                if(grabbed != null) {
-                    if(heldStack.isEmpty()){
-                        player.setStackInHand(hand, grabbed);
-                    } else{
-                        player.getInventory().offerOrDrop(grabbed);
-                    }
-                    return ActionResult.SUCCESS;
-                }
-            } else {
-                spawnUseParticles(world, pos, type);
-            }
-            return ActionResult.SUCCESS;
-        }
-        return ActionResult.PASS;
-    }
-    private void comparatorUpdate() {
-        if(this.world != null && !this.world.isClient) {
-            this.world.updateComparators(pos, this.getCachedState().getBlock());
-        }
-    }
-    @Override
-    public void markDirty() {
-        if(world == null || world.isClient) {return;}
-        comparatorUpdate();
-        PlayerLookup.tracking(this).forEach(player -> player.networkHandler.sendPacket(toUpdatePacket()));
-        super.markDirty();
-    }
-    public void spawnUseParticles(World world, BlockPos pos, MalumSpiritType type) {
-        Color color = type.color;
-        ParticleBuilders.create(LodestoneParticles.WISP_PARTICLE)
-                .setAlpha(0.15f, 0f)
-                .setLifetime(20)
-                .setScale(0.3f, 0)
-                .setSpin(0.2f)
-                .randomMotion(0.02f)
-                .randomOffset(0.1f, 0.1f)
-                .setColor(color, color.darker())
-                .enableNoClip()
-                .repeat(world, pos.getX()+0.5f, pos.getY()+0.5f + Math.sin(world.getTime() / 20f) * 0.2f, pos.getZ()+0.5f, 10);
-    }
+	@SuppressWarnings("ConstantConditions")
+	@Override
+	public void onPlace(LivingEntity placer, ItemStack stack) {
+		if (stack.hasNbt()) {
+			readNbt(stack.getNbt());
+		}
+		markDirty();
+	}
 
-    @Override
-    public void clear() {
-        items.clear();
-    }
+	@Override
+	protected void writeNbt(NbtCompound compound) {
+		if (type != null) {
+			compound.putString("spirit", type.identifier);
+		}
+		compound.putInt("count", count);
+	}
 
-     */
+	@Override
+	public void readNbt(@NotNull NbtCompound compound) {
+		if (compound.contains("spirit")) {
+			type = SpiritHelper.getSpiritType(compound.getString("spirit"));
+		} else {
+			type = null;
+		}
+		count = compound.getInt("count");
+		super.readNbt(compound);
+	}
+
+	@Override
+	public void tick() {
+		if (world.isClient) {
+			if (type != null) {
+				double x = getPos().getX() + 0.5f;
+				double y = getPos().getY() + 0.5f + Math.sin(world.getTime() / 20f) * 0.2f;
+				double z = getPos().getZ() + 0.5f;
+				SpiritHelper.spawnSpiritGlimmerParticles(world, x, y, z, type.getColor(), type.getEndColor());
+			}
+		}
+	}
+
+	@Environment(EnvType.CLIENT)
+	public void spawnUseParticles(World level, BlockPos pos, MalumSpiritType type) {
+		Color color = type.getColor();
+		ParticleBuilders.create(LodestoneParticles.WISP_PARTICLE)
+				.setAlpha(0.15f, 0f)
+				.setLifetime(20)
+				.setScale(0.3f, 0)
+				.setSpin(0.2f)
+				.randomMotion(0.02f)
+				.randomOffset(0.1f, 0.1f)
+				.setColor(color, color.darker())
+				.enableNoClip()
+				.repeat(level, pos.getX() + 0.5f, pos.getY() + 0.5f + Math.sin(level.getTime() / 20f) * 0.2f, pos.getZ() + 0.5f, 10);
+	}
 }

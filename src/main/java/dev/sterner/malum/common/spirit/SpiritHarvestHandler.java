@@ -41,7 +41,7 @@ public class SpiritHarvestHandler {
 
 	public static void shatterSoul(DamageSource source, LivingEntity target) {
 		LivingEntity attacker = null;
-		if (source.getSource().getName().equals(MalumDamageSourceRegistry.SOUL_STRIKE_IDENTIFIER)) {
+		if (source.getSource() != null && source.getSource().getName().equals(MalumDamageSourceRegistry.SOUL_STRIKE_IDENTIFIER)) {
 			SpiritHelper.createSpiritEntities(SpiritHelper.getSpiritItemStacks(target), target, null);
 			return;
 		}

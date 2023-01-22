@@ -128,7 +128,8 @@ public class MalumClient implements ClientModInitializer {
 				BRILLIANT_DEEPSLATE,
 				BRILLIANT_STONE,
 				BLAZING_QUARTZ_ORE,
-				SPIRIT_ALTAR
+				SPIRIT_ALTAR,
+				SPIRIT_JAR
 		);
 		registerColors();
 	}

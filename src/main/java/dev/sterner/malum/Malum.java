@@ -32,19 +32,29 @@ public class Malum implements ModInitializer {
 	public static final RandomGenerator RANDOM = RandomGenerator.createLegacy();
 	public static final Logger LOGGER = LoggerFactory.getLogger("Malum");
 	public static final String MODID = "malum";
+	public static final ItemGroup MALUM = FabricItemGroup.builder(new Identifier(MODID, MODID)).icon(() -> new ItemStack(SPIRIT_ALTAR)).build();
+	public static final ItemGroup MALUM_ARCANE_ROCKS = FabricItemGroup.builder(new Identifier(MODID, "malum_shaped_stones")).icon(() -> new ItemStack(TAINTED_ROCK)).build();
+	public static final ItemGroup MALUM_NATURAL_WONDERS = FabricItemGroup.builder(new Identifier(MODID, "malum_natural_wonders")).icon(() -> new ItemStack(RUNEWOOD_SAPLING)).build();
+	public static final ItemGroup MALUM_SPIRITS = FabricItemGroup.builder(new Identifier(MODID, "malum_spirits")).icon(() -> new ItemStack(ARCANE_SPIRIT)).build();
+	public static final ItemGroup MALUM_METALLURGIC_MAGIC = FabricItemGroup.builder(new Identifier(MODID, "malum_metallurgic_magic")).icon(() -> new ItemStack(ALCHEMICAL_IMPETUS)).build();
 
 	@Override
 	public void onInitialize(ModContainer mod) {
+		MalumAttributeRegistry.init();
+		MalumParticleRegistry.init();
+		MalumEnchantmentRegistry.init();
+		MalumSoundRegistry.init();
+
 		MalumBlockEntityRegistry.init();
 		MalumBlockRegistry.init();
 		MalumItemRegistry.init();
-		MalumEnchantmentRegistry.init();
+
 		MalumEntityRegistry.init();
 		MalumStatusEffectRegistry.init();
-		MalumParticleRegistry.init();
-		MalumSoundRegistry.init();
 
-		MalumAttributeRegistry.init();
+
+
+		MalumTags.init();
 		MalumRecipeTypeRegistry.init();
 		MalumRecipeSerializerRegistry.init();
 		MalumFeatureRegistry.init();
@@ -54,47 +64,46 @@ public class Malum implements ModInitializer {
 
 		UseItemCallback.EVENT.register(ReboundEnchantment::onRightClickItem);
 		ResourceLoader.get(ResourceType.SERVER_DATA).registerReloader(new SpiritDataReloadListenerFabricImpl());
-/*
+
 		ItemGroupEvents.modifyEntriesEvent(MALUM).register(entries -> {
-			ITEMS.forEach((identifier, item) -> {
 				entries.addItem(ENCYCLOPEDIA_ARCANA);
 
 				entries.addItem(ARCANE_CHARCOAL);
 				entries.addItem(ARCANE_CHARCOAL_FRAGMENT);
-				entries.addItem(BLOCK_OF_ARCANE_CHARCOAL.asItem());
+				entries.addItem(BLOCK_OF_ARCANE_CHARCOAL);
 
-				entries.addItem(BLAZING_QUARTZ_ORE.asItem());
+				entries.addItem(BLAZING_QUARTZ_ORE);
 				entries.addItem(BLAZING_QUARTZ);
 				entries.addItem(BLAZING_QUARTZ_FRAGMENT);
-				entries.addItem(BLOCK_OF_BLAZING_QUARTZ.asItem());
+				entries.addItem(BLOCK_OF_BLAZING_QUARTZ);
 
-				entries.addItem(NATURAL_QUARTZ_ORE.asItem());
-				entries.addItem(DEEPSLATE_QUARTZ_ORE.asItem());
+				entries.addItem(NATURAL_QUARTZ_ORE);
+				entries.addItem(DEEPSLATE_QUARTZ_ORE);
 				entries.addItem(NATURAL_QUARTZ);
 
-				entries.addItem(BRILLIANT_STONE.asItem());
-				entries.addItem(BRILLIANT_DEEPSLATE.asItem());
+				entries.addItem(BRILLIANT_STONE);
+				entries.addItem(BRILLIANT_DEEPSLATE);
 				entries.addItem(CLUSTER_OF_BRILLIANCE);
 				entries.addItem(CRUSHED_BRILLIANCE);
-				entries.addItem(BLOCK_OF_BRILLIANCE.asItem());
+				entries.addItem(BLOCK_OF_BRILLIANCE);
 
-				entries.addItem(SOULSTONE_ORE.asItem());
-				entries.addItem(DEEPSLATE_SOULSTONE_ORE.asItem());
+				entries.addItem(SOULSTONE_ORE);
+				entries.addItem(DEEPSLATE_SOULSTONE_ORE);
 				entries.addItem(RAW_SOULSTONE);
 				entries.addItem(CRUSHED_SOULSTONE);
-				entries.addItem(BLOCK_OF_RAW_SOULSTONE.asItem());
+				entries.addItem(BLOCK_OF_RAW_SOULSTONE);
 				entries.addItem(PROCESSED_SOULSTONE);
-				entries.addItem(BLOCK_OF_SOULSTONE.asItem());
+				entries.addItem(BLOCK_OF_SOULSTONE);
 
-				entries.addItem(SPIRIT_ALTAR.asItem());
-				entries.addItem(SPIRIT_JAR.asItem());
-				entries.addItem(RUNEWOOD_OBELISK.asItem());
-				entries.addItem(BRILLIANT_OBELISK.asItem());
-				entries.addItem(SPIRIT_CRUCIBLE.asItem());
-				entries.addItem(TWISTED_TABLET.asItem());
-				entries.addItem(SPIRIT_CATALYZER.asItem());
-				entries.addItem(RUNEWOOD_TOTEM_BASE.asItem());
-				entries.addItem(SOULWOOD_TOTEM_BASE.asItem());
+				entries.addItem(SPIRIT_ALTAR);
+				entries.addItem(SPIRIT_JAR);
+				entries.addItem(RUNEWOOD_OBELISK);
+				entries.addItem(BRILLIANT_OBELISK);
+				entries.addItem(SPIRIT_CRUCIBLE);
+				entries.addItem(TWISTED_TABLET);
+				entries.addItem(SPIRIT_CATALYZER);
+				entries.addItem(RUNEWOOD_TOTEM_BASE);
+				entries.addItem(SOULWOOD_TOTEM_BASE);
 
 				entries.addItem(ROTTING_ESSENCE);
 				entries.addItem(GRIM_TALC);
@@ -103,12 +112,12 @@ public class Malum implements ModInitializer {
 				//entries.addItem(CTHONIC_GOLD);
 				entries.addItem(HEX_ASH);
 				entries.addItem(CURSED_GRIT);
-				entries.addItem(BLOCK_OF_ROTTING_ESSENCE.asItem());
-				entries.addItem(BLOCK_OF_GRIM_TALC.asItem());
-				entries.addItem(BLOCK_OF_ALCHEMICAL_CALX.asItem());
-				entries.addItem(BLOCK_OF_ASTRAL_WEAVE.asItem());
-				entries.addItem(BLOCK_OF_HEX_ASH.asItem());
-				entries.addItem(BLOCK_OF_CURSED_GRIT.asItem());
+				entries.addItem(BLOCK_OF_ROTTING_ESSENCE);
+				entries.addItem(BLOCK_OF_GRIM_TALC);
+				entries.addItem(BLOCK_OF_ALCHEMICAL_CALX);
+				entries.addItem(BLOCK_OF_ASTRAL_WEAVE);
+				entries.addItem(BLOCK_OF_HEX_ASH);
+				entries.addItem(BLOCK_OF_CURSED_GRIT);
 
 				entries.addItem(SPIRIT_FABRIC);
 				entries.addItem(SPECTRAL_LENS);
@@ -116,12 +125,12 @@ public class Malum implements ModInitializer {
 				entries.addItem(CORRUPTED_RESONANCE);
 				entries.addItem(HALLOWED_GOLD_INGOT);
 				entries.addItem(HALLOWED_GOLD_NUGGET);
-				entries.addItem(BLOCK_OF_HALLOWED_GOLD.asItem());
+				entries.addItem(BLOCK_OF_HALLOWED_GOLD);
 				entries.addItem(HALLOWED_SPIRIT_RESONATOR);
 
 				entries.addItem(SOUL_STAINED_STEEL_INGOT);
 				entries.addItem(SOUL_STAINED_STEEL_NUGGET);
-				entries.addItem(BLOCK_OF_SOUL_STAINED_STEEL.asItem());
+				entries.addItem(BLOCK_OF_SOUL_STAINED_STEEL);
 				entries.addItem(STAINED_SPIRIT_RESONATOR);
 
 				entries.addItem(ETHER);
@@ -173,21 +182,24 @@ public class Malum implements ModInitializer {
 				entries.addItem(BELT_OF_THE_STARVED);
 				entries.addItem(BELT_OF_THE_PROSPECTOR);
 				entries.addItem(BELT_OF_THE_MAGEBANE);
-			});
+
+
+				entries.addItem(BRILLIANT_OBELISK);
+
 		});
 
- */
 
-		ItemGroupEvents.modifyEntriesEvent(MALUM_SPIRITS).register(entries -> ITEMS.forEach((identifier, item) -> entries.addItem(ARCANE_SPIRIT)));
+
+		ItemGroupEvents.modifyEntriesEvent(MALUM_SPIRITS).register(entries -> ITEMS.forEach((identifier, item) -> {
+			if(item instanceof MalumSpiritItem){
+				entries.addItem(item);
+			}
+		}));
 
 
 
 	}
-	public static final ItemGroup MALUM = FabricItemGroup.builder(new Identifier(MODID, MODID)).icon(() -> new ItemStack(SPIRIT_ALTAR)).build();
-	public static final ItemGroup MALUM_ARCANE_ROCKS = FabricItemGroup.builder(new Identifier(MODID, "malum_shaped_stones")).icon(() -> new ItemStack(TAINTED_ROCK)).build();
-	public static final ItemGroup MALUM_NATURAL_WONDERS = FabricItemGroup.builder(new Identifier(MODID, "malum_natural_wonders")).icon(() -> new ItemStack(RUNEWOOD_SAPLING)).build();
-	public static final ItemGroup MALUM_SPIRITS = FabricItemGroup.builder(new Identifier(MODID, "malum_spirits")).icon(() -> new ItemStack(ARCANE_SPIRIT)).build();
-	public static final ItemGroup MALUM_METALLURGIC_MAGIC = FabricItemGroup.builder(new Identifier(MODID, "malum_metallurgic_magic")).icon(() -> new ItemStack(ALCHEMICAL_IMPETUS)).build();
+
 
 	public static class SpiritDataReloadListenerFabricImpl extends SpiritDataReloadListener implements IdentifiableResourceReloader {
 		@Override
