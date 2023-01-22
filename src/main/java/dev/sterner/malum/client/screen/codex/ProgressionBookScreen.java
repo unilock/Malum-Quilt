@@ -896,7 +896,7 @@ public class ProgressionBookScreen extends Screen {
 	}
 
 	public static void renderWavyIcon(Identifier location, MatrixStack stack, int x, int y, int z) {
-		ExtendedShader shaderInstance = (ExtendedShader) LodestoneShaders.DISTORTED_TEXTURE.getInstance();
+		ExtendedShader shaderInstance = (ExtendedShader) LodestoneShaders.DISTORTED_TEXTURE.getInstance().get();
 		shaderInstance.getUniformOrDefault("YFrequency").setFloat(10f);
 		shaderInstance.getUniformOrDefault("XFrequency").setFloat(12f);
 		shaderInstance.getUniformOrDefault("Speed").setFloat(1000f);

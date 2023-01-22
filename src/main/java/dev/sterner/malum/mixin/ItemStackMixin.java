@@ -45,9 +45,9 @@ public abstract class ItemStackMixin {
 			return;
 		}
 
-		if (entityAttributeModifier.getId() == MAGIC_DAMAGE_MODIFIER_ID) {
+		if (entityAttributeModifier.getId() == MAGIC_DAMAGE_MODIFIER_ID && player.getAttributes().m_vonjnjfn(MAGIC_PROFICIENCY)) {
 			args.set(0, (double) args.get(0) + 0.5f * player.getAttributeValue(MAGIC_PROFICIENCY));
-		} else if (entityAttributeModifier.getId() == ATTACK_DAMAGE_MODIFIER_ID && (((ItemStack) (Object) this).getItem() instanceof MalumScytheItem)) {
+		} else if (entityAttributeModifier.getId() == ATTACK_DAMAGE_MODIFIER_ID && (((ItemStack) (Object) this).getItem() instanceof MalumScytheItem) && player.getAttributes().m_vonjnjfn(SCYTHE_PROFICIENCY)) {
 			args.set(0, (double) args.get(0) + 0.5f * player.getAttributeValue(SCYTHE_PROFICIENCY));
 		}
 	}

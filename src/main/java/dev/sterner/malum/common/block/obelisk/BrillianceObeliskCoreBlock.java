@@ -11,9 +11,4 @@ public class BrillianceObeliskCoreBlock extends ObeliskCoreBlock<BrilliantObelis
 	public BrillianceObeliskCoreBlock(AbstractBlock.Settings properties) {
 		super(properties, MalumBlockEntityRegistry.BRILLIANT_OBELISK);
 	}
-
-
-	public float getEnchantPowerBonus(BlockState state, WorldView world, BlockPos pos) {
-		return 5;
-	}
 }
