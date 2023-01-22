@@ -4,6 +4,7 @@ import com.sammy.lodestone.helpers.ColorHelper;
 import com.sammy.lodestone.setup.LodestoneParticles;
 import com.sammy.lodestone.systems.rendering.particle.Easing;
 import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
+import com.sammy.lodestone.systems.rendering.particle.ParticleTextureSheets;
 import com.sammy.lodestone.systems.rendering.particle.SimpleParticleEffect;
 import dev.sterner.malum.common.network.packet.s2c.entity.VividNitrateBounceParticlePacket;
 import dev.sterner.malum.common.registry.MalumEntityRegistry;
@@ -121,7 +122,7 @@ public class VividNitrateEntity extends AbstractNitrateEntity {
                 .randomMotion(0.01f, 0.01f)
                 .overwriteRemovalProtocol(SimpleParticleEffect.SpecialRemovalProtocol.INVISIBLE)
                 .repeat(world, lerpX, lerpY, lerpZ, 1)
-                //TODO .overwriteRenderType(ParticleRenderTypes.TRANSPARENT)
+				.overwriteRenderType(ParticleTextureSheets.TRANSPARENT)
                 .setColorCoefficient(2.75f)
                 .repeat(world, lerpX, lerpY, lerpZ, 1);
         }

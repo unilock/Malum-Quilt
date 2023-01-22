@@ -4,6 +4,7 @@ import com.sammy.lodestone.helpers.ColorHelper;
 import com.sammy.lodestone.setup.LodestoneParticles;
 import com.sammy.lodestone.systems.rendering.particle.Easing;
 import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
+import com.sammy.lodestone.systems.rendering.particle.ParticleTextureSheets;
 import com.sammy.lodestone.systems.rendering.particle.SimpleParticleEffect;
 import dev.sterner.malum.Malum;
 import io.netty.buffer.Unpooled;
@@ -73,7 +74,7 @@ public class VoidConduitParticlePacket {
                     .disableNoClip()
                     .randomMotion(extraMotion, extraMotion)
                     .overwriteRemovalProtocol(SimpleParticleEffect.SpecialRemovalProtocol.ENDING_CURVE_INVISIBLE)
-                    //TODO .overwriteRenderType(LodestoneWorldParticleRenderLayer.TRANSPARENT)
+                    .overwriteRenderType(ParticleTextureSheets.TRANSPARENT)
                     .repeat(world, posX, posY, posZ, 6);
             }
             int spinOffset = rand.nextInt(360);
@@ -95,7 +96,7 @@ public class VoidConduitParticlePacket {
                     .enableNoClip()
                     .randomMotion(0.02f, 0.02f)
                     .overwriteRemovalProtocol(SimpleParticleEffect.SpecialRemovalProtocol.ENDING_CURVE_INVISIBLE)
-                  //TODO   .overwriteRenderType(LodestoneWorldParticleRenderLayer.TRANSPARENT)
+                    .overwriteRenderType(ParticleTextureSheets.TRANSPARENT)
                     .repeat(world, posX, posY, posZ, 5);
             }
         });

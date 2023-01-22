@@ -3,6 +3,7 @@ package dev.sterner.malum.common.network.packet.s2c.block.blight;
 import com.sammy.lodestone.setup.LodestoneParticles;
 import com.sammy.lodestone.systems.rendering.particle.Easing;
 import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
+import com.sammy.lodestone.systems.rendering.particle.ParticleTextureSheets;
 import dev.sterner.malum.Malum;
 import io.netty.buffer.Unpooled;
 import net.minecraft.client.MinecraftClient;
@@ -57,7 +58,7 @@ public class BlightMistParticlePacket {
                     .enableNoClip()
                     .randomOffset(0.1f, 0f)
                     .randomMotion(0.005f, 0.01f)
-                   //TODO .overwriteRenderType(ParticleRenderTypes.TRANSPARENT)
+                    .overwriteRenderType(ParticleTextureSheets.TRANSPARENT)
                     .repeatSurroundBlock(world, pos, 2, Direction.UP);
 
                 ParticleBuilders.create(LodestoneParticles.SMOKE_PARTICLE)
@@ -70,7 +71,7 @@ public class BlightMistParticlePacket {
                     .randomOffset(0.2f, 0)
                     .enableNoClip()
                     .randomMotion(0.005f, 0.005f)
-                   //TODO .overwriteRenderType(ParticleRenderTypes.TRANSPARENT)
+                    .overwriteRenderType(ParticleTextureSheets.TRANSPARENT)
                     .repeatSurroundBlock(world, pos, 2, Direction.UP);
 
                 color = new Color((int)(80*multiplier), (int)(40*multiplier), (int)(80*multiplier));

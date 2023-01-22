@@ -4,6 +4,7 @@ import com.sammy.lodestone.helpers.ColorHelper;
 import com.sammy.lodestone.setup.LodestoneParticles;
 import com.sammy.lodestone.systems.rendering.particle.Easing;
 import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
+import com.sammy.lodestone.systems.rendering.particle.ParticleTextureSheets;
 import com.sammy.lodestone.systems.rendering.particle.SimpleParticleEffect;
 import dev.sterner.malum.Malum;
 import dev.sterner.malum.common.spirit.MalumSpiritType;
@@ -121,7 +122,7 @@ public class BlightTransformItemParticlePacket {
                     .randomOffset(0.1f, 0.1f)
                     .randomMotion(0.01f, 0.02f)
                     .addMotion(0, 0.01f, 0)
-                 //TODO   .overwriteRenderType(ParticleRenderTypes.TRANSPARENT)
+                    .overwriteRenderType(ParticleTextureSheets.TRANSPARENT)
                     .repeat(world, posX, posY, posZ, 2);
 
                 ParticleBuilders.create(LodestoneParticles.SMOKE_PARTICLE)
@@ -135,7 +136,7 @@ public class BlightTransformItemParticlePacket {
                     .enableNoClip()
                     .randomMotion(0.015f, 0.015f)
                     .addMotion(0, 0.01f, 0)
-                   //TODO .overwriteRenderType(ParticleRenderTypes.TRANSPARENT)
+                    .overwriteRenderType(ParticleTextureSheets.TRANSPARENT)
                     .repeat(world, posX, posY, posZ, 3);
 
                 color = new Color((int)(80*multiplier), (int)(40*multiplier), (int)(80*multiplier));
