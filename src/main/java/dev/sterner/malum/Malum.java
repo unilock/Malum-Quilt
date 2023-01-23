@@ -96,8 +96,8 @@ public class Malum implements ModInitializer {
 
 				entries.addItem(SPIRIT_ALTAR);
 				entries.addItem(SPIRIT_JAR);
-				entries.addItem(RUNEWOOD_OBELISK);
-				entries.addItem(BRILLIANT_OBELISK);
+				//entries.addItem(RUNEWOOD_OBELISK);
+				//entries.addItem(BRILLIANT_OBELISK);
 				entries.addItem(SPIRIT_CRUCIBLE);
 				entries.addItem(TWISTED_TABLET);
 				entries.addItem(SPIRIT_CATALYZER);
@@ -183,7 +183,7 @@ public class Malum implements ModInitializer {
 				entries.addItem(BELT_OF_THE_MAGEBANE);
 
 
-				entries.addItem(BRILLIANT_OBELISK);
+				//entries.addItem(BRILLIANT_OBELISK);
 
 		});
 

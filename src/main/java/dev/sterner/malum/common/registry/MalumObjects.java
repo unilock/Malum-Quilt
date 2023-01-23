@@ -58,11 +58,9 @@ import net.minecraft.item.*;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 import java.awt.*;
@@ -72,7 +70,7 @@ import java.util.Set;
 import java.util.function.Supplier;
 
 import static dev.sterner.malum.common.item.ItemTiers.ItemTierEnum.SOUL_STAINED_STEEL;
-import static dev.sterner.malum.common.registry.MalumBlockRegistry.*;
+import static dev.sterner.malum.common.registry.MalumBlockProperties.*;
 import static dev.sterner.malum.common.registry.MalumObjects.*;
 import static net.minecraft.item.Items.GLASS_BOTTLE;
 

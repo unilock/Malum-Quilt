@@ -1,48 +1,14 @@
 package dev.sterner.malum.common.registry;
 
-import com.sammy.lodestone.systems.block.LodestoneLogBlock;
-import com.sammy.lodestone.systems.block.sign.LodestoneStandingSignBlock;
-import com.sammy.lodestone.systems.block.sign.LodestoneWallSignBlock;
-import dev.sterner.malum.Malum;
-import dev.sterner.malum.common.block.*;
-import dev.sterner.malum.common.block.alteration_plinth.AlterationPlinthBlock;
-import dev.sterner.malum.common.block.blight.*;
-import dev.sterner.malum.common.block.ether.*;
-import dev.sterner.malum.common.block.fusion_plate.FusionPlateComponentBlock;
-import dev.sterner.malum.common.block.fusion_plate.FusionPlateCoreBlock;
-import dev.sterner.malum.common.block.mirror.EmitterMirrorBlock;
-import dev.sterner.malum.common.block.obelisk.BrillianceObeliskCoreBlock;
-import dev.sterner.malum.common.block.obelisk.ObeliskComponentBlock;
-import dev.sterner.malum.common.block.obelisk.RunewoodObeliskCoreBlock;
-import dev.sterner.malum.common.block.sapling.RunewoodSaplingGenerator;
-import dev.sterner.malum.common.block.sapling.SoulwoodSaplingGenerator;
-import dev.sterner.malum.common.block.spirit_altar.SpiritAltarBlock;
-import dev.sterner.malum.common.block.spirit_crucible.SpiritCatalyzerComponentBlock;
-import dev.sterner.malum.common.block.spirit_crucible.SpiritCatalyzerCoreBlock;
-import dev.sterner.malum.common.block.spirit_crucible.SpiritCrucibleComponentBlock;
-import dev.sterner.malum.common.block.spirit_crucible.SpiritCrucibleCoreBlock;
-import dev.sterner.malum.common.block.storage.*;
-import dev.sterner.malum.common.block.tablet.TwistedTabletBlock;
-import dev.sterner.malum.common.block.totem.TotemBaseBlock;
-import dev.sterner.malum.common.block.totem.TotemPoleBlock;
 import net.minecraft.block.*;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.intprovider.UniformIntProvider;
 import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings;
 
-import java.awt.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public interface MalumBlockRegistry {
-
-	Map<Identifier, Block> BLOCKS = new LinkedHashMap<>();
-
+public interface MalumBlockProperties {
 
 	static QuiltBlockSettings TAINTED_ROCK_PROPERTIES() {
 		return QuiltBlockSettings.of(Material.STONE, MapColor.GRAY).sounds(MalumSoundRegistry.TAINTED_ROCK).strength(1.25F, 9.0F);
@@ -146,16 +112,5 @@ public interface MalumBlockRegistry {
 
 	static QuiltBlockSettings MOTE_OF_MANA_PROPERTIES() {
 		return QuiltBlockSettings.of(Material.STONE, MapColor.CYAN).strength(25f, 9999f).sounds(MalumSoundRegistry.RARE_EARTH);
-	}
-
-
-
-	static <T extends Block> T register(String id, T block) {
-		BLOCKS.put(new Identifier(Malum.MODID, id), block);
-		return block;
-	}
-
-	static void init() {
-		BLOCKS.forEach((id, block) -> Registry.register(Registries.BLOCK, id, block));
 	}
 }

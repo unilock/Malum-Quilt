@@ -1,6 +1,7 @@
 package dev.sterner.malum.common.block.spirit_altar;
 
 import com.sammy.lodestone.systems.block.WaterLoggedEntityBlock;
+import com.sammy.lodestone.systems.blockentity.LodestoneBlockEntity;
 import dev.sterner.malum.common.blockentity.spirit_altar.SpiritAltarBlockEntity;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import net.minecraft.block.*;
@@ -28,6 +29,7 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 
@@ -61,9 +63,16 @@ public class SpiritAltarBlock<T extends SpiritAltarBlockEntity> extends WaterLog
         return BlockRenderType.MODEL;
     }
 
-    @Nullable
-    @Override
-    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new SpiritAltarBlockEntity(pos, state);
-    }
+	//TODO remove
+	@Override
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		if (world.isClient) {
+			return ActionResult.SUCCESS;
+		}
+		if(world.getBlockEntity(pos) instanceof SpiritAltarBlockEntity spiritAltarBlockEntity){
+			System.out.println("SU");
+			spiritAltarBlockEntity.onUse(player, hand);
+		}
+		return ActionResult.PASS;
+	}
 }

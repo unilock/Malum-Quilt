@@ -3,6 +3,7 @@ package dev.sterner.malum.common.block.storage;
 import com.sammy.lodestone.forge.ItemHandlerHelper;
 import com.sammy.lodestone.helpers.BlockHelper;
 import com.sammy.lodestone.systems.block.WaterLoggedEntityBlock;
+import dev.sterner.malum.common.blockentity.spirit_altar.SpiritAltarBlockEntity;
 import dev.sterner.malum.common.blockentity.storage.SpiritJarBlockEntity;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import net.minecraft.block.*;
@@ -93,4 +94,14 @@ public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedE
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new SpiritJarBlockEntity(pos, state);
     }
+
+	//TODO remove
+	@Override
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		if (world.isClient) {
+			return ActionResult.SUCCESS;
+		}
+
+		return ((SpiritJarBlockEntity) world.getBlockEntity(pos)).onUse(player, hand);
+	}
 }
