@@ -6,7 +6,6 @@ import dev.sterner.malum.common.registry.MalumAttributeRegistry;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.item.ArmorMaterial;
 
 import java.util.UUID;
 

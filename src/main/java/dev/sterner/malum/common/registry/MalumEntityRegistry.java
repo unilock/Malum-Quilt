@@ -45,6 +45,7 @@ public class MalumEntityRegistry {
 			.maxTrackingRange(10)
 			.build(DataHelper.prefix("natural_soul").toString()));
 
+
 	static <T extends Entity> EntityType<T> register(String id, EntityType<T> type) {
 		ENTITY_TYPES.put(new Identifier(MODID, id), type);
 		return type;

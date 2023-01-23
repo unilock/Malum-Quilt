@@ -14,8 +14,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
-import java.util.function.Supplier;
-
 public class MalumLogBlock extends LodestoneLogBlock {
     private final boolean isCorrupt;
 

@@ -1,0 +1,16 @@
+{
+  "type": "malum:spirit_repair",
+  "durabilityPercentage": 0.5,
+  "inputLookup": "copper_",
+  "inputs": [],
+  "repairMaterial": {
+    "count": 2,
+    "tag": "forge:ingots/copper"
+  },
+  "spirits": [
+    {
+      "type": "earthen",
+      "count": 6
+    }
+  ]
+}

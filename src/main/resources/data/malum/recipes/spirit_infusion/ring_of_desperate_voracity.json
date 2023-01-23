@@ -1,0 +1,42 @@
+{
+  "type": "malum:spirit_infusion",
+  "extra_items": [
+    {
+      "count": 2,
+      "item": "minecraft:bone"
+    },
+    {
+      "count": 2,
+      "item": "malum:grim_talc"
+    },
+    {
+      "count": 8,
+      "item": "minecraft:rotten_flesh"
+    },
+    {
+      "count": 2,
+      "item": "malum:hex_ash"
+    }
+  ],
+  "input": {
+    "count": 1,
+    "item": "malum:ornate_ring"
+  },
+  "output": {
+    "item": "malum:ring_of_desperate_voracity"
+  },
+  "spirits": [
+    {
+      "type": "wicked",
+      "count": 16
+    },
+    {
+      "type": "sacred",
+      "count": 8
+    },
+    {
+      "type": "arcane",
+      "count": 8
+    }
+  ]
+}

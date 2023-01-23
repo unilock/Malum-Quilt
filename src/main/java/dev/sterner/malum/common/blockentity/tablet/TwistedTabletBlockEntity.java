@@ -3,7 +3,6 @@ package dev.sterner.malum.common.blockentity.tablet;
 import dev.sterner.malum.common.blockentity.storage.ItemStandBlockEntity;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import net.minecraft.block.BlockState;
-import net.minecraft.item.ItemStack;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;

@@ -1,20 +1,12 @@
 package dev.sterner.malum;
 
-import com.chocohead.mm.api.ClassTinkerers;
-import com.sammy.lodestone.setup.LodestoneAttributeRegistry;
-import dev.sterner.malum.client.screen.SpiritPouchScreen;
 import dev.sterner.malum.common.enchantment.ReboundEnchantment;
 import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
 import dev.sterner.malum.common.registry.*;
-import dev.sterner.malum.common.screen.SpiritPouchScreenHandler;
 import dev.sterner.malum.common.spirit.SpiritDataReloadListener;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.fabricmc.fabric.impl.itemgroup.FabricItemGroupBuilderImpl;
-import net.minecraft.client.gui.screen.ingame.HandledScreens;
-import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.resource.ResourceType;
@@ -50,7 +42,6 @@ public class Malum implements ModInitializer {
 		MalumBlockEntityRegistry.init();
 		MalumObjects.init();
 
-
 		MalumEntityRegistry.init();
 		MalumStatusEffectRegistry.init();
 		MalumTags.init();
@@ -58,6 +49,7 @@ public class Malum implements ModInitializer {
 		MalumRecipeSerializerRegistry.init();
 		MalumFeatureRegistry.init();
 		MalumScreenHandlerRegistry.init();
+		MalumSpiritTypeRegistry.init();
 		//MalumPlacedFeatureRegistry.init();
 
 

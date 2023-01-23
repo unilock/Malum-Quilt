@@ -1,36 +1,19 @@
 package dev.sterner.malum.common.block.spirit_altar;
 
 import com.sammy.lodestone.systems.block.WaterLoggedEntityBlock;
-import com.sammy.lodestone.systems.blockentity.LodestoneBlockEntity;
 import dev.sterner.malum.common.blockentity.spirit_altar.SpiritAltarBlockEntity;
-import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 
 @SuppressWarnings("deprecation")
@@ -63,6 +46,12 @@ public class SpiritAltarBlock<T extends SpiritAltarBlockEntity> extends WaterLog
         return BlockRenderType.MODEL;
     }
 
+
+	@Override
+	public BlockEntity createBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
+		return new SpiritAltarBlockEntity(pos, state);
+	}
+
 	//TODO remove
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
@@ -70,7 +59,6 @@ public class SpiritAltarBlock<T extends SpiritAltarBlockEntity> extends WaterLog
 			return ActionResult.SUCCESS;
 		}
 		if(world.getBlockEntity(pos) instanceof SpiritAltarBlockEntity spiritAltarBlockEntity){
-			System.out.println("SU");
 			spiritAltarBlockEntity.onUse(player, hand);
 		}
 		return ActionResult.PASS;

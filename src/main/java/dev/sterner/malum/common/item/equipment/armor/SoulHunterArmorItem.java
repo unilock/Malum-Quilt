@@ -3,7 +3,6 @@ package dev.sterner.malum.common.item.equipment.armor;
 import com.google.common.collect.ImmutableMultimap;
 import com.sammy.lodestone.setup.LodestoneAttributeRegistry;
 import com.sammy.lodestone.systems.item.LodestoneArmorItem;
-import dev.sterner.malum.common.registry.MalumAttributeRegistry;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;

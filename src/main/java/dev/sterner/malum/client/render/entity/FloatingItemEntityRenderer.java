@@ -9,7 +9,6 @@ import com.sammy.lodestone.systems.rendering.particle.Easing;
 import dev.sterner.malum.Malum;
 import dev.sterner.malum.common.entity.FloatingItemEntity;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.model.Model;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -26,7 +25,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Axis;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import org.joml.Vector3f;
 import org.joml.Vector4f;
 
 import java.util.ArrayList;

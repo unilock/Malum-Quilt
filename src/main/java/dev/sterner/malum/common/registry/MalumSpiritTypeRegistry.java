@@ -47,4 +47,8 @@ public class MalumSpiritTypeRegistry {
 		return types.get(slot);
 	}
 
+	public static void init(){
+
+	}
+
 }

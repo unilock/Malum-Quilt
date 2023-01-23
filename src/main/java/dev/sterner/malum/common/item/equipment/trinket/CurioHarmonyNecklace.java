@@ -1,8 +1,6 @@
 package dev.sterner.malum.common.item.equipment.trinket;
 
 import dev.emi.trinkets.api.TrinketItem;
-import dev.emi.trinkets.api.TrinketsApi;
-import net.minecraft.entity.LivingEntity;
 
 public class CurioHarmonyNecklace extends TrinketItem {
     public CurioHarmonyNecklace(Settings settings) {

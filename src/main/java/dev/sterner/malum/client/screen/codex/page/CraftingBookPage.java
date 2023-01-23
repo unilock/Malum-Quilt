@@ -5,7 +5,6 @@ import dev.sterner.malum.client.screen.codex.ProgressionBookScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.*;
-import net.minecraft.util.Identifier;
 
 public class CraftingBookPage extends BookPage{
 	private final ItemStack outputStack;

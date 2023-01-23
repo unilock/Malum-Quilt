@@ -7,26 +7,15 @@ import com.sammy.lodestone.systems.recipe.ILodestoneRecipe;
 import com.sammy.lodestone.systems.recipe.IngredientWithCount;
 import dev.sterner.malum.common.registry.MalumRecipeSerializerRegistry;
 import dev.sterner.malum.common.registry.MalumRecipeTypeRegistry;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.ItemScatterer;
-import net.minecraft.util.JsonHelper;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import org.quiltmc.qsl.recipe.api.serializer.QuiltRecipeSerializer;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 

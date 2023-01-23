@@ -27,8 +27,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import org.quiltmc.qsl.networking.api.PlayerLookup;
 
-import java.util.Map;
-
 public class BlightedSoilBlock extends Block implements Fertilizable {
     protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D);
 

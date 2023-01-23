@@ -1,0 +1,30 @@
+{
+  "type": "malum:spirit_infusion",
+  "extra_items": [
+    {
+      "count": 1,
+      "item": "malum:hallowed_spirit_resonator"
+    },
+    {
+      "count": 1,
+      "item": "malum:hex_ash"
+    }
+  ],
+  "input": {
+    "count": 2,
+    "item": "malum:runewood_planks"
+  },
+  "output": {
+    "item": "malum:runewood_obelisk"
+  },
+  "spirits": [
+    {
+      "type": "aerial",
+      "count": 8
+    },
+    {
+      "type": "sacred",
+      "count": 4
+    }
+  ]
+}

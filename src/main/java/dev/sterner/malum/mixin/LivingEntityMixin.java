@@ -1,10 +1,7 @@
 package dev.sterner.malum.mixin;
 
-import com.sammy.lodestone.setup.LodestoneAttributeRegistry;
 import dev.sterner.malum.common.registry.MalumAttributeRegistry;
-import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.spirit.SpiritHarvestHandler;
-import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -13,11 +10,7 @@ import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -30,7 +23,6 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.Optional;
 import static com.sammy.lodestone.setup.LodestoneAttributeRegistry.MAGIC_RESISTANCE;
 
 @Mixin(LivingEntity.class)

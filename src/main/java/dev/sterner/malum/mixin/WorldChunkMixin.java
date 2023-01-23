@@ -28,7 +28,7 @@ public abstract class WorldChunkMixin extends Chunk {
 	}
 
 	@Inject(method = "m_pptwysxt" , at = @At(value = "INVOKE", target = "Lnet/minecraft/block/entity/BlockEntity;readNbt(Lnet/minecraft/nbt/NbtCompound;)V"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
-	private void port_lib$handleBlockEntityUpdateTag(BlockPos pos, BlockEntityType<?> type, NbtCompound tag, CallbackInfo ci, BlockEntity blockEntity) {
+	private void malum$handleBlockEntityUpdateTag(BlockPos pos, BlockEntityType<?> type, NbtCompound tag, CallbackInfo ci, BlockEntity blockEntity) {
 		if (blockEntity instanceof CustomUpdateTagHandlingBlockEntity handler) {
 			handler.handleUpdateTag(tag);
 			ci.cancel();

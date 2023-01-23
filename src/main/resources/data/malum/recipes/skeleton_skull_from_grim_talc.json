@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "malum:grim_talc"
+    },
+    "&": {
+      "tag": "forge:bones"
+    }
+  },
+  "pattern": [
+    "&&&",
+    "&#&",
+    "&&&"
+  ],
+  "result": {
+    "item": "minecraft:skeleton_skull"
+  }
+}

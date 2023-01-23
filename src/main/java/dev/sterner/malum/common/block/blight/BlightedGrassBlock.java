@@ -4,7 +4,6 @@ import dev.sterner.malum.common.block.BlockTagRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FernBlock;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldView;
 
 public class BlightedGrassBlock extends FernBlock {

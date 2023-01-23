@@ -25,7 +25,9 @@ public class SpiritAltarRenderer implements BlockEntityRenderer<SpiritAltarBlock
 		World level = MinecraftClient.getInstance().world;
 		ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
 		LodestoneBlockEntityInventory inventory = entity.spiritInventory;
-
+		if (level == null) {
+			return;
+		}
 		int spiritsRendered = 0;
 		for (int i = 0; i < inventory.slotCount; i++) {
 			ItemStack item = inventory.getStack(i);

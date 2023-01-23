@@ -1,8 +1,6 @@
 package dev.sterner.malum.mixin;
 
-import dev.sterner.malum.common.block.obelisk.ObeliskCoreBlock;
 import net.minecraft.block.EnchantingTableBlock;
-import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.EnchantmentScreenHandler;
 import net.minecraft.util.math.BlockPos;

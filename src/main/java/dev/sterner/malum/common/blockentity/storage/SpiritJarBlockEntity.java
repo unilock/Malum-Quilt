@@ -18,30 +18,15 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtList;
-import net.minecraft.network.Packet;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.quiltmc.qsl.networking.api.PlayerLookup;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.UUID;
 
 
@@ -130,7 +115,6 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity {
 
 	@Override
 	public ActionResult onUse(PlayerEntity player, Hand hand) {
-		System.out.println("onUse: " + inventory.getValueUnsafer().getStack(0));
 		if (getWorld() == null)
 			return ActionResult.PASS;
 

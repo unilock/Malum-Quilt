@@ -6,12 +6,10 @@ import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
 import com.sammy.lodestone.systems.rendering.particle.screen.base.ScreenParticle;
 import dev.sterner.malum.common.entity.nitrate.VividNitrateEntity;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import java.awt.*;
-import java.util.function.Function;
 
 import static dev.sterner.malum.common.entity.nitrate.VividNitrateEntity.COLOR_FUNCTION;
 

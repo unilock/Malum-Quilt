@@ -8,7 +8,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
-import java.text.Normalizer;
 import java.util.Arrays;
 
 import static dev.sterner.malum.client.screen.codex.ProgressionBookScreen.*;

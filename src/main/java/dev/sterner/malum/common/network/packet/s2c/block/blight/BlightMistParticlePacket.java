@@ -16,13 +16,10 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import org.quiltmc.qsl.networking.api.PacketSender;
 import org.quiltmc.qsl.networking.api.ServerPlayNetworking;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class BlightMistParticlePacket {
     public static final Identifier ID = new Identifier(Malum.MODID, "blight_mist_particles");

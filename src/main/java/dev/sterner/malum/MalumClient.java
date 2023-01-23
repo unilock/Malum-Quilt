@@ -6,10 +6,7 @@ import dev.sterner.malum.client.model.SpiritHunterArmorModel;
 import dev.sterner.malum.client.render.CloakArmorRenderer;
 import dev.sterner.malum.client.render.SteelArmorRenderer;
 import dev.sterner.malum.client.render.block.*;
-import dev.sterner.malum.client.render.entity.EthericNitrateEntityRenderer;
-import dev.sterner.malum.client.render.entity.FloatingItemEntityRenderer;
-import dev.sterner.malum.client.render.entity.ScytheBoomerangEntityRenderer;
-import dev.sterner.malum.client.render.entity.VividNitrateEntityRenderer;
+import dev.sterner.malum.client.render.entity.*;
 import dev.sterner.malum.client.render.item.ScytheItemRenderer;
 import dev.sterner.malum.client.screen.SpiritPouchScreen;
 import dev.sterner.malum.common.block.MalumLeavesBlock;
@@ -21,20 +18,13 @@ import dev.sterner.malum.common.network.packet.s2c.block.functional.AltarConsume
 import dev.sterner.malum.common.network.packet.s2c.block.functional.AltarCraftParticlePacket;
 import dev.sterner.malum.common.registry.*;
 import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry;
-import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
-import net.minecraft.client.particle.ParticleFactory;
-import net.minecraft.client.particle.SpriteProvider;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.RenderLayers;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
-import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.item.Item;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleType;
 import net.minecraft.registry.Registries;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
@@ -45,11 +35,8 @@ import org.quiltmc.qsl.block.extensions.api.client.BlockRenderLayerMap;
 import org.quiltmc.qsl.networking.api.client.ClientPlayNetworking;
 import org.quiltmc.qsl.resource.loader.api.ResourceLoader;
 
-import javax.swing.text.html.parser.Entity;
 import java.awt.*;
-import java.util.function.Function;
 
-import static dev.sterner.malum.Malum.MODID;
 import static dev.sterner.malum.common.registry.MalumObjects.*;
 
 public class MalumClient implements ClientModInitializer {
@@ -58,7 +45,7 @@ public class MalumClient implements ClientModInitializer {
 		EntityModelLayerRegistry.registerModelLayer(SpiritHunterArmorModel.LAYER, SpiritHunterArmorModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(SoulStainedSteelArmorModel.LAYER, SoulStainedSteelArmorModel::getTexturedModelData);
 		ArmorRenderer.register(new CloakArmorRenderer(DataHelper.prefix("textures/armor/spirit_hunter_reforged.png")), MalumObjects.SOUL_HUNTER_CLOAK, MalumObjects.SOUL_HUNTER_ROBE, MalumObjects.SOUL_HUNTER_LEGGINGS, MalumObjects.SOUL_HUNTER_BOOTS);
-		ArmorRenderer.register(new SteelArmorRenderer(DataHelper.prefix("textures/armor/soul_stained_steel.png")), MalumObjects.SOUL_STAINED_STEEL_HELMET, MalumObjects.SOUL_STAINED_STEEL_CHESTPLATE, MalumObjects.SOUL_STAINED_STEEL_LEGGINGS, MalumObjects.SOUL_STAINED_STEEL_BOOTS);
+		ArmorRenderer.register(new SteelArmorRenderer(DataHelper.prefix("textures/armor/soul_stained_steel_reforged.png")), MalumObjects.SOUL_STAINED_STEEL_HELMET, MalumObjects.SOUL_STAINED_STEEL_CHESTPLATE, MalumObjects.SOUL_STAINED_STEEL_LEGGINGS, MalumObjects.SOUL_STAINED_STEEL_BOOTS);
 		EntityRendererRegistry.register(MalumEntityRegistry.SCYTHE_BOOMERANG, ScytheBoomerangEntityRenderer::new);
 		EntityRendererRegistry.register(MalumEntityRegistry.NATURAL_SPIRIT, FloatingItemEntityRenderer::new);
 		EntityRendererRegistry.register(MalumEntityRegistry.ETHERIC_NITRATE, EthericNitrateEntityRenderer::new);
@@ -76,7 +63,6 @@ public class MalumClient implements ClientModInitializer {
 		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.ALTERATION_PLINTH, ItemPedestalRenderer::new);
 		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.SPIRIT_JAR, SpiritJarRenderer::new);
 		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.SOUL_VIAL, SoulVialRenderer::new);
-
 
 		for (Item item : MalumObjects.SCYTHES) {
 			Identifier scytheId = Registries.ITEM.getId(item);

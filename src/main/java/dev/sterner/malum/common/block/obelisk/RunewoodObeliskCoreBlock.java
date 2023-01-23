@@ -1,7 +1,6 @@
 package dev.sterner.malum.common.block.obelisk;
 
 import dev.sterner.malum.common.blockentity.obelisk.RunewoodObeliskBlockEntity;
-import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;

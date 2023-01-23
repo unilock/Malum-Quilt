@@ -1,16 +1,10 @@
 package dev.sterner.malum.common.item.tools;
 
-import com.google.common.collect.ImmutableMultimap;
 import dev.sterner.malum.common.entity.boomerang.ScytheBoomerangEntity;
 import dev.sterner.malum.common.registry.MalumDamageSourceRegistry;
 import dev.sterner.malum.common.registry.MalumParticleRegistry;
 import net.minecraft.block.BlockState;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.EntityDamageSource;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,7 +13,6 @@ import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;

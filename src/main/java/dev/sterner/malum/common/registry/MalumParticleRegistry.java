@@ -1,25 +1,17 @@
 package dev.sterner.malum.common.registry;
 
 import com.sammy.lodestone.helpers.DataHelper;
-import com.sammy.lodestone.systems.rendering.particle.type.LodestoneParticleType;
-import dev.sterner.malum.Malum;
 import dev.sterner.malum.client.particles.cut.ScytheAttackParticle;
 import dev.sterner.malum.client.particles.spiritflame.SpiritFlameParticleType;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
-import net.minecraft.client.particle.ParticleFactory;
-import net.minecraft.client.particle.SpriteProvider;
 import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.function.BiConsumer;
-import java.util.function.Function;
 
 public class MalumParticleRegistry {
 	public static final DefaultParticleType SCYTHE_CUT_ATTACK_PARTICLE = FabricParticleTypes.simple(true);

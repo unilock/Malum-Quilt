@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "malum:runewood_panel"
+    },
+    "X": {
+      "item": "malum:runewood_planks"
+    }
+  },
+  "pattern": [
+    "#",
+    "X"
+  ],
+  "result": {
+    "count": 2,
+    "item": "malum:cut_runewood_planks"
+  }
+}

@@ -2,13 +2,9 @@ package dev.sterner.malum.common.block.totem;
 
 import com.sammy.lodestone.systems.block.LodestoneEntityBlock;
 import dev.sterner.malum.common.blockentity.totem.TotemPoleBlockEntity;
-import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
-import dev.sterner.malum.common.spirit.MalumSpiritType;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
@@ -17,8 +13,6 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.function.Supplier;
 
 import static net.minecraft.state.property.Properties.HORIZONTAL_FACING;
 
@@ -74,4 +68,7 @@ public class TotemPoleBlock<T extends TotemPoleBlockEntity> extends LodestoneEnt
         return this.getDefaultState().with(HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite());
     }
 
+	public void onStrip(BlockState blockState, World world, BlockPos blockPos) {
+
+	}
 }

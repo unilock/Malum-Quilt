@@ -4,7 +4,6 @@ import dev.sterner.malum.common.entity.FloatingEntity;
 import dev.sterner.malum.common.registry.MalumEntityRegistry;
 import dev.sterner.malum.common.spirit.MalumEntitySpiritData;
 import dev.sterner.malum.common.spirit.SpiritHelper;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;

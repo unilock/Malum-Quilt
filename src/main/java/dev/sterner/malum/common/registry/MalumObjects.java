@@ -62,6 +62,8 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
+import org.quiltmc.qsl.item.content.registry.api.ItemContentRegistries;
+import org.quiltmc.qsl.registry.attachment.api.RegistryEntryAttachment;
 
 import java.awt.*;
 import java.util.LinkedHashMap;
@@ -92,8 +94,6 @@ public interface MalumObjects {
 	Item UNHOLY_SAPBALL = register("unholy_sapball", new Item(settings()));
 	Item UNHOLY_SYRUP = register("unholy_syrup", new UnholySyrupItem(settings().recipeRemainder(GLASS_BOTTLE).food((new FoodComponent.Builder()).hunger(6).saturationModifier(0.1F).statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 0), 1).build())));
 
-	//Item SOULWOOD_SIGN = register("soulwood_sign", new SignItem(settings().maxCount(16), MalumObjects.SOULWOOD_SIGN, MalumObjects.SOULWOOD_WALL_SIGN));
-	//Item SOULWOOD_BOAT = register("soulwood_boat", new LodestoneBoatItem(settings().maxCount(1), EntityRegistry.SOULWOOD_BOAT));
 
 	//endregion
 
@@ -246,8 +246,8 @@ public interface MalumObjects {
 	//BLOCKS
 
 
-	Block SPIRIT_ALTAR = register("spirit_altar", new SpiritAltarBlock<>(RUNEWOOD_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.SPIRIT_ALTAR), true);
-	Block SPIRIT_JAR = registerJar("spirit_jar", new SpiritJarBlock<>(SPIRIT_JAR_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.SPIRIT_JAR), true);
+	Block SPIRIT_ALTAR = register("spirit_altar", new SpiritAltarBlock<>(RUNEWOOD_PROPERTIES().nonOpaque()), true);
+	Block SPIRIT_JAR = registerJar("spirit_jar", new SpiritJarBlock<>(SPIRIT_JAR_PROPERTIES().nonOpaque()), true);
 	Block ALTERATION_PLINTH = register("alteration_plinth", new AlterationPlinthBlock<>(SOULWOOD_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.ALTERATION_PLINTH), true);
 
 	Block SOUL_VIAL = registerVial("soul_vial", new SoulVialBlock<>(SOUL_VIAL_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.SOUL_VIAL), true);
@@ -431,8 +431,8 @@ public interface MalumObjects {
 	Block RUNEWOOD_ITEM_STAND = register("runewood_item_stand", new ItemStandBlock<>(RUNEWOOD_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.ITEM_STAND),true);
 	Block RUNEWOOD_ITEM_PEDESTAL = register("runewood_item_pedestal", new WoodItemPedestalBlock<>(RUNEWOOD_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.ITEM_PEDESTAL),true);
 
-	//Block RUNEWOOD_SIGN = register("runewood_sign", new LodestoneStandingSignBlock(RUNEWOOD_PROPERTIES().nonOpaque().noCollision(), MalumWoodTypeRegistry.RUNEWOOD));
-	//Block RUNEWOOD_WALL_SIGN = register("runewood_wall_sign", new LodestoneWallSignBlock(RUNEWOOD_PROPERTIES().nonOpaque().noCollision(), MalumWoodTypeRegistry.RUNEWOOD));
+	//Block RUNEWOOD_SIGN = register("runewood_sign", new LodestoneStandingSignBlock(RUNEWOOD_PROPERTIES().nonOpaque().noCollision(), WoodTypeRegistry.RUNEWOOD), false);
+	//Block RUNEWOOD_WALL_SIGN = register("runewood_wall_sign", new LodestoneWallSignBlock(RUNEWOOD_PROPERTIES().nonOpaque().noCollision(), WoodTypeRegistry.RUNEWOOD), false);
 	//endregion
 
 	//region soulwood
@@ -479,8 +479,8 @@ public interface MalumObjects {
 	Block SOULWOOD_ITEM_STAND = register("soulwood_item_stand", new ItemStandBlock<>(SOULWOOD_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.ITEM_STAND),true);
 	Block SOULWOOD_ITEM_PEDESTAL = register("soulwood_item_pedestal", new WoodItemPedestalBlock<>(SOULWOOD_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.ITEM_PEDESTAL),true);
 
-	//Block SOULWOOD_SIGN = register("soulwood_sign", new LodestoneStandingSignBlock(SOULWOOD_PROPERTIES().nonOpaque().noCollision(), MalumWoodTypeRegistry.SOULWOOD));
-	//Block SOULWOOD_WALL_SIGN = register("soulwood_wall_sign", new LodestoneWallSignBlock(SOULWOOD_PROPERTIES().nonOpaque().noCollision(), MalumWoodTypeRegistry.SOULWOOD));
+	//Block SOULWOOD_SIGN = register("soulwood_sign", new LodestoneStandingSignBlock(SOULWOOD_PROPERTIES().nonOpaque().noCollision(), WoodTypeRegistry.SOULWOOD), false);
+	//Block SOULWOOD_WALL_SIGN = register("soulwood_wall_sign", new LodestoneWallSignBlock(SOULWOOD_PROPERTIES().nonOpaque().noCollision(), WoodTypeRegistry.SOULWOOD), false);
 	//endregion
 
 	//region blight
@@ -516,8 +516,6 @@ public interface MalumObjects {
 	//endregion
 	Block BLAZING_TORCH = register("blazing_torch", new TorchBlock(RUNEWOOD_PROPERTIES().noCollision().breakInstantly().luminance((b) -> 14), ParticleTypes.FLAME), true);
 	Block WALL_BLAZING_TORCH = register("wall_blazing_torch", new WallTorchBlock(RUNEWOOD_PROPERTIES().noCollision().breakInstantly().luminance((b) -> 14), ParticleTypes.FLAME), true);
-	//Block BLAZING_SCONCE = register("blazing_sconce", SupplementariesCompat.LOADED ? SupplementariesCompat.LoadedOnly.makeBlazingSconce() : new WallTorchBlock(RUNEWOOD_PROPERTIES().sounds(SoundType.LANTERN).noCollision().breakInstantly().luminance((b) -> 14), ParticleTypes.FLAME));
-	//Block WALL_BLAZING_SCONCE = register("wall_blazing_sconce", SupplementariesCompat.LOADED ? SupplementariesCompat.LoadedOnly.makeBlazingWallSconce() : new WallTorchBlock(RUNEWOOD_PROPERTIES().sounds(SoundType.LANTERN).noCollision().breakInstantly().luminance((b) -> 14), ParticleTypes.FLAME));
 
 	Block BLOCK_OF_ARCANE_CHARCOAL = register("block_of_arcane_charcoal", new Block(ARCANE_CHARCOAL_PROPERTIES()),true);
 
@@ -546,16 +544,13 @@ public interface MalumObjects {
 
 	Block THE_DEVICE = register("the_device", new TheDevice(TAINTED_ROCK_PROPERTIES()),true);
 
-	//    Block BLOCK_OF_RARE_EARTHS = register("block_of_rare_earths", new OreBlock(RARE_EARTH_PROPERTIES(), UniformIntProvider.create(10, 100)));
+	// Block BLOCK_OF_RARE_EARTHS = register("block_of_rare_earths", new OreBlock(RARE_EARTH_PROPERTIES(), UniformIntProvider.create(10, 100)));
 	Block BLOCK_OF_ROTTING_ESSENCE = register("block_of_rotting_essence", new Block(AbstractBlock.Settings.copy(Blocks.FIRE_CORAL_BLOCK)),true);
 	Block BLOCK_OF_GRIM_TALC = register("block_of_grim_talc", new Block(AbstractBlock.Settings.copy(Blocks.BONE_BLOCK)),true);
 	Block BLOCK_OF_ALCHEMICAL_CALX = register("block_of_alchemical_calx", new Block(AbstractBlock.Settings.copy(Blocks.CALCITE)),true);
 	Block BLOCK_OF_ASTRAL_WEAVE = register("block_of_astral_weave", new Block(AbstractBlock.Settings.copy(Blocks.LIGHT_BLUE_WOOL)),true);
 	Block BLOCK_OF_HEX_ASH = register("block_of_hex_ash", new Block(AbstractBlock.Settings.copy(Blocks.PURPLE_CONCRETE_POWDER)),true);
 	Block BLOCK_OF_CURSED_GRIT = register("block_of_cursed_grit", new Block(AbstractBlock.Settings.copy(Blocks.RED_CONCRETE_POWDER)),true);
-
-
-
 
 
 	static <T extends Block> T registerEther(String name, T block, boolean isIri, boolean createItem) {
@@ -632,5 +627,15 @@ public interface MalumObjects {
 	static void init(){
 		BLOCKS.keySet().forEach(block -> Registry.register(Registries.BLOCK, BLOCKS.get(block), block));
 		ITEMS.keySet().forEach(item -> Registry.register(Registries.ITEM, ITEMS.get(item), item));
+		RegistryEntryAttachment<Item, Integer> fuelRegistry = ItemContentRegistries.FUEL_TIMES;
+		fuelRegistry.put(ARCANE_CHARCOAL, 3200);
+		fuelRegistry.put(BLOCK_OF_ARCANE_CHARCOAL.asItem(), 28800);
+		fuelRegistry.put(ARCANE_CHARCOAL_FRAGMENT, 400);
+		fuelRegistry.put(BLAZING_QUARTZ, 1600);
+		fuelRegistry.put(BLAZING_QUARTZ_FRAGMENT, 200);
+		fuelRegistry.put(BLOCK_OF_BLAZING_QUARTZ.asItem(), 14400);
+		fuelRegistry.put(CHARCOAL_FRAGMENT, 200);
+		fuelRegistry.put(COAL_FRAGMENT, 200);
+
 	}
 }

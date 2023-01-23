@@ -21,31 +21,21 @@ import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
 import dev.sterner.malum.common.spirit.SpiritHelper;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.Packet;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.random.RandomGenerator;
-import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.quiltmc.qsl.networking.api.PlayerLookup;
@@ -196,11 +186,13 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity {
 
             if (!(heldStack.getItem() instanceof MalumSpiritItem)) {
                 ItemStack stack = inventory.interact(world, player, hand);
+				this.notifyListeners();
                 if (!stack.isEmpty()) {
                     return ActionResult.SUCCESS;
                 }
             }
             spiritInventory.interact(world, player, hand);
+			this.notifyListeners();
             if (heldStack.isEmpty()) {
                 return ActionResult.SUCCESS;
             } else {
@@ -209,6 +201,14 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity {
         }
         return super.onUse(player, hand);
     }
+
+	private void notifyListeners() {
+		markDirty();
+
+		if (getWorld() != null && !getWorld().isClient) {
+			getWorld().updateListeners(getPos(), getCachedState(), getCachedState(), Block.NOTIFY_ALL);
+		}
+	}
 
     @Override
     public void init() {

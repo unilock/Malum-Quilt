@@ -11,8 +11,6 @@ import org.quiltmc.loader.api.QuiltLoader;
 
 import java.util.function.Supplier;
 
-import static dev.sterner.malum.common.registry.MalumObjects.RUNEWOOD_PLANKS;
-import static dev.sterner.malum.common.registry.MalumObjects.SOULWOOD_PLANKS;
 import static dev.sterner.malum.common.registry.MalumObjects.*;
 
 public final class MalumEarlyRiser implements Runnable {
@@ -27,12 +25,6 @@ public final class MalumEarlyRiser implements Runnable {
 		final String armorMaterialsTarget = mappings.mapClassName("intermediary", "net.minecraft.class_1740");
 		final String armorParam5 = "L" + mappings.mapClassName("intermediary", "net.minecraft.class_3414") + ";";
 
-		/*TODO
-		ClassTinkerers.enumBuilder(type, boatParam1, String.class)
-				.addEnum("RUNEWOOD", () -> new Object[]{RUNEWOOD_PLANKS, "runewood"})
-				.addEnum("SOULWOOD", () -> new Object[]{SOULWOOD_PLANKS, "soulwood"}).build();
-
-		 */
 
 		//enchantmentTarget
 		ClassTinkerers.enumBuilder(enchantmentTarget, new Class[0])

@@ -6,14 +6,12 @@ import com.sammy.lodestone.forge.CraftingHelper;
 import com.sammy.lodestone.systems.recipe.ILodestoneRecipe;
 import dev.sterner.malum.common.registry.MalumRecipeSerializerRegistry;
 import dev.sterner.malum.common.registry.MalumRecipeTypeRegistry;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 

@@ -1,10 +1,7 @@
 package dev.sterner.malum.common.statuseffect;
 
 import com.sammy.lodestone.helpers.ColorHelper;
-import com.sammy.lodestone.helpers.EntityHelper;
 import com.sammy.lodestone.setup.LodestoneAttributeRegistry;
-import dev.sterner.malum.common.registry.MalumAttributeRegistry;
-import dev.sterner.malum.common.registry.MalumSoundRegistry;
 import dev.sterner.malum.common.registry.MalumStatusEffectRegistry;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
@@ -12,9 +9,6 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.world.World;
 
 public class GluttonyEffect extends StatusEffect {
     public GluttonyEffect() {

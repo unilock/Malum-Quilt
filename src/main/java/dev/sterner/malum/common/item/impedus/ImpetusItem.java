@@ -4,8 +4,6 @@ import dev.sterner.malum.common.recipe.SpiritRepairRecipe;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import java.util.function.Supplier;
-
 public class ImpetusItem extends Item implements SpiritRepairRecipe.IRepairOutputOverride {
     private CrackedImpetusItem cracked;
 

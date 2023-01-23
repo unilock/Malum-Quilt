@@ -6,9 +6,7 @@ import net.minecraft.block.sapling.SaplingGenerator;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.random.RandomGenerator;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldView;
-import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 
 public class MalumSaplingBlock extends SaplingBlock {
     private final SaplingGenerator generator;

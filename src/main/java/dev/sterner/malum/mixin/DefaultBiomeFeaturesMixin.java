@@ -12,6 +12,7 @@ import static dev.sterner.malum.common.registry.MalumPlacedFeatureRegistry.*;
 
 @Mixin(DefaultBiomeFeatures.class)
 public abstract class DefaultBiomeFeaturesMixin {
+	//TODO add to MalumWorldRegistry instead of bad mixin
 	@Inject(method = "addDefaultOres(Lnet/minecraft/world/biome/GenerationSettings$Builder;Z)V", at = @At("TAIL"))
 	private static void malum$addOres(GenerationSettings.Builder builder, boolean largeCopperOreBlob, CallbackInfo ci) {
 		if (true) builder.feature(GenerationStep.Feature.UNDERGROUND_ORES, UNDERGROUND_SOULSTONE_PLACED);

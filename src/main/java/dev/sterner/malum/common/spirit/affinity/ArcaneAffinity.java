@@ -16,7 +16,6 @@ import dev.sterner.malum.common.registry.MalumAttributeRegistry;
 import dev.sterner.malum.common.registry.MalumDamageSourceRegistry;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
 import dev.sterner.malum.common.spirit.MalumSpiritAffinity;
-import dev.sterner.malum.common.spirit.MalumSpiritType;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.ShaderProgram;

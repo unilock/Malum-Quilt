@@ -3,7 +3,6 @@ package dev.sterner.malum.client.render.entity;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.sammy.lodestone.helpers.ColorHelper;
 import com.sammy.lodestone.setup.LodestoneRenderLayers;
-import com.sammy.lodestone.systems.blockentity.LodestoneBlockEntity;
 import com.sammy.lodestone.systems.rendering.VFXBuilders;
 import dev.sterner.malum.Malum;
 import dev.sterner.malum.common.entity.spirit.SoulEntity;

@@ -1,10 +1,8 @@
 package dev.sterner.malum.common.block.obelisk;
 
 import com.sammy.lodestone.systems.multiblock.MultiBlockComponentBlock;
-import com.sammy.lodestone.systems.multiblock.MultiBlockComponentEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.function.BooleanBiFunction;
@@ -12,7 +10,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
-import org.jetbrains.annotations.Nullable;
 
 public class ObeliskComponentBlock extends MultiBlockComponentBlock {
 	public static final VoxelShape SHAPE = makeShape();

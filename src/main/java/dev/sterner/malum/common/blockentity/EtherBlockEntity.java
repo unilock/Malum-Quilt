@@ -13,7 +13,6 @@ import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import dev.sterner.malum.common.registry.MalumParticleRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.WallTorchBlock;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;

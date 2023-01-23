@@ -19,7 +19,6 @@ import dev.sterner.malum.common.blockentity.storage.*;
 import dev.sterner.malum.common.blockentity.tablet.TwistedTabletBlockEntity;
 import dev.sterner.malum.common.blockentity.totem.TotemBaseBlockEntity;
 import dev.sterner.malum.common.blockentity.totem.TotemPoleBlockEntity;
-import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;

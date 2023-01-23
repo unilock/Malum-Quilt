@@ -1,7 +1,6 @@
 package dev.sterner.malum.mixin;
 
 import dev.sterner.malum.common.item.tools.MalumScytheItem;
-import dev.sterner.malum.common.spirit.SpiritHelper;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,7 +13,6 @@ import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
-import static com.sammy.lodestone.setup.LodestoneAttributeRegistry.MAGIC_DAMAGE;
 import static com.sammy.lodestone.setup.LodestoneAttributeRegistry.MAGIC_PROFICIENCY;
 import static dev.sterner.malum.common.registry.MalumAttributeRegistry.MAGIC_DAMAGE_MODIFIER_ID;
 import static dev.sterner.malum.common.registry.MalumAttributeRegistry.SCYTHE_PROFICIENCY;

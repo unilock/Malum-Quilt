@@ -2,11 +2,7 @@ package dev.sterner.malum.common.registry;
 
 import net.minecraft.block.*;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.util.Identifier;
 import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public interface MalumBlockProperties {
 

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "malum:hallowed_gold_ingot"
+    },
+    "X": {
+      "item": "malum:runewood_planks"
+    },
+    "Y": {
+      "tag": "forge:gems/quartz"
+    }
+  },
+  "pattern": [
+    " X ",
+    "#Y#",
+    " X "
+  ],
+  "result": {
+    "item": "malum:hallowed_spirit_resonator"
+  }
+}
