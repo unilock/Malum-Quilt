@@ -21,7 +21,7 @@ public class SpiritJarRenderer implements BlockEntityRenderer<SpiritJarBlockEnti
 	public void render(SpiritJarBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
 		World level = MinecraftClient.getInstance().world;
 		ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
-		if (entity.type != null) {
+		if (entity.type != null && entity.type.getSplinterItem() != null) {
 			matrices.push();
 			double y = 0.5f + Math.sin((level.getTime() + tickDelta) / 20f) * 0.2f;
 			matrices.translate(0.5f, y, 0.5f);

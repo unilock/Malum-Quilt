@@ -70,7 +70,7 @@ public class Malum implements ModInitializer {
 
 				entries.addItem(NATURAL_QUARTZ_ORE);
 				entries.addItem(DEEPSLATE_QUARTZ_ORE);
-				//entries.addItem(NATURAL_QUARTZ);
+				entries.addItem(NATURAL_QUARTZ);
 
 				entries.addItem(BRILLIANT_STONE);
 				entries.addItem(BRILLIANT_DEEPSLATE);

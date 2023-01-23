@@ -7,6 +7,7 @@
     "ArmorMaterialsMixin",
     "AxeItemMixin",
     "ConfiguredFeatureUtilMixin",
+    "CookingRecipeSerializerMixin",
     "DefaultBiomeFeaturesMixin",
     "EnchantingTableBlockMixin",
     "EnchantmentScreenHandlerMixin",
@@ -22,9 +23,9 @@
     "client.InGameHudMixin",
     "client.ItemColorsMixin",
     "client.ItemRendererMixin",
-    "client.MinecraftClientMixin",
+    "client.MinecraftClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-	}
+  }
 }

@@ -246,8 +246,8 @@ public interface MalumObjects {
 	//BLOCKS
 
 
-	Block SPIRIT_ALTAR = register("spirit_altar", new SpiritAltarBlock<>(RUNEWOOD_PROPERTIES().nonOpaque()), true);
-	Block SPIRIT_JAR = registerJar("spirit_jar", new SpiritJarBlock<>(SPIRIT_JAR_PROPERTIES().nonOpaque()), true);
+	Block SPIRIT_ALTAR = register("spirit_altar", new SpiritAltarBlock<>(RUNEWOOD_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.SPIRIT_ALTAR), true);
+	Block SPIRIT_JAR = registerJar("spirit_jar", new SpiritJarBlock<>(SPIRIT_JAR_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.SPIRIT_JAR), true);
 	Block ALTERATION_PLINTH = register("alteration_plinth", new AlterationPlinthBlock<>(SOULWOOD_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.ALTERATION_PLINTH), true);
 
 	Block SOUL_VIAL = registerVial("soul_vial", new SoulVialBlock<>(SOUL_VIAL_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.SOUL_VIAL), true);
@@ -525,6 +525,8 @@ public interface MalumObjects {
 	Block NATURAL_QUARTZ_ORE = register("natural_quartz_ore", new ExperienceDroppingBlock(NATURAL_QUARTZ_PROPERTIES(), UniformIntProvider.create(1, 4)),true);
 	Block DEEPSLATE_QUARTZ_ORE = register("deepslate_quartz_ore", new ExperienceDroppingBlock(DEEPSLATE_QUARTZ_PROPERTIES(), UniformIntProvider.create(2, 5)),true);
 	Block NATURAL_QUARTZ_CLUSTER = register("natural_quartz_cluster", new AmethystClusterBlock(6, 3, NATURAL_QUARTZ_CLUSTER_PROPERTIES()),true);
+	Item NATURAL_QUARTZ = register("natural_quartz", new AliasedBlockItem(NATURAL_QUARTZ_CLUSTER, settings()));
+
 
 	Block BLOCK_OF_RARE_EARTHS = register("block_of_rare_earths", new ExperienceDroppingBlock(RARE_EARTH_PROPERTIES(), UniformIntProvider.create(10, 100)),true);
 
