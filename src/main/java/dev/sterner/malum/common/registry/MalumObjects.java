@@ -83,28 +83,19 @@ public interface MalumObjects {
 
 	Item ENCYCLOPEDIA_ARCANA = register("encyclopedia_arcana", new EncyclopediaArcanaItem(settings().rarity(Rarity.UNCOMMON)));
 
-	//Item BLAZING_TORCH = register("blazing_torch", new WallStandingBlockItem(MalumObjects.BLAZING_TORCH, MalumObjects.WALL_BLAZING_TORCH, new Item.Settings(), Direction.NORTH));
-	//Item BLAZING_SCONCE = register("blazing_sconce", new WallStandingBlockItem(MalumObjects.BLAZING_SCONCE, MalumObjects.WALL_BLAZING_SCONCE, SupplementariesCompat.LOADED ? new Item.Settings().tab(CreativeModeTab.TAB_MISC) : settings()));
-
-
-
 	//region runewood
 	Item HOLY_SAP = register("holy_sap", new Item(settings().recipeRemainder(GLASS_BOTTLE)));
 	Item HOLY_SAPBALL = register("holy_sapball", new Item(settings()));
 	Item HOLY_SYRUP = register("holy_syrup", new HolySyrupItem(settings().recipeRemainder(GLASS_BOTTLE).food((new FoodComponent.Builder()).hunger(6).saturationModifier(0.1F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 0), 1).build())));
-	//Item HOLY_CARAMEL = register("holy_caramel", new HolyCaramelItem(FarmersDelightCompat.LOADED ? settings().food((new FoodComponent.Builder()).hunger(4).saturationModifier(0.15F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 0), 1).build()) : settings()));
 
 
 	//region soulwood
 	Item UNHOLY_SAP = register("unholy_sap", new Item(settings().recipeRemainder(GLASS_BOTTLE)));
 	Item UNHOLY_SAPBALL = register("unholy_sapball", new Item(settings()));
 	Item UNHOLY_SYRUP = register("unholy_syrup", new UnholySyrupItem(settings().recipeRemainder(GLASS_BOTTLE).food((new FoodComponent.Builder()).hunger(6).saturationModifier(0.1F).statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 0), 1).build())));
-	//Item UNHOLY_CARAMEL = register("unholy_caramel", new HolyCaramelItem(FarmersDelightCompat.LOADED ? settings().food((new FoodComponent.Builder()).hunger(4).saturationModifier(0.15F).statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 100, 0), 1).build()) : settings()));
-
 
 	//Item SOULWOOD_SIGN = register("soulwood_sign", new SignItem(settings().maxCount(16), MalumObjects.SOULWOOD_SIGN, MalumObjects.SOULWOOD_WALL_SIGN));
 	//Item SOULWOOD_BOAT = register("soulwood_boat", new LodestoneBoatItem(settings().maxCount(1), EntityRegistry.SOULWOOD_BOAT));
-
 
 	//endregion
 
@@ -254,11 +245,7 @@ public interface MalumObjects {
 
 
 
-
-
-
-
-
+	//BLOCKS
 
 
 	Block SPIRIT_ALTAR = register("spirit_altar", new SpiritAltarBlock<>(RUNEWOOD_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.SPIRIT_ALTAR), true);
@@ -273,21 +260,21 @@ public interface MalumObjects {
 	Block TWISTED_TABLET = register("twisted_tablet", new TwistedTabletBlock<>(TAINTED_ROCK_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.TWISTED_TABLET), true);
 
 	Block RUNEWOOD_OBELISK = registerMultiBlock("runewood_obelisk", new RunewoodObeliskCoreBlock(RUNEWOOD_PROPERTIES().nonOpaque()), RunewoodObeliskBlockEntity.STRUCTURE, true);
-	Block RUNEWOOD_OBELISK_COMPONENT = register("runewood_obelisk_component", new ObeliskComponentBlock(RUNEWOOD_PROPERTIES().nonOpaque()), false);
+	Block RUNEWOOD_OBELISK_COMPONENT = register("runewood_obelisk_component", new ObeliskComponentBlock(RUNEWOOD_PROPERTIES().nonOpaque(), RUNEWOOD_OBELISK.asItem()), false);
 
 	Block BRILLIANT_OBELISK = registerMultiBlock("brilliant_obelisk", new BrillianceObeliskCoreBlock(RUNEWOOD_PROPERTIES().nonOpaque()), BrilliantObeliskBlockEntity.STRUCTURE, true);
-	Block BRILLIANT_OBELISK_COMPONENT = register("brilliant_obelisk_component", new ObeliskComponentBlock(RUNEWOOD_PROPERTIES().nonOpaque()), false);
+	Block BRILLIANT_OBELISK_COMPONENT = register("brilliant_obelisk_component", new ObeliskComponentBlock(RUNEWOOD_PROPERTIES().nonOpaque(), BRILLIANT_OBELISK.asItem()), false);
 
-	Block SPIRIT_CRUCIBLE = registerMultiBlock("spirit_crucible", new SpiritCrucibleCoreBlock<>(TAINTED_ROCK_PROPERTIES().nonOpaque()), SpiritCrucibleCoreBlockEntity.STRUCTURE, true);
+	Block SPIRIT_CRUCIBLE = registerMultiBlock("spirit_crucible", new SpiritCrucibleCoreBlock<>(TAINTED_ROCK_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.SPIRIT_CRUCIBLE), SpiritCrucibleCoreBlockEntity.STRUCTURE, true);
 	Block SPIRIT_CRUCIBLE_COMPONENT = register("spirit_crucible_component", new SpiritCrucibleComponentBlock(TAINTED_ROCK_PROPERTIES().nonOpaque()), false);
 
-	Block SPIRIT_CATALYZER = registerMultiBlock("spirit_catalyzer", new SpiritCatalyzerCoreBlock<>(TAINTED_ROCK_PROPERTIES().nonOpaque()), SpiritCatalyzerCoreBlockEntity.STRUCTURE, true);
+	Block SPIRIT_CATALYZER = registerMultiBlock("spirit_catalyzer", new SpiritCatalyzerCoreBlock<>(TAINTED_ROCK_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.SPIRIT_CATALYZER), SpiritCatalyzerCoreBlockEntity.STRUCTURE, true);
 	Block SPIRIT_CATALYZER_COMPONENT = register("spirit_catalyzer_component", new SpiritCatalyzerComponentBlock(TAINTED_ROCK_PROPERTIES().nonOpaque(), Items.AIR), false);
 
-	Block SOULWOOD_PLINTH = registerMultiBlock("soulwood_plinth", new PlinthCoreBlock<>(SOULWOOD_PROPERTIES().nonOpaque()), PlinthCoreBlockEntity.STRUCTURE, true);
+	Block SOULWOOD_PLINTH = registerMultiBlock("soulwood_plinth", new PlinthCoreBlock<>(SOULWOOD_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.PLINTH), PlinthCoreBlockEntity.STRUCTURE, true);
 	Block SOULWOOD_PLINTH_COMPONENT = register("soulwood_plinth_component", new PlinthComponentBlock(SOULWOOD_PROPERTIES().nonOpaque()), false);
 
-	Block SOULWOOD_FUSION_PLATE = registerMultiBlock("soulwood_fusion_plate", new FusionPlateCoreBlock<>(SOULWOOD_PROPERTIES().nonOpaque()), FusionPlateBlockEntity.STRUCTURE, true);
+	Block SOULWOOD_FUSION_PLATE = registerMultiBlock("soulwood_fusion_plate", new FusionPlateCoreBlock<>(SOULWOOD_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.FUSION_PLATE), FusionPlateBlockEntity.STRUCTURE, true);
 	Block SOULWOOD_FUSION_PLATE_COMPONENT = register("soulwood_fusion_plate_component", new FusionPlateComponentBlock(SOULWOOD_PROPERTIES().nonOpaque(), Items.AIR), false);
 
 
@@ -343,8 +330,8 @@ public interface MalumObjects {
 	Block CRACKED_SMALL_TAINTED_ROCK_BRICKS_WALL = register("cracked_small_tainted_rock_bricks_wall", new WallBlock(TAINTED_ROCK_PROPERTIES()),true);
 	Block CRACKED_TAINTED_ROCK_TILES_WALL = register("cracked_tainted_rock_tiles_wall", new WallBlock(TAINTED_ROCK_PROPERTIES()),true);
 
-	Block TAINTED_ROCK_ITEM_STAND = register("tainted_rock_item_stand", new ItemStandBlock<>(TAINTED_ROCK_PROPERTIES().nonOpaque()),true);
-	Block TAINTED_ROCK_ITEM_PEDESTAL = register("tainted_rock_item_pedestal", new ItemPedestalBlock<>(TAINTED_ROCK_PROPERTIES().nonOpaque()),true);
+	Block TAINTED_ROCK_ITEM_STAND = register("tainted_rock_item_stand", new ItemStandBlock<>(TAINTED_ROCK_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.ITEM_STAND),true);
+	Block TAINTED_ROCK_ITEM_PEDESTAL = register("tainted_rock_item_pedestal", new ItemPedestalBlock<>(TAINTED_ROCK_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.ITEM_PEDESTAL),true);
 	//endregion
 
 	//region twisted rock
@@ -398,8 +385,8 @@ public interface MalumObjects {
 	Block CRACKED_SMALL_TWISTED_ROCK_BRICKS_WALL = register("cracked_small_twisted_rock_bricks_wall", new WallBlock(TWISTED_ROCK_PROPERTIES()),true);
 	Block CRACKED_TWISTED_ROCK_TILES_WALL = register("cracked_twisted_rock_tiles_wall", new WallBlock(TWISTED_ROCK_PROPERTIES()),true);
 
-	Block TWISTED_ROCK_ITEM_STAND = register("twisted_rock_item_stand", new ItemStandBlock<>(TWISTED_ROCK_PROPERTIES().nonOpaque()),true);
-	Block TWISTED_ROCK_ITEM_PEDESTAL = register("twisted_rock_item_pedestal", new ItemPedestalBlock<>(TWISTED_ROCK_PROPERTIES().nonOpaque()),true);
+	Block TWISTED_ROCK_ITEM_STAND = register("twisted_rock_item_stand", new ItemStandBlock<>(TWISTED_ROCK_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.ITEM_STAND),true);
+	Block TWISTED_ROCK_ITEM_PEDESTAL = register("twisted_rock_item_pedestal", new ItemPedestalBlock<>(TWISTED_ROCK_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.ITEM_PEDESTAL),true);
 	//endregion
 
 	//region runewood
@@ -443,8 +430,8 @@ public interface MalumObjects {
 	Block RUNEWOOD_PLANKS_FENCE = register("runewood_planks_fence", new FenceBlock(RUNEWOOD_PROPERTIES()),true);
 	Block RUNEWOOD_PLANKS_FENCE_GATE = register("runewood_planks_fence_gate", new FenceGateBlock(RUNEWOOD_PROPERTIES(),  SoundEvents.BLOCK_BAMBOO_WOOD_PRESSURE_PLATE_CLICK_OFF, SoundEvents.BLOCK_BAMBOO_WOOD_PRESSURE_PLATE_CLICK_ON),true);
 
-	Block RUNEWOOD_ITEM_STAND = register("runewood_item_stand", new ItemStandBlock<>(RUNEWOOD_PROPERTIES().nonOpaque()),true);
-	Block RUNEWOOD_ITEM_PEDESTAL = register("runewood_item_pedestal", new WoodItemPedestalBlock<>(RUNEWOOD_PROPERTIES().nonOpaque()),true);
+	Block RUNEWOOD_ITEM_STAND = register("runewood_item_stand", new ItemStandBlock<>(RUNEWOOD_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.ITEM_STAND),true);
+	Block RUNEWOOD_ITEM_PEDESTAL = register("runewood_item_pedestal", new WoodItemPedestalBlock<>(RUNEWOOD_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.ITEM_PEDESTAL),true);
 
 	//Block RUNEWOOD_SIGN = register("runewood_sign", new LodestoneStandingSignBlock(RUNEWOOD_PROPERTIES().nonOpaque().noCollision(), MalumWoodTypeRegistry.RUNEWOOD));
 	//Block RUNEWOOD_WALL_SIGN = register("runewood_wall_sign", new LodestoneWallSignBlock(RUNEWOOD_PROPERTIES().nonOpaque().noCollision(), MalumWoodTypeRegistry.RUNEWOOD));
@@ -491,8 +478,8 @@ public interface MalumObjects {
 	Block SOULWOOD_PLANKS_FENCE = register("soulwood_planks_fence", new FenceBlock(SOULWOOD_PROPERTIES()),true);
 	Block SOULWOOD_PLANKS_FENCE_GATE = register("soulwood_planks_fence_gate", new FenceGateBlock(SOULWOOD_PROPERTIES(), SoundEvents.BLOCK_BAMBOO_WOOD_TRAPDOOR_OPEN, SoundEvents.BLOCK_BAMBOO_WOOD_PRESSURE_PLATE_CLICK_OFF),true);
 
-	Block SOULWOOD_ITEM_STAND = register("soulwood_item_stand", new ItemStandBlock<>(SOULWOOD_PROPERTIES().nonOpaque()),true);
-	Block SOULWOOD_ITEM_PEDESTAL = register("soulwood_item_pedestal", new WoodItemPedestalBlock<>(SOULWOOD_PROPERTIES().nonOpaque()),true);
+	Block SOULWOOD_ITEM_STAND = register("soulwood_item_stand", new ItemStandBlock<>(SOULWOOD_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.ITEM_STAND),true);
+	Block SOULWOOD_ITEM_PEDESTAL = register("soulwood_item_pedestal", new WoodItemPedestalBlock<>(SOULWOOD_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.ITEM_PEDESTAL),true);
 
 	//Block SOULWOOD_SIGN = register("soulwood_sign", new LodestoneStandingSignBlock(SOULWOOD_PROPERTIES().nonOpaque().noCollision(), MalumWoodTypeRegistry.SOULWOOD));
 	//Block SOULWOOD_WALL_SIGN = register("soulwood_wall_sign", new LodestoneWallSignBlock(SOULWOOD_PROPERTIES().nonOpaque().noCollision(), MalumWoodTypeRegistry.SOULWOOD));
@@ -506,26 +493,26 @@ public interface MalumObjects {
 	Block BLIGHTED_SOULWOOD = register("blighted_soulwood", new BlightedSoulwoodBlock(SOULWOOD_PROPERTIES()), true);
 	//endregion
 
-	Block RUNEWOOD_TOTEM_BASE = register("runewood_totem_base", new TotemBaseBlock<>(RUNEWOOD_PROPERTIES().nonOpaque(), false), true);
-	Block RUNEWOOD_TOTEM_POLE = register("runewood_totem_pole", new TotemPoleBlock<>(RUNEWOOD_LOG, RUNEWOOD_PROPERTIES().nonOpaque(), false), false);
+	Block RUNEWOOD_TOTEM_BASE = register("runewood_totem_base", new TotemBaseBlock<>(RUNEWOOD_PROPERTIES().nonOpaque(), false).setBlockEntity(MalumBlockEntityRegistry.TOTEM_BASE), true);
+	Block RUNEWOOD_TOTEM_POLE = register("runewood_totem_pole", new TotemPoleBlock<>(RUNEWOOD_LOG, RUNEWOOD_PROPERTIES().nonOpaque(), false).setBlockEntity(MalumBlockEntityRegistry.TOTEM_POLE), false);
 
-	Block SOULWOOD_TOTEM_BASE = register("soulwood_totem_base", new TotemBaseBlock<>(SOULWOOD_PROPERTIES().nonOpaque(), true), true);
-	Block SOULWOOD_TOTEM_POLE = register("soulwood_totem_pole", new TotemPoleBlock<>(SOULWOOD_LOG, SOULWOOD_PROPERTIES().nonOpaque(), true), false);
+	Block SOULWOOD_TOTEM_BASE = register("soulwood_totem_base", new TotemBaseBlock<>(SOULWOOD_PROPERTIES().nonOpaque(), true).setBlockEntity(MalumBlockEntityRegistry.TOTEM_BASE), true);
+	Block SOULWOOD_TOTEM_POLE = register("soulwood_totem_pole", new TotemPoleBlock<>(SOULWOOD_LOG, SOULWOOD_PROPERTIES().nonOpaque(), true).setBlockEntity(MalumBlockEntityRegistry.TOTEM_POLE), false);
 
 	//region ether
-	Block WALL_ETHER_TORCH = register("wall_ether_torch", new EtherWallTorchBlock<>(RUNEWOOD_PROPERTIES().noCollision().breakInstantly().luminance((b) -> 14)), false);
-	Block ETHER_TORCH = registerEtherTorch("ether_torch", new EtherTorchBlock<>(RUNEWOOD_PROPERTIES().noCollision().breakInstantly().luminance((b) -> 14)), WALL_ETHER_TORCH, false, true);
+	Block WALL_ETHER_TORCH = register("wall_ether_torch", new EtherWallTorchBlock<>(RUNEWOOD_PROPERTIES().noCollision().breakInstantly().luminance((b) -> 14)).setBlockEntity(MalumBlockEntityRegistry.ETHER), false);
+	Block ETHER_TORCH = registerEtherTorch("ether_torch", new EtherTorchBlock<>(RUNEWOOD_PROPERTIES().noCollision().breakInstantly().luminance((b) -> 14)).setBlockEntity(MalumBlockEntityRegistry.ETHER), WALL_ETHER_TORCH, false, true);
 
-	Block ETHER = registerEther("ether", new EtherBlock<>(ETHER_BLOCK_PROPERTIES()), false, true);
-	Block TAINTED_ETHER_BRAZIER = registerEtherBrazier("tainted_ether_brazier", new EtherBrazierBlock<>(TAINTED_ROCK_PROPERTIES().luminance((b) -> 14).nonOpaque()), false, true);
-	Block TWISTED_ETHER_BRAZIER = registerEtherBrazier("twisted_ether_brazier", new EtherBrazierBlock<>(TWISTED_ROCK_PROPERTIES().luminance((b) -> 14).nonOpaque()), false, true);
+	Block ETHER = registerEther("ether", new EtherBlock<>(ETHER_BLOCK_PROPERTIES()), false, true).setBlockEntity(MalumBlockEntityRegistry.ETHER);
+	Block TAINTED_ETHER_BRAZIER = registerEtherBrazier("tainted_ether_brazier", new EtherBrazierBlock<>(TAINTED_ROCK_PROPERTIES().luminance((b) -> 14).nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.ETHER), false, true);
+	Block TWISTED_ETHER_BRAZIER = registerEtherBrazier("twisted_ether_brazier", new EtherBrazierBlock<>(TWISTED_ROCK_PROPERTIES().luminance((b) -> 14).nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.ETHER), false, true);
 
-	Block IRIDESCENT_WALL_ETHER_TORCH = register("iridescent_wall_ether_torch", new EtherWallTorchBlock<>(RUNEWOOD_PROPERTIES().noCollision().breakInstantly().luminance((b) -> 14)), false);
-	Block IRIDESCENT_ETHER_TORCH = registerEtherTorch("iridescent_ether_torch", new EtherTorchBlock<>(RUNEWOOD_PROPERTIES().noCollision().breakInstantly().luminance((b) -> 14)), IRIDESCENT_WALL_ETHER_TORCH, true, true);
+	Block IRIDESCENT_WALL_ETHER_TORCH = register("iridescent_wall_ether_torch", new EtherWallTorchBlock<>(RUNEWOOD_PROPERTIES().noCollision().breakInstantly().luminance((b) -> 14)).setBlockEntity(MalumBlockEntityRegistry.ETHER), false);
+	Block IRIDESCENT_ETHER_TORCH = registerEtherTorch("iridescent_ether_torch", new EtherTorchBlock<>(RUNEWOOD_PROPERTIES().noCollision().breakInstantly().luminance((b) -> 14)).setBlockEntity(MalumBlockEntityRegistry.ETHER), IRIDESCENT_WALL_ETHER_TORCH, true, true);
 
-	Block IRIDESCENT_ETHER = registerEther("iridescent_ether", new EtherBlock<>(ETHER_BLOCK_PROPERTIES()), true , true);
-	Block TAINTED_IRIDESCENT_ETHER_BRAZIER = registerEtherBrazier("tainted_iridescent_ether_brazier", new EtherBrazierBlock<>(TAINTED_ROCK_PROPERTIES().luminance((b) -> 14).nonOpaque()), true, true);
-	Block TWISTED_IRIDESCENT_ETHER_BRAZIER = registerEtherBrazier("twisted_iridescent_ether_brazier", new EtherBrazierBlock<>(TWISTED_ROCK_PROPERTIES().luminance((b) -> 14).nonOpaque()), true, true);
+	Block IRIDESCENT_ETHER = registerEther("iridescent_ether", new EtherBlock<>(ETHER_BLOCK_PROPERTIES()).setBlockEntity(MalumBlockEntityRegistry.ETHER), true , true);
+	Block TAINTED_IRIDESCENT_ETHER_BRAZIER = registerEtherBrazier("tainted_iridescent_ether_brazier", new EtherBrazierBlock<>(TAINTED_ROCK_PROPERTIES().luminance((b) -> 14).nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.ETHER), true, true);
+	Block TWISTED_IRIDESCENT_ETHER_BRAZIER = registerEtherBrazier("twisted_iridescent_ether_brazier", new EtherBrazierBlock<>(TWISTED_ROCK_PROPERTIES().luminance((b) -> 14).nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.ETHER), true, true);
 
 
 	//endregion

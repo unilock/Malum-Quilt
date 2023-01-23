@@ -74,12 +74,4 @@ public class TotemPoleBlock<T extends TotemPoleBlockEntity> extends LodestoneEnt
         return this.getDefaultState().with(HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite());
     }
 
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return world.isClient ? checkType(type, MalumBlockEntityRegistry.TOTEM_POLE, (w, p, s, b) -> b.clientTick()) : null;
-    }
-
-    public void onStrip(BlockState blockState, World world, BlockPos blockPos) {
-    }
 }

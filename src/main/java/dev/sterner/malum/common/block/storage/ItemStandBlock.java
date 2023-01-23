@@ -32,7 +32,6 @@ import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("deprecation")
 public class ItemStandBlock<T extends ItemStandBlockEntity> extends WaterLoggedEntityBlock<T> {
-    public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     public static final DirectionProperty FACING = Properties.FACING;
     private static final VoxelShape UP_SHAPE = Block.createCuboidShape(4.0d, 0.0d, 4.0d, 12.0d, 2.0d, 12.0d);
     private static final VoxelShape DOWN_SHAPE = Block.createCuboidShape(4.0d, 14.0d, 4.0d, 12.0d, 16.0d, 12.0d);
@@ -50,39 +49,6 @@ public class ItemStandBlock<T extends ItemStandBlockEntity> extends WaterLoggedE
         return BlockRenderType.MODEL;
     }
 
-    @Override
-    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if (!state.isOf(newState.getBlock())) {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof ItemStandBlockEntity) {
-                ItemScatterer.spawn(world, pos, (Inventory)blockEntity);
-                world.updateComparators(pos, this);
-            }
-
-            super.onStateReplaced(state, world, pos, newState, moved);
-        }
-    }
-
-    @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
-        Direction facing = ctx.getSide();
-
-        return this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(FACING, facing);
-    }
-
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighbourState, WorldAccess world, BlockPos pos, BlockPos neighbourPos) {
-        if (state.get(WATERLOGGED)) {
-            world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
-        }
-        return super.getStateForNeighborUpdate(state, direction, neighbourState, world, pos, neighbourPos);
-    }
-
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return world.isClient ? checkType(type, MalumBlockEntityRegistry.ITEM_STAND, (world1, pos, state1, blockEntity) -> blockEntity.clientTick(world1, pos, state1)) : null;
-    }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
@@ -99,13 +65,14 @@ public class ItemStandBlock<T extends ItemStandBlockEntity> extends WaterLoggedE
 
     @Override
     public void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(WATERLOGGED, FACING);
+        builder.add(FACING);
+		super.appendProperties(builder);
     }
 
-    @Override
-    public FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
-    }
+	@Override
+	public BlockState getPlacementState(ItemPlacementContext context) {
+		return super.getPlacementState(context).with(FACING, context.getSide());
+	}
 
     @Override
     public boolean hasComparatorOutput(BlockState state) {

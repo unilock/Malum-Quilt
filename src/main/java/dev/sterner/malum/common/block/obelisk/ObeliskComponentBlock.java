@@ -1,8 +1,10 @@
 package dev.sterner.malum.common.block.obelisk;
 
 import com.sammy.lodestone.systems.multiblock.MultiBlockComponentBlock;
+import com.sammy.lodestone.systems.multiblock.MultiBlockComponentEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.function.BooleanBiFunction;
@@ -10,16 +12,24 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import org.jetbrains.annotations.Nullable;
 
 public class ObeliskComponentBlock extends MultiBlockComponentBlock {
 	public static final VoxelShape SHAPE = makeShape();
-	public ObeliskComponentBlock(Settings properties) {
+	private final Item cloneStack;
+	public ObeliskComponentBlock(Settings properties, Item cloneStack) {
 		super(properties);
+		this.cloneStack = cloneStack;
 	}
 
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
+	}
+
+	@Override
+	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+		return super.getPickStack(world, pos, state);
 	}
 
 	public static VoxelShape makeShape(){

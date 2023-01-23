@@ -186,6 +186,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity {
 
     @Override
     public ActionResult onUse(PlayerEntity player, Hand hand) {
+		System.out.println("AltarUsed");
         if (world.isClient()) {
             return ActionResult.CONSUME;
         }

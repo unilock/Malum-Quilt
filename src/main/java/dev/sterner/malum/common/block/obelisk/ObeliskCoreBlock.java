@@ -15,9 +15,8 @@ import net.minecraft.world.BlockView;
 public class ObeliskCoreBlock<T extends ObeliskCoreBlockEntity> extends WaterLoggedEntityBlock<T> {
 	public static final VoxelShape SHAPE = makeShape();
 
-	public ObeliskCoreBlock(Settings properties, BlockEntityType<T> type) {
+	public ObeliskCoreBlock(Settings properties) {
 		super(properties);
-		setBlockEntity(type);
 	}
 
 
