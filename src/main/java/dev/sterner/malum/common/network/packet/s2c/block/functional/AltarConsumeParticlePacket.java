@@ -15,6 +15,7 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
+import org.quiltmc.qsl.networking.api.PacketByteBufs;
 import org.quiltmc.qsl.networking.api.PacketSender;
 import org.quiltmc.qsl.networking.api.ServerPlayNetworking;
 
@@ -44,9 +45,8 @@ public class AltarConsumeParticlePacket {
         this.altarPosZ = altarPosZ;
     }
 
-    public static void send(PlayerEntity player, ItemStack stack, List<String> spirits, double posX, double posY, double posZ, double altarPosX, double altarPosY, double altarPosZ) {
-        PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
-		buf.writeItemStack(stack);
+    public static void send(PlayerEntity player, List<String> spirits, double posX, double posY, double posZ, double altarPosX, double altarPosY, double altarPosZ) {
+		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeInt(spirits.size());
 		for (String string : spirits) {
 			buf.writeString(string);

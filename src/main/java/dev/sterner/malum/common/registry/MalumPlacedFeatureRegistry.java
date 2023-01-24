@@ -18,18 +18,18 @@ import org.quiltmc.qsl.worldgen.biome.api.BiomeModifications;
 
 import static dev.sterner.malum.common.registry.MalumConfiguredFeatureRegistry.*;
 
-public class MalumPlacedFeatureRegistry {
-	public static RegistryKey<PlacedFeature> BRILLIANT_STONE_PLACED       = PlacedFeatureUtil.m_ssakkmfw("brilliant_stone");
-	public static RegistryKey<PlacedFeature> SURFACE_SOULSTONE_PLACED     = PlacedFeatureUtil.m_ssakkmfw("surface_soulstone");
-	public static RegistryKey<PlacedFeature> UNDERGROUND_SOULSTONE_PLACED = PlacedFeatureUtil.m_ssakkmfw("underground_soulstone");
-	public static RegistryKey<PlacedFeature> BLAZING_QUARTZ_PLACED        = PlacedFeatureUtil.m_ssakkmfw("blazing_quartz");
-	public static RegistryKey<PlacedFeature> RUNEWOOD_CHECKED        = PlacedFeatureUtil.m_ssakkmfw("runewood_tree");
+public interface MalumPlacedFeatureRegistry {
+	RegistryKey<PlacedFeature> BRILLIANT_STONE_PLACED       = PlacedFeatureUtil.m_ssakkmfw("brilliant_stone");
+	RegistryKey<PlacedFeature> SURFACE_SOULSTONE_PLACED     = PlacedFeatureUtil.m_ssakkmfw("surface_soulstone");
+	RegistryKey<PlacedFeature> UNDERGROUND_SOULSTONE_PLACED = PlacedFeatureUtil.m_ssakkmfw("underground_soulstone");
+	RegistryKey<PlacedFeature> BLAZING_QUARTZ_PLACED        = PlacedFeatureUtil.m_ssakkmfw("blazing_quartz");
+	RegistryKey<PlacedFeature> RUNEWOOD_CHECKED        = PlacedFeatureUtil.m_ssakkmfw("runewood_tree");
 
-	public static void init() {
+	static void init() {
 		BiomeModifications.addFeature((b) -> b.isIn(BiomeTags.FOREST), GenerationStep.Feature.VEGETAL_DECORATION, RUNEWOOD_CHECKED);
 	}
 
-	public static void bootstrap(BootstrapContext<PlacedFeature> bootstrapContext) {
+	static void bootstrap(BootstrapContext<PlacedFeature> bootstrapContext) {
 		HolderProvider<ConfiguredFeature<?, ?>> holderProvider = bootstrapContext.lookup(RegistryKeys.CONFIGURED_FEATURE);
 		Holder<ConfiguredFeature<?, ?>> soulstoneSurface = holderProvider.getHolderOrThrow(SURFACE_SOULSTONE_CONFIGURED);
 		Holder<ConfiguredFeature<?, ?>> soulstoneUnderground = holderProvider.getHolderOrThrow(UNDERGROUND_SOULSTONE_CONFIGURED);

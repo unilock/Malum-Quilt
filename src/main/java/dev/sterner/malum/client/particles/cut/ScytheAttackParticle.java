@@ -10,8 +10,8 @@ import org.jetbrains.annotations.Nullable;
 public class ScytheAttackParticle extends SpriteBillboardParticle {
 	private final SpriteProvider spriteWithAge;
 
-	public ScytheAttackParticle(ClientWorld level, double x, double y, double z, double scale, SpriteProvider spriteWithAge) {
-		super(level, x, y, z, 0.0D, 0.0D, 0.0D);
+	public ScytheAttackParticle(ClientWorld world, double x, double y, double z, double scale, SpriteProvider spriteWithAge) {
+		super(world, x, y, z, 0.0D, 0.0D, 0.0D);
 		this.spriteWithAge = spriteWithAge;
 		this.maxAge = 4;
 		float f = this.random.nextFloat() * 0.6F + 0.4F;

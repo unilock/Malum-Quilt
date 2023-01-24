@@ -28,7 +28,7 @@
                         "enchantments": [
                           {
                             "enchantment": "minecraft:silk_touch",
-                            "levels": {
+                            "worlds": {
                               "min": 1
                             }
                           }
@@ -119,7 +119,7 @@
                   "enchantments": [
                     {
                       "enchantment": "minecraft:silk_touch",
-                      "levels": {
+                      "worlds": {
                         "min": 1
                       }
                     }

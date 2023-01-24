@@ -22,18 +22,18 @@ public class ItemStandRenderer implements BlockEntityRenderer<ItemStandBlockEnti
 
 	@Override
 	public void render(ItemStandBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-		World level = MinecraftClient.getInstance().world;
+		World world = MinecraftClient.getInstance().world;
 		ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
 		ItemStack stack = entity.inventory.getStack(0);
 		if (!stack.isEmpty()) {
 			matrices.push();
 			Vector3f offset = new Vector3f(entity.itemOffset().m_sruzucpd());
 			if (stack.getItem() instanceof MalumSpiritItem) {
-				double y = Math.sin(((level.getTime() + tickDelta)) / 20f) * 0.05f;
+				double y = Math.sin(((world.getTime() + tickDelta)) / 20f) * 0.05f;
 				matrices.translate(0, y, 0);
 			}
 			matrices.translate(offset.x(), offset.y(), offset.z());
-			matrices.multiply(Axis.Y_POSITIVE.rotationDegrees(((level.getTime() % 360) + tickDelta) * 3));
+			matrices.multiply(Axis.Y_POSITIVE.rotationDegrees(((world.getTime() % 360) + tickDelta) * 3));
 			matrices.scale(0.6f, 0.6f, 0.6f);
 			itemRenderer.renderItem(stack, ModelTransformation.Mode.FIXED, light, OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, 0);
 			matrices.pop();

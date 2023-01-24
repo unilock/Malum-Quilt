@@ -13,16 +13,16 @@ public class ItemTiers {
 		private final int maxUses;
 		private final float efficiency;
 		private final float attackDamage;
-		private final int harvestLevel;
+		private final int harvestWorld;
 		private final int enchantability;
 		private final Item repairItem;
 
-		ItemTierEnum(int maxUses, float efficiency, float attackDamage, int harvestLevel, int enchantability, Item repairItem)
+		ItemTierEnum(int maxUses, float efficiency, float attackDamage, int harvestWorld, int enchantability, Item repairItem)
 		{
 			this.maxUses = maxUses;
 			this.efficiency = efficiency;
 			this.attackDamage = attackDamage;
-			this.harvestLevel = harvestLevel;
+			this.harvestWorld = harvestWorld;
 			this.enchantability = enchantability;
 			this.repairItem = repairItem;
 		}
@@ -44,7 +44,7 @@ public class ItemTiers {
 
 		@Override
 		public int getMiningLevel() {
-			return harvestLevel;
+			return harvestWorld;
 		}
 
 		@Override

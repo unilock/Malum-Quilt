@@ -17,19 +17,19 @@ import static dev.sterner.malum.common.registry.MalumFeatureRegistry.SOULWOOD_TR
 import static net.minecraft.registry.tag.BlockTags.DEEPSLATE_ORE_REPLACEABLES;
 import static net.minecraft.registry.tag.BlockTags.STONE_ORE_REPLACEABLES;
 
-public class MalumConfiguredFeatureRegistry {
-	public static List<OreFeatureConfig.Target> BLAZING_QUARTZ_TARGETS = List.of(OreFeatureConfig.createTarget(new TagMatchRuleTest(BlockTags.BASE_STONE_NETHER), BLAZING_QUARTZ_ORE.getDefaultState()));
-	public static List<OreFeatureConfig.Target> SOULSTONE_ORE_TARGETS  = List.of(OreFeatureConfig.createTarget(new TagMatchRuleTest(STONE_ORE_REPLACEABLES), SOULSTONE_ORE.getDefaultState()), OreFeatureConfig.createTarget(new TagMatchRuleTest(DEEPSLATE_ORE_REPLACEABLES), DEEPSLATE_SOULSTONE_ORE.getDefaultState()));
-	public static List<OreFeatureConfig.Target> BRILLIANCE_ORE_TARGETS = List.of(OreFeatureConfig.createTarget(new TagMatchRuleTest(STONE_ORE_REPLACEABLES), BRILLIANT_STONE.getDefaultState()), OreFeatureConfig.createTarget(new TagMatchRuleTest(DEEPSLATE_ORE_REPLACEABLES), BRILLIANT_DEEPSLATE.getDefaultState()));
+public interface MalumConfiguredFeatureRegistry {
+	List<OreFeatureConfig.Target> BLAZING_QUARTZ_TARGETS = List.of(OreFeatureConfig.createTarget(new TagMatchRuleTest(BlockTags.BASE_STONE_NETHER), BLAZING_QUARTZ_ORE.getDefaultState()));
+	List<OreFeatureConfig.Target> SOULSTONE_ORE_TARGETS  = List.of(OreFeatureConfig.createTarget(new TagMatchRuleTest(STONE_ORE_REPLACEABLES), SOULSTONE_ORE.getDefaultState()), OreFeatureConfig.createTarget(new TagMatchRuleTest(DEEPSLATE_ORE_REPLACEABLES), DEEPSLATE_SOULSTONE_ORE.getDefaultState()));
+	List<OreFeatureConfig.Target> BRILLIANCE_ORE_TARGETS = List.of(OreFeatureConfig.createTarget(new TagMatchRuleTest(STONE_ORE_REPLACEABLES), BRILLIANT_STONE.getDefaultState()), OreFeatureConfig.createTarget(new TagMatchRuleTest(DEEPSLATE_ORE_REPLACEABLES), BRILLIANT_DEEPSLATE.getDefaultState()));
 
-	public static RegistryKey<ConfiguredFeature<?, ?>> UNDERGROUND_SOULSTONE_CONFIGURED = ConfiguredFeatureUtil.m_qoarwirv("underground_soulstone");
-	public static RegistryKey<ConfiguredFeature<?, ?>>     SURFACE_SOULSTONE_CONFIGURED     = ConfiguredFeatureUtil.m_qoarwirv("surface_soulstone");
-	public static RegistryKey<ConfiguredFeature<?, ?>>     BRILLIANT_STONE_VEIN_CONFIGURED  = ConfiguredFeatureUtil.m_qoarwirv("brilliant_stone");
-	public static RegistryKey<ConfiguredFeature<?, ?>>     BLAZING_QUARTZ_VEIN_CONFIGURED   = ConfiguredFeatureUtil.m_qoarwirv("blazing_quartz");
-	public static RegistryKey<ConfiguredFeature<?, ?>> CONFIGURED_RUNEWOOD_TREE_FEATURE = ConfiguredFeatureUtil.m_qoarwirv("runewood_tree");
-	public static RegistryKey<ConfiguredFeature<?, ?>> CONFIGURED_SOULWOOD_TREE_FEATURE = ConfiguredFeatureUtil.m_qoarwirv("soulwood_tree");
+	RegistryKey<ConfiguredFeature<?, ?>> UNDERGROUND_SOULSTONE_CONFIGURED = ConfiguredFeatureUtil.m_qoarwirv("underground_soulstone");
+	RegistryKey<ConfiguredFeature<?, ?>>     SURFACE_SOULSTONE_CONFIGURED     = ConfiguredFeatureUtil.m_qoarwirv("surface_soulstone");
+	RegistryKey<ConfiguredFeature<?, ?>>     BRILLIANT_STONE_VEIN_CONFIGURED  = ConfiguredFeatureUtil.m_qoarwirv("brilliant_stone");
+	RegistryKey<ConfiguredFeature<?, ?>>     BLAZING_QUARTZ_VEIN_CONFIGURED   = ConfiguredFeatureUtil.m_qoarwirv("blazing_quartz");
+	RegistryKey<ConfiguredFeature<?, ?>> CONFIGURED_RUNEWOOD_TREE_FEATURE = ConfiguredFeatureUtil.m_qoarwirv("runewood_tree");
+	RegistryKey<ConfiguredFeature<?, ?>> CONFIGURED_SOULWOOD_TREE_FEATURE = ConfiguredFeatureUtil.m_qoarwirv("soulwood_tree");
 
-	public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> bootstrapContext) {
+	static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> bootstrapContext) {
 		ConfiguredFeatureUtil.m_rajyrrbd(bootstrapContext, SURFACE_SOULSTONE_CONFIGURED, Feature.ORE, new OreFeatureConfig(SOULSTONE_ORE_TARGETS, 6));
 		ConfiguredFeatureUtil.m_rajyrrbd(bootstrapContext, UNDERGROUND_SOULSTONE_CONFIGURED, Feature.ORE, new OreFeatureConfig(SOULSTONE_ORE_TARGETS, 12));
 		ConfiguredFeatureUtil.m_rajyrrbd(bootstrapContext, BRILLIANT_STONE_VEIN_CONFIGURED, Feature.ORE, new OreFeatureConfig(BRILLIANCE_ORE_TARGETS, 4));

@@ -33,7 +33,7 @@ public class TyrvingItem extends LodestoneSwordItem {
         if (event.getSource().isMagic()) {
             return;
         }
-        if (attacker.level instanceof ServerLevel) {
+        if (attacker.world instanceof ServerWorld) {
             float spiritCount = SpiritHelper.getEntitySpiritCount(target) * 2f;
             if (target instanceof Player) {
                 spiritCount = 4 * Math.max(1, (1 + target.getArmorValue() / 12f) * (1 + (1 - 1 / (float)target.getArmorValue())) / 12f);
@@ -43,7 +43,7 @@ public class TyrvingItem extends LodestoneSwordItem {
                 target.invulnerableTime = 0;
                 target.hurt(DamageSourceRegistry.causeVoodooDamage(attacker), spiritCount);
             }
-            attacker.level.playSound(null, target.blockPosition(), SoundRegistry.VOID_SLASH.get(), SoundSource.PLAYERS, 1, 1f + target.level.random.nextFloat() * 0.25f);
+            attacker.world.playSound(null, target.blockPosition(), SoundRegistry.VOID_SLASH.get(), SoundSource.PLAYERS, 1, 1f + target.world.random.nextFloat() * 0.25f);
             MALUM_CHANNEL.send(PacketDistributor.TRACKING_ENTITY.with(() -> target), new MajorEntityEffectParticlePacket(SpiritTypeRegistry.ELDRITCH_SPIRIT.getColor(), target.getX(), target.getY() + target.getBbHeight() / 2, target.getZ()));
         }
     }

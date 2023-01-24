@@ -292,7 +292,7 @@ public interface MalumObjects {
 	Block CRACKED_SMALL_TAINTED_ROCK_BRICKS = register("cracked_small_tainted_rock_bricks", new Block(TAINTED_ROCK_PROPERTIES()),true);
 
 	Block TAINTED_ROCK_COLUMN = register("tainted_rock_column", new PillarBlock(TAINTED_ROCK_PROPERTIES()),true);
-	Block TAINTED_ROCK_COLUMN_CAP = register("tainted_rock_column_cap", new PillarBlock(TAINTED_ROCK_PROPERTIES()),true);
+	Block TAINTED_ROCK_COLUMN_CAP = register("tainted_rock_column_cap", new PillarCapBlock(TAINTED_ROCK_PROPERTIES()),true);
 
 	Block CUT_TAINTED_ROCK = register("cut_tainted_rock", new Block(TAINTED_ROCK_PROPERTIES()),true);
 	Block CHISELED_TAINTED_ROCK = register("chiseled_tainted_rock", new Block(TAINTED_ROCK_PROPERTIES()),true);
@@ -346,7 +346,7 @@ public interface MalumObjects {
 	Block CRACKED_SMALL_TWISTED_ROCK_BRICKS = register("cracked_small_twisted_rock_bricks", new Block(TWISTED_ROCK_PROPERTIES()),true);
 
 	Block TWISTED_ROCK_COLUMN = register("twisted_rock_column", new PillarBlock(TWISTED_ROCK_PROPERTIES()),true);
-	Block TWISTED_ROCK_COLUMN_CAP = register("twisted_rock_column_cap", new PillarBlock(TWISTED_ROCK_PROPERTIES()),true);
+	Block TWISTED_ROCK_COLUMN_CAP = register("twisted_rock_column_cap", new PillarCapBlock(TWISTED_ROCK_PROPERTIES()),true);
 
 	Block CUT_TWISTED_ROCK = register("cut_twisted_rock", new Block(TWISTED_ROCK_PROPERTIES()),true);
 	Block CHISELED_TWISTED_ROCK = register("chiseled_twisted_rock", new Block(TWISTED_ROCK_PROPERTIES()),true);

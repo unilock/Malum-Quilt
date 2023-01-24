@@ -312,7 +312,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity {
                     world.playSound(null, provider.getBlockPosForAltar(), MalumSoundRegistry.ALTAR_CONSUME, SoundCategory.BLOCKS, 1, 0.9f + world.random.nextFloat() * 0.2f);
                     Vec3d providedItemPos = provider.getItemPosForAltar();
                     if(world instanceof ServerWorld serverWorld){
-                        PlayerLookup.tracking(serverWorld, serverWorld.getWorldChunk(provider.getBlockPosForAltar()).getPos()).forEach(track -> AltarConsumeParticlePacket.send(track, providedStack, recipe.spirits.stream().map(s -> s.type.identifier).collect(Collectors.toList()), providedItemPos.x, providedItemPos.y, providedItemPos.z, itemPos.x, itemPos.y, itemPos.z));
+                        PlayerLookup.tracking(serverWorld, serverWorld.getWorldChunk(provider.getBlockPosForAltar()).getPos()).forEach(track -> AltarConsumeParticlePacket.send(track, recipe.spirits.stream().map(s -> s.type.identifier).collect(Collectors.toList()), providedItemPos.x, providedItemPos.y, providedItemPos.z, itemPos.x, itemPos.y, itemPos.z));
                     }
                     extrasInventory.insertItem(world, providedStack.split(requestedItem.count));
                     inventoryForAltar.updateData();
@@ -345,6 +345,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity {
         }
         spiritInventory.updateData();
         if(world instanceof ServerWorld serverWorld){
+			System.out.println(recipe.spirits.stream().map(s -> s.type.identifier).toList());
             PlayerLookup.tracking(serverWorld, serverWorld.getWorldChunk(pos).getPos()).forEach(track -> AltarCraftParticlePacket.send(track, recipe.spirits.stream().map(s -> s.type.identifier).collect(Collectors.toList()), itemPos));
         }
         progress *= 0.5f;

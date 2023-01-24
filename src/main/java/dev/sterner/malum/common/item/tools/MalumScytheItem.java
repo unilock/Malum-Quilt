@@ -45,9 +45,9 @@ public class MalumScytheItem extends SwordItem {
         if (!canSweep || event.getSource().isMagic() || event.getSource().getMsgId().equals(DamageSourceRegistry.SCYTHE_SWEEP_IDENTIFIER)) {
             return;
         }
-        int level = EnchantmentHelper.getEquipmentLevel(Enchantments.SWEEPING, attacker);
+        int world = EnchantmentHelper.getEquipmentWorld(Enchantments.SWEEPING, attacker);
         float damage = event.getAmount() * (0.5f + EnchantmentHelper.getSweepingMultiplier(attacker));
-        target.world.getOtherEntities(attacker, target.getBoundingBox().expand(1 + level * 0.25f)).forEach(e -> {
+        target.world.getOtherEntities(attacker, target.getBoundingBox().expand(1 + world * 0.25f)).forEach(e -> {
             if (e instanceof LivingEntity livingEntity) {
                 if (livingEntity.isAlive()) {
                     livingEntity.damage(new EntityDamageSource(MalumDamageSourceRegistry.SCYTHE_SWEEP_DAMAGE, attacker), damage);

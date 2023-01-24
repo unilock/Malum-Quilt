@@ -22,11 +22,11 @@ public class PlinthRenderer implements BlockEntityRenderer<PlinthCoreBlockEntity
 
 	@Override
 	public void render(PlinthCoreBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-		World level = MinecraftClient.getInstance().world;
+		World world = MinecraftClient.getInstance().world;
 		if (entity.data != null) {
 			matrices.push();
 			Vec3d offset = entity.itemOffset();
-			double y = offset.y + Math.sin(((level.getTime() % 360) + tickDelta) / 20f) * 0.08f;
+			double y = offset.y + Math.sin(((world.getTime() % 360) + tickDelta) / 20f) * 0.08f;
 			matrices.translate(offset.x, y, offset.z);
 			SoulEntityRenderer.renderSoul(matrices, entity.data.primaryType.getColor().darker());
 			matrices.pop();
@@ -39,10 +39,10 @@ public class PlinthRenderer implements BlockEntityRenderer<PlinthCoreBlockEntity
 			Vec3d offset = entity.itemOffset();
 			matrices.translate(offset.x, offset.y, offset.z);
 			if (stack.getItem() instanceof MalumSpiritItem) {
-				double y = Math.sin(((level.getTime() % 360) + tickDelta) / 20f) * 0.05f;
+				double y = Math.sin(((world.getTime() % 360) + tickDelta) / 20f) * 0.05f;
 				matrices.translate(0, y, 0);
 			}
-			matrices.multiply(Axis.Y_POSITIVE.rotationDegrees(((level.getTime() % 360) + tickDelta) * 3));
+			matrices.multiply(Axis.Y_POSITIVE.rotationDegrees(((world.getTime() % 360) + tickDelta) * 3));
 			matrices.scale(0.45f, 0.45f, 0.45f);
 			itemRenderer.renderItem(stack, ModelTransformation.Mode.FIXED, light, OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, 0);
 			matrices.pop();

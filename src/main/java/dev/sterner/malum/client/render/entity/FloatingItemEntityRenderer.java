@@ -122,8 +122,8 @@ public class FloatingItemEntityRenderer extends EntityRenderer<FloatingItemEntit
 	}
 
 	public static void renderSpiritGlimmer(MatrixStack matrices, VFXBuilders.WorldVFXBuilder builder, float tickDelta) {
-		ClientWorld level = MinecraftClient.getInstance().world;
-		float v = level.getTime() + tickDelta;
+		ClientWorld world = MinecraftClient.getInstance().world;
+		float v = world.getTime() + tickDelta;
 		float time = (float) ((Math.sin(v) + v % 15f) / 15f);
 		if (time >= 0.5f) {
 			time = 1f - time;

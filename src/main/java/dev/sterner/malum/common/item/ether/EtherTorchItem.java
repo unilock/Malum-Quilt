@@ -32,20 +32,20 @@ public class EtherTorchItem extends AbstractEtherItem {
     protected BlockState getPlacementState(ItemPlacementContext context) {
         BlockState blockstate = this.wallBlock.getPlacementState(context);
         BlockState blockstate1 = null;
-        World level = context.getWorld();
+        World world = context.getWorld();
         BlockPos blockpos = context.getBlockPos();
 
         for (Direction direction : context.getPlacementDirections()) {
             if (direction != Direction.UP) {
                 BlockState blockstate2 = direction == Direction.DOWN ? this.getBlock().getPlacementState(context) : blockstate;
-                if (blockstate2 != null && blockstate2.canPlaceAt(level, blockpos)) {
+                if (blockstate2 != null && blockstate2.canPlaceAt(world, blockpos)) {
                     blockstate1 = blockstate2;
                     break;
                 }
             }
         }
 
-        return blockstate1 != null && level.canPlace(blockstate1, blockpos, ShapeContext.absent()) ? blockstate1 : null;
+        return blockstate1 != null && world.canPlace(blockstate1, blockpos, ShapeContext.absent()) ? blockstate1 : null;
     }
 
     public void appendBlocks(Map<Block, Item> blockToItemMap, Item itemIn) {

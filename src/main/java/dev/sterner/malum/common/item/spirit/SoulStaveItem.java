@@ -45,7 +45,7 @@ public class SoulStaveItem extends Item implements ISoulContainerItem {
     }
 
     @Override
-    public void appendTooltip(ItemStack pStack, @Nullable World pLevel, List<Text> pTooltipComponents, TooltipContext pIsAdvanced) {
+    public void appendTooltip(ItemStack pStack, @Nullable World pWorld, List<Text> pTooltipComponents, TooltipContext pIsAdvanced) {
         if (pStack.hasNbt()) {
             NbtCompound tag = pStack.getNbt();
             if (tag.contains(MalumEntitySpiritData.SOUL_DATA)) {
@@ -54,7 +54,7 @@ public class SoulStaveItem extends Item implements ISoulContainerItem {
                 pTooltipComponents.addAll(data.createTooltip());
             }
         }
-        super.appendTooltip(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+        super.appendTooltip(pStack, pWorld, pTooltipComponents, pIsAdvanced);
     }
 
 
@@ -76,10 +76,10 @@ public class SoulStaveItem extends Item implements ISoulContainerItem {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        if (world instanceof ServerWorld serverLevel) {
+        if (world instanceof ServerWorld serverWorld) {
             MalumComponents.PLAYER_COMPONENT.maybeGet(user).ifPresent(c -> {
                 if (c.targetedSoulUUID != null) {
-                    LivingEntity entity = (LivingEntity) serverLevel.getEntity(c.targetedSoulUUID);
+                    LivingEntity entity = (LivingEntity) serverWorld.getEntity(c.targetedSoulUUID);
                     if (entity != null && entity.isAlive()) {
                         user.setCurrentHand(hand);
                     }

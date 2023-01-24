@@ -236,7 +236,7 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity {
 	}
 
 	@Environment(EnvType.CLIENT)
-	public void spawnUseParticles(World level, BlockPos pos, MalumSpiritType type) {
+	public void spawnUseParticles(World world, BlockPos pos, MalumSpiritType type) {
 		Color color = type.getColor();
 		ParticleBuilders.create(LodestoneParticles.WISP_PARTICLE)
 				.setAlpha(0.15f, 0f)
@@ -247,6 +247,6 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity {
 				.randomOffset(0.1f, 0.1f)
 				.setColor(color, color.darker())
 				.enableNoClip()
-				.repeat(level, pos.getX() + 0.5f, pos.getY() + 0.5f + Math.sin(level.getTime() / 20f) * 0.2f, pos.getZ() + 0.5f, 10);
+				.repeat(world, pos.getX() + 0.5f, pos.getY() + 0.5f + Math.sin(world.getTime() / 20f) * 0.2f, pos.getZ() + 0.5f, 10);
 	}
 }

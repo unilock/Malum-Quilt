@@ -167,7 +167,7 @@ public class RunewoodTreeFeature extends Feature<DefaultFeatureConfig> {
         return state.getBlock() instanceof MalumSaplingBlock || world.isAir(pos) || state.getMaterial().isReplaceable();
     }
 
-    public static void updateLeaves(WorldAccess pLevel, Set<BlockPos> logPositions) {
+    public static void updateLeaves(WorldAccess pWorld, Set<BlockPos> logPositions) {
         List<Set<BlockPos>> list = Lists.newArrayList();
         for (int j = 0; j < 6; ++j) {
             list.add(Sets.newHashSet());
@@ -179,10 +179,10 @@ public class RunewoodTreeFeature extends Feature<DefaultFeatureConfig> {
             for (Direction direction : Direction.values()) {
                 mutable.set(pos, direction);
                 if (!logPositions.contains(mutable)) {
-                    BlockState blockstate = pLevel.getBlockState(mutable);
+                    BlockState blockstate = pWorld.getBlockState(mutable);
                     if (blockstate.contains(Properties.DISTANCE_1_7)) {
                         list.get(0).add(mutable.toImmutable());
-                        pLevel.setBlockState(mutable, blockstate.with(Properties.DISTANCE_1_7, 1), 19);
+                        pWorld.setBlockState(mutable, blockstate.with(Properties.DISTANCE_1_7, 1), 19);
                     }
                 }
             }
@@ -196,12 +196,12 @@ public class RunewoodTreeFeature extends Feature<DefaultFeatureConfig> {
                 for (Direction direction1 : Direction.values()) {
                     mutable.set(pos, direction1);
                     if (!set.contains(mutable) && !set1.contains(mutable)) {
-                        BlockState blockstate1 = pLevel.getBlockState(mutable);
+                        BlockState blockstate1 = pWorld.getBlockState(mutable);
                         if (blockstate1.contains(Properties.DISTANCE_1_7)) {
                             int k = blockstate1.get(Properties.DISTANCE_1_7);
                             if (k > l + 1) {
                                 BlockState blockstate2 = blockstate1.with(Properties.DISTANCE_1_7, l + 1);
-                                pLevel.setBlockState(mutable, blockstate2, 19);
+                                pWorld.setBlockState(mutable, blockstate2, 19);
                                 set1.add(mutable.toImmutable());
                             }
                         }

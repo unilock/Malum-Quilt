@@ -9,7 +9,7 @@ import dev.sterner.malum.common.entity.boomerang.ScytheBoomerangEntity;
 import dev.sterner.malum.common.item.spirit.SpiritPouchItem;
 import dev.sterner.malum.common.registry.MalumAttributeRegistry;
 import dev.sterner.malum.common.registry.MalumDamageSourceRegistry;
-import dev.sterner.malum.common.registry.MalumTags;
+import dev.sterner.malum.common.registry.MalumTagRegistry;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.damage.DamageSource;
@@ -33,7 +33,7 @@ public class SpiritHarvestHandler {
 			if (source.getSource() instanceof ScytheBoomerangEntity) {
 				stack = ((ScytheBoomerangEntity) source.getSource()).scythe;
 			}
-			if (stack.isIn(MalumTags.SOUL_HUNTER_WEAPON)) {
+			if (stack.isIn(MalumTagRegistry.SOUL_HUNTER_WEAPON)) {
 				MalumComponents.SPIRIT_COMPONENT.get(target).exposedSoul = 200;
 			}
 		}

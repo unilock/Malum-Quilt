@@ -19,13 +19,13 @@ public class SpiritJarRenderer implements BlockEntityRenderer<SpiritJarBlockEnti
 
 	@Override
 	public void render(SpiritJarBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-		World level = MinecraftClient.getInstance().world;
+		World world = MinecraftClient.getInstance().world;
 		ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
 		if (entity.type != null && entity.type.getSplinterItem() != null) {
 			matrices.push();
-			double y = 0.5f + Math.sin((level.getTime() + tickDelta) / 20f) * 0.2f;
+			double y = 0.5f + Math.sin((world.getTime() + tickDelta) / 20f) * 0.2f;
 			matrices.translate(0.5f, y, 0.5f);
-			matrices.multiply(Axis.Y_POSITIVE.rotationDegrees(((level.getTime() % 360) + tickDelta) * 3));
+			matrices.multiply(Axis.Y_POSITIVE.rotationDegrees(((world.getTime() % 360) + tickDelta) * 3));
 			matrices.scale(0.6f, 0.6f, 0.6f);
 			itemRenderer.renderItem(entity.type.getSplinterItem().getDefaultStack(), ModelTransformation.Mode.FIXED, light, OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, 0);
 			matrices.pop();

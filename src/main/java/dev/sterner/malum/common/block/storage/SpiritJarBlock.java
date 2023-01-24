@@ -34,8 +34,8 @@ public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedE
 		super.onBlockBreakStart(state, world, pos, player);
 	}
 
-	public boolean handleAttack(World pLevel, BlockPos pPos, PlayerEntity pPlayer) {
-		BlockEntity be = pLevel.getBlockEntity(pPos);
+	public boolean handleAttack(World pWorld, BlockPos pPos, PlayerEntity pPlayer) {
+		BlockEntity be = pWorld.getBlockEntity(pPos);
 		if (be instanceof SpiritJarBlockEntity jar) {
 			var jarHandler = jar.inventory.getValueUnsafer();
 			ItemStack item = jarHandler.extractItemStack(0, pPlayer.isSneaking() ? 64 : 1, false);
@@ -43,8 +43,8 @@ public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedE
 			if (!item.isEmpty()) {
 				ItemHandlerHelper.giveItemToPlayer(pPlayer, item, pPlayer.getInventory().selectedSlot);
 
-				if (!pLevel.isClient()) {
-					BlockHelper.updateAndNotifyState(pLevel, pPos);
+				if (!pWorld.isClient()) {
+					BlockHelper.updateAndNotifyState(pWorld, pPos);
 				}
 				return true;
 			}

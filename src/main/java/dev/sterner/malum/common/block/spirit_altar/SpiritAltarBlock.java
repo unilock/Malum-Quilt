@@ -71,10 +71,10 @@ public class SpiritAltarBlock<T extends SpiritAltarBlockEntity> extends WaterLog
 	}
 
 	@Override
-	public void onBreak(@NotNull World level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull PlayerEntity player) {
-		if(level.getBlockEntity(pos) instanceof SpiritAltarBlockEntity sa){
+	public void onBreak(@NotNull World world, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull PlayerEntity player) {
+		if(world.getBlockEntity(pos) instanceof SpiritAltarBlockEntity sa){
 			sa.onBreak(player);
 		}
-		super.onBreak(level, pos, state, player);
+		super.onBreak(world, pos, state, player);
 	}
 }

@@ -18,8 +18,8 @@ public class EtherSconceItem extends EtherTorchItem{
     }
 
     public void particleTick(ItemStack stack, float x, float y, ScreenParticle.RenderOrder renderOrder) {
-        World level = MinecraftClient.getInstance().world;
-        float gameTime = level.getTime() + MinecraftClient.getInstance().getTickDelta();
+        World world = MinecraftClient.getInstance().world;
+        float gameTime = world.getTime() + MinecraftClient.getInstance().getTickDelta();
         AbstractEtherItem etherItem = (AbstractEtherItem) stack.getItem();
         Color firstColor = new Color(etherItem.getFirstColor(stack));
         Color secondColor = new Color(etherItem.getSecondColor(stack));

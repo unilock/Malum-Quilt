@@ -22,7 +22,7 @@ public class CurioProspectorBelt extends TrinketItem {
     public static LootContext.Builder applyFortune(Entity source, LootContext.Builder builder) {
         if (source instanceof LivingEntity livingEntity) {
             if (CurioHelper.hasCurioEquipped(livingEntity, MalumObjects.BELT_OF_THE_PROSPECTOR)) {
-                int fortuneBonus = 3 + CuriosApi.getCuriosHelper().getCuriosHandler(livingEntity).map(h -> h.getFortuneLevel(null)).orElse(0);
+                int fortuneBonus = 3 + CuriosApi.getCuriosHelper().getCuriosHandler(livingEntity).map(h -> h.getFortuneWorld(null)).orElse(0);
                 ItemStack diamondPickaxe = new ItemStack(Items.DIAMOND_PICKAXE);
                 diamondPickaxe.addEnchantment(Enchantments.FORTUNE, fortuneBonus);
                 return builder.parameter(LootContextParameters.TOOL, diamondPickaxe);

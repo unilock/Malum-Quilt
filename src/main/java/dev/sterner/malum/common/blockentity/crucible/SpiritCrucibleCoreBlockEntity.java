@@ -330,9 +330,9 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
         inventory.setStackInSlot(0, result);
 
         if (repairRecipe.repairMaterial.getItem() instanceof MalumSpiritItem malumSpiritItem) {
-            PlayerLookup.tracking(this).forEach(trackingPlayer -> AltarConsumeParticlePacket.send(trackingPlayer, repairMaterial, List.of(malumSpiritItem.type.identifier), providedItemPos.x, providedItemPos.y, providedItemPos.z, itemPos.x, itemPos.y, itemPos.z));
+            PlayerLookup.tracking(this).forEach(trackingPlayer -> AltarConsumeParticlePacket.send(trackingPlayer, List.of(malumSpiritItem.type.identifier), providedItemPos.x, providedItemPos.y, providedItemPos.z, itemPos.x, itemPos.y, itemPos.z));
         } else {
-            PlayerLookup.tracking(this).forEach(trackingPlayer -> AltarConsumeParticlePacket.send(trackingPlayer, repairMaterial, repairRecipe.spirits.stream().map(s -> s.type.identifier).collect(Collectors.toList()), providedItemPos.x, providedItemPos.y, providedItemPos.z, itemPos.x, itemPos.y, itemPos.z));
+            PlayerLookup.tracking(this).forEach(trackingPlayer -> AltarConsumeParticlePacket.send(trackingPlayer, repairRecipe.spirits.stream().map(s -> s.type.identifier).collect(Collectors.toList()), providedItemPos.x, providedItemPos.y, providedItemPos.z, itemPos.x, itemPos.y, itemPos.z));
         }
 
         repairMaterial.decrement(repairRecipe.repairMaterial.getCount());

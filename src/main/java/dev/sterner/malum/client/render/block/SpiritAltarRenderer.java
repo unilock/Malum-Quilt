@@ -22,10 +22,10 @@ public class SpiritAltarRenderer implements BlockEntityRenderer<SpiritAltarBlock
 
 	@Override
 	public void render(SpiritAltarBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-		World level = MinecraftClient.getInstance().world;
+		World world = MinecraftClient.getInstance().world;
 		ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
 		LodestoneBlockEntityInventory inventory = entity.spiritInventory;
-		if (level == null) {
+		if (world == null) {
 			return;
 		}
 		int spiritsRendered = 0;
@@ -35,7 +35,7 @@ public class SpiritAltarRenderer implements BlockEntityRenderer<SpiritAltarBlock
 				matrices.push();
 				Vector3f offset = new Vector3f(entity.getSpiritOffset(spiritsRendered++, tickDelta).m_sruzucpd());
 				matrices.translate(offset.x(), offset.y(), offset.z());
-				matrices.multiply(Axis.Y_POSITIVE.rotationDegrees(((level.getTime() % 360) + tickDelta) * 3));
+				matrices.multiply(Axis.Y_POSITIVE.rotationDegrees(((world.getTime() % 360) + tickDelta) * 3));
 				matrices.scale(0.5f, 0.5f, 0.5f);
 				itemRenderer.renderItem(item, ModelTransformation.Mode.FIXED, light, OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, 0);
 				matrices.pop();
@@ -46,7 +46,7 @@ public class SpiritAltarRenderer implements BlockEntityRenderer<SpiritAltarBlock
 			matrices.push();
 			Vec3d offset = entity.itemOffset();
 			matrices.translate(offset.x, offset.y, offset.z);
-			matrices.multiply(Axis.Y_POSITIVE.rotationDegrees(((level.getTime() % 360) + tickDelta) * 3));
+			matrices.multiply(Axis.Y_POSITIVE.rotationDegrees(((world.getTime() % 360) + tickDelta) * 3));
 			matrices.scale(0.45f, 0.45f, 0.45f);
 			itemRenderer.renderItem(stack, ModelTransformation.Mode.FIXED, light, OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, 0);
 			matrices.pop();

@@ -23,16 +23,16 @@ public class EthericNitrateEntity extends AbstractNitrateEntity{
     public static final Color FIRST_COLOR = MalumSpiritTypeRegistry.INFERNAL_SPIRIT.getColor();
     public static final Color SECOND_COLOR = new Color(178, 28, 73);
 
-    public EthericNitrateEntity(World level) {
-        super(MalumEntityRegistry.ETHERIC_NITRATE, level);
+    public EthericNitrateEntity(World world) {
+        super(MalumEntityRegistry.ETHERIC_NITRATE, world);
     }
 
-    public EthericNitrateEntity(double x, double y, double z, World level) {
-        super(MalumEntityRegistry.ETHERIC_NITRATE, x, y, z, level);
+    public EthericNitrateEntity(double x, double y, double z, World world) {
+        super(MalumEntityRegistry.ETHERIC_NITRATE, x, y, z, world);
     }
 
-    public EthericNitrateEntity(LivingEntity owner, World level) {
-        super(MalumEntityRegistry.ETHERIC_NITRATE, owner, level);
+    public EthericNitrateEntity(LivingEntity owner, World world) {
+        super(MalumEntityRegistry.ETHERIC_NITRATE, owner, world);
     }
 
     @Override

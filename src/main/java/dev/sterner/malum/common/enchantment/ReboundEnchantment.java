@@ -29,8 +29,8 @@ public class ReboundEnchantment extends Enchantment {
     public static TypedActionResult<ItemStack> onRightClickItem(@NotNull PlayerEntity player, World world, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
         if (!player.isSpectator()) {
-            int enchantmentLevel = EnchantmentHelper.getLevel(MalumEnchantmentRegistry.REBOUND, stack);
-            if (enchantmentLevel > 0) {
+            int enchantmentWorld = EnchantmentHelper.getLevel(MalumEnchantmentRegistry.REBOUND, stack);
+            if (enchantmentWorld > 0) {
                 if (!world.isClient) {
                     player.setStackInHand(hand, ItemStack.EMPTY);
                     double baseDamage = player.getAttributes().getValue(EntityAttributes.GENERIC_ATTACK_DAMAGE);

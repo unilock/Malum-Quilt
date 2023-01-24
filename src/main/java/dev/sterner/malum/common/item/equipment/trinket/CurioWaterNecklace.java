@@ -47,7 +47,7 @@ public class CurioWaterNecklace extends TrinketItem implements SpiritCollectActi
     /*TODO forge event curio
     @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
-        if (livingEntity.level.getGameTime() % 40L == 0 && livingEntity.isSwimming() && livingEntity.hasEffect(MobEffects.CONDUIT_POWER)) {
+        if (livingEntity.world.getGameTime() % 40L == 0 && livingEntity.isSwimming() && livingEntity.hasEffect(MobEffects.CONDUIT_POWER)) {
             AttributeInstance attribute = livingEntity.getAttribute(ForgeMod.SWIM_SPEED.get());
             if (attribute != null) {
                 attribute.setDirty();
@@ -65,7 +65,7 @@ public class CurioWaterNecklace extends TrinketItem implements SpiritCollectActi
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         LivingEntity entity = slotContext.entity();
-        if (entity.level.getGameTime() % 20L == 0) {
+        if (entity.world.getGameTime() % 20L == 0) {
             if (entity.hasEffect(MobEffects.CONDUIT_POWER)) {
                 entity.heal(2);
             }

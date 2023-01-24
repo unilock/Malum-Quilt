@@ -97,12 +97,12 @@ public class SpiritInfusionRecipe extends ILodestoneRecipe {
         return output.getItem().equals(this.output.getItem());
     }
 
-    public static SpiritInfusionRecipe getRecipe(World level, ItemStack stack, List<ItemStack> spirits) {
-        return getRecipe(level, c -> c.doesInputMatch(stack) && c.doSpiritsMatch(spirits));
+    public static SpiritInfusionRecipe getRecipe(World world, ItemStack stack, List<ItemStack> spirits) {
+        return getRecipe(world, c -> c.doesInputMatch(stack) && c.doSpiritsMatch(spirits));
     }
 
-    public static SpiritInfusionRecipe getRecipe(World level, Predicate<SpiritInfusionRecipe> predicate) {
-        List<SpiritInfusionRecipe> recipes = getRecipes(level);
+    public static SpiritInfusionRecipe getRecipe(World world, Predicate<SpiritInfusionRecipe> predicate) {
+        List<SpiritInfusionRecipe> recipes = getRecipes(world);
         for (SpiritInfusionRecipe recipe : recipes) {
             if (predicate.test(recipe)) {
                 return recipe;
@@ -111,8 +111,8 @@ public class SpiritInfusionRecipe extends ILodestoneRecipe {
         return null;
     }
 
-    public static List<SpiritInfusionRecipe> getRecipes(World level) {
-        return level.getRecipeManager().listAllOfType(MalumRecipeTypeRegistry.SPIRIT_INFUSION);
+    public static List<SpiritInfusionRecipe> getRecipes(World world) {
+        return world.getRecipeManager().listAllOfType(MalumRecipeTypeRegistry.SPIRIT_INFUSION);
     }
 
     public static class Serializer implements RecipeSerializer<SpiritInfusionRecipe> {

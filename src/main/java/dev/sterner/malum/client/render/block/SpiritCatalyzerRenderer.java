@@ -20,14 +20,14 @@ public class SpiritCatalyzerRenderer implements BlockEntityRenderer<SpiritCataly
 
 	@Override
 	public void render(SpiritCatalyzerCoreBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-		World level = MinecraftClient.getInstance().world;
+		World world = MinecraftClient.getInstance().world;
 		ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
 		ItemStack stack = entity.inventory.getStack(0);
 		if (!stack.isEmpty()) {
 			matrices.push();
 			Vec3d offset = entity.itemOffset();
 			matrices.translate(offset.x, offset.y, offset.z);
-			matrices.multiply(Axis.Y_POSITIVE.rotationDegrees(((level.getTime() % 360) + tickDelta) * 3));
+			matrices.multiply(Axis.Y_POSITIVE.rotationDegrees(((world.getTime() % 360) + tickDelta) * 3));
 			matrices.scale(0.45f, 0.45f, 0.45f);
 			itemRenderer.renderItem(stack, ModelTransformation.Mode.FIXED, light, OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, 0);
 			matrices.pop();

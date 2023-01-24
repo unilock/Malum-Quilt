@@ -3,7 +3,7 @@ package dev.sterner.malum.common.rite.effect;
 
 import com.sammy.lodestone.helpers.BlockHelper;
 import dev.sterner.malum.common.blockentity.totem.TotemBaseBlockEntity;
-import dev.sterner.malum.common.registry.MalumBlockTagRegistry;
+import dev.sterner.malum.common.registry.MalumTagRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -77,6 +77,6 @@ public abstract class MalumRiteEffect {
 	}
 
 	public boolean canAffectBlock(TotemBaseBlockEntity totemBase, Set<Block> filters, BlockState state, BlockPos pos) {
-		return (filters.isEmpty() || filters.contains(state.getBlock())) && !state.isIn(MalumBlockTagRegistry.RITE_IMMUNE);
+		return (filters.isEmpty() || filters.contains(state.getBlock())) && !state.isIn(MalumTagRegistry.RITE_IMMUNE);
 	}
 }

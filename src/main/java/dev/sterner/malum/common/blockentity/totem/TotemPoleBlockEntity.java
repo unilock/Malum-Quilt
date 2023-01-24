@@ -46,7 +46,7 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
     public boolean haunted;
     public int desiredColor;
     public int currentColor;
-    public int baseLevel;
+    public int baseWorld;
     public TotemBaseBlockEntity totemBase;
     public boolean corrupted;
     public Block logBlock;
@@ -168,8 +168,8 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
         if (currentColor != 0) {
             compound.putInt("currentColor", currentColor);
         }
-        if (baseLevel != 0) {
-            compound.putInt("baseLevel", baseLevel);
+        if (baseWorld != 0) {
+            compound.putInt("baseWorld", baseWorld);
         }
         compound.putBoolean("corrupted", corrupted);
         super.writeNbt(compound);
@@ -182,7 +182,7 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
         }
         desiredColor = compound.getInt("desiredColor");
         currentColor = compound.getInt("currentColor");
-        baseLevel = compound.getInt("baseLevel");
+        baseWorld = compound.getInt("baseWorld");
         corrupted = compound.getBoolean("corrupted");
         super.readNbt(compound);
     }
@@ -190,7 +190,7 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
     @Override
     public void init() {
         super.init();
-        if (world.getBlockEntity(new BlockPos(getPos().getX(), baseLevel, getPos().getZ())) instanceof TotemBaseBlockEntity totemBaseBlockEntity) {
+        if (world.getBlockEntity(new BlockPos(getPos().getX(), baseWorld, getPos().getZ())) instanceof TotemBaseBlockEntity totemBaseBlockEntity) {
             totemBase = totemBaseBlockEntity;
         }
     }
@@ -242,7 +242,7 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
             PlayerLookup.tracking(serverWorld, serverWorld.getWorldChunk(pos).getPos()).forEach(track -> BlockParticlePacket.send(track, type.getColor(), pos));
         }
         this.desiredColor = 10;
-        this.baseLevel = pos.getY() - height;
+        this.baseWorld = pos.getY() - height;
         this.totemBase = totemBase;
         this.haunted = false;
         BlockHelper.updateState(world, pos);
@@ -264,7 +264,7 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
         if (world.isClient()) {
             return;
         }
-        BlockPos basePos = new BlockPos(pos.getX(), baseLevel, pos.getZ());
+        BlockPos basePos = new BlockPos(pos.getX(), baseWorld, pos.getZ());
         if (world.getBlockEntity(basePos) instanceof TotemBaseBlockEntity base) {
             if (base.active) {
                 base.endRite();

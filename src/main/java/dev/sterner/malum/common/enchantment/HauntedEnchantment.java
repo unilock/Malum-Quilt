@@ -14,7 +14,7 @@ public class HauntedEnchantment extends Enchantment {
         return 3;
     }
 
-    public int getMagicDamage(int level) {
-        return 1 + level;
+    public int getMagicDamage(int world) {
+        return 1 + world;
     }
 }

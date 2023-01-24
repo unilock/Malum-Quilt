@@ -51,16 +51,16 @@ public class SpiritTransmutationRecipe extends ILodestoneRecipe {
         return id;
     }
 
-    public static SpiritTransmutationRecipe getRecipe(World level, Item item) {
-        return getRecipe(level, item.getDefaultStack());
+    public static SpiritTransmutationRecipe getRecipe(World world, Item item) {
+        return getRecipe(world, item.getDefaultStack());
     }
 
-    public static SpiritTransmutationRecipe getRecipe(World level, ItemStack item) {
-        return getRecipe(level, r -> r.ingredient.test(item));
+    public static SpiritTransmutationRecipe getRecipe(World world, ItemStack item) {
+        return getRecipe(world, r -> r.ingredient.test(item));
     }
 
-    public static SpiritTransmutationRecipe getRecipe(World level, Predicate<SpiritTransmutationRecipe> predicate) {
-        List<SpiritTransmutationRecipe> recipes = getRecipes(level);
+    public static SpiritTransmutationRecipe getRecipe(World world, Predicate<SpiritTransmutationRecipe> predicate) {
+        List<SpiritTransmutationRecipe> recipes = getRecipes(world);
         for (SpiritTransmutationRecipe recipe : recipes) {
             if (predicate.test(recipe)) {
                 return recipe;
@@ -69,8 +69,8 @@ public class SpiritTransmutationRecipe extends ILodestoneRecipe {
         return null;
     }
 
-    public static List<SpiritTransmutationRecipe> getRecipes(World level) {
-        return level.getRecipeManager().listAllOfType(MalumRecipeTypeRegistry.SPIRIT_TRANSMUTATION);
+    public static List<SpiritTransmutationRecipe> getRecipes(World world) {
+        return world.getRecipeManager().listAllOfType(MalumRecipeTypeRegistry.SPIRIT_TRANSMUTATION);
     }
 
     public static class Serializer implements RecipeSerializer<SpiritTransmutationRecipe> {

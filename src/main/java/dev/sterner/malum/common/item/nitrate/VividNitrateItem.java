@@ -21,11 +21,11 @@ public class VividNitrateItem extends AbstractNitrateItem{
 
     @Override
     public void particleTick(ItemStack stack, float x, float y, ScreenParticle.RenderOrder renderOrder) {
-        World level = MinecraftClient.getInstance().world;
+        World world = MinecraftClient.getInstance().world;
         float partialTick = MinecraftClient.getInstance().getTickDelta();
-        float gameTime = (float) (level.getTime() + partialTick + Math.sin(((level.getTime() + partialTick) * 0.1f)));
-        Color firstColor = COLOR_FUNCTION.apply(new VividNitrateEntity.ColorFunctionData(level, 40f, 0, partialTick)).brighter();
-        Color secondColor = COLOR_FUNCTION.apply(new VividNitrateEntity.ColorFunctionData(level, 40f, 0.125f, partialTick)).darker();
+        float gameTime = (float) (world.getTime() + partialTick + Math.sin(((world.getTime() + partialTick) * 0.1f)));
+        Color firstColor = COLOR_FUNCTION.apply(new VividNitrateEntity.ColorFunctionData(world, 40f, 0, partialTick)).brighter();
+        Color secondColor = COLOR_FUNCTION.apply(new VividNitrateEntity.ColorFunctionData(world, 40f, 0.125f, partialTick)).darker();
         ParticleBuilders.create(LodestoneScreenParticles.STAR)
             .setAlpha(0.04f, 0f)
             .setLifetime(6)
