@@ -5,7 +5,6 @@ import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
 import dev.sterner.malum.Malum;
 import dev.sterner.malum.common.spirit.MalumSpiritType;
 import dev.sterner.malum.common.spirit.SpiritHelper;
-import io.netty.buffer.Unpooled;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.world.ClientWorld;

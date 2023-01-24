@@ -219,7 +219,7 @@ public interface MalumObjects {
 	Item RING_OF_CURATIVE_TALENT = register("ring_of_curative_talent", new CurioCurativeRing(settings()));
 	Item RING_OF_ARCANE_PROWESS = register("ring_of_arcane_prowess", new CurioRingOfProwess(settings()));
 	Item RING_OF_ALCHEMICAL_MASTERY = register("ring_of_alchemical_mastery", new CurioAlchemicalRing(settings()));
-	Item RING_OF_DESPERATE_VORACITY = register("ring_of_desperate_voracity", new CurioVeraciousRing(settings()));
+	Item RING_OF_DESPERATE_VORACITY = register("ring_of_desperate_voracity", new CurioVoraciousRing(settings()));
 	Item RING_OF_THE_HOARDER = register("ring_of_the_hoarder", new CurioHoarderRing(settings()));
 	Item RING_OF_THE_DEMOLITIONIST = register("ring_of_the_demolitionist", new CurioDemolitionistRing(settings()));
 

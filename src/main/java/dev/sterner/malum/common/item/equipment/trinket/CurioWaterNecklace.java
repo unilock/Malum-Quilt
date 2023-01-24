@@ -8,6 +8,7 @@ import dev.sterner.malum.api.interfaces.item.SpiritCollectActivity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ItemStack;
 
 import java.util.UUID;
@@ -42,6 +43,11 @@ public class CurioWaterNecklace extends TrinketItem implements SpiritCollectActi
     @Override
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
         super.tick(stack, slot, entity);
+		if (entity.world.getTime() % 20L == 0) {
+			if (entity.hasStatusEffect(StatusEffects.CONDUIT_POWER)) {
+				entity.heal(2);
+			}
+		}
     }
 
     /*TODO forge event curio
@@ -54,23 +60,5 @@ public class CurioWaterNecklace extends TrinketItem implements SpiritCollectActi
             }
         }
     }
-
-    @Override
-    public void takeDamageEvent(LivingHurtEvent event, LivingEntity attacker, LivingEntity attacked, ItemStack stack) {
-        if (attacked.hasEffect(MobEffects.CONDUIT_POWER)) {
-            event.setAmount(event.getAmount() * 0.5f);
-        }
-    }
-
-    @Override
-    public void curioTick(SlotContext slotContext, ItemStack stack) {
-        LivingEntity entity = slotContext.entity();
-        if (entity.world.getGameTime() % 20L == 0) {
-            if (entity.hasEffect(MobEffects.CONDUIT_POWER)) {
-                entity.heal(2);
-            }
-        }
-    }
-
-     */
+ */
 }

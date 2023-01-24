@@ -17,7 +17,6 @@ import net.minecraft.world.World;
 import org.quiltmc.qsl.networking.api.PlayerLookup;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static dev.sterner.malum.common.registry.MalumSpiritTypeRegistry.*;
 

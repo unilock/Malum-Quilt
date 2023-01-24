@@ -2,7 +2,6 @@ package dev.sterner.malum.common.registry;
 
 import dev.sterner.malum.common.block.ether.EtherBlock;
 import dev.sterner.malum.common.block.mirror.EmitterMirrorBlock;
-import dev.sterner.malum.common.block.storage.ItemPedestalBlock;
 import dev.sterner.malum.common.block.storage.ItemStandBlock;
 import dev.sterner.malum.common.block.totem.TotemBaseBlock;
 import dev.sterner.malum.common.block.totem.TotemPoleBlock;

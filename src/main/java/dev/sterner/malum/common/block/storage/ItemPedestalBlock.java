@@ -1,7 +1,6 @@
 package dev.sterner.malum.common.block.storage;
 
 import com.sammy.lodestone.systems.block.WaterLoggedEntityBlock;
-import dev.sterner.malum.common.blockentity.spirit_altar.SpiritAltarBlockEntity;
 import dev.sterner.malum.common.blockentity.storage.ItemPedestalBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

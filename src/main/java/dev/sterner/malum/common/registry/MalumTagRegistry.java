@@ -11,6 +11,16 @@ public interface MalumTagRegistry {
 	TagKey<Item> SCYTHE = itemMalumTag("scythe");
 	TagKey<Item> SOUL_HUNTER_WEAPON = itemMalumTag("soul_hunter_weapon");
 
+	TagKey<Item> RUNEWOOD_LOGS_BLOCK = itemMalumTag("runewood_logs");
+	TagKey<Item> SOULWOOD_LOGS_BLOCK = itemMalumTag("soulwood_logs");
+	TagKey<Item> SAPBALLS = itemMalumTag("sapballs");
+	TagKey<Item> GROSS_FOODS = itemMalumTag("gross_foods");
+	TagKey<Item> PROSPECTORS_TREASURE = itemMalumTag("prospectors_treasure");
+	TagKey<Item> METAL_NODES = itemMalumTag("metal_nodes");
+
+	TagKey<Item> KNIVES_FD = itemMalumTag("farmersdelight:tools/knives");
+
+
 	TagKey<Block> BLIGHTED_BLOCKS = blockMalumTag("blighted_blocks");
 	TagKey<Block> BLIGHTED_PLANTS = blockMalumTag("blighted_plants");
 

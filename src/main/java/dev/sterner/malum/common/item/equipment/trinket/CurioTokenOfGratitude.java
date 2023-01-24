@@ -25,33 +25,8 @@ public class CurioTokenOfGratitude extends TrinketItem {
         return map;
     }
 
-    /*TODO forge event
-    public static void accelerateEating(LivingEntityUseItemEvent.Start event) {
-        if (CurioHelper.hasCurioEquipped(event.getEntity(), ItemRegistry.RING_OF_DESPERATE_VORACITY.get())) {
-            if (event.getItem().is(GROSS_FOODS)) {
-                event.setDuration((int) (event.getDuration() * 0.5f));
-            }
-        }
-    }
 
-    public static void finishEating(LivingEntityUseItemEvent.Finish event) {
-        if (event.getEntity() instanceof PlayerEntity player) {
-            ItemStack stack = event.getResultStack();
-            if (CurioHelper.hasCurioEquipped(player, ItemRegistry.RING_OF_DESPERATE_VORACITY.get())) {
-                if (stack.isIn(GROSS_FOODS)) {
-                    StatusEffectInstance gluttony = player.getStatusEffect(MalumStatusEffectRegistry.GLUTTONY);
-                    if (gluttony != null) {
-                        player.getHungerManager().add(1, 0.25f*(gluttony.getAmplifier()+1));
-                    }
-                    player.getHungerManager().add(2, 1f);
-                    StatusEffectInstance hunger = player.getStatusEffect(StatusEffects.HUNGER);
-                    if (hunger != null) {
-                        EntityHelper.shortenEffect(hunger, player, 150);
-                    }
-                }
-            }
-        }
-    }
 
-     */
+    //TODO forge add all methods etc
+
 }

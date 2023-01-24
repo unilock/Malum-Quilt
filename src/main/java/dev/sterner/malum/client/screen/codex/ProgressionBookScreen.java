@@ -11,7 +11,6 @@ import dev.sterner.malum.api.event.ProgressionBookEntriesSetEvent;
 import dev.sterner.malum.client.screen.codex.objects.*;
 import dev.sterner.malum.client.screen.codex.page.*;
 import dev.sterner.malum.common.registry.MalumRiteRegistry;
-import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
 import dev.sterner.malum.common.rite.MalumRiteType;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;

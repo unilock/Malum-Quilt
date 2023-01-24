@@ -11,6 +11,7 @@
     "DefaultBiomeFeaturesMixin",
     "EnchantingTableBlockMixin",
     "EnchantmentScreenHandlerMixin",
+    "ExplosionMixin",
     "ItemStackMixin",
     "LivingEntityMixin",
     "PlacedFeatureUtilMixin",

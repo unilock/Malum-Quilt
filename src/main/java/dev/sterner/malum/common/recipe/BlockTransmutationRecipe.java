@@ -1,7 +1,6 @@
 package dev.sterner.malum.common.recipe;
 
 import com.google.gson.JsonObject;
-import net.minecraft.block.Block;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
@@ -16,10 +15,6 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.quiltmc.qsl.recipe.api.serializer.QuiltRecipeSerializer;
-
-import java.util.List;
-import java.util.function.Predicate;
-
 
 
 public record BlockTransmutationRecipe(Identifier id, String group, Ingredient input, ItemStack output) implements Recipe<Inventory> {

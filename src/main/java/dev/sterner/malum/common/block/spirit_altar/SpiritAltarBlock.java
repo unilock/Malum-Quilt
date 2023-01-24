@@ -1,13 +1,9 @@
 package dev.sterner.malum.common.block.spirit_altar;
 
 import com.sammy.lodestone.systems.block.WaterLoggedEntityBlock;
-import com.sammy.lodestone.systems.blockentity.BlockTickHelper;
 import dev.sterner.malum.common.blockentity.spirit_altar.SpiritAltarBlockEntity;
-import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -18,9 +14,6 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import javax.annotation.Nonnull;
 
 
 @SuppressWarnings("deprecation")

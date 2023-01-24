@@ -1,6 +1,7 @@
 package dev.sterner.malum;
 
 import dev.sterner.malum.common.enchantment.ReboundEnchantment;
+import dev.sterner.malum.common.event.MalumTrinketEvents;
 import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
 import dev.sterner.malum.common.registry.*;
 import dev.sterner.malum.common.spirit.SpiritDataReloadListener;
@@ -52,7 +53,7 @@ public class Malum implements ModInitializer {
 		MalumSpiritTypeRegistry.init();
 		MalumRiteRegistry.init();
 		//MalumPlacedFeatureRegistry.init();
-
+		MalumTrinketEvents.init();
 
 		UseItemCallback.EVENT.register(ReboundEnchantment::onRightClickItem);
 		ResourceLoader.get(ResourceType.SERVER_DATA).registerReloader(new SpiritDataReloadListenerFabricImpl());

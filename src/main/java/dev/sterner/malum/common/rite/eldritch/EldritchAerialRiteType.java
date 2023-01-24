@@ -2,7 +2,6 @@ package dev.sterner.malum.common.rite.eldritch;
 
 import dev.sterner.malum.common.blockentity.totem.TotemBaseBlockEntity;
 import dev.sterner.malum.common.network.packet.s2c.block.BlockDownwardSparkleParticlePacket;
-import dev.sterner.malum.common.network.packet.s2c.block.MinorBlockSparkleParticlePacket;
 import dev.sterner.malum.common.network.packet.s2c.entity.MinorEntityEffectParticlePacket;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
 import dev.sterner.malum.common.registry.MalumTagRegistry;
