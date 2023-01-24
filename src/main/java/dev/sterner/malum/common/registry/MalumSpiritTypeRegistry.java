@@ -24,13 +24,13 @@ public class MalumSpiritTypeRegistry {
 	public static SpiritTypeProperty SPIRIT_TYPE_PROPERTY = new SpiritTypeProperty("spirit_type", SPIRITS.values());
 
 	public static MalumSpiritType create(String identifier, Color color, Item splinterItem) {
-		MalumSpiritType spiritType = new MalumSpiritType(identifier, color, splinterItem);
+		MalumSpiritType spiritType = new MalumSpiritType(identifier, color, () -> splinterItem);
 		SPIRITS.put(identifier, spiritType);
 		return spiritType;
 	}
 
 	public static MalumSpiritType create(String identifier, Color color, Color endColor, Item splinterItem) {
-		MalumSpiritType spiritType = new MalumSpiritType(identifier, color, endColor, splinterItem);
+		MalumSpiritType spiritType = new MalumSpiritType(identifier, color, endColor, () -> splinterItem);
 		SPIRITS.put(identifier, spiritType);
 		return spiritType;
 	}

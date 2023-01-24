@@ -112,7 +112,7 @@ public class ProgressionBookScreen extends Screen {
 				.addPage(new SmeltingBookPage(HOLY_SAP, HOLY_SYRUP))
 				.addPage(new CraftingBookPage(new ItemStack(HOLY_SAPBALL, 3), Items.SLIME_BALL, HOLY_SAP))
 		);
-		/*
+
 
 		ENTRIES.add(new BookEntry(
 				"natural_quartz", NATURAL_QUARTZ, 3, 1)
@@ -120,7 +120,7 @@ public class ProgressionBookScreen extends Screen {
 				.addPage(new HeadlineTextItemPage("natural_quartz", "natural_quartz.1", NATURAL_QUARTZ))
 		);
 
-		 */
+
 
 		ENTRIES.add(new BookEntry(
 				"blazing_quartz", BLAZING_QUARTZ, 4, 2)

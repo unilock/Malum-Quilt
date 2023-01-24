@@ -67,7 +67,7 @@ public class SpiritCatalyzerCoreBlockEntity extends MultiBlockCoreEntity impleme
 
     @Override
     public void readNbt(NbtCompound compound) {
-        inventory.readNbt(compound);
+        inventory.load(compound);
         burnTicks = compound.getInt("burnTicks");
         super.readNbt(compound);
     }

@@ -1,18 +1,24 @@
 package dev.sterner.malum.common.block.storage;
 
 import com.sammy.lodestone.systems.block.WaterLoggedEntityBlock;
+import dev.sterner.malum.common.blockentity.spirit_altar.SpiritAltarBlockEntity;
 import dev.sterner.malum.common.blockentity.storage.ItemPedestalBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.function.BooleanBiFunction;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.stream.Stream;
 
@@ -41,7 +47,23 @@ public class ItemPedestalBlock<T extends ItemPedestalBlockEntity> extends WaterL
         return 0;
     }
 
-    @Override
+	@Override
+	public BlockEntity createBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
+		return new ItemPedestalBlockEntity(pos, state);
+	}
+
+	@Override
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		if (world.isClient) {
+			return ActionResult.SUCCESS;
+		}
+		if(world.getBlockEntity(pos) instanceof ItemPedestalBlockEntity itemPedestalBlockEntity){
+			itemPedestalBlockEntity.onUse(player, hand);
+		}
+		return ActionResult.PASS;
+	}
+
+	@Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
     }

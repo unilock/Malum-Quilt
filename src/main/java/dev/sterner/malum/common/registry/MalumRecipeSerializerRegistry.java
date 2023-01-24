@@ -17,9 +17,9 @@ import static dev.sterner.malum.Malum.MODID;
 public class MalumRecipeSerializerRegistry {
 	public static Map<Identifier, RecipeSerializer<? extends Recipe<?>>> RECIPE_SERIALIZER = new LinkedHashMap<>();
 
-	public static RecipeSerializer<SpiritInfusionRecipe> SPIRIT_INFUSION_SERIALIZER                   = register("spirit_infusion",     new SpiritInfusionRecipe.Serializer());
+	public static RecipeSerializer<SpiritInfusionRecipe> SPIRIT_INFUSION_SERIALIZER                   = register(SpiritInfusionRecipe.NAME,     new SpiritInfusionRecipe.Serializer());
    // RecipeSerializer<SavedNbtRecipe> SAVED_NBT_RECIPE_SERIALIZER                        = register("nbt_carry",           new SavedNbtRecipe.Serializer());
-    public static RecipeSerializer<BlockTransmutationRecipe> BLOCK_TRANSMUTATION_SERIALIZER           = register("block_transmutation", new BlockTransmutationRecipe.Serializer<>(BlockTransmutationRecipe::new));
+    //public static RecipeSerializer<BlockTransmutationRecipe> BLOCK_TRANSMUTATION_SERIALIZER           = register("block_transmutation", new BlockTransmutationRecipe.Serializer<>(BlockTransmutationRecipe::new));
 	public static RecipeSerializer<SpiritFocusingRecipe> SPIRIT_FOCUSING_SERIALIZER                   = register("spirit_focusing", new SpiritFocusingRecipe.Serializer());
 	public static RecipeSerializer<SpiritRepairRecipe> SPIRIT_REPAIR_SERIALIZER                       = register("spirit_repair", new SpiritRepairRecipe.Serializer());
 

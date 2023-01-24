@@ -149,8 +149,8 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
         maxDamage = compound.getInt("maxDamage");
         queuedCracks = compound.getInt("queuedCracks");
 
-        inventory.readNbt(compound);
-        spiritInventory.readNbt(compound, "spiritInventory");
+        inventory.load(compound);
+        spiritInventory.load(compound, "spiritInventory");
 
         loadTwistedTabletData(world, compound);
         loadAcceleratorData(world, compound);

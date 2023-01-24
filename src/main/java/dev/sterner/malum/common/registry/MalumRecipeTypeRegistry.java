@@ -17,9 +17,9 @@ import static dev.sterner.malum.Malum.MODID;
 public class MalumRecipeTypeRegistry {
 	public static Map<Identifier, RecipeType<? extends Recipe<?>>> RECIPE_TYPES = new LinkedHashMap<>();
 
-	public static RecipeType<SpiritInfusionRecipe> SPIRIT_INFUSION           = register("spirit_infusion");
+	public static RecipeType<SpiritInfusionRecipe> SPIRIT_INFUSION           = register(SpiritInfusionRecipe.NAME);
     //RecipeType<SavedNbtRecipe> SAVED_NBT                       = register("nbt_carry");
-	public static RecipeType<BlockTransmutationRecipe> BLOCK_TRANSMUTATION   = register("block_transmutation");
+	//public static RecipeType<BlockTransmutationRecipe> BLOCK_TRANSMUTATION   = register("block_transmutation");
 	public static RecipeType<SpiritFocusingRecipe> SPIRIT_FOCUSING           = register(SpiritFocusingRecipe.NAME);
 	public static RecipeType<SpiritRepairRecipe> SPIRIT_REPAIR               = register(SpiritRepairRecipe.NAME);
 	public static RecipeType<AugmentingRecipe> AUGMENTING                    = register(AugmentingRecipe.NAME);

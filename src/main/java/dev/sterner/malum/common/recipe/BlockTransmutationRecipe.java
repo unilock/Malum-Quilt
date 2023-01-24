@@ -20,17 +20,17 @@ import org.quiltmc.qsl.recipe.api.serializer.QuiltRecipeSerializer;
 import java.util.List;
 import java.util.function.Predicate;
 
-import static dev.sterner.malum.common.registry.MalumRecipeSerializerRegistry.BLOCK_TRANSMUTATION_SERIALIZER;
-import static dev.sterner.malum.common.registry.MalumRecipeTypeRegistry.BLOCK_TRANSMUTATION;
 
 
 public record BlockTransmutationRecipe(Identifier id, String group, Ingredient input, ItemStack output) implements Recipe<Inventory> {
-
+/*
     @Nullable
     public static BlockTransmutationRecipe getRecipe(Block block, World world) {
         return getRecipe(world, recipe -> recipe.input.test(block.asItem().getDefaultStack()));
     }
 
+ */
+/*
     @Nullable
     public static BlockTransmutationRecipe getRecipe(World world, Predicate<BlockTransmutationRecipe> predicate) {
         List<BlockTransmutationRecipe> recipes = getRecipes(world);
@@ -42,9 +42,13 @@ public record BlockTransmutationRecipe(Identifier id, String group, Ingredient i
         return null;
     }
 
+ */
+/*
     public static List<BlockTransmutationRecipe> getRecipes(World world) {
         return world.getRecipeManager().listAllOfType(BLOCK_TRANSMUTATION);
     }
+
+ */
 
     @Override
     public boolean matches(Inventory inventory, World world) {
@@ -83,12 +87,12 @@ public record BlockTransmutationRecipe(Identifier id, String group, Ingredient i
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return BLOCK_TRANSMUTATION_SERIALIZER;
+        return null;
     }
 
     @Override
     public RecipeType<?> getType() {
-        return BLOCK_TRANSMUTATION;
+        return null;
     }
 
     public record Serializer<T extends BlockTransmutationRecipe>(RecipeFactory<T> recipeFactory) implements RecipeSerializer<T>, QuiltRecipeSerializer<T> {

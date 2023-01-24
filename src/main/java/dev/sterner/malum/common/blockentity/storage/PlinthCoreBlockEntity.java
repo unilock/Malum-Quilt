@@ -55,7 +55,7 @@ public class PlinthCoreBlockEntity extends MultiBlockCoreEntity {
 
     @Override
     public void readNbt(NbtCompound compound) {
-        inventory.readNbt(compound);
+        inventory.load(compound);
         if (compound.contains(MalumEntitySpiritData.SOUL_DATA)) {
             data = MalumEntitySpiritData.load(compound);
         } else {

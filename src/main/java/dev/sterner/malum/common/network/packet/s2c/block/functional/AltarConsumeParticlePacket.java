@@ -46,35 +46,32 @@ public class AltarConsumeParticlePacket {
 
     public static void send(PlayerEntity player, ItemStack stack, List<String> spirits, double posX, double posY, double posZ, double altarPosX, double altarPosY, double altarPosZ) {
         PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
-        buf.writeItemStack(stack);
-
-        for (String s : spirits){
-            buf.writeString(s);
-        }
-
-        buf.writeDouble(posX);
-        buf.writeDouble(posY);
-        buf.writeDouble(posZ);
-
-        buf.writeDouble(altarPosX);
-        buf.writeDouble(altarPosY);
-        buf.writeDouble(altarPosZ);
+		buf.writeItemStack(stack);
+		buf.writeInt(spirits.size());
+		for (String string : spirits) {
+			buf.writeString(string);
+		}
+		buf.writeDouble(posX);
+		buf.writeDouble(posY);
+		buf.writeDouble(posZ);
+		buf.writeDouble(altarPosX);
+		buf.writeDouble(altarPosY);
+		buf.writeDouble(altarPosZ);
         ServerPlayNetworking.send((ServerPlayerEntity) player, ID, buf);
     }
 
     public static void handle(MinecraftClient client, ClientPlayNetworkHandler network, PacketByteBuf buf, PacketSender sender) {
-        ItemStack stack = buf.readItemStack();
-        int strings = buf.readInt();
-        List<String> spirits = new ArrayList<>();
-        for (int i = 0; i < strings; i++) {
-            spirits.add(buf.readString());
-        }
-        double posX = buf.readDouble();
-        double posY = buf.readDouble();
-        double posZ = buf.readDouble();
-        double altarPosX = buf.readDouble();
-        double altarPosY = buf.readDouble();
-        double altarPosZ = buf.readDouble();
+		int strings = buf.readInt();
+		List<String> spirits = new ArrayList<>();
+		for (int i = 0; i < strings; i++) {
+			spirits.add(buf.readString());
+		}
+		double posX = buf.readDouble();
+		double posY = buf.readDouble();
+		double posZ = buf.readDouble();
+		double altarPosX = buf.readDouble();
+		double altarPosY = buf.readDouble();
+		double altarPosZ = buf.readDouble();
 
         ClientWorld world = client.world;
         client.execute(() -> {

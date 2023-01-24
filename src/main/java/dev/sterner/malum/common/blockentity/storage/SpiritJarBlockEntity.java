@@ -99,7 +99,7 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity {
         }
 
         @Override
-        public int getMaxCountForSlot(int slot) {
+        public int getSlotLimit(int slot) {
             if (slot == 0)
                 return Math.min(64, count);
             return 64;

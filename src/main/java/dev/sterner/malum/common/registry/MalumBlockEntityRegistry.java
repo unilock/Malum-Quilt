@@ -54,7 +54,7 @@ public interface MalumBlockEntityRegistry {
 	BlockEntityType<EtherBlockEntity> ETHER = register("ether",  QuiltBlockEntityTypeBuilder.create(EtherBlockEntity::new, getBlocks(EtherBlock.class)).build(null));
 
 	BlockEntityType<ItemStandBlockEntity> ITEM_STAND = register("item_stand",  QuiltBlockEntityTypeBuilder.create(ItemStandBlockEntity::new, getBlocks(ItemStandBlock.class)).build(null));
-	BlockEntityType<ItemPedestalBlockEntity> ITEM_PEDESTAL = register("item_pedestal",  QuiltBlockEntityTypeBuilder.create(ItemPedestalBlockEntity::new, getBlocks(ItemPedestalBlock.class)).build(null));
+	BlockEntityType<ItemPedestalBlockEntity> ITEM_PEDESTAL = register("item_pedestal",  QuiltBlockEntityTypeBuilder.create(ItemPedestalBlockEntity::new, MalumObjects.RUNEWOOD_ITEM_PEDESTAL, MalumObjects.SOULWOOD_ITEM_PEDESTAL, MalumObjects.TAINTED_ROCK_ITEM_PEDESTAL, MalumObjects.TWISTED_ROCK_ITEM_PEDESTAL).build(null));
 
 	BlockEntityType<EmitterMirrorBlockEntity> EMITTER_MIRROR = register("emitter_mirror",  QuiltBlockEntityTypeBuilder.create(EmitterMirrorBlockEntity::new, getBlocks(EmitterMirrorBlock.class)).build(null));
 

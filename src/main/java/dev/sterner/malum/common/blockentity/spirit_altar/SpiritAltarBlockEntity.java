@@ -49,8 +49,8 @@ import java.util.stream.Collectors;
 public class SpiritAltarBlockEntity extends LodestoneBlockEntity {
     private static final int HORIZONTAL_RANGE = 4;
     private static final int VERTICAL_RANGE = 3;
-
-    public float speed;
+	public boolean needsSync;
+	public float speed;
     public int progress;
     public float spinUp;
 
@@ -145,6 +145,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity {
 
     @Override
     public void readNbt(NbtCompound compound) {
+		needsSync = true;
         progress = compound.getInt("progress");
         spinUp = compound.getFloat("spinUp");
         speed = compound.getFloat("speed");
@@ -160,9 +161,9 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity {
                 accelerators.add(accelerator);
             }
         }
-        inventory.readNbt(compound);
-        spiritInventory.readNbt(compound, "spiritInventory");
-        extrasInventory.readNbt(compound, "extrasInventory");
+        inventory.load(compound);
+        spiritInventory.load(compound, "spiritInventory");
+        extrasInventory.load(compound, "extrasInventory");
         super.readNbt(compound);
     }
 
@@ -176,7 +177,6 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity {
 
     @Override
     public ActionResult onUse(PlayerEntity player, Hand hand) {
-		System.out.println("AltarUsed");
         if (world.isClient()) {
             return ActionResult.CONSUME;
         }
@@ -222,6 +222,10 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity {
 
     @Override
     public void tick() {
+		if (needsSync) {
+			init();
+			needsSync = false;
+		}
         super.tick();
         spiritAmount = Math.max(1, MathHelper.lerp(0.1f, spiritAmount, spiritInventory.nonEmptyItemAmount));
         if (!possibleRecipes.isEmpty()) {

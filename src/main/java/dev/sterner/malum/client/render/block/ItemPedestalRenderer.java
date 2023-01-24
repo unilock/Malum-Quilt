@@ -23,7 +23,7 @@ public class ItemPedestalRenderer implements BlockEntityRenderer<ItemPedestalBlo
 	public void render(ItemPedestalBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
 		World level = MinecraftClient.getInstance().world;
 		ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
-		ItemStack stack = entity.inventory.getStack(0);
+		ItemStack stack = entity.getHeldItem();
 		if (!stack.isEmpty()) {
 			matrices.push();
 			Vector3f offset = new Vector3f(entity.itemOffset().m_sruzucpd());
