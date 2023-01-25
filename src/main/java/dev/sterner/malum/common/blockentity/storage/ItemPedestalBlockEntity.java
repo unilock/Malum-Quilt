@@ -5,11 +5,15 @@ import com.sammy.lodestone.systems.blockentity.ItemHolderBlockEntity;
 import com.sammy.lodestone.systems.blockentity.LodestoneBlockEntityInventory;
 import dev.sterner.malum.common.blockentity.spirit_altar.IAltarProvider;
 import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
+import dev.sterner.malum.common.recipe.AugmentingRecipe;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import dev.sterner.malum.common.spirit.SpiritHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
@@ -70,4 +74,13 @@ public class ItemPedestalBlockEntity extends ItemHolderBlockEntity implements IA
             }
         }
     }
+
+
+	public ActionResult onUse(PlayerEntity player, Hand hand) {
+		ActionResult result = AugmentingRecipe.performAugmentation(this, player, hand);
+		if (!result.equals(ActionResult.PASS)) {
+			return result;
+		}
+		return super.onUse(player, hand);
+	}
 }

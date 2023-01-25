@@ -2,21 +2,36 @@ package dev.sterner.malum.common.recipe;
 
 import com.google.gson.JsonObject;
 import com.sammy.lodestone.forge.CraftingHelper;
+import com.sammy.lodestone.systems.blockentity.LodestoneBlockEntityInventory;
 import com.sammy.lodestone.systems.recipe.ILodestoneRecipe;
+import dev.sterner.malum.common.blockentity.spirit_altar.IAltarProvider;
+import dev.sterner.malum.common.network.packet.s2c.block.blight.BlightTransformItemParticlePacket;
 import dev.sterner.malum.common.registry.MalumRecipeSerializerRegistry;
 import dev.sterner.malum.common.registry.MalumRecipeTypeRegistry;
+import dev.sterner.malum.common.registry.MalumSoundRegistry;
+import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import org.quiltmc.qsl.networking.api.PlayerLookup;
 
 import java.util.List;
 import java.util.function.Predicate;
+
+import static dev.sterner.malum.common.registry.MalumSpiritTypeRegistry.ARCANE_SPIRIT;
 
 public class AugmentingRecipe extends ILodestoneRecipe {
     public static final String NAME = "augmenting";
@@ -74,6 +89,43 @@ public class AugmentingRecipe extends ILodestoneRecipe {
     public static List<AugmentingRecipe> getRecipes(World world) {
         return world.getRecipeManager().listAllOfType(MalumRecipeTypeRegistry.AUGMENTING);
     }
+
+	public static ActionResult performAugmentation(IAltarProvider altarProvider, PlayerEntity player, Hand hand) {
+		LodestoneBlockEntityInventory inventory = altarProvider.getInventoryForAltar();
+		World level = player.world;
+		ItemStack target = inventory.getStack(0);
+		if (!target.isEmpty()) {
+			ItemStack applied = player.getStackInHand(hand);
+			AugmentingRecipe recipe = AugmentingRecipe.getRecipe(level, target, applied);
+			if (recipe != null) {
+				if (!level.isClient) {
+					var random = level.random;
+					NbtCompound tag = target.getOrCreateNbt();
+					NbtCompound modifiedTag = tag.copy().copyFrom(recipe.tagAugment);
+					if (tag.equals(modifiedTag)) {
+						return ActionResult.FAIL;
+					}
+					target.setNbt(modifiedTag);
+					Vec3d pos = altarProvider.getItemPosForAltar();
+					ItemEntity pEntity = new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), target);
+					pEntity.setVelocity(MathHelper.nextFloat(random, -0.1F, 0.1F), MathHelper.nextFloat(random, 0.25f, 0.5f), MathHelper.nextFloat(random, -0.1F, 0.1F));
+					if(level instanceof ServerWorld serverWorld){
+						PlayerLookup.tracking(serverWorld, serverWorld.getWorldChunk(altarProvider.getBlockPosForAltar()).getPos()).forEach(track ->
+								BlightTransformItemParticlePacket.send(track, List.of(ARCANE_SPIRIT.identifier), pos.getX(), pos.getY(), pos.getZ()));
+					}
+					level.playSound(null, altarProvider.getBlockPosForAltar(), MalumSoundRegistry.ALTERATION_PLINTH_ALTERS, SoundCategory.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.25f);
+
+					level.spawnEntity(pEntity);
+					inventory.setStackInSlot(0, ItemStack.EMPTY);
+					if (!player.isCreative()) {
+						applied.decrement(1);
+					}
+				}
+				return ActionResult.SUCCESS;
+			}
+		}
+		return ActionResult.PASS;
+	}
 
     public static class Serializer implements RecipeSerializer<AugmentingRecipe> {
 

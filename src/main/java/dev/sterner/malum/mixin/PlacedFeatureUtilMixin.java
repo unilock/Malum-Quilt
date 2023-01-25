@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PlacedFeatureUtil.class)
 public class PlacedFeatureUtilMixin {
-	@Inject(method = "bootstrap", at = @At("TAIL"))
+	@Inject(method = "bootstrap", at = @At("HEAD"))
 	private static void malum$initConfFeatures(BootstrapContext<PlacedFeature> bootstrapContext, CallbackInfo ci) {
 		MalumPlacedFeatureRegistry.bootstrap(bootstrapContext);
 	}

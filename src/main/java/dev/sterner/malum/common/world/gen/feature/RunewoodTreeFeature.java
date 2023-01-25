@@ -47,6 +47,7 @@ public class RunewoodTreeFeature extends Feature<DefaultFeatureConfig> {
 
     @Override
     public boolean place(FeatureContext<DefaultFeatureConfig> context) {
+		System.out.println("place");
         StructureWorldAccess world = context.getWorld();
         var pos = context.getOrigin();
         var rand = context.getRandom();
@@ -71,7 +72,7 @@ public class RunewoodTreeFeature extends Feature<DefaultFeatureConfig> {
                 return false;
             }
         }
-
+		System.out.println("makeLeafBlob");
         makeLeafBlob(leavesFiller, rand, trunkTop);
         for (Direction direction : directions) //side trunk placement
         {
@@ -120,6 +121,7 @@ public class RunewoodTreeFeature extends Feature<DefaultFeatureConfig> {
         treeFiller.fill(world);
         leavesFiller.fill(world);
         updateLeaves(world, treeFiller.getEntries().keySet());
+		System.out.println("return");
         return true;
     }
 

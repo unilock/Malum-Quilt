@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ConfiguredFeatureUtil.class)
 public class ConfiguredFeatureUtilMixin {
 
-	@Inject(method = "bootstrap", at = @At("TAIL"))
+	@Inject(method = "bootstrap", at = @At("HEAD"))
 	private static void malum$initConfFeatures(BootstrapContext<ConfiguredFeature<?, ?>> bootstrapContext, CallbackInfo ci) {
 		MalumConfiguredFeatureRegistry.bootstrap(bootstrapContext);
 	}

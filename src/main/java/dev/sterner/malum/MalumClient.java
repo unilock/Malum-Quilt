@@ -52,17 +52,18 @@ public class MalumClient implements ClientModInitializer {
 		EntityRendererRegistry.register(MalumEntityRegistry.VIVID_NITRATE, VividNitrateEntityRenderer::new);
 		EntityRendererRegistry.register(MalumEntityRegistry.MIRROR_ITEM, FloatingItemEntityRenderer::new);
 
-		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.SPIRIT_ALTAR, SpiritAltarRenderer::new);
-		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.SPIRIT_CRUCIBLE, SpiritCrucibleRenderer::new);
-		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.SPIRIT_CATALYZER, SpiritCatalyzerRenderer::new);
-		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.TWISTED_TABLET, ItemStandRenderer::new);
-		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.PLINTH, PlinthRenderer::new);
-		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.TOTEM_POLE, TotemPoleRenderer::new);
-		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.ITEM_STAND, ItemStandRenderer::new);
-		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.ITEM_PEDESTAL, ItemPedestalRenderer::new);
-		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.ALTERATION_PLINTH, ItemPedestalRenderer::new);
-		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.SPIRIT_JAR, SpiritJarRenderer::new);
-		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.SOUL_VIAL, SoulVialRenderer::new);
+		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.SPIRIT_ALTAR, SpiritAltarBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.SPIRIT_CRUCIBLE, SpiritCrucibleBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.SPIRIT_CATALYZER, SpiritCatalyzerBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.TWISTED_TABLET, ItemStandBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.PLINTH, PlinthBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.TOTEM_POLE, TotemPoleBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.ITEM_STAND, ItemStandBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.ITEM_PEDESTAL, ItemPedestalBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.ALTERATION_PLINTH, ItemPedestalBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.SPIRIT_JAR, SpiritJarBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.SOUL_VIAL, SoulVialBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.VOID_CONDUIT, VoidConduitBlockEntityRenderer::new);
 
 		for (Item item : MalumObjects.SCYTHES) {
 			Identifier scytheId = Registries.ITEM.getId(item);

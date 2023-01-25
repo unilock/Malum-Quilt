@@ -88,3 +88,7 @@ accessible method net/minecraft/registry/Registries registerSimple (Lnet/minecra
 accessible class net/minecraft/registry/Registries$RegistryBootstrap
 accessible class net/minecraft/particle/DefaultParticleType
 extendable class net/minecraft/enchantment/EnchantmentTarget
+accessible class net/minecraft/recipe/Ingredient$TagEntry
+accessible method net/minecraft/world/gen/trunk/TrunkPlacerType     <init> (Lcom/mojang/serialization/Codec;)V
+accessible method net/minecraft/world/gen/foliage/FoliagePlacerType <init> (Lcom/mojang/serialization/Codec;)V
+extendable class net/minecraft/world/gen/foliage/FoliagePlacer$TreeNode

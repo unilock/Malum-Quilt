@@ -31,9 +31,12 @@ public class MalumSaplingBlock extends SaplingBlock {
 
     @Override
     public void grow(ServerWorld world, RandomGenerator random, BlockPos pos, BlockState state) {
+		System.out.println("grow");
         if (state.get(STAGE) == 0) {
-            world.setBlockState(pos, state.cycle(STAGE), 4);
+			System.out.println("setBlockState");
+			world.setBlockState(pos, state.cycle(STAGE), 4);
         } else {
+			System.out.println("Generate: ");
             generator.generate(world, world.getChunkManager().getChunkGenerator(), pos, state, random);
         }
     }
