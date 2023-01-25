@@ -1,6 +1,6 @@
 package dev.sterner.malum.mixin;
 
-import dev.sterner.malum.common.registry.MalumConfiguredFeatureRegistry;
+import dev.sterner.malum.common.registry.MalumWorldRegistry;
 import net.minecraft.world.gen.BootstrapContext;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.util.ConfiguredFeatureUtil;
@@ -14,6 +14,6 @@ public class ConfiguredFeatureUtilMixin {
 
 	@Inject(method = "bootstrap", at = @At("HEAD"))
 	private static void malum$initConfFeatures(BootstrapContext<ConfiguredFeature<?, ?>> bootstrapContext, CallbackInfo ci) {
-		MalumConfiguredFeatureRegistry.bootstrap(bootstrapContext);
+		//MalumWorldRegistry.cbootstrap(bootstrapContext);
 	}
 }

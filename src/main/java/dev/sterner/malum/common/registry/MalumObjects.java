@@ -396,7 +396,7 @@ public interface MalumObjects {
 	//endregion
 
 	//region runewood
-	Block RUNEWOOD_SAPLING = register("runewood_sapling", new MalumSaplingBlock(new RunewoodSaplingGenerator(), RUNEWOOD_PLANTS_PROPERTIES().ticksRandomly()),true);
+	Block RUNEWOOD_SAPLING = register("runewood_sapling", new MalumSaplingBlock(() -> MalumWorldRegistry.RUNEWOOD_TREE, RUNEWOOD_PLANTS_PROPERTIES().ticksRandomly()),true);
 	Block RUNEWOOD_LEAVES = register("runewood_leaves", new MalumLeavesBlock(RUNEWOOD_LEAVES_PROPERTIES(), new Color(175, 65, 48), new Color(251, 193, 76)),true);
 
 	Block STRIPPED_RUNEWOOD_LOG = register("stripped_runewood_log", new PillarBlock(RUNEWOOD_PROPERTIES()),true);
@@ -444,7 +444,7 @@ public interface MalumObjects {
 	//endregion
 
 	//region soulwood
-	Block SOULWOOD_GROWTH = register("soulwood_growth", new SoulwoodGrowthBlock(new SoulwoodSaplingGenerator(),BLIGHT_PLANTS_PROPERTIES().ticksRandomly()),true);
+	Block SOULWOOD_GROWTH = register("soulwood_growth", new SoulwoodGrowthBlock(() -> MalumWorldRegistry.SOULWOOD_TREE, BLIGHT_PLANTS_PROPERTIES().ticksRandomly()),true);
 	Block SOULWOOD_LEAVES = register("soulwood_leaves", new MalumLeavesBlock(SOULWOOD_LEAVES_PROPERTIES(), new Color(152, 6, 45), new Color(224, 30, 214)),true);
 
 	Block STRIPPED_SOULWOOD_LOG = register("stripped_soulwood_log", new PillarBlock(SOULWOOD_PROPERTIES()),true);

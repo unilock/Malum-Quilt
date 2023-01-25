@@ -18,16 +18,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.DefaultFeatureConfig;
+import net.minecraft.world.gen.feature.Feature;
+
+import java.util.function.Supplier;
 
 public class SoulwoodGrowthBlock extends MalumSaplingBlock {
-    /**
-     * Access widened by quilt_block_extensions to accessible
-     *
-     * @param generator
-     * @param settings
-     */
-    public SoulwoodGrowthBlock(SaplingGenerator generator, Settings settings) {
-        super(generator, settings);
+
+    public SoulwoodGrowthBlock(Supplier<? extends Feature<DefaultFeatureConfig>> tree, Settings settings) {
+        super(null, settings);
     }
 
     @Override

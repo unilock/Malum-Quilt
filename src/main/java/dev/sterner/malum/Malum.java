@@ -48,9 +48,6 @@ public class Malum implements ModInitializer {
 		MalumTagRegistry.init();
 		MalumRecipeTypeRegistry.init();
 		MalumRecipeSerializerRegistry.init();
-		MalumFeatureRegistry.init();
-		MalumConfiguredFeatureRegistry.init();
-		//MalumPlacedFeatureRegistry.init();
 		MalumScreenHandlerRegistry.init();
 		MalumSpiritTypeRegistry.init();
 		MalumRiteRegistry.init();
