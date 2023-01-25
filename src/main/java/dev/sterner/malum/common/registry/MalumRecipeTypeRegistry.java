@@ -21,6 +21,7 @@ public interface MalumRecipeTypeRegistry {
 	RecipeType<SpiritRepairRecipe> SPIRIT_REPAIR = register(SpiritRepairRecipe.NAME);
 	RecipeType<AugmentingRecipe> AUGMENTING = register(AugmentingRecipe.NAME);
 	RecipeType<SpiritTransmutationRecipe> SPIRIT_TRANSMUTATION = register(SpiritTransmutationRecipe.NAME);
+	RecipeType<FavorOfTheVoidRecipe> VOID_FAVOR = register(FavorOfTheVoidRecipe.NAME);
 
 	static <T extends Recipe<?>> RecipeType<T> register(String id) {
         RecipeType<T> type = new RecipeType<>(){ public String toString() { return id; }};

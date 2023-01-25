@@ -1,0 +1,10 @@
+{
+  "type": "malum:favor_of_the_void",
+  "input": {
+    "item": "minecaft:stick",
+    "count": 1
+  },
+  "output": {
+    "item": "malum:raw_soulstone"
+  }
+}

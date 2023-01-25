@@ -6,6 +6,14 @@ import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings;
 
 public interface MalumBlockProperties {
 
+	static QuiltBlockSettings WEEPING_WELL_PROPERTIES() {
+		return QuiltBlockSettings.of(Material.STONE, MapColor.GRAY).sounds(MalumSoundRegistry.TAINTED_ROCK).strength(-1.0F, 3600000.0F);
+	}
+
+	static QuiltBlockSettings PRIMORDIAL_SOUP_PROPERTIES() {
+		return QuiltBlockSettings.of(Material.PORTAL, MapColor.BLACK).sounds(MalumSoundRegistry.BLIGHTED_EARTH).strength(-1.0F, 3600000.0F);
+	}
+
 	static QuiltBlockSettings TAINTED_ROCK_PROPERTIES() {
 		return QuiltBlockSettings.of(Material.STONE, MapColor.GRAY).sounds(MalumSoundRegistry.TAINTED_ROCK).strength(1.25F, 9.0F);
 	}

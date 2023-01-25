@@ -1,21 +1,21 @@
 {
   "type": "minecraft:crafting_shaped",
-  "key": {
-    "#": {
-      "tag": "forge:rods/wooden"
-    },
-    "X": {
-      "tag": "forge:ingots/iron"
-    },
-    "Y": {
-      "item": "malum:processed_soulstone"
-    }
-  },
   "pattern": [
     "XXY",
     " #X",
     "#  "
   ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "Y": {
+      "item": "malum:processed_soulstone"
+    },
+    "X": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
   "result": {
     "item": "malum:crude_scythe"
   }

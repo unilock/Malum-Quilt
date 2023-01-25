@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "key": {
-    "#": {
-      "item": "malum:vertical_soulwood_planks"
-    }
-  },
   "pattern": [
     "#",
     "#",
     "#"
   ],
+  "key": {
+    "#": {
+      "item": "malum:vertical_soulwood_planks"
+    }
+  },
   "result": {
-    "count": 3,
-    "item": "malum:soulwood_beam"
+    "item": "malum:soulwood_beam",
+    "count": 3
   }
 }

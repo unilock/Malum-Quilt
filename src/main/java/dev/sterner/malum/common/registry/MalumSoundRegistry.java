@@ -103,6 +103,13 @@ public interface MalumSoundRegistry {
 	SoundEvent MAJOR_BLIGHT_MOTIF = register("blight_reacts");
 	SoundEvent MINOR_BLIGHT_MOTIF = register("blight_reacts_faintly");
 
+	SoundEvent UNCANNY_VALLEY = register("the_unknown_weeps");
+	SoundEvent VOID_HEARTBEAT = register("the_void_heart_beats");
+	SoundEvent SONG_OF_THE_VOID = register("song_of_the_void");
+	SoundEvent VOID_REJECTION = register("rejected_by_the_unknown");
+	SoundEvent VOID_TRANSMUTATION = register("void_transmutation");
+
+
 	SoundEvent ALTERATION_PLINTH_ALTERS = register("alteration_plinth_alters");
 
 	SoundEvent QUARTZ_CLUSTER_BLOCK_BREAK = register("quartz_cluster_block_break");

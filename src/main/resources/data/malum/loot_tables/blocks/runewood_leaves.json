@@ -28,7 +28,7 @@
                         "enchantments": [
                           {
                             "enchantment": "minecraft:silk_touch",
-                            "worlds": {
+                            "levels": {
                               "min": 1
                             }
                           }
@@ -50,10 +50,10 @@
                   "condition": "minecraft:table_bonus",
                   "enchantment": "minecraft:fortune",
                   "chances": [
-                    0.05,
-                    0.0625,
-                    0.083333336,
-                    0.1
+                    0.015,
+                    0.0225,
+                    0.033333335,
+                    0.05
                   ]
                 }
               ],
@@ -119,7 +119,7 @@
                   "enchantments": [
                     {
                       "enchantment": "minecraft:silk_touch",
-                      "worlds": {
+                      "levels": {
                         "min": 1
                       }
                     }

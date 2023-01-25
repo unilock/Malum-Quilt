@@ -1,14 +1,14 @@
 {
   "type": "malum:spirit_infusion",
-  "extra_items": [],
   "input": {
-    "count": 16,
-    "tag": "minecraft:stone_tool_materials"
+    "tag": "minecraft:stone_tool_materials",
+    "count": 16
   },
   "output": {
-    "count": 16,
-    "item": "malum:twisted_rock"
+    "item": "malum:twisted_rock",
+    "count": 16
   },
+  "extra_items": [],
   "spirits": [
     {
       "type": "wicked"

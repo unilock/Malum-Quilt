@@ -18,9 +18,6 @@ public interface MalumTagRegistry {
 	TagKey<Item> PROSPECTORS_TREASURE = itemMalumTag("prospectors_treasure");
 	TagKey<Item> METAL_NODES = itemMalumTag("metal_nodes");
 
-	TagKey<Item> KNIVES_FD = itemMalumTag("farmersdelight:tools/knives");
-
-
 	TagKey<Block> BLIGHTED_BLOCKS = blockMalumTag("blighted_blocks");
 	TagKey<Block> BLIGHTED_PLANTS = blockMalumTag("blighted_plants");
 
@@ -35,9 +32,6 @@ public interface MalumTagRegistry {
 	TagKey<Block> ENDLESS_FLAME = blockMalumTag("endless_flame");
 
 	TagKey<Block> GREATER_AERIAL_WHITELIST = blockMalumTag("greater_aerial_whitelist");
-
-	TagKey<Block> TRAY_HEAT_SOURCES = blockModTag("farmersdelight:tray_heat_sources");
-	TagKey<Block> HEAT_SOURCES = blockModTag("farmersdelight:heat_sources");
 
 
 	static TagKey<Block> blockModTag(String path) {

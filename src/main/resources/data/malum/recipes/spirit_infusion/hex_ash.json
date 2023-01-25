@@ -1,13 +1,13 @@
 {
   "type": "malum:spirit_infusion",
-  "extra_items": [],
   "input": {
-    "count": 1,
-    "item": "minecraft:gunpowder"
+    "item": "minecraft:gunpowder",
+    "count": 1
   },
   "output": {
     "item": "malum:hex_ash"
   },
+  "extra_items": [],
   "spirits": [
     {
       "type": "arcane"

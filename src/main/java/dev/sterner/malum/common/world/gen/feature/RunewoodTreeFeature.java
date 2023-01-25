@@ -20,6 +20,7 @@ import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -65,7 +66,7 @@ public class RunewoodTreeFeature extends Feature<DefaultFeatureConfig> {
         {
             BlockPos trunkPos = pos.up(i);
             if (canPlace(world, trunkPos)) {
-                treeFiller.entries.add(new LodestoneBlockFiller.BlockStateEntry(defaultLog, trunkPos));
+                treeFiller.getEntries().put(trunkPos, new LodestoneBlockFiller.BlockStateEntry(defaultLog));
             } else {
                 return false;
             }
@@ -78,7 +79,7 @@ public class RunewoodTreeFeature extends Feature<DefaultFeatureConfig> {
             for (int i = 0; i < sideTrunkHeight; i++) {
                 BlockPos sideTrunkPos = pos.offset(direction).up(i);
                 if (canPlace(world, sideTrunkPos)) {
-                    treeFiller.entries.add(new LodestoneBlockFiller.BlockStateEntry(defaultLog, sideTrunkPos));
+                    treeFiller.getEntries().put(sideTrunkPos, new LodestoneBlockFiller.BlockStateEntry(defaultLog));
                 } else {
                     return false;
                 }
@@ -94,7 +95,7 @@ public class RunewoodTreeFeature extends Feature<DefaultFeatureConfig> {
             {
                 BlockPos branchConnectionPos = branchStartPos.offset(direction.getOpposite(), i);
                 if (canPlace(world, branchConnectionPos)) {
-                    treeFiller.entries.add(new LodestoneBlockFiller.BlockStateEntry(defaultLog.with(PillarBlock.AXIS, direction.getAxis()), branchConnectionPos));
+                    treeFiller.getEntries().put(branchConnectionPos, new LodestoneBlockFiller.BlockStateEntry(defaultLog.with(PillarBlock.AXIS, direction.getAxis())));
                 } else {
                     return false;
                 }
@@ -104,7 +105,7 @@ public class RunewoodTreeFeature extends Feature<DefaultFeatureConfig> {
             {
                 BlockPos branchPos = branchStartPos.up(i);
                 if (canPlace(world, branchPos)) {
-                    treeFiller.entries.add(new LodestoneBlockFiller.BlockStateEntry(defaultLog, branchPos));
+                    treeFiller.getEntries().put(branchPos, new LodestoneBlockFiller.BlockStateEntry(defaultLog));
                 } else {
                     return false;
                 }
@@ -112,13 +113,13 @@ public class RunewoodTreeFeature extends Feature<DefaultFeatureConfig> {
             makeLeafBlob(leavesFiller, rand, branchStartPos.up(1));
         }
         int sapBlockCount = minimumSapBlockCount + rand.nextInt(extraSapBlockCount + 1);
-        int[] sapBlockIndexes = DataHelper.nextInts(sapBlockCount, treeFiller.entries.size());
-        for (Integer index : sapBlockIndexes) {
-            treeFiller.replace(index, e -> e.replaceState(BlockHelper.getBlockStateWithExistingProperties(e.state, MalumObjects.EXPOSED_RUNEWOOD_LOG.getDefaultState())));
-        }
+		ArrayList<BlockPos> sapBlockPositions = new ArrayList<>(treeFiller.getEntries().keySet());
+		for (BlockPos blockPos : sapBlockPositions.subList(0, sapBlockCount)) {
+			treeFiller.replace(blockPos, e -> new LodestoneBlockFiller.BlockStateEntry(BlockHelper.getBlockStateWithExistingProperties(e.getState(), MalumObjects.EXPOSED_RUNEWOOD_LOG.getDefaultState())));
+		}
         treeFiller.fill(world);
         leavesFiller.fill(world);
-        updateLeaves(world, treeFiller.entries.stream().map(e -> e.pos).collect(Collectors.toSet()));
+        updateLeaves(world, treeFiller.getEntries().keySet());
         return true;
     }
 
@@ -128,7 +129,7 @@ public class RunewoodTreeFeature extends Feature<DefaultFeatureConfig> {
             i++;
             BlockPos trunkPos = pos.down(i);
             if (canPlace(world, trunkPos)) {
-                filler.entries.add(new LodestoneBlockFiller.BlockStateEntry(MalumObjects.RUNEWOOD_LOG.getDefaultState(), trunkPos));
+                filler.getEntries().put(trunkPos, new LodestoneBlockFiller.BlockStateEntry(MalumObjects.RUNEWOOD_LOG.getDefaultState()));
             } else {
                 break;
             }
@@ -154,7 +155,7 @@ public class RunewoodTreeFeature extends Feature<DefaultFeatureConfig> {
                     continue;
                 }
                 BlockPos leavesPos = new BlockPos(pos).add(x, 0, z);
-                filler.entries.add(new LodestoneBlockFiller.BlockStateEntry(MalumObjects.RUNEWOOD_LEAVES.getDefaultState().with(MalumLeavesBlock.COLOR, leavesColor), leavesPos));
+                filler.getEntries().put(leavesPos, new LodestoneBlockFiller.BlockStateEntry(MalumObjects.RUNEWOOD_LEAVES.getDefaultState().with(MalumLeavesBlock.COLOR, leavesColor)));
             }
         }
     }

@@ -1,12 +1,13 @@
 {
   "type": "malum:spirit_focusing",
+  "time": 900,
   "durabilityCost": 2,
   "input": {
     "item": "malum:gold_impetus"
   },
   "output": {
-    "count": 3,
-    "item": "malum:gold_node"
+    "item": "malum:gold_node",
+    "count": 3
   },
   "spirits": [
     {
@@ -14,8 +15,8 @@
       "count": 2
     },
     {
-      "type": "infernal"
+      "type": "infernal",
+      "count": 4
     }
-  ],
-  "time": 900
+  ]
 }

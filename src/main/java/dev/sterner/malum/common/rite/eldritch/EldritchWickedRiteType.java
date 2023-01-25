@@ -46,6 +46,7 @@ public class EldritchWickedRiteType extends MalumRiteType {
 					return;
 				}
 				int maxKills = entities.size() - 30;
+				entities.removeIf(AnimalEntity::isInLove);
 				for (AnimalEntity entity : entities) {
 					entity.damage(MalumDamageSourceRegistry.VOODOO, entity.getMaxHealth());
 					PlayerLookup.tracking(entity).forEach(track -> MajorEntityEffectParticlePacket.send(track, WICKED_SPIRIT.getColor(), entity.getX(), entity.getY() + entity.getHeight() / 2f, entity.getZ()));

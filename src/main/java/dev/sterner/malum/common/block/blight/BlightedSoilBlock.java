@@ -83,7 +83,7 @@ public class BlightedSoilBlock extends Block implements Fertilizable {
         LodestoneBlockFiller filler = new LodestoneBlockFiller(false);
         SoulwoodTreeFeature.generateBlight(world, filler, pos, 4);
 
-        filler.entries.stream().filter(e -> e.state.getBlock() instanceof BlightedSoilBlock)
+        filler.getEntries().entrySet().stream().filter(e -> e.getValue().getState().getBlock() instanceof BlightedSoilBlock)
             .forEach(p -> PlayerLookup.tracking(world, world.getWorldChunk(pos).getPos()).forEach(track -> BlightMistParticlePacket.send(track, pos)));
     }
 }

@@ -1,23 +1,23 @@
 {
   "type": "malum:spirit_infusion",
-  "extra_items": [
-    {
-      "count": 2,
-      "tag": "forge:string"
-    },
-    {
-      "count": 1,
-      "item": "malum:hex_ash"
-    }
-  ],
   "input": {
-    "count": 2,
-    "tag": "minecraft:wool"
+    "tag": "minecraft:wool",
+    "count": 2
   },
   "output": {
-    "count": 4,
-    "item": "malum:spirit_fabric"
+    "item": "malum:spirit_fabric",
+    "count": 4
   },
+  "extra_items": [
+    {
+      "item": "string",
+      "count": 2
+    },
+    {
+      "item": "malum:hex_ash",
+      "count": 1
+    }
+  ],
   "spirits": [
     {
       "type": "wicked",

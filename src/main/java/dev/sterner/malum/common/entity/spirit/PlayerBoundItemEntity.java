@@ -4,7 +4,7 @@ import com.sammy.lodestone.helpers.ItemHelper;
 import dev.sterner.malum.common.entity.FloatingItemEntity;
 import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
 import dev.sterner.malum.common.registry.MalumEntityRegistry;
-import dev.sterner.malum.common.spirit.SpiritHarvestHandler;
+import dev.sterner.malum.common.util.handler.SpiritHarvestHandler;
 import dev.sterner.malum.common.spirit.SpiritHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

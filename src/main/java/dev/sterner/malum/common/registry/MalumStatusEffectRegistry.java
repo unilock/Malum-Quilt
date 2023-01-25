@@ -30,6 +30,7 @@ public interface MalumStatusEffectRegistry {
 	StatusEffect GLUTTONY = registerWithproficiency("gluttony", new GluttonyEffect(), 0.5f);
 	StatusEffect WICKED_INTENT = registerWithproficiency("wicked_intent", new WickedIntentEffect(), 0.2f);
 
+	StatusEffect REJECTED = register("rejected", new RejectedEffect());
 
 	static <T extends StatusEffect> StatusEffect registerWithproficiency(String id, T effect, float proficiency) {
 		STATUS_EFFECTS.put(new Identifier(MODID, id), effect);

@@ -145,9 +145,8 @@ public class SpiritRepairRecipe extends ILodestoneRecipe {
                 REPAIRABLE = Registries.ITEM.getEntries().stream().map(Map.Entry::getValue).filter(Item::isDamageable).collect(Collectors.toList());
             }
             float durabilityPercentage = json.getAsJsonPrimitive("durabilityPercentage").getAsFloat();
-            String inputLookup = json.has("inputLookup") ? json.get("inputLookup").getAsString() : "none";
-            String itemName = inputLookup.contains(":") ? inputLookup.substring(inputLookup.indexOf(":")) : inputLookup;
-            String modName = inputLookup.contains(":") ? inputLookup.substring(0, inputLookup.indexOf(":") - 1) : null;
+			String itemIdRegex = json.get("itemIdRegex").getAsString();
+			String modIdRegex = json.get("modIdRegex").getAsString();
             JsonArray inputsArray = json.getAsJsonArray("inputs");
             List<Item> inputs = new ArrayList<>();
             for (JsonElement jsonElement : inputsArray) {
@@ -158,8 +157,8 @@ public class SpiritRepairRecipe extends ILodestoneRecipe {
                 inputs.add(input);
             }
             for (Item item : REPAIRABLE) {
-                if (Registries.ITEM.getId(item).getPath().contains(itemName)) {
-                    if (modName != null && !Registries.ITEM.getId(item).getNamespace().equals(modName)) {
+                if (Registries.ITEM.getId(item).getPath().matches(itemIdRegex)) {
+                    if (modIdRegex != null && !Registries.ITEM.getId(item).getNamespace().matches(modIdRegex)) {
                         continue;
                     }
                     if (item instanceof IRepairOutputOverride repairOutputOverride && repairOutputOverride.ignoreDuringLookup()) {

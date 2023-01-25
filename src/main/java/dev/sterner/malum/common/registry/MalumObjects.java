@@ -26,6 +26,9 @@ import dev.sterner.malum.common.block.storage.*;
 import dev.sterner.malum.common.block.tablet.TwistedTabletBlock;
 import dev.sterner.malum.common.block.totem.TotemBaseBlock;
 import dev.sterner.malum.common.block.totem.TotemPoleBlock;
+import dev.sterner.malum.common.block.weeping_well.PrimordialSoupBlock;
+import dev.sterner.malum.common.block.weeping_well.VoidConduitBlock;
+import dev.sterner.malum.common.block.weeping_well.WeepingWellBlock;
 import dev.sterner.malum.common.blockentity.FusionPlateBlockEntity;
 import dev.sterner.malum.common.blockentity.crucible.SpiritCatalyzerCoreBlockEntity;
 import dev.sterner.malum.common.blockentity.crucible.SpiritCrucibleCoreBlockEntity;
@@ -131,7 +134,7 @@ public interface MalumObjects {
 	Item ASTRAL_WEAVE = register("astral_weave", new Item(settings()));
 	Item RARE_EARTHS = register("rare_earths", new Item(settings()));
 	Item HEX_ASH = register("hex_ash", new Item(settings()));
-
+	Item CTHONIC_GOLD = register("cthonic_gold", new Item(settings()));
 
 	Item SPIRIT_FABRIC = register("spirit_fabric", new Item(settings()));
 	Item SPECTRAL_LENS = register("spectral_lens", new Item(settings()));
@@ -275,6 +278,11 @@ public interface MalumObjects {
 	Block SOULWOOD_FUSION_PLATE = registerMultiBlock("soulwood_fusion_plate", new FusionPlateCoreBlock<>(SOULWOOD_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.FUSION_PLATE), FusionPlateBlockEntity.STRUCTURE, true);
 	Block SOULWOOD_FUSION_PLATE_COMPONENT = register("soulwood_fusion_plate_component", new FusionPlateComponentBlock(SOULWOOD_PROPERTIES().nonOpaque(), Items.AIR), false);
 
+	Block VOID_CONDUIT = register("void_conduit",new VoidConduitBlock<>(PRIMORDIAL_SOUP_PROPERTIES().nonOpaque()).setBlockEntity(MalumBlockEntityRegistry.VOID_CONDUIT), true);
+	Block PRIMORDIAL_SOUP = register("primordial_soup", new PrimordialSoupBlock(PRIMORDIAL_SOUP_PROPERTIES().nonOpaque()), true);
+	Block WEEPING_WELL_CORNER = register("weeping_well_corner", new WeepingWellBlock(WEEPING_WELL_PROPERTIES()), true);
+	Block WEEPING_WELL_SIDE = register("weeping_well_side", new WeepingWellBlock(WEEPING_WELL_PROPERTIES()), true);
+	Block WEEPING_WELL_CORE = register("weeping_well_core", new WeepingWellBlock(WEEPING_WELL_PROPERTIES()), true);
 
 	//endregion
 
@@ -489,6 +497,7 @@ public interface MalumObjects {
 	Block BLIGHTED_WEED = register("blighted_weed", new BlightedGrassBlock(BLIGHT_PLANTS_PROPERTIES()), true);
 	Block BLIGHTED_TUMOR = register("blighted_tumor", new BlightedGrassBlock(BLIGHT_PLANTS_PROPERTIES()), true);
 	Block BLIGHTED_SOULWOOD = register("blighted_soulwood", new BlightedSoulwoodBlock(SOULWOOD_PROPERTIES()), true);
+	Item BLIGHTED_GUNK = register("blighted_gunk", new Item(settings()));
 	//endregion
 
 	Block RUNEWOOD_TOTEM_BASE = register("runewood_totem_base", new TotemBaseBlock<>(RUNEWOOD_PROPERTIES().nonOpaque(), false).setBlockEntity(MalumBlockEntityRegistry.TOTEM_BASE), true);

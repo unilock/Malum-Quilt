@@ -3,7 +3,7 @@ package dev.sterner.malum.mixin;
 import dev.sterner.malum.api.event.LivingEntityDamageEvent;
 import dev.sterner.malum.common.item.equipment.trinket.CurioVoraciousRing;
 import dev.sterner.malum.common.registry.MalumAttributeRegistry;
-import dev.sterner.malum.common.spirit.SpiritHarvestHandler;
+import dev.sterner.malum.common.util.handler.SpiritHarvestHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

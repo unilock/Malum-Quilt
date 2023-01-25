@@ -21,6 +21,7 @@
   "client": [
     "client.EnchantmentTargetMixin",
     "client.EntityModelLayersMixin",
+    "client.GameRendererMixin",
     "client.InGameHudMixin",
     "client.ItemColorsMixin",
     "client.ItemRendererMixin",

@@ -1,15 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
-  "key": {
-    "#": {
-      "item": "malum:blazing_quartz"
-    }
-  },
   "pattern": [
     "###",
     "###",
     "###"
   ],
+  "key": {
+    "#": {
+      "item": "malum:blazing_quartz"
+    }
+  },
   "result": {
     "item": "malum:block_of_blazing_quartz"
   }

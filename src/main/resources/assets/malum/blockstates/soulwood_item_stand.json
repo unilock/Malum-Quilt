@@ -4,10 +4,8 @@
       "model": "malum:block/soulwood_item_stand",
       "x": 180
     },
-    "facing=east": {
-      "model": "malum:block/soulwood_item_stand",
-      "x": 90,
-      "y": 90
+    "facing=up": {
+      "model": "malum:block/soulwood_item_stand"
     },
     "facing=north": {
       "model": "malum:block/soulwood_item_stand",
@@ -18,13 +16,15 @@
       "x": 90,
       "y": 180
     },
-    "facing=up": {
-      "model": "malum:block/soulwood_item_stand"
-    },
     "facing=west": {
       "model": "malum:block/soulwood_item_stand",
       "x": 90,
       "y": 270
+    },
+    "facing=east": {
+      "model": "malum:block/soulwood_item_stand",
+      "x": 90,
+      "y": 90
     }
   }
 }

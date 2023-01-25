@@ -1,26 +1,26 @@
 {
   "type": "malum:spirit_infusion",
-  "extra_items": [
-    {
-      "count": 4,
-      "item": "malum:spirit_fabric"
-    },
-    {
-      "count": 4,
-      "item": "malum:processed_soulstone"
-    },
-    {
-      "count": 2,
-      "tag": "forge:leather"
-    }
-  ],
   "input": {
-    "count": 1,
-    "item": "minecraft:leather_helmet"
+    "item": "minecraft:leather_helmet",
+    "count": 1
   },
   "output": {
     "item": "malum:soul_hunter_cloak"
   },
+  "extra_items": [
+    {
+      "item": "malum:spirit_fabric",
+      "count": 4
+    },
+    {
+      "item": "malum:processed_soulstone",
+      "count": 4
+    },
+    {
+      "item": "minecraft:leather",
+      "count": 2
+    }
+  ],
   "spirits": [
     {
       "type": "aerial",

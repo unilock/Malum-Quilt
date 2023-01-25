@@ -1,27 +1,27 @@
 {
   "type": "malum:spirit_infusion",
-  "extra_items": [
-    {
-      "count": 4,
-      "item": "malum:cursed_grit"
-    },
-    {
-      "count": 4,
-      "tag": "forge:gunpowder"
-    },
-    {
-      "count": 2,
-      "tag": "forge:gems/prismarine"
-    }
-  ],
   "input": {
-    "count": 8,
-    "item": "malum:etheric_nitrate"
+    "item": "malum:etheric_nitrate",
+    "count": 8
   },
   "output": {
-    "count": 8,
-    "item": "malum:vivid_nitrate"
+    "item": "malum:vivid_nitrate",
+    "count": 8
   },
+  "extra_items": [
+    {
+      "item": "malum:cursed_grit",
+      "count": 4
+    },
+    {
+      "item": "minecraft:gunpowder",
+      "count": 4
+    },
+    {
+      "tag": "minecraft:prismarine",
+      "count": 2
+    }
+  ],
   "spirits": [
     {
       "type": "aerial",

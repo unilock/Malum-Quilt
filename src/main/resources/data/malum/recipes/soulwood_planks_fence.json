@@ -1,19 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "W#W",
+    "W#W"
+  ],
   "key": {
     "#": {
-      "tag": "forge:rods/wooden"
+      "item": "stick"
     },
     "W": {
       "item": "malum:soulwood_planks"
     }
   },
-  "pattern": [
-    "W#W",
-    "W#W"
-  ],
   "result": {
-    "count": 3,
-    "item": "malum:soulwood_planks_fence"
+    "item": "malum:soulwood_planks_fence",
+    "count": 3
   }
 }

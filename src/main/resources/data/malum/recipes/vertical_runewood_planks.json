@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "key": {
-    "#": {
-      "item": "malum:runewood_planks"
-    }
-  },
   "pattern": [
     "#",
     "#",
     "#"
   ],
+  "key": {
+    "#": {
+      "item": "malum:runewood_planks"
+    }
+  },
   "result": {
-    "count": 3,
-    "item": "malum:vertical_runewood_planks"
+    "item": "malum:vertical_runewood_planks",
+    "count": 3
   }
 }

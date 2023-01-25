@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "key": {
-    "#": {
-      "item": "malum:soulwood_planks"
-    }
-  },
   "pattern": [
     "#  ",
     "## ",
     "###"
   ],
+  "key": {
+    "#": {
+      "item": "malum:soulwood_planks"
+    }
+  },
   "result": {
-    "count": 4,
-    "item": "malum:soulwood_planks_stairs"
+    "item": "malum:soulwood_planks_stairs",
+    "count": 4
   }
 }

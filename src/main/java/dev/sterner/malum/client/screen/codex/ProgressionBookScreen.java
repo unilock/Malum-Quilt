@@ -1185,16 +1185,16 @@ public class ProgressionBookScreen extends Screen {
 		}
 
 		glow = Easing.CUBIC_IN.ease(glow, 0, 1, 1);
-		int r = (int) MathHelper.lerp(glow, 163, 227);
-		int g = (int) MathHelper.lerp(glow, 44, 39);
-		int b = (int) MathHelper.lerp(glow, 191, 228);
+		//int r = (int) MathHelper.lerp(glow, 163, 227);
+		//int g = (int) MathHelper.lerp(glow, 44, 39);
+		//int b = (int) MathHelper.lerp(glow, 191, 228);
 
-		font.draw(stack, text, x - 1, y, getArgb(96, 255, 210, 243));
-		font.draw(stack, text, x + 1, y, getArgb(128, 240, 131, 232));
-		font.draw(stack, text, x, y - 1, getArgb(128, 255, 183, 236));
+		font.draw(stack, text, x - 1, y, getArgb(96, 236, 227, 214));
+		font.draw(stack, text, x + 1, y, getArgb(128, 165, 149, 142));
+		font.draw(stack, text, x, y - 1, getArgb(128, 208, 197, 183));
 		font.draw(stack, text, x, y + 1, getArgb(96, 236, 110, 226));
 
-		font.draw(stack, text, x, y, getArgb(255, r, g, b));
+		font.draw(stack, text, x, y, getArgb(255, 111, 97, 105));
 	}
 
 	public static float getTextGlow(float offset) {

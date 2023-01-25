@@ -1,14 +1,14 @@
 {
   "type": "malum:spirit_infusion",
-  "extra_items": [],
   "input": {
-    "count": 4,
-    "item": "minecraft:clay_ball"
+    "item": "minecraft:clay_ball",
+    "count": 4
   },
   "output": {
-    "count": 4,
-    "item": "malum:alchemical_calx"
+    "item": "malum:alchemical_calx",
+    "count": 4
   },
+  "extra_items": [],
   "spirits": [
     {
       "type": "arcane",

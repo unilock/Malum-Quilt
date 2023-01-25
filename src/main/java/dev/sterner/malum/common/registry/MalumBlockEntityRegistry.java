@@ -7,6 +7,7 @@ import dev.sterner.malum.common.block.totem.TotemBaseBlock;
 import dev.sterner.malum.common.block.totem.TotemPoleBlock;
 import dev.sterner.malum.common.blockentity.EtherBlockEntity;
 import dev.sterner.malum.common.blockentity.FusionPlateBlockEntity;
+import dev.sterner.malum.common.blockentity.VoidConduitBlockEntity;
 import dev.sterner.malum.common.blockentity.alteration_plinth.AlterationPlinthBlockEntity;
 import dev.sterner.malum.common.blockentity.crucible.SpiritCatalyzerCoreBlockEntity;
 import dev.sterner.malum.common.blockentity.crucible.SpiritCrucibleCoreBlockEntity;
@@ -60,6 +61,7 @@ public interface MalumBlockEntityRegistry {
 	BlockEntityType<TotemBaseBlockEntity> TOTEM_BASE = register("totem_base",  QuiltBlockEntityTypeBuilder.create(TotemBaseBlockEntity::new, getBlocks(TotemBaseBlock.class)).build(null));
 	BlockEntityType<TotemPoleBlockEntity> TOTEM_POLE = register("totem_pole",  QuiltBlockEntityTypeBuilder.create(TotemPoleBlockEntity::new, getBlocks(TotemPoleBlock.class)).build(null));
 
+	BlockEntityType<VoidConduitBlockEntity> VOID_CONDUIT = register("void_conduit", QuiltBlockEntityTypeBuilder.create(VoidConduitBlockEntity::new, MalumObjects.VOID_CONDUIT).build(null));
 
 
 	static Block[] getBlocks(Class<?>... blockClasses) {

@@ -4,10 +4,8 @@
       "model": "malum:block/tainted_rock_column_cap",
       "x": 180
     },
-    "facing=east": {
-      "model": "malum:block/tainted_rock_column_cap",
-      "x": 90,
-      "y": 90
+    "facing=up": {
+      "model": "malum:block/tainted_rock_column_cap"
     },
     "facing=north": {
       "model": "malum:block/tainted_rock_column_cap",
@@ -18,13 +16,15 @@
       "x": 90,
       "y": 180
     },
-    "facing=up": {
-      "model": "malum:block/tainted_rock_column_cap"
-    },
     "facing=west": {
       "model": "malum:block/tainted_rock_column_cap",
       "x": 90,
       "y": 270
+    },
+    "facing=east": {
+      "model": "malum:block/tainted_rock_column_cap",
+      "x": 90,
+      "y": 90
     }
   }
 }

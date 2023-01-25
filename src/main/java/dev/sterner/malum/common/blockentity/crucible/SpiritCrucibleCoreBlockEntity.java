@@ -40,9 +40,8 @@ import org.jetbrains.annotations.Nullable;
 import org.quiltmc.qsl.networking.api.PlayerLookup;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -64,7 +63,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
     public int queuedCracks;
     public int crackTimer;
 
-    public List<BlockPos> tabletPositions = new ArrayList<>();
+    public Set<BlockPos> tabletPositions = new HashSet<>();
     public List<TwistedTabletBlockEntity> twistedTablets = new ArrayList<>();
     public TwistedTabletBlockEntity validTablet;
     public int tabletFetchCooldown;
@@ -212,7 +211,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
     }
 
     @Override
-    public List<BlockPos> getTabletPositions() {
+    public Set<BlockPos> getTabletPositions() {
         return tabletPositions;
     }
 

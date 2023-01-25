@@ -1,4 +1,31 @@
 package dev.sterner.malum.common.block.weeping_well;
 
-public class WeepingWellBlock {
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.state.StateManager;
+import org.jetbrains.annotations.Nullable;
+
+public class WeepingWellBlock extends HorizontalFacingBlock {
+	public WeepingWellBlock(Settings pProperties) {
+		super(pProperties);
+	}
+
+	@Override
+	public PistonBehavior getPistonBehavior(BlockState state) {
+		return PistonBehavior.IGNORE;
+	}
+
+	@Nullable
+	@Override
+	public BlockState getPlacementState(ItemPlacementContext ctx) {
+		return this.getDefaultState().with(FACING, ctx.getSide());
+	}
+
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		builder.add(FACING);
+	}
 }

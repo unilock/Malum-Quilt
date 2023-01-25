@@ -9,7 +9,10 @@ import net.minecraft.registry.tag.BiomeTags;
 import net.minecraft.world.gen.BootstrapContext;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.YOffset;
+import net.minecraft.world.gen.decorator.BiomePlacementModifier;
 import net.minecraft.world.gen.decorator.HeightRangePlacementModifier;
+import net.minecraft.world.gen.decorator.InSquarePlacementModifier;
+import net.minecraft.world.gen.decorator.RarityFilterPlacementModifier;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.OrePlacedFeatures;
 import net.minecraft.world.gen.feature.PlacedFeature;
@@ -24,6 +27,7 @@ public interface MalumPlacedFeatureRegistry {
 	RegistryKey<PlacedFeature> UNDERGROUND_SOULSTONE_PLACED = PlacedFeatureUtil.m_ssakkmfw("underground_soulstone");
 	RegistryKey<PlacedFeature> BLAZING_QUARTZ_PLACED        = PlacedFeatureUtil.m_ssakkmfw("blazing_quartz");
 	RegistryKey<PlacedFeature> RUNEWOOD_CHECKED        = PlacedFeatureUtil.m_ssakkmfw("runewood_tree");
+	RegistryKey<PlacedFeature> WEEPING_WELL = PlacedFeatureUtil.m_ssakkmfw("weeping_well");
 
 	static void init() {
 		BiomeModifications.addFeature((b) -> b.isIn(BiomeTags.FOREST), GenerationStep.Feature.VEGETAL_DECORATION, RUNEWOOD_CHECKED);
@@ -36,10 +40,15 @@ public interface MalumPlacedFeatureRegistry {
 		Holder<ConfiguredFeature<?, ?>> bq = holderProvider.getHolderOrThrow(BLAZING_QUARTZ_VEIN_CONFIGURED);
 		Holder<ConfiguredFeature<?, ?>> bs = holderProvider.getHolderOrThrow(BRILLIANT_STONE_VEIN_CONFIGURED);
 		Holder<ConfiguredFeature<?, ?>> runewood = holderProvider.getHolderOrThrow(CONFIGURED_RUNEWOOD_TREE_FEATURE);
+		Holder<ConfiguredFeature<?, ?>> weep = holderProvider.getHolderOrThrow(CONFIGURED_WEEPING_WELL_FEATURE);
+
 		PlacedFeatureUtil.m_wsgklyng(bootstrapContext, RUNEWOOD_CHECKED, runewood, PlacedFeatureUtil.createWouldSurvivePlacementModifier(Blocks.OAK_SAPLING));
 		PlacedFeatureUtil.m_sdevhksy(bootstrapContext, BRILLIANT_STONE_PLACED, bs, OrePlacedFeatures.commonOrePlacementModifiers(3, HeightRangePlacementModifier.createUniform(YOffset.fixed(-64), YOffset.fixed(30))));
 		PlacedFeatureUtil.m_sdevhksy(bootstrapContext, SURFACE_SOULSTONE_PLACED, soulstoneSurface, OrePlacedFeatures.commonOrePlacementModifiers(8, HeightRangePlacementModifier.createUniform(YOffset.fixed(60), YOffset.fixed(100))));
 		PlacedFeatureUtil.m_sdevhksy(bootstrapContext, UNDERGROUND_SOULSTONE_PLACED, soulstoneUnderground, OrePlacedFeatures.commonOrePlacementModifiers(8, HeightRangePlacementModifier.createUniform(YOffset.fixed(-64), YOffset.fixed(30))));
 		PlacedFeatureUtil.m_sdevhksy(bootstrapContext, BLAZING_QUARTZ_PLACED, bq, OrePlacedFeatures.commonOrePlacementModifiers(16, PlacedFeatureUtil.EIGHT_ABOVE_AND_BELOW_RANGE));
+
+		PlacedFeatureUtil.m_wsgklyng(bootstrapContext, WEEPING_WELL, weep, RarityFilterPlacementModifier.create(30), InSquarePlacementModifier.getInstance(),
+				HeightRangePlacementModifier.createUniform(YOffset.aboveBottom(6), YOffset.fixed(0)), BiomePlacementModifier.getInstance());
 	}
 }

@@ -1,15 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
-  "key": {
-    "#": {
-      "item": "malum:cursed_grit"
-    }
-  },
   "pattern": [
     "###",
     "###",
     "###"
   ],
+  "key": {
+    "#": {
+      "item": "malum:cursed_grit"
+    }
+  },
   "result": {
     "item": "malum:block_of_cursed_grit"
   }
