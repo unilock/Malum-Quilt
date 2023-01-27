@@ -10,7 +10,6 @@ import net.minecraft.util.Identifier;
 
 import static dev.sterner.malum.Malum.MODID;
 import static dev.sterner.malum.common.registry.MalumObjects.*;
-import static dev.sterner.malum.common.registry.MalumObjects.BELT_OF_THE_MAGEBANE;
 
 public class MalumItemGroupEvents {
 	public static final ItemGroup MALUM = FabricItemGroup.builder(new Identifier(MODID, MODID)).icon(() -> new ItemStack(SPIRIT_ALTAR)).build();
@@ -95,7 +94,6 @@ public class MalumItemGroupEvents {
 		e.addItem(UNHOLY_SAPBALL);
 		e.addItem(UNHOLY_SYRUP);
 		e.addItem(SOULWOOD_LEAVES);
-		e.addItem(SOULWOOD_SAPLING);
 		e.addItem(SOULWOOD_LOG);
 		e.addItem(STRIPPED_SOULWOOD_LOG);
 		e.addItem(SOULWOOD);

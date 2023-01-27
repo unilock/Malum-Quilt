@@ -69,7 +69,6 @@ import net.minecraft.util.Rarity;
 import net.minecraft.util.SignType;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import org.quiltmc.qsl.item.content.registry.api.ItemContentRegistries;
-import org.quiltmc.qsl.item.setting.api.QuiltItemSettings;
 import org.quiltmc.qsl.registry.attachment.api.RegistryEntryAttachment;
 
 import java.awt.*;
@@ -250,7 +249,7 @@ public interface MalumObjects {
 	Item CREATIVE_SCYTHE = register("creative_scythe", new MagicScytheItem(ToolMaterials.IRON, 9993, 9.1f, 999f, settings().maxDamage(-1)));
 	Item TOKEN_OF_GRATITUDE = register("token_of_gratitude", new CurioTokenOfGratitude(settings()));
 
-	
+
 
 	//BLOCKS
 
@@ -452,7 +451,6 @@ public interface MalumObjects {
 
 	//region soulwood
 	Block SOULWOOD_GROWTH = register("soulwood_growth", new SoulwoodGrowthBlock(new SoulwoodSaplingGenerator(), BLIGHT_PLANTS_PROPERTIES().ticksRandomly()),true);
-	Block SOULWOOD_SAPLING = register("soulwood_sapling", new SaplingBlock(new SoulwoodSaplingGenerator(), BLIGHT_PLANTS_PROPERTIES().ticksRandomly()), true);
 	Block SOULWOOD_LEAVES = register("soulwood_leaves", new MalumLeavesBlock(SOULWOOD_LEAVES_PROPERTIES(), new Color(152, 6, 45), new Color(224, 30, 214)),true);
 
 	Block STRIPPED_SOULWOOD_LOG = register("stripped_soulwood_log", new PillarBlock(SOULWOOD_PROPERTIES()),true);

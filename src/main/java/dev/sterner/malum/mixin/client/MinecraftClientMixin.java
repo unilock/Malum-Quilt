@@ -1,6 +1,5 @@
 package dev.sterner.malum.mixin.client;
 
-import dev.sterner.malum.common.registry.MalumParticleRegistry;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.RunArgs;
 import org.spongepowered.asm.mixin.Mixin;

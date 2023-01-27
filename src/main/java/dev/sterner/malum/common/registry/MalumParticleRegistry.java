@@ -4,7 +4,6 @@ import dev.sterner.malum.Malum;
 import dev.sterner.malum.client.particles.spiritflame.SpiritFlameParticleType;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;

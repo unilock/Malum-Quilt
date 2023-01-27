@@ -3,30 +3,24 @@ package dev.sterner.malum;
 import dev.sterner.malum.common.enchantment.ReboundEnchantment;
 import dev.sterner.malum.common.event.MalumItemGroupEvents;
 import dev.sterner.malum.common.event.MalumTrinketEvents;
-import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
 import dev.sterner.malum.common.registry.*;
 import dev.sterner.malum.common.spirit.SpiritDataReloadListener;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.random.RandomGenerator;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
+import org.quiltmc.qsl.registry.api.event.RegistryEvents;
 import org.quiltmc.qsl.resource.loader.api.ResourceLoader;
 import org.quiltmc.qsl.resource.loader.api.reloader.IdentifiableResourceReloader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.function.BiConsumer;
-
-import static dev.sterner.malum.common.registry.MalumObjects.*;
-
+import java.util.Set;
 
 
 /**TODO
@@ -60,11 +54,19 @@ public class Malum implements ModInitializer {
 		MalumSpiritTypeRegistry.init();
 		MalumRiteRegistry.init();
 		MalumTrinketEvents.init();
-		MalumWorldRegistry.init();
+		MalumFeatureRegistry.init();
 		MalumItemGroupEvents.init();
 
 		UseItemCallback.EVENT.register(ReboundEnchantment::onRightClickItem);
 		ResourceLoader.get(ResourceType.SERVER_DATA).registerReloader(new SpiritDataReloadListenerFabricImpl());
+
+		RegistryEvents.DYNAMIC_REGISTRY_SETUP.register((ctx) -> {
+			ctx.withRegistries(registries -> {
+				Registry<ConfiguredFeature<?, ?>> configured = registries.get(RegistryKeys.CONFIGURED_FEATURE);
+				MalumConfiguredFeatureRegistry.init(configured);
+				MalumPlacedFeatureRegistry.init(configured, registries);
+			}, Set.of(RegistryKeys.PLACED_FEATURE, RegistryKeys.CONFIGURED_FEATURE));
+		});
 	}
 
 

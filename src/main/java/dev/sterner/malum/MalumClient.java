@@ -1,6 +1,5 @@
 package dev.sterner.malum;
 
-import com.sammy.lodestone.helpers.DataHelper;
 import dev.sterner.malum.client.model.SoulStainedSteelArmorModel;
 import dev.sterner.malum.client.model.SpiritHunterArmorModel;
 import dev.sterner.malum.client.particles.cut.ScytheAttackParticle;
@@ -25,14 +24,10 @@ import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
-import net.minecraft.client.particle.ParticleFactory;
-import net.minecraft.client.particle.SpriteProvider;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.item.Item;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleType;
 import net.minecraft.registry.Registries;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
@@ -44,7 +39,6 @@ import org.quiltmc.qsl.networking.api.client.ClientPlayNetworking;
 import org.quiltmc.qsl.resource.loader.api.ResourceLoader;
 
 import java.awt.*;
-import java.util.function.Function;
 
 import static dev.sterner.malum.common.registry.MalumObjects.*;
 
@@ -136,7 +130,10 @@ public class MalumClient implements ClientModInitializer {
 				BRILLIANT_STONE,
 				BLAZING_QUARTZ_ORE,
 				SPIRIT_ALTAR,
-				SPIRIT_JAR
+				SPIRIT_JAR,
+				BLIGHTED_WEED,
+				BLIGHTED_TUMOR,
+				SOULWOOD_GROWTH
 		);
 		registerColors();
 	}

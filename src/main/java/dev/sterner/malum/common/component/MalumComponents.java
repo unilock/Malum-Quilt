@@ -7,7 +7,6 @@ import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
 import dev.onyxstudios.cca.api.v3.entity.RespawnCopyStrategy;
 import dev.sterner.malum.Malum;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.Identifier;
 
 public class MalumComponents implements EntityComponentInitializer {
 	public static final ComponentKey<MalumPlayerComponent> PLAYER_COMPONENT = ComponentRegistry.getOrCreate(Malum.id("player"), MalumPlayerComponent.class);

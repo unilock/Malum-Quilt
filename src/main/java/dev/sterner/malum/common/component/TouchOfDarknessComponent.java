@@ -7,7 +7,6 @@ import com.sammy.lodestone.systems.rendering.VFXBuilders;
 import com.sammy.lodestone.systems.rendering.particle.Easing;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
-import dev.sterner.malum.client.render.block.VoidConduitBlockEntityRenderer;
 import dev.sterner.malum.common.block.weeping_well.PrimordialSoupBlock;
 import dev.sterner.malum.common.network.packet.s2c.block.VoidConduitParticlePacket;
 import dev.sterner.malum.common.registry.MalumDamageSourceRegistry;
