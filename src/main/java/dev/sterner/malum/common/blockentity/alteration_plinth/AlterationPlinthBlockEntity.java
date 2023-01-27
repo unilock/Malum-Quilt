@@ -63,8 +63,8 @@ public class AlterationPlinthBlockEntity extends ItemPedestalBlockEntity {
                     pEntity.setVelocity(MathHelper.nextFloat(random, -0.1F, 0.1F), MathHelper.nextFloat(random, 0.25f, 0.5f), MathHelper.nextFloat(random, -0.1F, 0.1F));
                     if(world instanceof ServerWorld serverWorld){
                         PlayerLookup.tracking(serverWorld, serverWorld.getWorldChunk(getPos()).getPos()).forEach(track -> BlightTransformItemParticlePacket.send(track, List.of(ARCANE_SPIRIT.identifier), pos.x, pos.y, pos.z));
-                    };
-                    world.playSound(null, new BlockPos(pos), MalumSoundRegistry.ALTERATION_PLINTH_ALTERS, SoundCategory.BLOCKS, 1, 0.9f + world.random.nextFloat() * 0.25f);
+                    }
+					world.playSound(null, new BlockPos(pos), MalumSoundRegistry.ALTERATION_PLINTH_ALTERS, SoundCategory.BLOCKS, 1, 0.9f + world.random.nextFloat() * 0.25f);
 
                     world.spawnEntity(pEntity);
                     inventory.setStackInSlot(0, ItemStack.EMPTY);

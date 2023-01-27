@@ -23,6 +23,12 @@ import org.slf4j.LoggerFactory;
 import static dev.sterner.malum.common.registry.MalumObjects.*;
 
 
+
+/**TODO
+ * Add all pridewears
+ * Add config
+ *
+ */
 public class Malum implements ModInitializer {
 	public static final RandomGenerator RANDOM = RandomGenerator.createLegacy();
 	public static final Logger LOGGER = LoggerFactory.getLogger("Malum");

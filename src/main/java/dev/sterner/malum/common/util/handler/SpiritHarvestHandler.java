@@ -59,7 +59,7 @@ public class SpiritHarvestHandler {
 			}
 			if (!(target instanceof PlayerEntity)) {
 				SpiritLivingEntityComponent component = MalumComponents.SPIRIT_COMPONENT.get(target);
-				if (component.exposedSoul > 0 && !component.isSoulless() && (!false || (false && !component.isSpawnerSpawned()))) {
+				if (component.exposedSoul > 0 && !component.isSoulless() && (!false || (false && !component.isSpawnerSpawned()))) {//TODO
 					SpiritHelper.createSpiritsFromWeapon(target, attacker, stack);
 					component.setSoulless(true);
 				}

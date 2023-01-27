@@ -68,7 +68,7 @@ public class ArcaneAffinity extends MalumSpiritAffinity {
 				if (instance != null) {
 					component.soulWardProgress = (float) (1 * 6 * Math.exp(-0.15 * instance.getValue()));
 					if (component.soulWard > 0) {
-						float multiplier = source.isMagic() ? 1 : 1;
+						float multiplier = source.isMagic() ? 1 : 1;//TODO
 						float result = amount * multiplier;
 						float absorbed = amount - result;
 						double strength = player.getAttributeValue(MalumAttributeRegistry.SOUL_WARD_STRENGTH);

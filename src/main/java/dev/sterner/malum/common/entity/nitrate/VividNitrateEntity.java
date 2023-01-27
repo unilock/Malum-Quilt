@@ -128,7 +128,7 @@ public class VividNitrateEntity extends AbstractNitrateEntity {
         }
     }
 
-    public static final record ColorFunctionData(World world, float duration, float offset, float partialTicks){
+    public record ColorFunctionData(World world, float duration, float offset, float partialTicks){
         public ColorFunctionData(World world, float offset) {
             this(world, 12f, offset, 0);
         }

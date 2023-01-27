@@ -87,7 +87,6 @@ abstract class PlayerEntityMixin extends LivingEntity {
 			world.playSound(null, target.getX(), target.getY(), target.getZ(), sound, this.getSoundCategory(), 1, 1);
 
 			float damage = 1.0F + EnchantmentHelper.getSweepingMultiplier(this) * f;
-			;
 			world.getOtherEntities(this, target.getBoundingBox().expand(1)).forEach(e -> {
 				if (e instanceof LivingEntity livingEntity) {
 					if (livingEntity.isAlive()) {
