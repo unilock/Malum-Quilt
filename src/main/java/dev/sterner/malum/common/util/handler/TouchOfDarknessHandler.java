@@ -5,7 +5,6 @@ import com.mojang.blaze3d.vertex.Tessellator;
 import com.sammy.lodestone.systems.rendering.ExtendedShader;
 import com.sammy.lodestone.systems.rendering.VFXBuilders;
 import com.sammy.lodestone.systems.rendering.particle.Easing;
-import dev.sterner.malum.common.block.weeping_well.PrimordialSoupBlock;
 import dev.sterner.malum.common.registry.MalumDamageSourceRegistry;
 import dev.sterner.malum.common.registry.MalumShaderRegistry;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;

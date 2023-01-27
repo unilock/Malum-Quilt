@@ -1,7 +1,10 @@
 package dev.sterner.malum.common.block.ether;
 
 import dev.sterner.malum.common.blockentity.EtherBlockEntity;
+import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -10,6 +13,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("deprecation")
 public class EtherTorchBlock<T extends EtherBlockEntity> extends EtherBlock<T> {
@@ -18,6 +22,12 @@ public class EtherTorchBlock<T extends EtherBlockEntity> extends EtherBlock<T> {
     public EtherTorchBlock(Settings settings) {
         super(settings);
     }
+
+	@Override
+	public BlockEntity createBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
+		setBlockEntity((BlockEntityType<T>) MalumBlockEntityRegistry.ETHER);
+		return super.createBlockEntity(pos, state);
+	}
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {

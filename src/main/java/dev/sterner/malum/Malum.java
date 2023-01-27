@@ -58,6 +58,7 @@ public class Malum implements ModInitializer {
 		ResourceLoader.get(ResourceType.SERVER_DATA).registerReloader(new SpiritDataReloadListenerFabricImpl());
 
 		ItemGroupEvents.modifyEntriesEvent(MALUM).register(entries -> {
+			entries.addItem(RUNEWOOD_SAPLING);
 				entries.addItem(ENCYCLOPEDIA_ARCANA);
 
 				entries.addItem(ARCANE_CHARCOAL);
@@ -89,8 +90,8 @@ public class Malum implements ModInitializer {
 
 				entries.addItem(SPIRIT_ALTAR);
 				entries.addItem(SPIRIT_JAR);
-				//entries.addItem(RUNEWOOD_OBELISK);
-				//entries.addItem(BRILLIANT_OBELISK);
+				entries.addItem(RUNEWOOD_OBELISK);
+				entries.addItem(BRILLIANT_OBELISK);
 				entries.addItem(SPIRIT_CRUCIBLE);
 				entries.addItem(TWISTED_TABLET);
 				entries.addItem(SPIRIT_CATALYZER);

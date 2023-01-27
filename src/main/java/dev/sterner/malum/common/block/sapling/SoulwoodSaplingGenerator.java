@@ -1,6 +1,5 @@
 package dev.sterner.malum.common.block.sapling;
 
-import dev.sterner.malum.common.registry.MalumWorldRegistry;
 import net.minecraft.block.sapling.SaplingGenerator;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.random.RandomGenerator;

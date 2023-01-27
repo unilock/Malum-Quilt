@@ -2,13 +2,9 @@ package dev.sterner.malum.common.block.storage;
 
 import dev.sterner.malum.common.blockentity.storage.ItemPedestalBlockEntity;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.function.BooleanBiFunction;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.stream.Stream;
 
@@ -23,9 +19,4 @@ public class WoodItemPedestalBlock <T extends ItemPedestalBlockEntity> extends I
     public WoodItemPedestalBlock(Settings settings) {
         super(settings);
     }
-
-	@Override
-	public BlockEntity createBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-		return new ItemPedestalBlockEntity(pos, state);
-	}
 }

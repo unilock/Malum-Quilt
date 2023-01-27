@@ -3,10 +3,12 @@ package dev.sterner.malum.common.block.tablet;
 import com.sammy.lodestone.systems.block.WaterLoggedEntityBlock;
 import dev.sterner.malum.common.block.spirit_crucible.SpiritCrucibleComponentBlock;
 import dev.sterner.malum.common.blockentity.tablet.TwistedTabletBlockEntity;
+import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.state.StateManager;
@@ -17,6 +19,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 import static net.minecraft.state.property.Properties.FACING;
 
@@ -32,6 +35,12 @@ public class TwistedTabletBlock<T extends TwistedTabletBlockEntity> extends Wate
         super(properties);
         this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH));
     }
+
+	@Override
+	public BlockEntity createBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
+		setBlockEntity((BlockEntityType<T>) MalumBlockEntityRegistry.TWISTED_TABLET);
+		return super.createBlockEntity(pos, state);
+	}
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {

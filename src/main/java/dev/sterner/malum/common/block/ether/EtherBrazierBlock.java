@@ -1,7 +1,10 @@
 package dev.sterner.malum.common.block.ether;
 
 import dev.sterner.malum.common.blockentity.EtherBlockEntity;
+import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
@@ -14,6 +17,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("deprecation")
 public class EtherBrazierBlock<T extends EtherBlockEntity> extends EtherBlock<T> {
@@ -26,6 +30,12 @@ public class EtherBrazierBlock<T extends EtherBlockEntity> extends EtherBlock<T>
         super(settings);
         this.setDefaultState(this.getDefaultState().with(WATERLOGGED, false).with(HANGING, false).with(ROTATED, false));
     }
+
+	@Override
+	public BlockEntity createBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
+		setBlockEntity((BlockEntityType<T>) MalumBlockEntityRegistry.ETHER);
+		return super.createBlockEntity(pos, state);
+	}
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {

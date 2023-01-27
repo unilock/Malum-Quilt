@@ -1,8 +1,5 @@
 package dev.sterner.malum.common.blockentity.spirit_altar;
 
-import com.sammy.lodestone.forge.CombinedInvWrapper;
-import com.sammy.lodestone.forge.ItemHandler;
-import com.sammy.lodestone.forge.LazyOptional;
 import com.sammy.lodestone.helpers.BlockHelper;
 import com.sammy.lodestone.helpers.DataHelper;
 import com.sammy.lodestone.setup.LodestoneParticles;
@@ -65,10 +62,6 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity {
     public LodestoneBlockEntityInventory spiritInventory;
     public List<SpiritInfusionRecipe> possibleRecipes = new ArrayList<>();
     public SpiritInfusionRecipe recipe;
-
-    public LazyOptional<ItemHandler> internalInventory = LazyOptional.of(() -> new CombinedInvWrapper(inventory, extrasInventory, spiritInventory));
-    public LazyOptional<ItemHandler> exposedInventory = LazyOptional.of(() -> new CombinedInvWrapper(inventory, spiritInventory));
-
 
     public SpiritAltarBlockEntity(BlockPos pos, BlockState state) {
         this(MalumBlockEntityRegistry.SPIRIT_ALTAR, pos, state);
@@ -222,10 +215,13 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity {
 
     @Override
     public void tick() {
+		/*
 		if (needsSync) {
 			init();
 			needsSync = false;
 		}
+
+		 */
         super.tick();
         spiritAmount = Math.max(1, MathHelper.lerp(0.1f, spiritAmount, spiritInventory.nonEmptyItemAmount));
         if (!possibleRecipes.isEmpty()) {

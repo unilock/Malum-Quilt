@@ -2,7 +2,6 @@ package dev.sterner.malum.common.statuseffect;
 
 import com.sammy.lodestone.helpers.ColorHelper;
 import dev.sterner.malum.common.registry.MalumDamageSourceRegistry;
-import dev.sterner.malum.common.util.handler.TouchOfDarknessHandler;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;

@@ -3,7 +3,6 @@ package dev.sterner.malum.common.world.gen.feature;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.sammy.lodestone.helpers.BlockHelper;
-import com.sammy.lodestone.helpers.DataHelper;
 import com.sammy.lodestone.systems.worldgen.LodestoneBlockFiller;
 import dev.sterner.malum.common.block.MalumLeavesBlock;
 import dev.sterner.malum.common.block.MalumSaplingBlock;
@@ -23,7 +22,6 @@ import net.minecraft.world.gen.feature.util.FeatureContext;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class RunewoodTreeFeature extends Feature<DefaultFeatureConfig> {
     private static final int minimumSapBlockCount = 2;
@@ -47,7 +45,6 @@ public class RunewoodTreeFeature extends Feature<DefaultFeatureConfig> {
 
     @Override
     public boolean place(FeatureContext<DefaultFeatureConfig> context) {
-		System.out.println("place");
         StructureWorldAccess world = context.getWorld();
         var pos = context.getOrigin();
         var rand = context.getRandom();
@@ -72,7 +69,6 @@ public class RunewoodTreeFeature extends Feature<DefaultFeatureConfig> {
                 return false;
             }
         }
-		System.out.println("makeLeafBlob");
         makeLeafBlob(leavesFiller, rand, trunkTop);
         for (Direction direction : directions) //side trunk placement
         {
@@ -121,7 +117,6 @@ public class RunewoodTreeFeature extends Feature<DefaultFeatureConfig> {
         treeFiller.fill(world);
         leavesFiller.fill(world);
         updateLeaves(world, treeFiller.getEntries().keySet());
-		System.out.println("return");
         return true;
     }
 

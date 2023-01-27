@@ -2,8 +2,10 @@ package dev.sterner.malum.common.block.spirit_altar;
 
 import com.sammy.lodestone.systems.block.WaterLoggedEntityBlock;
 import dev.sterner.malum.common.blockentity.spirit_altar.SpiritAltarBlockEntity;
+import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -13,6 +15,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -46,28 +49,22 @@ public class SpiritAltarBlock<T extends SpiritAltarBlockEntity> extends WaterLog
         return BlockRenderType.MODEL;
     }
 
+	@Override
+	public void prepare(BlockState state, WorldAccess world, BlockPos pos, int flags, int maxUpdateDepth) {
+
+		super.prepare(state, world, pos, flags, maxUpdateDepth);
+	}
 
 	@Override
 	public BlockEntity createBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-		return new SpiritAltarBlockEntity(pos, state);
+		setBlockEntity((BlockEntityType<T>) MalumBlockEntityRegistry.SPIRIT_ALTAR);
+		return super.createBlockEntity(pos, state);
 	}
 
+	@NotNull
 	@Override
-	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		if (world.isClient) {
-			return ActionResult.SUCCESS;
-		}
-		if(world.getBlockEntity(pos) instanceof SpiritAltarBlockEntity spiritAltarBlockEntity){
-			spiritAltarBlockEntity.onUse(player, hand);
-		}
-		return ActionResult.PASS;
-	}
-
-	@Override
-	public void onBreak(@NotNull World world, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull PlayerEntity player) {
-		if(world.getBlockEntity(pos) instanceof SpiritAltarBlockEntity sa){
-			sa.onBreak(player);
-		}
-		super.onBreak(world, pos, state, player);
+	public ActionResult onUse(@NotNull BlockState state, @NotNull World level, @NotNull BlockPos pos, @NotNull PlayerEntity player, @NotNull Hand hand, @NotNull BlockHitResult ray) {
+		System.out.println("Print: " + this.blockEntityType);
+		return super.onUse(state, level, pos, player, hand, ray);
 	}
 }

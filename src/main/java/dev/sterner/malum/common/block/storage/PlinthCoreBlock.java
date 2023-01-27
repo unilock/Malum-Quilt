@@ -2,9 +2,11 @@ package dev.sterner.malum.common.block.storage;
 
 import com.sammy.lodestone.systems.block.WaterLoggedEntityBlock;
 import dev.sterner.malum.common.blockentity.storage.PlinthCoreBlockEntity;
+import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.BlockPos;
@@ -12,6 +14,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 public class PlinthCoreBlock<T extends PlinthCoreBlockEntity> extends WaterLoggedEntityBlock<T> {
     public static final VoxelShape SHAPE = makeShape();
@@ -19,6 +22,12 @@ public class PlinthCoreBlock<T extends PlinthCoreBlockEntity> extends WaterLogge
     public PlinthCoreBlock(Settings settings) {
         super(settings);
     }
+
+	@Override
+	public BlockEntity createBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
+		setBlockEntity((BlockEntityType<T>) MalumBlockEntityRegistry.PLINTH);
+		return super.createBlockEntity(pos, state);
+	}
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {

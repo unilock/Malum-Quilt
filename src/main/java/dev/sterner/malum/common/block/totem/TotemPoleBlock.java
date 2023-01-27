@@ -2,9 +2,11 @@ package dev.sterner.malum.common.block.totem;
 
 import com.sammy.lodestone.systems.block.LodestoneEntityBlock;
 import dev.sterner.malum.common.blockentity.totem.TotemPoleBlockEntity;
+import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
@@ -12,6 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import static net.minecraft.state.property.Properties.HORIZONTAL_FACING;
@@ -27,16 +30,17 @@ public class TotemPoleBlock<T extends TotemPoleBlockEntity> extends LodestoneEnt
         this.setDefaultState(this.getDefaultState().with(HORIZONTAL_FACING, Direction.NORTH));
     }
 
+	@Override
+	public BlockEntity createBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
+		setBlockEntity((BlockEntityType<T>) MalumBlockEntityRegistry.TOTEM_POLE);
+		return super.createBlockEntity(pos, state);
+	}
+
     @Override
     public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
         return logBlock.getPickStack(world, pos, state);
     }
 
-    @Nullable
-    @Override
-    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new TotemPoleBlockEntity(pos, state);
-    }
 
     @Override
     public BlockRenderType getRenderType(BlockState state) {

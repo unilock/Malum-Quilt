@@ -2,7 +2,6 @@ package dev.sterner.malum.common.registry;
 
 import com.mojang.blaze3d.vertex.VertexFormats;
 import com.mojang.datafixers.util.Pair;
-import com.sammy.lodestone.LodestoneLib;
 import com.sammy.lodestone.systems.rendering.ExtendedShader;
 import com.sammy.lodestone.systems.rendering.ShaderHolder;
 import dev.sterner.malum.Malum;

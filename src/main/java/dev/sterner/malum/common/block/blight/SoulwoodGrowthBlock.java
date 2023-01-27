@@ -18,18 +18,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
-
-import java.util.function.Supplier;
 
 public class SoulwoodGrowthBlock extends MalumSaplingBlock {
+	public SoulwoodGrowthBlock(SaplingGenerator generator, Settings settings) {
+		super(generator, settings);
+	}
 
-    public SoulwoodGrowthBlock(Supplier<? extends Feature<DefaultFeatureConfig>> tree, Settings settings) {
-        super(null, settings);
-    }
-
-    @Override
+	@Override
     public void grow(ServerWorld world, RandomGenerator random, BlockPos pos, BlockState state) {
         super.grow(world, random, pos, state);
         world.syncWorldEvent(1505, pos, 0);

@@ -2,8 +2,10 @@ package dev.sterner.malum.common.block.storage;
 
 import com.sammy.lodestone.systems.block.WaterLoggedEntityBlock;
 import dev.sterner.malum.common.blockentity.storage.ItemStandBlockEntity;
+import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.state.StateManager;
@@ -14,7 +16,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
 
 
 @SuppressWarnings("deprecation")
@@ -36,8 +38,13 @@ public class ItemStandBlock<T extends ItemStandBlockEntity> extends WaterLoggedE
         return BlockRenderType.MODEL;
     }
 
+	@Override
+	public BlockEntity createBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
+		setBlockEntity((BlockEntityType<T>) MalumBlockEntityRegistry.ITEM_STAND);
+		return super.createBlockEntity(pos, state);
+	}
 
-    @Override
+	@Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         Direction direction = state.get(FACING);
         return switch (direction) {
@@ -69,11 +76,5 @@ public class ItemStandBlock<T extends ItemStandBlockEntity> extends WaterLoggedE
     @Override
     public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
         return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
-    }
-
-    @Nullable
-    @Override
-    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new ItemStandBlockEntity(pos, state);
     }
 }

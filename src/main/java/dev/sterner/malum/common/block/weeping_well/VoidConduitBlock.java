@@ -2,10 +2,13 @@ package dev.sterner.malum.common.block.weeping_well;
 
 import com.sammy.lodestone.systems.block.LodestoneEntityBlock;
 import dev.sterner.malum.common.blockentity.VoidConduitBlockEntity;
+import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import dev.sterner.malum.common.util.handler.TouchOfDarknessHandler;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.BlockPos;
@@ -21,6 +24,12 @@ import static dev.sterner.malum.common.block.weeping_well.PrimordialSoupBlock.TO
 public class VoidConduitBlock<T extends VoidConduitBlockEntity> extends LodestoneEntityBlock<T> {
 	public VoidConduitBlock(AbstractBlock.Settings properties) {
 		super(properties);
+	}
+
+	@Override
+	public BlockEntity createBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
+		setBlockEntity((BlockEntityType<T>) MalumBlockEntityRegistry.VOID_CONDUIT);
+		return super.createBlockEntity(pos, state);
 	}
 
 	@Override

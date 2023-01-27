@@ -1,6 +1,7 @@
 package dev.sterner.malum.common.block.obelisk;
 
 import dev.sterner.malum.common.blockentity.obelisk.RunewoodObeliskBlockEntity;
+import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -14,6 +15,7 @@ public class RunewoodObeliskCoreBlock extends ObeliskCoreBlock<RunewoodObeliskBl
 
 	@Override
 	public BlockEntity createBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-		return new RunewoodObeliskBlockEntity(pos, state);
+		setBlockEntity(MalumBlockEntityRegistry.RUNEWOOD_OBELISK);
+		return super.createBlockEntity(pos, state);
 	}
 }

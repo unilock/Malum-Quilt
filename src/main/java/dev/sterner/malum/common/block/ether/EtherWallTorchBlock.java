@@ -3,7 +3,10 @@ package dev.sterner.malum.common.block.ether;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import dev.sterner.malum.common.blockentity.EtherBlockEntity;
+import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
@@ -17,6 +20,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
@@ -35,6 +39,12 @@ public class EtherWallTorchBlock<T extends EtherBlockEntity> extends EtherBlock<
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(WATERLOGGED, false));
     }
+
+	@Override
+	public BlockEntity createBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
+		setBlockEntity((BlockEntityType<T>) MalumBlockEntityRegistry.ETHER);
+		return super.createBlockEntity(pos, state);
+	}
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
