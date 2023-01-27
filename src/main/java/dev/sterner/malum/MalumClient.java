@@ -16,6 +16,7 @@ import dev.sterner.malum.common.network.packet.s2c.block.blight.BlightMistPartic
 import dev.sterner.malum.common.network.packet.s2c.block.blight.BlightTransformItemParticlePacket;
 import dev.sterner.malum.common.network.packet.s2c.block.functional.AltarConsumeParticlePacket;
 import dev.sterner.malum.common.network.packet.s2c.block.functional.AltarCraftParticlePacket;
+import dev.sterner.malum.common.network.packet.s2c.entity.*;
 import dev.sterner.malum.common.registry.*;
 import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
@@ -90,6 +91,13 @@ public class MalumClient implements ClientModInitializer {
 		ClientPlayNetworking.registerGlobalReceiver(MinorBlockSparkleParticlePacket.ID, MinorBlockSparkleParticlePacket::handle);
 		ClientPlayNetworking.registerGlobalReceiver(TotemBaseActivationParticlePacket.ID, TotemBaseActivationParticlePacket::handle);
 		ClientPlayNetworking.registerGlobalReceiver(VoidConduitParticlePacket.ID, VoidConduitParticlePacket::handle);
+
+		ClientPlayNetworking.registerGlobalReceiver(EthericNitrateParticlePacket.ID, EthericNitrateParticlePacket::handle);
+		ClientPlayNetworking.registerGlobalReceiver(MajorEntityEffectParticlePacket.ID, MajorEntityEffectParticlePacket::handle);
+		ClientPlayNetworking.registerGlobalReceiver(MinorEntityEffectParticlePacket.ID, MinorEntityEffectParticlePacket::handle);
+		ClientPlayNetworking.registerGlobalReceiver(SuccessfulSoulHarvestParticlePacket.ID, SuccessfulSoulHarvestParticlePacket::handle);
+		ClientPlayNetworking.registerGlobalReceiver(VividNitrateBounceParticlePacket.ID, VividNitrateBounceParticlePacket::handle);
+
 
 		HandledScreens.register(MalumScreenHandlerRegistry.SPIRIT_POUCH_SCREEN_HANDLER, SpiritPouchScreen::new);
 

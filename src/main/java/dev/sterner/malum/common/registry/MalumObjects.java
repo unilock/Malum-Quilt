@@ -445,6 +445,7 @@ public interface MalumObjects {
 
 	//region soulwood
 	Block SOULWOOD_GROWTH = register("soulwood_growth", new SoulwoodGrowthBlock(new SoulwoodSaplingGenerator(), BLIGHT_PLANTS_PROPERTIES().ticksRandomly()),true);
+	Block SOULWOOD_SAPLING = register("soulwood_sapling", new SaplingBlock(new SoulwoodSaplingGenerator(), BLIGHT_PLANTS_PROPERTIES().ticksRandomly()), true);
 	Block SOULWOOD_LEAVES = register("soulwood_leaves", new MalumLeavesBlock(SOULWOOD_LEAVES_PROPERTIES(), new Color(152, 6, 45), new Color(224, 30, 214)),true);
 
 	Block STRIPPED_SOULWOOD_LOG = register("stripped_soulwood_log", new PillarBlock(SOULWOOD_PROPERTIES()),true);

@@ -51,7 +51,9 @@ public interface MalumBlockEntityRegistry {
 	BlockEntityType<PlinthCoreBlockEntity> PLINTH = register("plinth",  QuiltBlockEntityTypeBuilder.create(PlinthCoreBlockEntity::new, MalumObjects.SOULWOOD_PLINTH).build(null));
 	BlockEntityType<FusionPlateBlockEntity> FUSION_PLATE = register("fusion_plate",  QuiltBlockEntityTypeBuilder.create(FusionPlateBlockEntity::new, MalumObjects.SOULWOOD_FUSION_PLATE).build(null));
 
-	BlockEntityType<EtherBlockEntity> ETHER = register("ether",  QuiltBlockEntityTypeBuilder.create(EtherBlockEntity::new, getBlocks(EtherBlock.class)).build(null));
+	BlockEntityType<EtherBlockEntity> ETHER = register("ether",  QuiltBlockEntityTypeBuilder.create(EtherBlockEntity::new,
+			getBlocks(EtherBlock.class)
+	).build(null));
 
 	BlockEntityType<ItemStandBlockEntity> ITEM_STAND = register("item_stand",  QuiltBlockEntityTypeBuilder.create(ItemStandBlockEntity::new, getBlocks(ItemStandBlock.class)).build(null));
 	BlockEntityType<ItemPedestalBlockEntity> ITEM_PEDESTAL = register("item_pedestal",  QuiltBlockEntityTypeBuilder.create(ItemPedestalBlockEntity::new, MalumObjects.RUNEWOOD_ITEM_PEDESTAL, MalumObjects.SOULWOOD_ITEM_PEDESTAL, MalumObjects.TAINTED_ROCK_ITEM_PEDESTAL, MalumObjects.TWISTED_ROCK_ITEM_PEDESTAL).build(null));
@@ -65,9 +67,8 @@ public interface MalumBlockEntityRegistry {
 
 
 	static Block[] getBlocks(Class<?>... blockClasses) {
-		Registry<Block> blocks = Registries.BLOCK;
 		ArrayList<Block> matchingBlocks = new ArrayList<>();
-		for (Block block : blocks) {
+		for (Block block : MalumObjects.BLOCKS.keySet()) {
 			if (Arrays.stream(blockClasses).anyMatch(b -> b.isInstance(block))) {
 				matchingBlocks.add(block);
 			}
