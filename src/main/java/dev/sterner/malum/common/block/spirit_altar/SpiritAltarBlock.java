@@ -50,21 +50,8 @@ public class SpiritAltarBlock<T extends SpiritAltarBlockEntity> extends WaterLog
     }
 
 	@Override
-	public void prepare(BlockState state, WorldAccess world, BlockPos pos, int flags, int maxUpdateDepth) {
-
-		super.prepare(state, world, pos, flags, maxUpdateDepth);
-	}
-
-	@Override
 	public BlockEntity createBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
 		setBlockEntity((BlockEntityType<T>) MalumBlockEntityRegistry.SPIRIT_ALTAR);
 		return super.createBlockEntity(pos, state);
-	}
-
-	@NotNull
-	@Override
-	public ActionResult onUse(@NotNull BlockState state, @NotNull World level, @NotNull BlockPos pos, @NotNull PlayerEntity player, @NotNull Hand hand, @NotNull BlockHitResult ray) {
-		System.out.println("Print: " + this.blockEntityType);
-		return super.onUse(state, level, pos, player, hand, ray);
 	}
 }

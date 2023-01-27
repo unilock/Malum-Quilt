@@ -341,7 +341,6 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity {
         }
         spiritInventory.updateData();
         if(world instanceof ServerWorld serverWorld){
-			System.out.println(recipe.spirits.stream().map(s -> s.type.identifier).toList());
             PlayerLookup.tracking(serverWorld, serverWorld.getWorldChunk(pos).getPos()).forEach(track -> AltarCraftParticlePacket.send(track, recipe.spirits.stream().map(s -> s.type.identifier).collect(Collectors.toList()), itemPos));
         }
         progress *= 0.5f;

@@ -1,36 +1,48 @@
 package dev.sterner.malum.common.registry;
 
-import com.sammy.lodestone.helpers.DataHelper;
-import dev.sterner.malum.client.particles.cut.ScytheAttackParticle;
+import dev.sterner.malum.Malum;
 import dev.sterner.malum.client.particles.spiritflame.SpiritFlameParticleType;
-import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
-import java.util.function.BiConsumer;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-public interface MalumParticleRegistry {
-	DefaultParticleType SCYTHE_CUT_ATTACK_PARTICLE = FabricParticleTypes.simple(true);
-	DefaultParticleType SCYTHE_SWEEP_ATTACK_PARTICLE = FabricParticleTypes.simple(true);
+@SuppressWarnings("SameParameterValue")
+public class MalumParticleRegistry {
+	private static final Map<ParticleType<?>, Identifier> PARTICLE_TYPES = new LinkedHashMap<>();
 
-	SpiritFlameParticleType SPIRIT_FLAME_PARTICLE = new SpiritFlameParticleType();
+	public static final DefaultParticleType SCYTHE_CUT_ATTACK_PARTICLE = registerr("scythe_cut_attack", FabricParticleTypes.simple(true));
+	public static final DefaultParticleType SCYTHE_SWEEP_ATTACK_PARTICLE = registerr("scythe_sweep_attack", FabricParticleTypes.simple(true));
 
-	static void init() {
-		initParticles(bind(Registries.PARTICLE_TYPE));
+	public static final SpiritFlameParticleType SPIRIT_FLAME_PARTICLE = registerr("spirit_flame", new SpiritFlameParticleType());
+
+	private static SpiritFlameParticleType registerr(String name, SpiritFlameParticleType type) {
+		PARTICLE_TYPES.put(type, Malum.id(name));
+		return type;
 	}
 
-	// shamelessly stolen from Botania
-	static void initParticles(BiConsumer<ParticleType<?>, Identifier> registry) {
-		registry.accept(SCYTHE_CUT_ATTACK_PARTICLE, DataHelper.prefix("scythe_cut_attack"));
-		registry.accept(SCYTHE_SWEEP_ATTACK_PARTICLE, DataHelper.prefix("scythe_sweep_attack"));
-		registry.accept(SPIRIT_FLAME_PARTICLE, DataHelper.prefix("spirit_flame"));
+	private static DefaultParticleType registerr(String name, DefaultParticleType type) {
+		PARTICLE_TYPES.put(type, Malum.id(name));
+		return type;
 	}
-	// guess where this one comes from
-	static <T> BiConsumer<T, Identifier> bind(Registry<? super T> registry) {
-		return (t, id) -> Registry.register(registry, id, t);
+/*
+	private static <T extends ParticleEffect> DefaultParticleType register(String name, ParticleType<T> type) {
+		PARTICLE_TYPES.put(type, Malum.id(name));
+		return type;
+
+
 	}
+
+ */
+
+	public static void init() {
+		PARTICLE_TYPES.keySet().forEach(particleType -> Registry.register(Registries.PARTICLE_TYPE, PARTICLE_TYPES.get(particleType), particleType));
+	}
+
 }

@@ -25,10 +25,14 @@ import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
+import net.minecraft.client.particle.ParticleFactory;
+import net.minecraft.client.particle.SpriteProvider;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.item.Item;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleType;
 import net.minecraft.registry.Registries;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
@@ -40,6 +44,7 @@ import org.quiltmc.qsl.networking.api.client.ClientPlayNetworking;
 import org.quiltmc.qsl.resource.loader.api.ResourceLoader;
 
 import java.awt.*;
+import java.util.function.Function;
 
 import static dev.sterner.malum.common.registry.MalumObjects.*;
 
@@ -104,6 +109,10 @@ public class MalumClient implements ClientModInitializer {
 		ParticleFactoryRegistry.getInstance().register(MalumParticleRegistry.SCYTHE_CUT_ATTACK_PARTICLE, ScytheAttackParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(MalumParticleRegistry.SCYTHE_SWEEP_ATTACK_PARTICLE, ScytheAttackParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(MalumParticleRegistry.SPIRIT_FLAME_PARTICLE, SpiritFlameParticleType.Factory::new);
+
+
+
+
 
 		HandledScreens.register(MalumScreenHandlerRegistry.SPIRIT_POUCH_SCREEN_HANDLER, SpiritPouchScreen::new);
 
