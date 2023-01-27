@@ -1,6 +1,6 @@
 package dev.sterner.malum.common.block.weeping_well;
 
-import dev.sterner.malum.common.util.handler.TouchOfDarknessHandler;
+import dev.sterner.malum.common.component.MalumComponents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -64,7 +64,7 @@ public class PrimordialSoupBlock extends Block {
 	@Override
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
 		if (entity instanceof LivingEntity livingEntity) {
-			TouchOfDarknessHandler.touchedByGoop(state, livingEntity);
+			MalumComponents.TOUCH_OF_DARKNESS_COMPONENT.get(livingEntity).touchedByGoop(state, livingEntity);
 		}
 	}
 }

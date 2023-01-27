@@ -49,6 +49,7 @@
 	"mixin": "malum.mixins.json",
 	"cardinal-components": [
 		"malum:spirit",
-		"malum:player"
+		"malum:player",
+		"malum:touch_of_darkness"
 	]
 }

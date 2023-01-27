@@ -127,6 +127,19 @@ public interface MalumSoundRegistry {
 	SoundEvent RUNEWOOD_LEAVES_PLACE = register("runewood_leaves_place");
 	SoundEvent RUNEWOOD_LEAVES_STEP = register("runewood_leaves_step");
 
+	SoundEvent CTHONIC_GOLD_BREAK = register("cthonic_gold_break");
+	SoundEvent CTHONIC_GOLD_PLACE = register("cthonic_gold_place");
+
+	BlockSoundGroup CTHONIC_GOLD = new BlockSoundGroup(
+			1.0F,
+			1.0F,
+			CTHONIC_GOLD_BREAK,
+			SOULSTONE_STEP,
+			CTHONIC_GOLD_PLACE,
+			DEEPSLATE_SOULSTONE_HIT,
+			SoundEvents.BLOCK_AZALEA_LEAVES_FALL
+	);
+
 	BlockSoundGroup RUNEWOOD_LEAVES = new BlockSoundGroup(
 		1.0F,
 		1.0F,

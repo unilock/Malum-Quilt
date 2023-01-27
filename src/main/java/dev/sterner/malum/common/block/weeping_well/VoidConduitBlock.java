@@ -2,8 +2,8 @@ package dev.sterner.malum.common.block.weeping_well;
 
 import com.sammy.lodestone.systems.block.LodestoneEntityBlock;
 import dev.sterner.malum.common.blockentity.VoidConduitBlockEntity;
+import dev.sterner.malum.common.component.MalumComponents;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
-import dev.sterner.malum.common.util.handler.TouchOfDarknessHandler;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -55,7 +55,7 @@ public class VoidConduitBlock<T extends VoidConduitBlockEntity> extends Lodeston
 	@Override
 	public void onEntityCollision(@NotNull BlockState pState, @NotNull World pLevel, @NotNull BlockPos pPos, @NotNull Entity pEntity) {
 		if (pEntity instanceof LivingEntity livingEntity) {
-			TouchOfDarknessHandler.touchedByGoop(pState, livingEntity);
+			MalumComponents.TOUCH_OF_DARKNESS_COMPONENT.get(livingEntity).touchedByGoop(pState, livingEntity);
 		}
 	}
 

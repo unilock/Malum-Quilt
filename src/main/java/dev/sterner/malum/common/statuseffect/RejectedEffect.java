@@ -1,6 +1,7 @@
 package dev.sterner.malum.common.statuseffect;
 
 import com.sammy.lodestone.helpers.ColorHelper;
+import dev.sterner.malum.common.component.MalumComponents;
 import dev.sterner.malum.common.registry.MalumDamageSourceRegistry;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
@@ -17,11 +18,12 @@ public class RejectedEffect extends StatusEffect {
 
 	@Override
 	public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-	//  TouchOfDarknessHandler handler = MalumLivingEntityDataCapability.getCapability(pLivingEntity).touchOfDarknessHandler;
-	//	handler.afflict(20);
-		if (entity.world.getTime() % 60L == 0) {
-			entity.damage(new DamageSource(MalumDamageSourceRegistry.GUARANTEED_SOUL_SHATTER), 1);
-		}
+		MalumComponents.TOUCH_OF_DARKNESS_COMPONENT.maybeGet(entity).ifPresent(l -> {
+			l.afflict(20);
+			if (entity.world.getTime() % 60L == 0) {
+				entity.damage(new DamageSource(MalumDamageSourceRegistry.GUARANTEED_SOUL_SHATTER), 1);
+			}
+		});
 	}
 
 	@Override

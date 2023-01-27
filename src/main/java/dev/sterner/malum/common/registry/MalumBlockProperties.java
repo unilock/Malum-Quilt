@@ -117,4 +117,9 @@ public interface MalumBlockProperties {
 	static QuiltBlockSettings MOTE_OF_MANA_PROPERTIES() {
 		return QuiltBlockSettings.of(Material.STONE, MapColor.CYAN).strength(25f, 9999f).sounds(MalumSoundRegistry.RARE_EARTH);
 	}
+
+	static QuiltBlockSettings AURUM_PROPERTIES() {
+		return QuiltBlockSettings.of(Material.STONE, MapColor.GRAY).strength(25f, 9999f).sounds(MalumSoundRegistry.CTHONIC_GOLD);
+	}
+
 }

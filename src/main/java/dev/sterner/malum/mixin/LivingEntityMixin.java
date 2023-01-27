@@ -1,6 +1,7 @@
 package dev.sterner.malum.mixin;
 
 import dev.sterner.malum.api.event.LivingEntityDamageEvent;
+import dev.sterner.malum.common.component.MalumComponents;
 import dev.sterner.malum.common.item.equipment.trinket.CurioVoraciousRing;
 import dev.sterner.malum.common.registry.MalumAttributeRegistry;
 import dev.sterner.malum.common.util.handler.SpiritHarvestHandler;
@@ -136,5 +137,11 @@ abstract class LivingEntityMixin extends Entity {
 	@Inject(method = "consumeItem", at = @At(value = "INVOKE", shift = At.Shift.BY, by = 2, target = "Lnet/minecraft/item/ItemStack;finishUsing(Lnet/minecraft/world/World;Lnet/minecraft/entity/LivingEntity;)Lnet/minecraft/item/ItemStack;"), locals = LocalCapture.CAPTURE_FAILHARD)
 	public void malum$onFinishUsing(CallbackInfo ci, Hand hand, ItemStack result) {
 		CurioVoraciousRing.finishEating((LivingEntity)(Object) this, result);
+	}
+
+	@ModifyVariable(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getFluidState(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/fluid/FluidState;"))
+	private double malum$travel(double value) {
+		LivingEntity livingEntity = (LivingEntity) (Object) this;
+		return MalumComponents.TOUCH_OF_DARKNESS_COMPONENT.get(livingEntity).updateEntityGravity(livingEntity, value);
 	}
 }

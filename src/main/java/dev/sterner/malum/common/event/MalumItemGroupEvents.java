@@ -277,6 +277,7 @@ public class MalumItemGroupEvents {
 		entries.addItem(BLOCK_OF_GRIM_TALC);
 		entries.addItem(BLOCK_OF_ALCHEMICAL_CALX);
 		entries.addItem(BLOCK_OF_ASTRAL_WEAVE);
+		entries.addItem(BLOCK_OF_CTHONIC_GOLD);
 		entries.addItem(BLOCK_OF_HEX_ASH);
 		entries.addItem(BLOCK_OF_CURSED_GRIT);
 

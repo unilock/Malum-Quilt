@@ -25,7 +25,6 @@ public final class MalumEarlyRiser implements Runnable {
 		final String armorMaterialsTarget = mappings.mapClassName("intermediary", "net.minecraft.class_1740");
 		final String armorParam5 = "L" + mappings.mapClassName("intermediary", "net.minecraft.class_3414") + ";";
 
-
 		//enchantmentTarget
 		ClassTinkerers.enumBuilder(enchantmentTarget, new Class[0])
 				.addEnumSubclass("SCYTHE", "dev.sterner.malum.common.enchantment.ScytheEnchantmentTarget")

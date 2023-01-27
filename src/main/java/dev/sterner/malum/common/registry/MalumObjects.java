@@ -1,6 +1,8 @@
 package dev.sterner.malum.common.registry;
 
 import com.sammy.lodestone.systems.block.LodestoneLogBlock;
+import com.sammy.lodestone.systems.block.sign.LodestoneStandingSignBlock;
+import com.sammy.lodestone.systems.block.sign.LodestoneWallSignBlock;
 import com.sammy.lodestone.systems.item.tools.magic.*;
 import com.sammy.lodestone.systems.multiblock.MultiBlockItem;
 import com.sammy.lodestone.systems.multiblock.MultiBlockStructure;
@@ -64,11 +66,14 @@ import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
+import net.minecraft.util.SignType;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import org.quiltmc.qsl.item.content.registry.api.ItemContentRegistries;
+import org.quiltmc.qsl.item.setting.api.QuiltItemSettings;
 import org.quiltmc.qsl.registry.attachment.api.RegistryEntryAttachment;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -83,6 +88,10 @@ public interface MalumObjects {
 	Map<Block, Identifier> BLOCKS = new LinkedHashMap<>();
 	Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
 	Set<MalumScytheItem> SCYTHES = new ReferenceOpenHashSet<>();
+	ArrayList<SignType> SIGN_TYPES = new ArrayList<>();
+
+	SignType RUNEWOOD_SIGN_TYPE = register(new SignType("runewood"));
+	SignType SOULWOOD_SIGN_TYPE = register(new SignType("soulwood"));
 
 	Item ENCYCLOPEDIA_ARCANA = register("encyclopedia_arcana", new EncyclopediaArcanaItem(settings().rarity(Rarity.UNCOMMON)));
 
@@ -92,12 +101,9 @@ public interface MalumObjects {
 	Item HOLY_SYRUP = register("holy_syrup", new HolySyrupItem(settings().recipeRemainder(GLASS_BOTTLE).food((new FoodComponent.Builder()).hunger(6).saturationModifier(0.1F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 0), 1).build())));
 
 
-	//region soulwood
 	Item UNHOLY_SAP = register("unholy_sap", new Item(settings().recipeRemainder(GLASS_BOTTLE)));
 	Item UNHOLY_SAPBALL = register("unholy_sapball", new Item(settings()));
 	Item UNHOLY_SYRUP = register("unholy_syrup", new UnholySyrupItem(settings().recipeRemainder(GLASS_BOTTLE).food((new FoodComponent.Builder()).hunger(6).saturationModifier(0.1F).statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 0), 1).build())));
-
-
 	//endregion
 
 	//region spirits
@@ -244,7 +250,7 @@ public interface MalumObjects {
 	Item CREATIVE_SCYTHE = register("creative_scythe", new MagicScytheItem(ToolMaterials.IRON, 9993, 9.1f, 999f, settings().maxDamage(-1)));
 	Item TOKEN_OF_GRATITUDE = register("token_of_gratitude", new CurioTokenOfGratitude(settings()));
 
-
+	
 
 	//BLOCKS
 
@@ -284,6 +290,7 @@ public interface MalumObjects {
 	Block WEEPING_WELL_SIDE = register("weeping_well_side", new WeepingWellBlock(WEEPING_WELL_PROPERTIES()), true);
 	Block WEEPING_WELL_CORE = register("weeping_well_core", new WeepingWellBlock(WEEPING_WELL_PROPERTIES()), true);
 
+	Block BLOCK_OF_CTHONIC_GOLD = register("block_of_cthonic_gold", new Block(AURUM_PROPERTIES()), true);
 	//endregion
 
 	//region tainted rock
@@ -439,8 +446,8 @@ public interface MalumObjects {
 	Block RUNEWOOD_ITEM_STAND = register("runewood_item_stand", new ItemStandBlock<>(RUNEWOOD_PROPERTIES().nonOpaque()),true);
 	Block RUNEWOOD_ITEM_PEDESTAL = register("runewood_item_pedestal", new WoodItemPedestalBlock<>(RUNEWOOD_PROPERTIES().nonOpaque()),true);
 
-	//Block RUNEWOOD_SIGN = register("runewood_sign", new LodestoneStandingSignBlock(RUNEWOOD_PROPERTIES().nonOpaque().noCollision(), WoodTypeRegistry.RUNEWOOD), false);
-	//Block RUNEWOOD_WALL_SIGN = register("runewood_wall_sign", new LodestoneWallSignBlock(RUNEWOOD_PROPERTIES().nonOpaque().noCollision(), WoodTypeRegistry.RUNEWOOD), false);
+	Block RUNEWOOD_SIGN = register("runewood_sign", new LodestoneStandingSignBlock(RUNEWOOD_PROPERTIES().nonOpaque().noCollision(), RUNEWOOD_SIGN_TYPE), true);
+	Block RUNEWOOD_WALL_SIGN = register("runewood_wall_sign", new LodestoneWallSignBlock(RUNEWOOD_PROPERTIES().nonOpaque().noCollision(), RUNEWOOD_SIGN_TYPE), false);
 	//endregion
 
 	//region soulwood
@@ -488,9 +495,11 @@ public interface MalumObjects {
 	Block SOULWOOD_ITEM_STAND = register("soulwood_item_stand", new ItemStandBlock<>(SOULWOOD_PROPERTIES().nonOpaque()),true);
 	Block SOULWOOD_ITEM_PEDESTAL = register("soulwood_item_pedestal", new WoodItemPedestalBlock<>(SOULWOOD_PROPERTIES().nonOpaque()),true);
 
-	//Block SOULWOOD_SIGN = register("soulwood_sign", new LodestoneStandingSignBlock(SOULWOOD_PROPERTIES().nonOpaque().noCollision(), WoodTypeRegistry.SOULWOOD), false);
-	//Block SOULWOOD_WALL_SIGN = register("soulwood_wall_sign", new LodestoneWallSignBlock(SOULWOOD_PROPERTIES().nonOpaque().noCollision(), WoodTypeRegistry.SOULWOOD), false);
+	Block SOULWOOD_SIGN = register("soulwood_sign", new LodestoneStandingSignBlock(SOULWOOD_PROPERTIES().nonOpaque().noCollision(), SOULWOOD_SIGN_TYPE), true);
+	Block SOULWOOD_WALL_SIGN = register("soulwood_wall_sign", new LodestoneWallSignBlock(SOULWOOD_PROPERTIES().nonOpaque().noCollision(), SOULWOOD_SIGN_TYPE), false);
 	//endregion
+
+
 
 	//region blight
 	Block BLIGHTED_EARTH = register("blighted_earth", new BlightedSoilBlock(BLIGHT_PROPERTIES()), true);
@@ -564,6 +573,10 @@ public interface MalumObjects {
 	Block BLOCK_OF_HEX_ASH = register("block_of_hex_ash", new Block(AbstractBlock.Settings.copy(Blocks.PURPLE_CONCRETE_POWDER)),true);
 	Block BLOCK_OF_CURSED_GRIT = register("block_of_cursed_grit", new Block(AbstractBlock.Settings.copy(Blocks.RED_CONCRETE_POWDER)),true);
 
+	static SignType register(SignType signType) {
+		SIGN_TYPES.add(signType);
+		return signType;
+	}
 
 	static <T extends Block> T registerEther(String name, T block, boolean isIri, boolean createItem) {
 		BLOCKS.put(block, new Identifier(Malum.MODID, name));
@@ -637,8 +650,10 @@ public interface MalumObjects {
 	}
 
 	static void init(){
+		SIGN_TYPES.forEach(SignType::register);
 		BLOCKS.keySet().forEach(block -> Registry.register(Registries.BLOCK, BLOCKS.get(block), block));
 		ITEMS.keySet().forEach(item -> Registry.register(Registries.ITEM, ITEMS.get(item), item));
+
 		RegistryEntryAttachment<Item, Integer> fuelRegistry = ItemContentRegistries.FUEL_TIMES;
 		fuelRegistry.put(ARCANE_CHARCOAL, 3200);
 		fuelRegistry.put(BLOCK_OF_ARCANE_CHARCOAL.asItem(), 28800);
