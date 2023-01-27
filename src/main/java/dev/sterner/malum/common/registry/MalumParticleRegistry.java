@@ -23,11 +23,6 @@ public interface MalumParticleRegistry {
 		initParticles(bind(Registries.PARTICLE_TYPE));
 	}
 
-	static void registerFactories() {
-		ParticleFactoryRegistry.getInstance().register(SCYTHE_CUT_ATTACK_PARTICLE, ScytheAttackParticle.Factory::new);
-		ParticleFactoryRegistry.getInstance().register(SCYTHE_SWEEP_ATTACK_PARTICLE, ScytheAttackParticle.Factory::new);
-		ParticleFactoryRegistry.getInstance().register(SPIRIT_FLAME_PARTICLE, SpiritFlameParticleType.Factory::new);
-	}
 	// shamelessly stolen from Botania
 	static void initParticles(BiConsumer<ParticleType<?>, Identifier> registry) {
 		registry.accept(SCYTHE_CUT_ATTACK_PARTICLE, DataHelper.prefix("scythe_cut_attack"));

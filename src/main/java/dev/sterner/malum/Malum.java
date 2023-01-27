@@ -29,6 +29,7 @@ import static dev.sterner.malum.common.registry.MalumObjects.*;
  * Add all pridewears
  * Add config
  * Fix SpiritRepair recipes from crashing
+ * Add boat and sign
  */
 public class Malum implements ModInitializer {
 	public static final RandomGenerator RANDOM = RandomGenerator.createLegacy();

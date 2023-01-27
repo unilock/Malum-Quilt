@@ -3,6 +3,8 @@ package dev.sterner.malum;
 import com.sammy.lodestone.helpers.DataHelper;
 import dev.sterner.malum.client.model.SoulStainedSteelArmorModel;
 import dev.sterner.malum.client.model.SpiritHunterArmorModel;
+import dev.sterner.malum.client.particles.cut.ScytheAttackParticle;
+import dev.sterner.malum.client.particles.spiritflame.SpiritFlameParticleType;
 import dev.sterner.malum.client.render.CloakArmorRenderer;
 import dev.sterner.malum.client.render.SteelArmorRenderer;
 import dev.sterner.malum.client.render.block.*;
@@ -19,6 +21,7 @@ import dev.sterner.malum.common.network.packet.s2c.block.functional.AltarCraftPa
 import dev.sterner.malum.common.network.packet.s2c.entity.*;
 import dev.sterner.malum.common.registry.*;
 import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
@@ -98,6 +101,9 @@ public class MalumClient implements ClientModInitializer {
 		ClientPlayNetworking.registerGlobalReceiver(SuccessfulSoulHarvestParticlePacket.ID, SuccessfulSoulHarvestParticlePacket::handle);
 		ClientPlayNetworking.registerGlobalReceiver(VividNitrateBounceParticlePacket.ID, VividNitrateBounceParticlePacket::handle);
 
+		ParticleFactoryRegistry.getInstance().register(MalumParticleRegistry.SCYTHE_CUT_ATTACK_PARTICLE, ScytheAttackParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(MalumParticleRegistry.SCYTHE_SWEEP_ATTACK_PARTICLE, ScytheAttackParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(MalumParticleRegistry.SPIRIT_FLAME_PARTICLE, SpiritFlameParticleType.Factory::new);
 
 		HandledScreens.register(MalumScreenHandlerRegistry.SPIRIT_POUCH_SCREEN_HANDLER, SpiritPouchScreen::new);
 
