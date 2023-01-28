@@ -1,7 +1,6 @@
 package dev.sterner.malum;
 
-import dev.sterner.malum.client.model.SoulStainedSteelArmorModel;
-import dev.sterner.malum.client.model.SpiritHunterArmorModel;
+import dev.sterner.malum.client.model.*;
 import dev.sterner.malum.client.particles.cut.ScytheAttackParticle;
 import dev.sterner.malum.client.particles.spiritflame.SpiritFlameParticleType;
 import dev.sterner.malum.client.render.CloakArmorRenderer;
@@ -46,10 +45,23 @@ import static dev.sterner.malum.common.registry.MalumObjects.*;
 public class MalumClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient(ModContainer mod) {
-		EntityModelLayerRegistry.registerModelLayer(SpiritHunterArmorModel.LAYER, SpiritHunterArmorModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SoulHunterArmorModel.LAYER, SoulHunterArmorModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(SoulStainedSteelArmorModel.LAYER, SoulStainedSteelArmorModel::getTexturedModelData);
+
+		EntityModelLayerRegistry.registerModelLayer(AncientSoulHunterArmorModel.LAYER, AncientSoulHunterArmorModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(AncientSoulStainedSteelArmorModel.LAYER, AncientSoulStainedSteelArmorModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(PridewearArmorModel.LAYER, PridewearArmorModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SlimPridewearArmorModel.LAYER, SlimPridewearArmorModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(TailModel.LAYER, TailModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(ScarfModel.LAYER, ScarfModel::getTexturedModelData);
+
+
+
 		ArmorRenderer.register(new CloakArmorRenderer(Malum.id("textures/armor/spirit_hunter_reforged.png")), MalumObjects.SOUL_HUNTER_CLOAK, MalumObjects.SOUL_HUNTER_ROBE, MalumObjects.SOUL_HUNTER_LEGGINGS, MalumObjects.SOUL_HUNTER_BOOTS);
 		ArmorRenderer.register(new SteelArmorRenderer(Malum.id("textures/armor/soul_stained_steel_reforged.png")), MalumObjects.SOUL_STAINED_STEEL_HELMET, MalumObjects.SOUL_STAINED_STEEL_CHESTPLATE, MalumObjects.SOUL_STAINED_STEEL_LEGGINGS, MalumObjects.SOUL_STAINED_STEEL_BOOTS);
+
+
+
 		EntityRendererRegistry.register(MalumEntityRegistry.SCYTHE_BOOMERANG, ScytheBoomerangEntityRenderer::new);
 		EntityRendererRegistry.register(MalumEntityRegistry.NATURAL_SPIRIT, FloatingItemEntityRenderer::new);
 		EntityRendererRegistry.register(MalumEntityRegistry.ETHERIC_NITRATE, EthericNitrateEntityRenderer::new);

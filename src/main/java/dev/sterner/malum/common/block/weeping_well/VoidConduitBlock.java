@@ -36,6 +36,7 @@ public class VoidConduitBlock<T extends VoidConduitBlockEntity> extends Lodeston
 		return super.createBlockEntity(pos, state);
 	}
 
+
 	@Override
 	public @Nullable <B extends BlockEntity> BlockEntityTicker<B> getTicker(@NotNull World world, @NotNull BlockState state, @NotNull BlockEntityType<B> type) {
 		return  (tickerWorld, pos, tickerState, blockEntity) -> {
@@ -75,10 +76,5 @@ public class VoidConduitBlock<T extends VoidConduitBlockEntity> extends Lodeston
 		if (pEntity instanceof LivingEntity livingEntity) {
 			MalumComponents.TOUCH_OF_DARKNESS_COMPONENT.get(livingEntity).touchedByGoop(pState, livingEntity);
 		}
-	}
-
-	@Override
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
 	}
 }

@@ -56,9 +56,4 @@ public class TotemBaseBlock<T extends TotemBaseBlockEntity> extends LodestoneEnt
         }
         return 0;
     }
-
-    @Override
-    public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
-    }
 }

@@ -57,12 +57,6 @@ public class TotemPoleBlock<T extends TotemPoleBlockEntity> extends LodestoneEnt
         return logBlock.getPickStack(world, pos, state);
     }
 
-
-    @Override
-    public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
-    }
-
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(HORIZONTAL_FACING, MalumSpiritTypeRegistry.SPIRIT_TYPE_PROPERTY);

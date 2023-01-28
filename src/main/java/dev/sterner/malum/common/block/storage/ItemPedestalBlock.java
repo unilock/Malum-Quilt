@@ -55,11 +55,6 @@ public class ItemPedestalBlock<T extends ItemPedestalBlockEntity> extends WaterL
     }
 
 	@Override
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
-	}
-
-	@Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
     }

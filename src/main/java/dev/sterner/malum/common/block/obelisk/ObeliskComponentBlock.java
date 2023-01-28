@@ -36,9 +36,4 @@ public class ObeliskComponentBlock extends MultiBlockComponentBlock {
 
 		return shape;
 	}
-
-	@Override
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
-	}
 }

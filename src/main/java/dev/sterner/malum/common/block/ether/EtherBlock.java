@@ -4,13 +4,12 @@ import com.sammy.lodestone.systems.block.WaterLoggedEntityBlock;
 import dev.sterner.malum.common.blockentity.EtherBlockEntity;
 import dev.sterner.malum.common.blockentity.spirit_altar.SpiritAltarBlockEntity;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
@@ -34,6 +33,14 @@ public class EtherBlock<T extends EtherBlockEntity> extends WaterLoggedEntityBlo
 	public BlockEntity createBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
 		setBlockEntity((BlockEntityType<T>) MalumBlockEntityRegistry.ETHER);
 		return super.createBlockEntity(pos, state);
+	}
+
+	@Override
+	public void onPlaced(@NotNull World world, @NotNull BlockPos pos, @NotNull BlockState state, @Nullable LivingEntity placer, @NotNull ItemStack itemStack) {
+		super.onPlaced(world, pos, state, placer, itemStack);
+		if(world.getBlockEntity(pos) instanceof EtherBlockEntity ether){
+			ether.onPlaced(world, pos, state, placer, itemStack);
+		}
 	}
 
 	@Override

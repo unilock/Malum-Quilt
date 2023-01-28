@@ -1,6 +1,7 @@
 package dev.sterner.malum.common.block.weeping_well;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.piston.PistonBehavior;

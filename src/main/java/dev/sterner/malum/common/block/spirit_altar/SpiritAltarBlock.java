@@ -43,11 +43,6 @@ public class SpiritAltarBlock<T extends SpiritAltarBlockEntity> extends WaterLog
         return SHAPE;
     }
 
-    @Override
-    public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
-    }
-
 	@Override
 	public @Nullable <B extends BlockEntity> BlockEntityTicker<B> getTicker(@NotNull World world, @NotNull BlockState state, @NotNull BlockEntityType<B> type) {
 		return  (tickerWorld, pos, tickerState, blockEntity) -> {

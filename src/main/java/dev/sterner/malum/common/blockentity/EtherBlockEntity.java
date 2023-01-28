@@ -60,7 +60,8 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
         return tag;
     }
 
-    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+
+	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
         firstColorRGB = NbtHelper.getOrDefaultInt(nbt -> nbt.getCompound("display").getInt("FirstColor"), 15712278, itemStack.getNbt());
         this.firstColor = new Color(firstColorRGB);
         secondColorRGB = NbtHelper.getOrDefaultInt(nbt -> nbt.getCompound("display").getInt("SecondColor"), 4607909, itemStack.getNbt());
@@ -75,7 +76,8 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
         this.secondColor = new Color(secondColorRGB);
     }
 
-    public void clientTick(World world, BlockPos pos, BlockState state) {
+	@Override
+    public void clientTick() {
         if (firstColor == null) {
             return;
         }

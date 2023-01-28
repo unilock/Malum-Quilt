@@ -30,11 +30,6 @@ public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedE
 	public SpiritJarBlock(AbstractBlock.Settings settings) {
 		super(settings);
 	}
-    @Override
-    public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
-    }
-
 
 	@Override
 	public BlockEntity createBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {

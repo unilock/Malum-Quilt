@@ -36,9 +36,4 @@ public class ObeliskCoreBlock<T extends ObeliskCoreBlockEntity> extends WaterLog
 
 		return shape;
 	}
-
-	@Override
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
-	}
 }

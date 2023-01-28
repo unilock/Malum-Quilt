@@ -33,11 +33,6 @@ public class ItemStandBlock<T extends ItemStandBlockEntity> extends WaterLoggedE
         super(settings);
     }
 
-    @Override
-    public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
-    }
-
 	@Override
 	public BlockEntity createBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
 		setBlockEntity((BlockEntityType<T>) MalumBlockEntityRegistry.ITEM_STAND);
