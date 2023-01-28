@@ -92,7 +92,6 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
 							ItemEntity.class,
 							new Box(pos.add(1, -3, 1), pos.add(-1, -1, -1)).expand(2))
 					.stream().sorted(Comparator.comparingInt(itemEntity -> itemEntity.age)).toList();
-			System.out.println(pos + " : " + items);
 			for (ItemEntity entity : items) {
 				ItemStack item = entity.getStack();
 				if (item.getItem().equals(MalumObjects.BLIGHTED_GUNK)) {

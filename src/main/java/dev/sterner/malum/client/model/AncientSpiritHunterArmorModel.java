@@ -1,13 +1,14 @@
 package dev.sterner.malum.client.model;
 
 import com.sammy.lodestone.helpers.DataHelper;
+import dev.sterner.malum.Malum;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.render.entity.model.EntityModelPartNames;
 
 public class AncientSpiritHunterArmorModel extends ArmorModel {
-    public static final EntityModelLayer LAYER = new EntityModelLayer(DataHelper.prefix("textures/armor/spirit_hunter"), "main");
+    public static final EntityModelLayer LAYER = new EntityModelLayer(Malum.id("textures/armor/spirit_hunter"), "main");
 
     public AncientSpiritHunterArmorModel(ModelPart root) {
         super(root);

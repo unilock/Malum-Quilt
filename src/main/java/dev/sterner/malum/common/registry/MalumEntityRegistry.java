@@ -1,6 +1,7 @@
 package dev.sterner.malum.common.registry;
 
 import com.sammy.lodestone.helpers.DataHelper;
+import dev.sterner.malum.Malum;
 import dev.sterner.malum.common.entity.SpiritItemEntity;
 import dev.sterner.malum.common.entity.boomerang.ScytheBoomerangEntity;
 import dev.sterner.malum.common.entity.nitrate.EthericNitrateEntity;
@@ -22,28 +23,28 @@ import static dev.sterner.malum.Malum.MODID;
 public interface MalumEntityRegistry {
 	Map<Identifier, EntityType<?>> ENTITY_TYPES = new LinkedHashMap<>();
 
-	EntityType<ScytheBoomerangEntity> SCYTHE_BOOMERANG = register("scythe_boomerang", EntityType.Builder.<ScytheBoomerangEntity>create((e, w)->new ScytheBoomerangEntity(w), SpawnGroup.MISC).setDimensions(2.5F, 0.75F).maxTrackingRange(10).build(DataHelper.prefix("scythe_boomerang").toString()));
-	EntityType<SpiritItemEntity>      NATURAL_SPIRIT   = register("natural_spirit", EntityType.Builder.<SpiritItemEntity>create((e, w)->new SpiritItemEntity(w), SpawnGroup.MISC).setDimensions(0.5F, 0.75F).maxTrackingRange(10).build(DataHelper.prefix("natural_spirit").toString()));
+	EntityType<ScytheBoomerangEntity> SCYTHE_BOOMERANG = register("scythe_boomerang", EntityType.Builder.<ScytheBoomerangEntity>create((e, w)->new ScytheBoomerangEntity(w), SpawnGroup.MISC).setDimensions(2.5F, 0.75F).maxTrackingRange(10).build(Malum.id("scythe_boomerang").toString()));
+	EntityType<SpiritItemEntity>      NATURAL_SPIRIT   = register("natural_spirit", EntityType.Builder.<SpiritItemEntity>create((e, w)->new SpiritItemEntity(w), SpawnGroup.MISC).setDimensions(0.5F, 0.75F).maxTrackingRange(10).build(Malum.id("natural_spirit").toString()));
 
 	EntityType<EthericNitrateEntity>      ETHERIC_NITRATE   = register("etheric_nitrate", EntityType.Builder.<EthericNitrateEntity>create((e, w)->new EthericNitrateEntity(w), SpawnGroup.MISC)
 		.setDimensions(0.5F, 0.5F)
 		.maxTrackingRange(20)
-		.build(DataHelper.prefix("etheric_nitrate").toString()));
+		.build(Malum.id("etheric_nitrate").toString()));
 
 	EntityType<VividNitrateEntity>      VIVID_NITRATE   = register("vivid_nitrate", EntityType.Builder.<VividNitrateEntity>create((e, w)->new VividNitrateEntity(w), SpawnGroup.MISC)
 		.setDimensions(0.5F, 0.5F)
 		.maxTrackingRange(20)
-		.build(DataHelper.prefix("vivid_nitrate").toString()));
+		.build(Malum.id("vivid_nitrate").toString()));
 
 	EntityType<MirrorItemEntity>      MIRROR_ITEM   = register("mirror_item", EntityType.Builder.<MirrorItemEntity>create((e, w)->new MirrorItemEntity(w), SpawnGroup.MISC)
 		.setDimensions(0.5F, 0.5F)
 		.maxTrackingRange(10)
-		.build(DataHelper.prefix("mirror_item").toString()));
+		.build(Malum.id("mirror_item").toString()));
 
 	EntityType<SoulEntity>      NATURAL_SOUL   = register("natural_soul", EntityType.Builder.<SoulEntity>create((e, w)->new SoulEntity(w), SpawnGroup.MISC)
 		.setDimensions(1.5F, 1.5F)
 		.maxTrackingRange(10)
-		.build(DataHelper.prefix("natural_soul").toString()));
+		.build(Malum.id("natural_soul").toString()));
 
 
 	static <T extends Entity> EntityType<T> register(String id, EntityType<T> type) {

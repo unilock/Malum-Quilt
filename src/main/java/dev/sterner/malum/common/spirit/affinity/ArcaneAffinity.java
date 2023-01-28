@@ -10,6 +10,7 @@ import com.sammy.lodestone.setup.LodestoneShaders;
 import com.sammy.lodestone.systems.rendering.VFXBuilders;
 import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
 import com.sammy.lodestone.systems.rendering.particle.screen.base.ScreenParticle;
+import dev.sterner.malum.Malum;
 import dev.sterner.malum.common.component.MalumComponents;
 import dev.sterner.malum.common.component.MalumPlayerComponent;
 import dev.sterner.malum.common.registry.MalumAttributeRegistry;
@@ -57,6 +58,7 @@ public class ArcaneAffinity extends MalumSpiritAffinity {
 			if (component.soulWard > cap.getValue()) {
 				component.soulWard = (float) cap.getValue();
 			}
+			MalumComponents.PLAYER_COMPONENT.sync(player);
 		}
 	}
 
@@ -68,7 +70,7 @@ public class ArcaneAffinity extends MalumSpiritAffinity {
 				if (instance != null) {
 					component.soulWardProgress = (float) (1 * 6 * Math.exp(-0.15 * instance.getValue()));
 					if (component.soulWard > 0) {
-						float multiplier = source.isMagic() ? 1 : 1;//TODO
+						float multiplier = source.isMagic() ? 0.1f : 0.7f;
 						float result = amount * multiplier;
 						float absorbed = amount - result;
 						double strength = player.getAttributeValue(MalumAttributeRegistry.SOUL_WARD_STRENGTH);
@@ -98,11 +100,23 @@ public class ArcaneAffinity extends MalumSpiritAffinity {
 	}
 
 	public static int getSoulWardCooldown(PlayerEntity player) {
-		return (int) (1 * Math.exp(-0.15 * player.getAttributeValue(MalumAttributeRegistry.SOUL_WARD_RECOVERY_SPEED)));
+		return getSoulWardCooldown(player.getAttributeValue(MalumAttributeRegistry.SOUL_WARD_RECOVERY_SPEED));
+	}
+
+	public static int getSoulWardCooldown(double recoverySpeed) {
+		int baseValue = 60;
+		if (recoverySpeed == 0) {
+			return baseValue;
+		}
+		float n = 0.6f;
+		double exponent = 1 + (Math.pow(recoverySpeed * 0.25f + 1, 1 - n) - 1) / (1 - n);
+		return (int) (baseValue * (1 / exponent));
 	}
 
 	public static class Client {
-		private static final Identifier ICONS_TEXTURE = DataHelper.prefix("textures/gui/soul_ward/"+ 1 + ".png");
+		public static Identifier getSoulWardTexture() {
+			return Malum.id("textures/gui/soul_ward/default.png");
+		}
 
 		public static void renderSoulWard(MatrixStack matrices, Window window) {
 			final MinecraftClient client = MinecraftClient.getInstance();
@@ -127,7 +141,7 @@ public class ArcaneAffinity extends MalumSpiritAffinity {
 					RenderSystem.depthMask(false);
 					RenderSystem.enableBlend();
 					RenderSystem.defaultBlendFunc();
-					RenderSystem.setShaderTexture(0, ICONS_TEXTURE);
+					RenderSystem.setShaderTexture(0, getSoulWardTexture());
 					RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
 					ShaderProgram shader = LodestoneShaders.DISTORTED_TEXTURE.getInstance().get();
 					shader.getUniformOrDefault("YFrequency").setFloat(15f);

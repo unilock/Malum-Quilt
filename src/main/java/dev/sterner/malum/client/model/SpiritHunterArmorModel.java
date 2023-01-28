@@ -1,6 +1,7 @@
 package dev.sterner.malum.client.model;
 
 import com.sammy.lodestone.helpers.DataHelper;
+import dev.sterner.malum.Malum;
 import net.minecraft.client.model.*;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
@@ -10,7 +11,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.MathHelper;
 
 public class SpiritHunterArmorModel extends ArmorModel {
-    public static final EntityModelLayer LAYER = new EntityModelLayer(DataHelper.prefix("textures/armor/spirit_hunter_reforged"), "main");
+    public static final EntityModelLayer LAYER = new EntityModelLayer(Malum.id("textures/armor/spirit_hunter_reforged"), "main");
 
     public ModelPart cape;
     public ModelPart lowered_hood;

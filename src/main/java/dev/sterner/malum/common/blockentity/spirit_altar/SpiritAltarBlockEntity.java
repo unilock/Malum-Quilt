@@ -171,13 +171,6 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity {
 
     @Override
     public ActionResult onUse(PlayerEntity player, Hand hand){
-        if (world.isClient()) {
-			System.out.println("C");
-            return ActionResult.CONSUME;
-        }else {
-			System.out.println("S");
-		}
-
         if (hand.equals(Hand.MAIN_HAND)) {
             ItemStack heldStack = player.getMainHandStack();
             recalibrateAccelerators();
@@ -242,12 +235,9 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity {
                     }
                 }
                 int progressCap = (int) (300 * (1 - Math.log(1+speed)/4f));
-				System.out.println("Progress: "+ progress + " : Cap: "+progressCap);
                 if (progress >= progressCap) {
-					System.out.println("consume");
                     boolean success = consume();
                     if (success) {
-						System.out.println("craft");
                         craft();
                     }
                 }
