@@ -630,6 +630,14 @@ public interface MalumObjects {
 		return block;
 	}
 
+	static <T extends Block> T registerS(String name, Supplier<T> block, boolean createItem) {
+		BLOCKS.put(block.get(), new Identifier(Malum.MODID, name));
+		if (createItem) {
+			ITEMS.put(new BlockItem(block.get(), settings()), BLOCKS.get(block));
+		}
+		return block.get();
+	}
+
 	static <T extends Block> T registerMultiBlock(String name, T block, Supplier<? extends MultiBlockStructure> structure, boolean createItem) {
 		BLOCKS.put(block, new Identifier(Malum.MODID, name));
 		if (createItem) {

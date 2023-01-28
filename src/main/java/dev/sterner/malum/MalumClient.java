@@ -12,6 +12,7 @@ import dev.sterner.malum.client.render.item.ScytheItemRenderer;
 import dev.sterner.malum.client.screen.SpiritPouchScreen;
 import dev.sterner.malum.common.block.MalumLeavesBlock;
 import dev.sterner.malum.common.blockentity.EtherBlockEntity;
+import dev.sterner.malum.common.network.packet.s2c.VoidRejectionPacket;
 import dev.sterner.malum.common.network.packet.s2c.block.*;
 import dev.sterner.malum.common.network.packet.s2c.block.blight.BlightMistParticlePacket;
 import dev.sterner.malum.common.network.packet.s2c.block.blight.BlightTransformItemParticlePacket;
@@ -100,6 +101,8 @@ public class MalumClient implements ClientModInitializer {
 		ClientPlayNetworking.registerGlobalReceiver(SuccessfulSoulHarvestParticlePacket.ID, SuccessfulSoulHarvestParticlePacket::handle);
 		ClientPlayNetworking.registerGlobalReceiver(VividNitrateBounceParticlePacket.ID, VividNitrateBounceParticlePacket::handle);
 
+		ClientPlayNetworking.registerGlobalReceiver(VoidRejectionPacket.ID, VoidRejectionPacket::handle);
+
 		ParticleFactoryRegistry.getInstance().register(MalumParticleRegistry.SCYTHE_CUT_ATTACK_PARTICLE, ScytheAttackParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(MalumParticleRegistry.SCYTHE_SWEEP_ATTACK_PARTICLE, ScytheAttackParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(MalumParticleRegistry.SPIRIT_FLAME_PARTICLE, SpiritFlameParticleType.Factory::new);
@@ -133,7 +136,10 @@ public class MalumClient implements ClientModInitializer {
 				SPIRIT_JAR,
 				BLIGHTED_WEED,
 				BLIGHTED_TUMOR,
-				SOULWOOD_GROWTH
+				SOULWOOD_GROWTH,
+				WEEPING_WELL_SIDE,
+				WEEPING_WELL_CORE,
+				WEEPING_WELL_CORNER
 		);
 		registerColors();
 	}

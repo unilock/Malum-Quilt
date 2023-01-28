@@ -14,6 +14,7 @@ public interface MalumConfiguredFeatureRegistry {
 
 	ConfiguredFeature<?, ?> CONFIGURED_RUNEWOOD_TREE_FEATURE = register("runewood_tree", new ConfiguredFeature<>(MalumFeatureRegistry.RUNEWOOD_TREE_FEATURE, DefaultFeatureConfig.INSTANCE));
 	ConfiguredFeature<?, ?> CONFIGURED_SOULWOOD_TREE_FEATURE = register("soulwood_tree", new ConfiguredFeature<>(MalumFeatureRegistry.SOULWOOD_TREE_FEATURE, DefaultFeatureConfig.INSTANCE));
+	ConfiguredFeature<?, ?> CONFIGURED_WEEPING_WELL_FEATURE = register("weeping_well", new ConfiguredFeature<>(MalumFeatureRegistry.WHEEPING_WELL, DefaultFeatureConfig.INSTANCE));
 
 	static <C extends FeatureConfig, E extends Feature<C>, F extends ConfiguredFeature<C, E>> F register(String id, F feature) {
 		CONFIGURED_FEATURES.put(Malum.id(id), feature);

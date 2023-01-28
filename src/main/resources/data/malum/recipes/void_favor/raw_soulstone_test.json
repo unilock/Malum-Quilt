@@ -1,7 +1,7 @@
 {
   "type": "malum:favor_of_the_void",
   "input": {
-    "tag": "c:raw_materials",
+    "tag": "minecraft:stick",
     "count": 1
   },
   "output": {

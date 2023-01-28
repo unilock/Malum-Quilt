@@ -58,6 +58,4 @@ public class VoidConduitBlock<T extends VoidConduitBlockEntity> extends Lodeston
 			MalumComponents.TOUCH_OF_DARKNESS_COMPONENT.get(livingEntity).touchedByGoop(pState, livingEntity);
 		}
 	}
-
-
 }

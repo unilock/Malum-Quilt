@@ -1,6 +1,7 @@
 package dev.sterner.malum.common.block.obelisk;
 
 import com.sammy.lodestone.systems.multiblock.MultiBlockComponentBlock;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.item.Item;
@@ -34,5 +35,10 @@ public class ObeliskComponentBlock extends MultiBlockComponentBlock {
 		shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.cuboid(0.1875, 0, 0.1875, 0.8125, 0.5625, 0.8125), BooleanBiFunction.OR);
 
 		return shape;
+	}
+
+	@Override
+	public BlockRenderType getRenderType(BlockState state) {
+		return BlockRenderType.MODEL;
 	}
 }

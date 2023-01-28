@@ -8,6 +8,7 @@ import com.sammy.lodestone.systems.rendering.particle.Easing;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
 import dev.sterner.malum.common.block.weeping_well.PrimordialSoupBlock;
+import dev.sterner.malum.common.network.packet.s2c.VoidRejectionPacket;
 import dev.sterner.malum.common.network.packet.s2c.block.VoidConduitParticlePacket;
 import dev.sterner.malum.common.registry.MalumDamageSourceRegistry;
 import dev.sterner.malum.common.registry.MalumShaderRegistry;
@@ -56,6 +57,7 @@ public class TouchOfDarknessComponent implements AutoSyncedComponent, ServerTick
 			float increase = 1.55f;
 			if (afflictionDuration < 20) { //increase in affliction strength decreases if effect is about to run out
 				increase *= afflictionDuration / 20f;
+				MalumComponents.TOUCH_OF_DARKNESS_COMPONENT.sync(livingEntity);
 			}
 			currentAffliction = Math.min(MAX_AFFLICTION, currentAffliction+increase);
 			//if the entity's affliction reached the max, and the entity isn't close to actively being rejected, and is in the goop, they are rejected
@@ -102,6 +104,7 @@ public class TouchOfDarknessComponent implements AutoSyncedComponent, ServerTick
 		if (isEntityRejected()) {
 			float intensity = (40 - rejection) / 30f;
 			livingEntity.setVelocity(livingEntity.getVelocity().x, Math.pow(1.1f * (intensity), 2), livingEntity.getVelocity().z);
+			livingEntity.velocityModified = true;
 			if (rejection >= 40) {
 				rejection = 0;
 				MalumComponents.TOUCH_OF_DARKNESS_COMPONENT.sync(livingEntity);
@@ -152,8 +155,7 @@ public class TouchOfDarknessComponent implements AutoSyncedComponent, ServerTick
 		rejection = 10;
 		if (!livingEntity.world.isClient) {
 			PlayerLookup.tracking(livingEntity).forEach(track -> VoidConduitParticlePacket.send(track, livingEntity.getX(), livingEntity.getY()+livingEntity.getHeight()/2f, livingEntity.getZ()));
-			//TODO VoidRejectionPacket
-			//PacketRegistry.MALUM_CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> livingEntity), new VoidRejectionPacket(livingEntity.getId()));
+			PlayerLookup.tracking(livingEntity).forEach(track -> VoidRejectionPacket.send(track, livingEntity.getId()));
 			livingEntity.damage(new DamageSource(MalumDamageSourceRegistry.GUARANTEED_SOUL_SHATTER), 4);
 			livingEntity.world.playSound(null, livingEntity.getBlockPos(), MalumSoundRegistry.VOID_REJECTION, SoundCategory.HOSTILE, 2f, MathHelper.nextFloat(livingEntity.getRandom(), 0.85f, 1.35f));
 		}

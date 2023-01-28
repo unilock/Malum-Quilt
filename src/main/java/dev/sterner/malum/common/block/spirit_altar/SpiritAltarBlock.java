@@ -48,4 +48,9 @@ public class SpiritAltarBlock<T extends SpiritAltarBlockEntity> extends WaterLog
 		setBlockEntity((BlockEntityType<T>) MalumBlockEntityRegistry.SPIRIT_ALTAR);
 		return super.createBlockEntity(pos, state);
 	}
+
+	@Override
+	public boolean hasTileEntity(BlockState state) {
+		return true;
+	}
 }

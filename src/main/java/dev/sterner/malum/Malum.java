@@ -44,7 +44,6 @@ public class Malum implements ModInitializer {
 		MalumObjects.init();
 		MalumBlockEntityRegistry.init();
 
-
 		MalumEntityRegistry.init();
 		MalumStatusEffectRegistry.init();
 		MalumTagRegistry.init();

@@ -14,6 +14,7 @@ import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -39,9 +40,15 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
 	public int streak;
 
 	protected static final VoxelShape WELL_SHAPE = Block.createCuboidShape(-16.0D, 11.0D, -16.0D, 32.0D, 13.0D, 32.0D);
-	public VoidConduitBlockEntity(BlockPos pos, BlockState state) {
-		super(MalumBlockEntityRegistry.VOID_CONDUIT, pos, state);
+
+	public VoidConduitBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+		super(type, pos, state);
 	}
+
+	public VoidConduitBlockEntity(BlockPos pos, BlockState state) {
+		this(MalumBlockEntityRegistry.VOID_CONDUIT, pos, state);
+	}
+
 
 	@Override
 	protected void writeNbt(NbtCompound compound) {
@@ -72,84 +79,83 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
 	}
 
 	@Override
-	public void tick() {
-		super.tick();
-		if (world instanceof ServerWorld serverLevel) {
-			if (serverLevel.getTime() % 100L == 0) {
-				world.playSound(null, pos, MalumSoundRegistry.UNCANNY_VALLEY, SoundCategory.HOSTILE, 1f, MathHelper.nextFloat(world.getRandom(), 0.55f, 1.75f));
-			}
-			if (serverLevel.getTime() % 20L == 0) {
-				world.playSound(null, pos, MalumSoundRegistry.VOID_HEARTBEAT, SoundCategory.HOSTILE, 1.5f, MathHelper.nextFloat(world.getRandom(), 0.95f, 1.15f));
-			}
-			if (serverLevel.getTime() % 40L == 0) {
-				List<ItemEntity> items = serverLevel.getNonSpectatingEntities(
-								ItemEntity.class,
-								new Box(pos.add(1, -3, 1), pos.add(-1, -1, -1)).expand(1))
-						.stream().sorted(Comparator.comparingInt(itemEntity -> itemEntity.age)).toList();
-
-				for (ItemEntity entity : items) {
-					ItemStack item = entity.getStack();
-					if (item.getItem().equals(MalumObjects.BLIGHTED_GUNK)) {
-						progress+=20;
-					}
-					eatenItems.add(item);
-					entity.discard();
+	public void serverTick() {
+		super.serverTick();
+		if (world.getTime() % 100L == 0) {
+			world.playSound(null, pos, MalumSoundRegistry.UNCANNY_VALLEY, SoundCategory.HOSTILE, 1f, MathHelper.nextFloat(world.getRandom(), 0.55f, 1.75f));
+		}
+		if (world.getTime() % 20L == 0) {
+			world.playSound(null, pos, MalumSoundRegistry.VOID_HEARTBEAT, SoundCategory.HOSTILE, 1.5f, MathHelper.nextFloat(world.getRandom(), 0.95f, 1.15f));
+		}
+		if (world.getTime() % 40L == 0) {
+			List<ItemEntity> items = world.getNonSpectatingEntities(
+							ItemEntity.class,
+							new Box(pos.add(1, -3, 1), pos.add(-1, -1, -1)).expand(2))
+					.stream().sorted(Comparator.comparingInt(itemEntity -> itemEntity.age)).toList();
+			System.out.println(pos + " : " + items);
+			for (ItemEntity entity : items) {
+				ItemStack item = entity.getStack();
+				if (item.getItem().equals(MalumObjects.BLIGHTED_GUNK)) {
+					progress+=20;
 				}
-				BlockHelper.updateAndNotifyState(world, pos);
+				eatenItems.add(item);
+				entity.discard();
 			}
-			if (!eatenItems.isEmpty()) {
-				progress++;
-				if (progress >= 80) {
-					int resultingProgress = 65;
-					ItemStack stack = eatenItems.get(eatenItems.size()-1);
-					if (stack.getItem().equals(MalumObjects.BLIGHTED_GUNK)) {
-						resultingProgress = 72+streak/4;
+			BlockHelper.updateAndNotifyState(world, pos);
+		}
+		if (!eatenItems.isEmpty()) {
+			progress++;
+			if (progress >= 80) {
+				int resultingProgress = 65;
+				ItemStack stack = eatenItems.get(eatenItems.size()-1);
+				if (stack.getItem().equals(MalumObjects.BLIGHTED_GUNK)) {
+					resultingProgress = 72+streak/4;
+					streak++;
+					world.playSound(null, pos, MalumSoundRegistry.HUNGRY_BELT_FEEDS, SoundCategory.PLAYERS, 0.7f, 0.6f + world.random.nextFloat() * 0.3f+streak*0.05f);
+					world.playSound(null, pos, SoundEvents.ENTITY_GENERIC_EAT, SoundCategory.PLAYERS, 0.7f, 0.6f + world.random.nextFloat() * 0.2f+streak*0.05f);
+				} else {
+					FavorOfTheVoidRecipe recipe = FavorOfTheVoidRecipe.getRecipe(world, stack);
+					float pitch = MathHelper.nextFloat(world.getRandom(), 0.85f, 1.35f) + streak * 0.1f;
+					if (recipe != null) {
 						streak++;
-						world.playSound(null, pos, MalumSoundRegistry.HUNGRY_BELT_FEEDS, SoundCategory.PLAYERS, 0.7f, 0.6f + world.random.nextFloat() * 0.3f+streak*0.05f);
-						world.playSound(null, pos, SoundEvents.ENTITY_GENERIC_EAT, SoundCategory.PLAYERS, 0.7f, 0.6f + world.random.nextFloat() * 0.2f+streak*0.05f);
-					}
-					else {
-						FavorOfTheVoidRecipe recipe = FavorOfTheVoidRecipe.getRecipe(world, stack);
-						float pitch = MathHelper.nextFloat(world.getRandom(), 0.85f, 1.35f) + streak * 0.1f;
-						if (recipe != null) {
-							streak++;
-							int amount = recipe.output.getCount() * stack.getCount();
-							while (amount > 0) {
-								int count = Math.min(64, amount);
-								ItemStack outputStack = new ItemStack(recipe.output.getItem(), count);
-								outputStack.setNbt(recipe.output.getNbt());
-								ItemEntity entity = new ItemEntity(world, pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f, outputStack);
-								entity.setVelocity(0, 0.65f, 0.15f);
-								world.spawnEntity(entity);
-								amount -= count;
-							}
-							world.playSound(null, pos, MalumSoundRegistry.VOID_TRANSMUTATION, SoundCategory.HOSTILE, 2f, pitch);
-						} else {
-							ItemEntity entity = new ItemEntity(world, pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f, stack);
+						int amount = recipe.output.getCount() * stack.getCount();
+						while (amount > 0) {
+							int count = Math.min(64, amount);
+							ItemStack outputStack = new ItemStack(recipe.output.getItem(), count);
+							outputStack.setNbt(recipe.output.getNbt());
+							ItemEntity entity = new ItemEntity(world, pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f, outputStack);
 							entity.setVelocity(0, 0.65f, 0.15f);
 							world.spawnEntity(entity);
-							world.playSound(null, pos, MalumSoundRegistry.VOID_REJECTION, SoundCategory.HOSTILE, 2f, pitch);
+							amount -= count;
 						}
+						world.playSound(null, pos, MalumSoundRegistry.VOID_TRANSMUTATION, SoundCategory.HOSTILE, 2f, pitch);
+					} else {
+						ItemEntity entity = new ItemEntity(world, pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f, stack);
+						entity.setVelocity(0, 0.65f, 0.15f);
+						world.spawnEntity(entity);
+						world.playSound(null, pos, MalumSoundRegistry.VOID_REJECTION, SoundCategory.HOSTILE, 2f, pitch);
 					}
-					progress = resultingProgress;
-					if(world instanceof ServerWorld serverWorld){
-						PlayerLookup.tracking(serverWorld, serverWorld.getWorldChunk(pos).getPos()).forEach(track -> VoidConduitParticlePacket.send(track, pos.getX()+0.5f, pos.getY()+0.75f, pos.getZ()+0.5f));
-					}
-					eatenItems.remove(eatenItems.size()-1);
-					BlockHelper.updateAndNotifyState(world, pos);
 				}
-				if (eatenItems.isEmpty()) {
-					progress = 0;
+				progress = resultingProgress;
+				if(world instanceof ServerWorld serverWorld){
+					PlayerLookup.tracking(serverWorld, serverWorld.getWorldChunk(pos).getPos()).forEach(track -> VoidConduitParticlePacket.send(track, pos.getX()+0.5f, pos.getY()+0.75f, pos.getZ()+0.5f));
 				}
+				eatenItems.remove(eatenItems.size()-1);
+				BlockHelper.updateAndNotifyState(world, pos);
 			}
-			else if (streak != 0) {
-				streak = 0;
+			if (eatenItems.isEmpty()) {
+				progress = 0;
 			}
+		}else if (streak != 0) {
+			streak = 0;
 		}
-		else {
-			if (world.getTime() % 6L == 0) {
-				ClientOnly.spawnParticles(world, pos);
-			}
+	}
+
+	@Override
+	public void tick() {
+		super.tick();
+		if (world.getTime() % 6L == 0) {
+			ClientOnly.spawnParticles(world, pos);
 		}
 	}
 	public static class ClientOnly {
