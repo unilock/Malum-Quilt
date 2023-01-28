@@ -2,12 +2,15 @@ package dev.sterner.malum.common.block.weeping_well;
 
 import com.sammy.lodestone.systems.block.LodestoneEntityBlock;
 import dev.sterner.malum.common.blockentity.VoidConduitBlockEntity;
+import dev.sterner.malum.common.blockentity.mirror.EmitterMirrorBlockEntity;
 import dev.sterner.malum.common.component.MalumComponents;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -18,6 +21,7 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import static dev.sterner.malum.common.block.weeping_well.PrimordialSoupBlock.TOP_SHAPE;
 
@@ -30,6 +34,20 @@ public class VoidConduitBlock<T extends VoidConduitBlockEntity> extends Lodeston
 	public BlockEntity createBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
 		setBlockEntity((BlockEntityType<T>) MalumBlockEntityRegistry.VOID_CONDUIT);
 		return super.createBlockEntity(pos, state);
+	}
+
+	@Override
+	public @Nullable <B extends BlockEntity> BlockEntityTicker<B> getTicker(@NotNull World world, @NotNull BlockState state, @NotNull BlockEntityType<B> type) {
+		return  (tickerWorld, pos, tickerState, blockEntity) -> {
+			if(blockEntity instanceof VoidConduitBlockEntity be){
+				be.tick();
+				if(world.isClient()){
+					be.clientTick();
+				}else{
+					be.serverTick();
+				}
+			}
+		};
 	}
 
 	@Override
@@ -57,5 +75,10 @@ public class VoidConduitBlock<T extends VoidConduitBlockEntity> extends Lodeston
 		if (pEntity instanceof LivingEntity livingEntity) {
 			MalumComponents.TOUCH_OF_DARKNESS_COMPONENT.get(livingEntity).touchedByGoop(pState, livingEntity);
 		}
+	}
+
+	@Override
+	public BlockRenderType getRenderType(BlockState state) {
+		return BlockRenderType.MODEL;
 	}
 }

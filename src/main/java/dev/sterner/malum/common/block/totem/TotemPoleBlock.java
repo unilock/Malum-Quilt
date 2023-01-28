@@ -1,11 +1,13 @@
 package dev.sterner.malum.common.block.totem;
 
 import com.sammy.lodestone.systems.block.LodestoneEntityBlock;
+import dev.sterner.malum.common.blockentity.mirror.EmitterMirrorBlockEntity;
 import dev.sterner.malum.common.blockentity.totem.TotemPoleBlockEntity;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
@@ -34,6 +36,20 @@ public class TotemPoleBlock<T extends TotemPoleBlockEntity> extends LodestoneEnt
 	public BlockEntity createBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
 		setBlockEntity((BlockEntityType<T>) MalumBlockEntityRegistry.TOTEM_POLE);
 		return super.createBlockEntity(pos, state);
+	}
+
+	@Override
+	public @Nullable <B extends BlockEntity> BlockEntityTicker<B> getTicker(@NotNull World world, @NotNull BlockState state, @NotNull BlockEntityType<B> type) {
+		return  (tickerWorld, pos, tickerState, blockEntity) -> {
+			if(blockEntity instanceof TotemPoleBlockEntity be){
+				be.tick();
+				if(world.isClient()){
+					be.clientTick();
+				}else{
+					be.serverTick();
+				}
+			}
+		};
 	}
 
     @Override

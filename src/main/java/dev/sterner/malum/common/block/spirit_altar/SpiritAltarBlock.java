@@ -1,16 +1,21 @@
 package dev.sterner.malum.common.block.spirit_altar;
 
 import com.sammy.lodestone.systems.block.WaterLoggedEntityBlock;
+import com.sammy.lodestone.systems.blockentity.BlockTickHelper;
+import com.sammy.lodestone.systems.blockentity.LodestoneBlockEntity;
 import dev.sterner.malum.common.blockentity.spirit_altar.SpiritAltarBlockEntity;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 
 @SuppressWarnings("deprecation")
@@ -42,6 +47,20 @@ public class SpiritAltarBlock<T extends SpiritAltarBlockEntity> extends WaterLog
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
     }
+
+	@Override
+	public @Nullable <B extends BlockEntity> BlockEntityTicker<B> getTicker(@NotNull World world, @NotNull BlockState state, @NotNull BlockEntityType<B> type) {
+		return  (tickerWorld, pos, tickerState, blockEntity) -> {
+			if(blockEntity instanceof SpiritAltarBlockEntity be){
+				be.tick();
+				if(world.isClient()){
+					be.clientTick();
+				}else{
+					be.serverTick();
+				}
+			}
+		};
+	}
 
 	@Override
 	public BlockEntity createBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {

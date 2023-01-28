@@ -3,10 +3,12 @@ package dev.sterner.malum.common.block.storage;
 import com.sammy.lodestone.forge.ItemHandlerHelper;
 import com.sammy.lodestone.helpers.BlockHelper;
 import com.sammy.lodestone.systems.block.WaterLoggedEntityBlock;
+import dev.sterner.malum.common.blockentity.mirror.EmitterMirrorBlockEntity;
 import dev.sterner.malum.common.blockentity.storage.SpiritJarBlockEntity;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -17,6 +19,7 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("deprecation")
 public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedEntityBlock<T> {
@@ -37,6 +40,20 @@ public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedE
 	public BlockEntity createBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
 		setBlockEntity((BlockEntityType<T>) MalumBlockEntityRegistry.SPIRIT_JAR);
 		return super.createBlockEntity(pos, state);
+	}
+
+	@Override
+	public @Nullable <B extends BlockEntity> BlockEntityTicker<B> getTicker(@NotNull World world, @NotNull BlockState state, @NotNull BlockEntityType<B> type) {
+		return  (tickerWorld, pos, tickerState, blockEntity) -> {
+			if(blockEntity instanceof SpiritJarBlockEntity be){
+				be.tick();
+				if(world.isClient()){
+					be.clientTick();
+				}else{
+					be.serverTick();
+				}
+			}
+		};
 	}
 
 	@Override

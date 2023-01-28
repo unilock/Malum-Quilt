@@ -2,12 +2,14 @@ package dev.sterner.malum.common.block.alteration_plinth;
 
 import com.sammy.lodestone.systems.block.WaterLoggedEntityBlock;
 import dev.sterner.malum.common.blockentity.alteration_plinth.AlterationPlinthBlockEntity;
+import dev.sterner.malum.common.blockentity.spirit_altar.SpiritAltarBlockEntity;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
@@ -17,7 +19,9 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import static net.minecraft.state.property.Properties.HORIZONTAL_FACING;
 
@@ -34,6 +38,20 @@ public class AlterationPlinthBlock <T extends AlterationPlinthBlockEntity> exten
 	public BlockEntity createBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
 		setBlockEntity((BlockEntityType<T>) MalumBlockEntityRegistry.ALTERATION_PLINTH);
 		return super.createBlockEntity(pos, state);
+	}
+
+	@Override
+	public @Nullable <B extends BlockEntity> BlockEntityTicker<B> getTicker(@NotNull World world, @NotNull BlockState state, @NotNull BlockEntityType<B> type) {
+		return  (tickerWorld, pos, tickerState, blockEntity) -> {
+			if(blockEntity instanceof AlterationPlinthBlockEntity be){
+				be.tick();
+				if(world.isClient()){
+					be.clientTick();
+				}else{
+					be.serverTick();
+				}
+			}
+		};
 	}
 
 	public BlockState getPlacementState(ItemPlacementContext pContext) {
