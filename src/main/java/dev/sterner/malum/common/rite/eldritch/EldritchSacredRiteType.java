@@ -67,7 +67,7 @@ public class EldritchSacredRiteType extends MalumRiteType {
 			@Override
 			public void riteEffect(TotemBaseBlockEntity totemBase) {
 				World world = totemBase.getWorld();
-				List<AnimalEntity> entities = getNearbyEntities(totemBase, AnimalEntity.class, e -> e.canEat() && e.age == 0).toList(); //TODO: it'd be interesting to separate different entity types and then breed those respectively, this would allow you to have up to 30 cows, sheep and pigs rather than up to 30 animals
+				List<AnimalEntity> entities = getNearbyEntities(totemBase, AnimalEntity.class, e -> e.canEat() && e.age == 0).toList();
 				if (entities.size() > 30) {
 					return;
 				}

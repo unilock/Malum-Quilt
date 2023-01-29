@@ -53,15 +53,7 @@ public class EtherTorchItem extends AbstractEtherItem {
         blockToItemMap.put(this.wallBlock, itemIn);
     }
 
-    //TODO forge patch
-    /*
-    public void removeFromBlockToItemMap(Map<Block, Item> blockToItemMap, Item itemIn) {
-        super.removeFromBlockToItemMap(blockToItemMap, itemIn);
-        blockToItemMap.remove(this.wallBlock);
-    }
 
-
-     */
     @Override
     public void particleTick(ItemStack stack, float x, float y, ScreenParticle.RenderOrder renderOrder) {
         World world = MinecraftClient.getInstance().world;

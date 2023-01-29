@@ -8,7 +8,8 @@ import java.util.List;
 public class MalumConfig extends MidnightConfig {
 
 
-	@MidnightConfig.Comment public static MidnightConfig.Comment common;
+
+    @MidnightConfig.Comment public static MidnightConfig.Comment common;
 	@Entry(min=0) public static float d = 0f;
 
 	@Entry public static boolean GENERATE_RUNEWOOD_TREES = true;
@@ -73,7 +74,10 @@ public class MalumConfig extends MidnightConfig {
 	@Entry public static boolean NO_FANCY_SPIRITS = false;
 
 	@MidnightConfig.Comment public static MidnightConfig.Comment soulless_spawners;
-	public static final boolean SOULLESS_SPAWNERS = false;
+	@Entry public static final boolean SOULLESS_SPAWNERS = false;
+
+	@MidnightConfig.Comment public static MidnightConfig.Comment use_default_spirit_values;
+	@Entry public static final boolean USE_DEFAULT_SPIRIT_VALUES = true;
 
 	@MidnightConfig.Comment public static MidnightConfig.Comment soul_ward_physical;
 	@Entry(min=0,max=1) public static double SOUL_WARD_PHYSICAL = 0.7d;

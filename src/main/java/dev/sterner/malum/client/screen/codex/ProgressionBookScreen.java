@@ -649,7 +649,7 @@ public class ProgressionBookScreen extends Screen {
 //                .addPage(SpiritInfusionPage.fromOutput(ALTERATION_PLINTH))
 //        );
 
-		ENTRIES.add(new BookEntry( //TODO: also name this something better
+		ENTRIES.add(new BookEntry(
 				"metallurgic_trinkets", NECKLACE_OF_BLISSFUL_HARMONY, -2, 14).setSoulwood()
 				.addPage(new HeadlineTextPage("necklace_of_blissful_harmony", "necklace_of_blissful_harmony.1"))
 				.addPage(SpiritInfusionPage.fromOutput(NECKLACE_OF_BLISSFUL_HARMONY))
@@ -824,7 +824,7 @@ public class ProgressionBookScreen extends Screen {
 	}
 
 	public void renderBackground(Identifier texture, MatrixStack poseStack, float xModifier, float yModifier) {
-		int guiLeft = (width - bookWidth) / 2; //TODO: literally just redo this entire garbage method, please
+		int guiLeft = (width - bookWidth) / 2;
 		int guiTop = (height - bookHeight) / 2;
 		int insideLeft = guiLeft + 17;
 		int insideTop = guiTop + 14;

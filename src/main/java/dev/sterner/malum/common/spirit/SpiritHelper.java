@@ -149,11 +149,11 @@ public final class SpiritHelper {
 
 		if (!entity.canUsePortals())
 			return SpiritDataReloadListener.DEFAULT_BOSS_SPIRIT_DATA;
-/*TODO
-		if (!CommonConfig.USE_DEFAULT_SPIRIT_VALUES.getConfigValue())
+
+		if (!MalumConfig.USE_DEFAULT_SPIRIT_VALUES)
 			return null;
 
- */
+
 
 		return switch (entity.getType().getSpawnGroup()) {
 			case MONSTER -> SpiritDataReloadListener.DEFAULT_MONSTER_SPIRIT_DATA;
