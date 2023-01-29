@@ -70,7 +70,7 @@ public abstract class ExplosionMixin {
 	}
 
 	@Inject(method = "collectBlocksAndDamageEntities", at = @At(value = "NEW", target = "net/minecraft/util/math/Vec3d", ordinal = 1), locals = LocalCapture.CAPTURE_FAILHARD)
-	private void malum$onExplode(CallbackInfo ci, Set<BlockPos> set, float q, int k, int l, int r, int s, int t, int u, List<Entity> list) {
-		ExplosionEvent.DETONATE.invoker().onDetonate(this.world, (Explosion) (Object) this, list, q);
+	public void malum$onExplode(CallbackInfo ci, Set<BlockPos> blocks, int i, float j, int k, int l, int d, int q, int e, int r, List<Entity> list) {//Dont fix the red squiggly lines, they have to be broken
+		ExplosionEvent.DETONATE.invoker().onDetonate(this.world, (Explosion) (Object) this, list, j);
 	}
 }

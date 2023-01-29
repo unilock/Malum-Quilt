@@ -152,4 +152,14 @@ abstract class LivingEntityMixin extends Entity {
 			cir.setReturnValue(CurioHarmonyNecklace.preventDetection(player, entity, cir.getReturnValue()));
 		}
 	}
+
+	@ModifyArg(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;updateVelocity(FLnet/minecraft/util/math/Vec3d;)V", ordinal = 0))
+	private float malum$swimSpeed(float original) {
+		return original * (float)this.getAttributeValue(MalumAttributeRegistry.SWIM_SPEED);
+	}
+
+	@ModifyArg(method = "swimUpward", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/Vec3d;add(DDD)Lnet/minecraft/util/math/Vec3d;"), index = 1)
+	private double malum$modifySwimSpeed(double y) {
+		return y * this.getAttributeValue(MalumAttributeRegistry.SWIM_SPEED);
+	}
 }
