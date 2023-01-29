@@ -8,6 +8,7 @@ import dev.sterner.malum.client.render.SteelArmorRenderer;
 import dev.sterner.malum.client.render.block.*;
 import dev.sterner.malum.client.render.entity.*;
 import dev.sterner.malum.client.render.item.ScytheItemRenderer;
+import dev.sterner.malum.client.render.item.SpiritJarItemRenderer;
 import dev.sterner.malum.client.screen.SpiritPouchScreen;
 import dev.sterner.malum.common.block.MalumLeavesBlock;
 import dev.sterner.malum.common.blockentity.EtherBlockEntity;
@@ -80,6 +81,8 @@ public class MalumClient implements ClientModInitializer {
 		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.SPIRIT_JAR, SpiritJarBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.SOUL_VIAL, SoulVialBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(MalumBlockEntityRegistry.VOID_CONDUIT, VoidConduitBlockEntityRenderer::new);
+
+		BuiltinItemRendererRegistry.INSTANCE.register(SPIRIT_JAR.asItem(), new SpiritJarItemRenderer());
 
 		for (Item item : MalumObjects.SCYTHES) {
 			Identifier scytheId = Registries.ITEM.getId(item);

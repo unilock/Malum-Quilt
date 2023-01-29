@@ -49,6 +49,10 @@ dependencies {
 		exclude group: "com.terraformersmc"
 	}
 
+	modImplementation(libs.cardinal.components.world) {
+		exclude group: "net.fabricmc"
+		exclude group: "net.fabricmc.fabric-api"
+	}
 	modImplementation(libs.cardinal.components.entity) {
 		exclude group: "net.fabricmc"
 		exclude group: "net.fabricmc.fabric-api"

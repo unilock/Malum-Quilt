@@ -23,6 +23,7 @@ public abstract class ItemStackMixin {
 	@Unique
 	private EntityAttributeModifier entityAttributeModifier;
 
+
 	@ModifyVariable(method = "getTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/attribute/EntityAttributeModifier;getId()Ljava/util/UUID;", ordinal = 0), index = 13)
 	private EntityAttributeModifier malum$capture(EntityAttributeModifier value) {
 		this.entityAttributeModifier = value;

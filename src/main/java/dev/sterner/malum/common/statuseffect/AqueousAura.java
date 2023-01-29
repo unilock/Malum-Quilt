@@ -1,9 +1,11 @@
 package dev.sterner.malum.common.statuseffect;
 
+import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
 import com.sammy.lodestone.helpers.ColorHelper;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
 import dev.sterner.malum.common.registry.MalumStatusEffectRegistry;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectType;
@@ -14,7 +16,7 @@ import net.minecraft.util.math.Box;
 public class AqueousAura extends StatusEffect {
     public AqueousAura() {
         super(StatusEffectType.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypeRegistry.AQUEOUS_SPIRIT.getColor()));
-       // addAttributeModifier(ForgeMod.REACH_DISTANCE.get(), "738bd9e4-23d8-46b0-b8ba-45a2016eec74", 1f, EntityAttributeModifier.Operation.ADDITION);
+        addAttributeModifier(ReachEntityAttributes.REACH, "738bd9e4-23d8-46b0-b8ba-45a2016eec74", 1f, EntityAttributeModifier.Operation.ADDITION);
     }
 
     public static Box growBoundingBox(PlayerEntity player, Box original) {

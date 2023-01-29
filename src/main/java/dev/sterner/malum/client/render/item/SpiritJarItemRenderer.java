@@ -5,6 +5,8 @@ import dev.sterner.malum.common.item.spirit.SpiritJarItem;
 import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.spirit.MalumSpiritType;
 import dev.sterner.malum.common.spirit.SpiritHelper;
+import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.render.entity.model.EntityModelLoader;
@@ -14,13 +16,11 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 
-public class SpiritJarItemRenderer extends BuiltinModelItemRenderer {
+public class SpiritJarItemRenderer implements BuiltinItemRendererRegistry.DynamicItemRenderer {
 	private final SpiritJarBlockEntity jar = new SpiritJarBlockEntity(BlockPos.ORIGIN, MalumObjects.SPIRIT_JAR.getDefaultState());
-	private final BlockEntityRenderDispatcher blockEntityRenderDispatcher;
 
-	public SpiritJarItemRenderer(BlockEntityRenderDispatcher blockEntityRenderDispatcher, EntityModelLoader entityModelLoader) {
-		super(blockEntityRenderDispatcher, entityModelLoader);
-		this.blockEntityRenderDispatcher = blockEntityRenderDispatcher;
+	public SpiritJarItemRenderer() {
+		super();
 	}
 
 	@Override
@@ -31,9 +31,7 @@ public class SpiritJarItemRenderer extends BuiltinModelItemRenderer {
 				int count = stack.getNbt().getInt("count");
 				jar.type = spirit;
 				jar.count = count;
-
-				this.blockEntityRenderDispatcher.renderEntity(jar, matrices, vertexConsumers, light, overlay);
-
+				MinecraftClient.getInstance().getBlockEntityRenderDispatcher().renderEntity(jar, matrices, vertexConsumers, light, overlay);
 			}
 		}
 	}

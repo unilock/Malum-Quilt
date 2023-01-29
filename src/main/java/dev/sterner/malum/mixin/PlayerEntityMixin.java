@@ -9,6 +9,7 @@ import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.registry.MalumParticleRegistry;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
 import dev.sterner.malum.common.spirit.affinity.ArcaneAffinity;
+import dev.sterner.malum.common.statuseffect.AqueousAura;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -22,15 +23,13 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArgs;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
@@ -121,5 +120,11 @@ abstract class PlayerEntityMixin extends LivingEntity {
 			return false;
 		}
 		return bl4;
+	}
+
+	@ModifyArg(method = "tickMovement", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getOtherEntities(Lnet/minecraft/entity/Entity;Lnet/minecraft/util/math/Box;)Ljava/util/List;"), index = 1)
+	private Box malum$aiStep(Box aabb) {
+		PlayerEntity player = (PlayerEntity) (Object) this;
+		return AqueousAura.growBoundingBox(player, aabb);
 	}
 }

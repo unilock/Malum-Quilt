@@ -28,6 +28,7 @@
 			"init": "dev.sterner.malum.Malum",
 			"client_init": "dev.sterner.malum.MalumClient",
 			"cardinal-components-entity": "dev.sterner.malum.common.component.MalumComponents",
+			"cardinal-components-world": "dev.sterner.malum.common.component.MalumComponents",
 			"mm:early_risers": "dev.sterner.malum.MalumEarlyRiser"
 		},
 		"depends": [
@@ -50,6 +51,7 @@
 	"cardinal-components": [
 		"malum:spirit",
 		"malum:player",
-		"malum:touch_of_darkness"
+		"malum:touch_of_darkness",
+		"malum:world"
 	]
 }
