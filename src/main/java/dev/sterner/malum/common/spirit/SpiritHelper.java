@@ -8,6 +8,7 @@ import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
 import com.sammy.lodestone.systems.rendering.particle.SimpleParticleEffect;
 import com.sammy.lodestone.systems.rendering.particle.screen.base.ScreenParticle;
 import dev.sterner.malum.Malum;
+import dev.sterner.malum.MalumConfig;
 import dev.sterner.malum.common.component.MalumComponents;
 import dev.sterner.malum.common.entity.spirit.PlayerBoundItemEntity;
 import dev.sterner.malum.common.recipe.SpiritWithCount;
@@ -111,7 +112,7 @@ public final class SpiritHelper {
 				continue;
 			}
 			for (int j = 0; j < count; j++) {
-				if (false) { //TODO CommonConfig.NO_FANCY_SPIRITS.getConfigValue()
+				if (MalumConfig.NO_FANCY_SPIRITS) {
 					ItemEntity itemEntity = new ItemEntity(World, position.x, position.y, position.z, stack);
 					itemEntity.setToDefaultPickupDelay();
 					itemEntity.setVelocity(MathHelper.nextFloat(random, -0.1F, 0.1F), MathHelper.nextFloat(random, 0.25f, 0.5f), MathHelper.nextFloat(random, -0.1F, 0.1F));

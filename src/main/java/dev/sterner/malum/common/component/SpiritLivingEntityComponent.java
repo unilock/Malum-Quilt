@@ -22,7 +22,7 @@ public class SpiritLivingEntityComponent implements AutoSyncedComponent {
     public float exposedSoul;
     private boolean soulless = false;
     private boolean spawnerSpawned = false;
-    private UUID ownerUuid;
+    private UUID soulThiefUUID;
 
     public List<ItemStack> soulsToApplyToDrops;
     public UUID killerUUID;
@@ -39,8 +39,8 @@ public class SpiritLivingEntityComponent implements AutoSyncedComponent {
         return Math.max(0, soulHarvestProgress-10);
     }
 
-    public void setOwnerUuid(UUID ownerUuid) {
-        this.ownerUuid = ownerUuid;
+    public void setSoulThiefUuid(UUID ownerUuid) {
+        this.soulThiefUUID = ownerUuid;
     }
 
     public void setSoulHarvestProgress(float soulHarvestProgress) {
@@ -75,8 +75,8 @@ public class SpiritLivingEntityComponent implements AutoSyncedComponent {
         return spiritData;
     }
 
-    public UUID getOwnerUuid() {
-        return ownerUuid;
+    public UUID getSoulThiefUuid() {
+        return soulThiefUUID;
     }
 
     @Override
@@ -95,8 +95,8 @@ public class SpiritLivingEntityComponent implements AutoSyncedComponent {
         }
         tag.putBoolean("soulless", soulless);
         tag.putBoolean("spawnerSpawned", spawnerSpawned);
-        if (ownerUuid != null) {
-            tag.putUuid("ownerUUID", ownerUuid);
+        if (soulThiefUUID != null) {
+            tag.putUuid("soulThiefUUID", soulThiefUUID);
         }
         if(spiritData != null)
             spiritData.saveTo(tag);
@@ -124,8 +124,8 @@ public class SpiritLivingEntityComponent implements AutoSyncedComponent {
         }
 
         spawnerSpawned = tag.getBoolean("spawnerSpawned");
-        if (tag.contains("ownerUUID")) {
-            ownerUuid = tag.getUuid("ownerUUID");
+        if (tag.contains("soulThiefUUID")) {
+			soulThiefUUID = tag.getUuid("soulThiefUUID");
         }
         if(MalumEntitySpiritData.load(tag) != null)
             spiritData = MalumEntitySpiritData.load(tag);

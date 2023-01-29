@@ -120,7 +120,7 @@ public class ScytheBoomerangEntity extends ThrownItemEntity {
         }
         if (world.isClient && this.scythe != null) {
             if (!isInsideWaterOrBubbleColumn()) {
-                if (EnchantmentHelper.getLevel(Enchantments.FIRE_ASPECT, getItem()) > 0) {
+                if (EnchantmentHelper.getLevel(Enchantments.FIRE_ASPECT, getStack()) > 0) {
                     Vec3d vector = new Vec3d(getParticleX(0.7), getRandomBodyY(), getParticleZ(0.7));
                     if (scythe.getItem() instanceof MalumScytheItem) {
                         RandomGenerator random = new Random();
@@ -255,7 +255,7 @@ public class ScytheBoomerangEntity extends ThrownItemEntity {
     }
 
     @Override
-    public ItemStack getItem() {
+    public ItemStack getStack() {
         if (scythe == null) {
             scythe = dataTracker.get(SCYTHE);
         }

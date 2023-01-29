@@ -2,6 +2,7 @@ package dev.sterner.malum.common.util.handler;
 
 import com.sammy.lodestone.helpers.ItemHelper;
 import dev.emi.trinkets.api.TrinketsApi;
+import dev.sterner.malum.MalumConfig;
 import dev.sterner.malum.api.interfaces.item.SpiritCollectActivity;
 import dev.sterner.malum.common.component.MalumComponents;
 import dev.sterner.malum.common.component.SpiritLivingEntityComponent;
@@ -59,7 +60,7 @@ public class SpiritHarvestHandler {
 			}
 			if (!(target instanceof PlayerEntity)) {
 				SpiritLivingEntityComponent component = MalumComponents.SPIRIT_COMPONENT.get(target);
-				if (component.exposedSoul > 0 && !component.isSoulless() && (!false || (false && !component.isSpawnerSpawned()))) {//TODO
+				if(component.exposedSoul > 0 && !component.isSoulless() && (!MalumConfig.SOULLESS_SPAWNERS || (MalumConfig.SOULLESS_SPAWNERS && !component.isSpawnerSpawned()))) {
 					SpiritHelper.createSpiritsFromWeapon(target, attacker, stack);
 					component.setSoulless(true);
 				}

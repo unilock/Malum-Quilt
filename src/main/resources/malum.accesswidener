@@ -93,3 +93,5 @@ accessible method net/minecraft/world/gen/foliage/FoliagePlacerType <init> (Lcom
 extendable class net/minecraft/world/gen/foliage/FoliagePlacer$TreeNode
 accessible method net/minecraft/registry/Registries registerSimple (Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/registry/Registries$RegistryBootstrap;)Lnet/minecraft/registry/Registry;
 accessible method net/minecraft/entity/attribute/EntityAttributeInstance onUpdate ()V
+accessible field net/minecraft/entity/mob/MobEntity goalSelector Lnet/minecraft/entity/ai/goal/GoalSelector;
+accessible method net/minecraft/client/render/entity/LivingEntityRenderer addFeature (Lnet/minecraft/client/render/entity/feature/FeatureRenderer;)Z

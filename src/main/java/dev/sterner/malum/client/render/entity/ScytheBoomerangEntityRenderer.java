@@ -28,7 +28,7 @@ public class ScytheBoomerangEntityRenderer extends EntityRenderer<ScytheBoomeran
 	@Override
 	public void render(ScytheBoomerangEntity entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
 		matrices.push();
-		ItemStack itemstack = entity.getItem();
+		ItemStack itemstack = entity.getStack();
 		BakedModel model = this.itemRenderer.getHeldItemModel(itemstack, entity.world, null, 1);
 		matrices.multiply(Axis.X_POSITIVE.rotationDegrees(90F));
 		matrices.scale(2f, 2f, 2f);

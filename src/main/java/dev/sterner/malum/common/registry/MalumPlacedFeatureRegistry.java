@@ -49,7 +49,9 @@ public interface MalumPlacedFeatureRegistry {
 		Holder<ConfiguredFeature<?, ?>> weeping = configured.getHolder(CONFIGURED_FEATURE_KEYS.get(CONFIGURED_WEEPING_WELL_FEATURE)).orElseThrow();
 
 		registryMap.register(RegistryKeys.PLACED_FEATURE, Malum.id("runewood_tree"),
-				new PlacedFeature(runewood, VegetationPlacedFeatures.treePlacementModifiers(RarityFilterPlacementModifier.create(40), MalumObjects.RUNEWOOD_SAPLING)));
+				new PlacedFeature(runewood,
+						VegetationPlacedFeatures.treePlacementModifiers(RarityFilterPlacementModifier.create(40), MalumObjects.RUNEWOOD_SAPLING)));
+
 		registryMap.register(RegistryKeys.PLACED_FEATURE, Malum.id("weeping_well"),
 				new PlacedFeature(weeping, List.of(
 						RarityFilterPlacementModifier.create(1),

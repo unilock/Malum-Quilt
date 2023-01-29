@@ -1,12 +1,14 @@
 package dev.sterner.malum.mixin;
 
 import dev.sterner.malum.api.event.LivingEntityDamageEvent;
+import dev.sterner.malum.api.event.LivingEntityEvent;
 import dev.sterner.malum.common.component.MalumComponents;
 import dev.sterner.malum.common.item.equipment.trinket.CurioAlchemicalRing;
 import dev.sterner.malum.common.item.equipment.trinket.CurioHarmonyNecklace;
 import dev.sterner.malum.common.item.equipment.trinket.CurioVoraciousRing;
 import dev.sterner.malum.common.registry.MalumAttributeRegistry;
 import dev.sterner.malum.common.util.handler.SpiritHarvestHandler;
+import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -161,5 +163,10 @@ abstract class LivingEntityMixin extends Entity {
 	@ModifyArg(method = "swimUpward", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/Vec3d;add(DDD)Lnet/minecraft/util/math/Vec3d;"), index = 1)
 	private double malum$modifySwimSpeed(double y) {
 		return y * this.getAttributeValue(MalumAttributeRegistry.SWIM_SPEED);
+	}
+
+	@Inject(method = "tick", at = @At("HEAD"))
+	private void malum$eventInject(CallbackInfo ci){
+		LivingEntityEvent.EVENT.invoker().react((LivingEntity) (Object)this);
 	}
 }

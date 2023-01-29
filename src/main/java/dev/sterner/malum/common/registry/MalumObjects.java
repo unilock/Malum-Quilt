@@ -125,6 +125,8 @@ public interface MalumObjects {
 	Item BLAZING_QUARTZ = register("blazing_quartz", new Item(new Item.Settings()));
 	Item BLAZING_QUARTZ_FRAGMENT = register("blazing_quartz_fragment", new Item(new Item.Settings()));
 
+
+
 	Item CLUSTER_OF_BRILLIANCE = register("cluster_of_brilliance", new Item(new Item.Settings()));
 	Item CRUSHED_BRILLIANCE = register("crushed_brilliance", new Item(new Item.Settings()));
 	Item CHUNK_OF_BRILLIANCE = register("chunk_of_brilliance", new BrillianceChunkItem(new Item.Settings().food((new FoodComponent.Builder()).snack().alwaysEdible().build())));
@@ -191,6 +193,8 @@ public interface MalumObjects {
 
 	CrackedImpetusItem CRACKED_ALCHEMICAL_IMPETUS = register("cracked_alchemical_impetus", new CrackedImpetusItem(settings()));
 	ImpetusItem ALCHEMICAL_IMPETUS = register("alchemical_impetus", new ImpetusItem(settings().maxDamage(100)).setCrackedVariant(CRACKED_ALCHEMICAL_IMPETUS));
+
+
 
 	Item SPIRIT_POUCH = register("spirit_pouch", new SpiritPouchItem(settings()));
 	Item CRUDE_SCYTHE = registerScytheItem("crude_scythe", new MalumScytheItem(ToolMaterials.IRON, 0, 0.1f, settings().maxDamage(350)));

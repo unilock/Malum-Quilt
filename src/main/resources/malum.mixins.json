@@ -11,11 +11,18 @@
     "CookingRecipeSerializerMixin",
     "EnchantingTableBlockMixin",
     "EnchantmentScreenHandlerMixin",
+    "EntityTypeMixin",
     "ExplosionMixin",
     "ItemStackMixin",
     "LivingEntityMixin",
+    "MobEntityMixin",
+    "MobSpawnerLogicMixin",
     "PlacedFeatureUtilMixin",
     "PlayerEntityMixin",
+    "ServerEntityManagerMixin",
+    "ServerWorldMixin",
+    "SpawnHelperMixin",
+    "UpdateAttackTargetTaskMixin",
     "WorldChunkMixin"
   ],
   "client": [
@@ -25,6 +32,7 @@
     "client.InGameHudMixin",
     "client.ItemColorsMixin",
     "client.ItemRendererMixin",
+    "client.LivingEntityRendererMixin",
     "client.MinecraftClientMixin",
     "client.TexturedRenderLayersMixin"
   ],
