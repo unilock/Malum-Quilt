@@ -16,15 +16,9 @@ public class CurioProspectorBelt extends TrinketItem {
         super(settings);
     }
 
-    /*TODO forge event
-    public static void processExplosion(ExplosionEvent.Detonate event) {
-        LivingEntity exploder = event.getExplosion().getSourceMob();
-        if (exploder != null && CurioHelper.hasCurioEquipped(exploder, MalumObjects.BELT_OF_THE_PROSPECTOR)) {
-            event.getAffectedEntities().removeIf(e -> e instanceof ItemEntity itemEntity && itemEntity.getStack().isOf(ItemTagRegistry.PROSPECTORS_TREASURE));
-        }
-    }
 
-     */
+
+
 
 
 

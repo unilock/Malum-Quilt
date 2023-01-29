@@ -2,6 +2,8 @@ package dev.sterner.malum.mixin;
 
 import dev.sterner.malum.api.event.LivingEntityDamageEvent;
 import dev.sterner.malum.common.component.MalumComponents;
+import dev.sterner.malum.common.item.equipment.trinket.CurioAlchemicalRing;
+import dev.sterner.malum.common.item.equipment.trinket.CurioHarmonyNecklace;
 import dev.sterner.malum.common.item.equipment.trinket.CurioVoraciousRing;
 import dev.sterner.malum.common.registry.MalumAttributeRegistry;
 import dev.sterner.malum.common.util.handler.SpiritHarvestHandler;
@@ -14,6 +16,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
@@ -88,21 +91,12 @@ abstract class LivingEntityMixin extends Entity {
 		}
 	}
 
-	@Inject(method = "damage", at = @At("RETURN"), cancellable = true)
-	private void malum$eventInject(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir){
-		boolean result = LivingEntityDamageEvent.ON_DAMAGE_EVENT.invoker().react((LivingEntity) (Object) this, source.getAttacker(), getWorld());
-		if (result) {
-			cir.setReturnValue(false);
+	@Inject(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;applyArmorToDamage(Lnet/minecraft/entity/damage/DamageSource;F)F"), cancellable = true)
+	private void malum$eventInject(DamageSource source, float amount, CallbackInfo ci){
+		float result = LivingEntityDamageEvent.ON_DAMAGE_EVENT.invoker().react((LivingEntity) (Object) this, source, amount);
+		if (result <= 0) {
+			ci.cancel();
 		}
-	}
-
-	@ModifyVariable(method = "applyDamage", at = @At(value = "INVOKE", ordinal = 0, target = "Lnet/minecraft/entity/LivingEntity;getHealth()F"), ordinal = 0, argsOnly = true)
-	private float malum$modifyDamage(float amount) {
-		if(amount > 0){
-			LivingEntity attacked = (LivingEntity) (Object) this;
-			return LivingEntityDamageEvent.MODIFY_EVENT.invoker().modify(attacked, getWorld(), amount);
-		}
-		return amount;
 	}
 
 	@ModifyVariable(method = "applyEnchantmentsToDamage", at = @At(value = "RETURN", ordinal = 2, shift = At.Shift.BEFORE), index = 2, argsOnly = true)
@@ -143,5 +137,19 @@ abstract class LivingEntityMixin extends Entity {
 	private double malum$travel(double value) {
 		LivingEntity livingEntity = (LivingEntity) (Object) this;
 		return MalumComponents.TOUCH_OF_DARKNESS_COMPONENT.get(livingEntity).updateEntityGravity(livingEntity, value);
+	}
+
+	@Inject(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z", at = @At(value = "INVOKE", target = "Ljava/util/Map;get(Ljava/lang/Object;)Ljava/lang/Object;"))
+	private void malum$potionUpdateInject(StatusEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir){
+		if((LivingEntity)(Object)this instanceof PlayerEntity player){
+			CurioAlchemicalRing.onPotionApplied(player);
+		}
+	}
+
+	@Inject(method = "getAttackDistanceScalingFactor", at = @At("RETURN"), cancellable = true)
+	private void malum$injectVisibility(Entity entity, CallbackInfoReturnable<Double> cir){
+		if((LivingEntity)(Object)this instanceof PlayerEntity player){
+			cir.setReturnValue(CurioHarmonyNecklace.preventDetection(player, entity, cir.getReturnValue()));
+		}
 	}
 }

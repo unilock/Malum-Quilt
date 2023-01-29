@@ -1,5 +1,6 @@
 package dev.sterner.malum.mixin;
 
+import dev.sterner.malum.api.event.ExplosionEvent;
 import dev.sterner.malum.common.item.equipment.trinket.CurioDemolitionistRing;
 import dev.sterner.malum.common.item.equipment.trinket.CurioHoarderRing;
 import dev.sterner.malum.common.item.equipment.trinket.CurioProspectorBelt;
@@ -18,6 +19,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+
+import java.util.List;
+import java.util.Set;
 
 @Mixin(Explosion.class)
 public abstract class ExplosionMixin {
@@ -34,6 +39,10 @@ public abstract class ExplosionMixin {
 	@Shadow
 	@Final
 	private float power;
+
+	@Shadow
+	@Final
+	private World world;
 
 	@ModifyArg(method = "affectWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;getDroppedStacks(Lnet/minecraft/loot/context/LootContext$Builder;)Ljava/util/List;"))
 	private LootContext.Builder malum$getBlockDrops(LootContext.Builder builder) {
@@ -58,5 +67,10 @@ public abstract class ExplosionMixin {
 	@ModifyArg(method = "affectWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;dropStack(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/item/ItemStack;)V"), index = 1)
 	private BlockPos malum$popResource(BlockPos value) {
 		return CurioHoarderRing.getExplosionPos(hasEarthenRing, value, getCausingEntity(), droppedItem);
+	}
+
+	@Inject(method = "collectBlocksAndDamageEntities", at = @At(value = "NEW", target = "net/minecraft/util/math/Vec3d", ordinal = 1), locals = LocalCapture.CAPTURE_FAILHARD)
+	private void malum$onExplode(CallbackInfo ci, Set<BlockPos> set, float q, int k, int l, int r, int s, int t, int u, List<Entity> list) {
+		ExplosionEvent.DETONATE.invoker().onDetonate(this.world, (Explosion) (Object) this, list, q);
 	}
 }

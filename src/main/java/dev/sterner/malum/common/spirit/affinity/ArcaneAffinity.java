@@ -11,6 +11,7 @@ import com.sammy.lodestone.systems.rendering.VFXBuilders;
 import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
 import com.sammy.lodestone.systems.rendering.particle.screen.base.ScreenParticle;
 import dev.sterner.malum.Malum;
+import dev.sterner.malum.api.event.SoulwardDamageAbsorbDamageEvent;
 import dev.sterner.malum.common.component.MalumComponents;
 import dev.sterner.malum.common.component.MalumPlayerComponent;
 import dev.sterner.malum.common.registry.MalumAttributeRegistry;
@@ -62,39 +63,30 @@ public class ArcaneAffinity extends MalumSpiritAffinity {
 		}
 	}
 
-	public static float consumeSoulWard(LivingEntity entity, DamageSource source, float amount) {
+	public static float shieldPlayer(LivingEntity entity, DamageSource source, float amount) {
 		if (entity instanceof PlayerEntity player) {
 			if (!player.world.isClient) {
 				MalumPlayerComponent component = MalumComponents.PLAYER_COMPONENT.get(player);
-				EntityAttributeInstance instance = player.getAttributeInstance(MalumAttributeRegistry.SOUL_WARD_SHATTER_COOLDOWN);
-				if (instance != null) {
-					component.soulWardProgress = (float) (1 * 6 * Math.exp(-0.15 * instance.getValue()));
-					if (component.soulWard > 0) {
-						float multiplier = source.isMagic() ? 0.1f : 0.7f;
-						float result = amount * multiplier;
-						float absorbed = amount - result;
-						double strength = player.getAttributeValue(MalumAttributeRegistry.SOUL_WARD_STRENGTH);
-						if (strength != 0) {
-							component.soulWard = (float) Math.max(0, component.soulWard - (absorbed / strength));
-						} else {
-							component.soulWard = 0;
-						}
-
-						player.world.playSound(null, player.getBlockPos(), MalumSoundRegistry.SOUL_WARD_HIT, SoundCategory.PLAYERS, 1, MathHelper.nextFloat(player.getRandom(), 1.5f, 2f));
-
-						if (source.getAttacker() != null) {
-							if (ItemHelper.hasTrinket(player, BELT_OF_THE_MAGEBANE)) {
-								if (!(source instanceof EntityDamageSource entityDamageSource) || (!entityDamageSource.isThorns())) {
-									source.getAttacker().damage(MalumDamageSourceRegistry.causeMagebaneDamage(player), absorbed + 2);
-								}
-							}
-						}
-						MalumComponents.PLAYER_COMPONENT.sync(player);
-						return result;
+				component.soulWardProgress = getSoulWardCooldown(0) + getSoulWardCooldown(player);
+				if (component.soulWard > 0) {
+					float multiplier = source.isMagic() ? 0.1f : 0.7f;
+					float result = amount * multiplier;
+					float absorbed = amount - result;
+					double strength = player.getAttributeValue(MalumAttributeRegistry.SOUL_WARD_STRENGTH);
+					float soulwardLost = (float) (component.soulWard - (absorbed / strength));
+					if (strength != 0) {
+						component.soulWard = Math.max(0, soulwardLost);
+					} else {
+						soulwardLost = component.soulWard;
+						component.soulWard = 0;
 					}
+
+					SoulwardDamageAbsorbDamageEvent.ON_ABSORB_DAMAGE_EVENT.invoker().react(player, source, soulwardLost, absorbed);
+					player.world.playSound(null, player.getBlockPos(), MalumSoundRegistry.SOUL_WARD_HIT, SoundCategory.PLAYERS, 1, MathHelper.nextFloat(player.getRandom(), 1.5f, 2f));
+					MalumComponents.PLAYER_COMPONENT.sync(player);
+					return result;
 				}
 			}
-
 		}
 		return amount;
 	}

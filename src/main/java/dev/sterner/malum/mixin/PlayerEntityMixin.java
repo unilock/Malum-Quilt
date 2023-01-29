@@ -58,7 +58,7 @@ abstract class PlayerEntityMixin extends LivingEntity {
 	private void malum$onDamaged(Args args) {
 		DamageSource source = args.get(0);
 		float value = args.get(1);
-		args.set(1, ArcaneAffinity.consumeSoulWard(this, source, value));
+		args.set(1, ArcaneAffinity.shieldPlayer(this, source, value));
 	}
 
 	@Inject(method = "tick", at = @At("HEAD"))

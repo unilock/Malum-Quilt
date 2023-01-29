@@ -18,20 +18,6 @@ public class CurioMagebaneBelt extends TrinketItem implements SpiritCollectActiv
         super(settings);
     }
 
-    /* TODO forge event
-    public void onSoulwardAbsorbDamage(LivingHurtEvent event, LivingEntity wardedEntity, ItemStack stack, float soulwardLost, float damageAbsorbed) {
-        DamageSource source = event.getSource();
-        if (source.getEntity() != null) {
-            if (source instanceof EntityDamageSource entityDamageSource) {
-                if (!entityDamageSource.isThorns()) {
-                    source.getEntity().hurt(DamageSourceRegistry.causeMagebaneDamage(wardedEntity), damageAbsorbed);
-                }
-            }
-        }
-    }
-
-     */
-
     @Override
     public Multimap<EntityAttribute, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, UUID uuid) {
         Multimap<EntityAttribute, EntityAttributeModifier> map = HashMultimap.create();
