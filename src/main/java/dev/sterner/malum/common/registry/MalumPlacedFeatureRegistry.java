@@ -33,6 +33,7 @@ public interface MalumPlacedFeatureRegistry {
 	RegistryKey<PlacedFeature> ORE_SOULSTONE_LOWER = placedFeature(Malum.id("ore_soulstone_lower"));
 	RegistryKey<PlacedFeature> ORE_BRILLIANT = placedFeature(Malum.id("ore_brilliant"));
 	RegistryKey<PlacedFeature> ORE_BLAZING_QUARTZ = placedFeature(Malum.id("ore_blazing_quartz"));
+	RegistryKey<PlacedFeature> ORE_NATURAL_QUARTZ = placedFeature(Malum.id("ore_natural_quartz"));
 
 	//TREES
 	RegistryKey<PlacedFeature> RUNEWOOD_CHECKED = RegistryKey.of(RegistryKeys.PLACED_FEATURE, Malum.id("runewood_tree"));
@@ -73,5 +74,6 @@ public interface MalumPlacedFeatureRegistry {
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, ORE_SOULSTONE_LOWER);
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, ORE_BRILLIANT);
 		BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Feature.UNDERGROUND_ORES, ORE_BLAZING_QUARTZ);
+		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, ORE_NATURAL_QUARTZ);
 	}
 }

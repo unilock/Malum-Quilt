@@ -35,6 +35,7 @@ public class ReapingHandler {
 				MalumComponents.PLAYER_COMPONENT.maybeGet(player).ifPresent(c -> {
 					if (!c.obtainedEncyclopedia) {
 						c.obtainedEncyclopedia = true;
+						MalumComponents.PLAYER_COMPONENT.sync(player);
 						SpiritHelper.createSpiritEntities(List.of(MalumObjects.ENCYCLOPEDIA_ARCANA.getDefaultStack()), target, 1.25f, player);
 					}
 				});
