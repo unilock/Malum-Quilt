@@ -7,6 +7,7 @@ import dev.sterner.malum.common.item.equipment.trinket.CurioAlchemicalRing;
 import dev.sterner.malum.common.item.equipment.trinket.CurioHarmonyNecklace;
 import dev.sterner.malum.common.item.equipment.trinket.CurioVoraciousRing;
 import dev.sterner.malum.common.registry.MalumAttributeRegistry;
+import dev.sterner.malum.common.statuseffect.GluttonyEffect;
 import dev.sterner.malum.common.util.handler.SpiritHarvestHandler;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.minecraft.entity.Entity;
@@ -131,6 +132,7 @@ abstract class LivingEntityMixin extends Entity {
 	@Inject(method = "consumeItem", at = @At(value = "INVOKE", shift = At.Shift.BY, by = 2, target = "Lnet/minecraft/item/ItemStack;finishUsing(Lnet/minecraft/world/World;Lnet/minecraft/entity/LivingEntity;)Lnet/minecraft/item/ItemStack;"), locals = LocalCapture.CAPTURE_FAILHARD)
 	public void malum$onFinishUsing(CallbackInfo ci, Hand hand, ItemStack result) {
 		CurioVoraciousRing.finishEating((LivingEntity)(Object) this, result);
+		GluttonyEffect.finishEating(result, (LivingEntity)(Object) this);
 	}
 
 	@ModifyVariable(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getFluidState(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/fluid/FluidState;"))
@@ -139,9 +141,13 @@ abstract class LivingEntityMixin extends Entity {
 		return MalumComponents.TOUCH_OF_DARKNESS_COMPONENT.get(livingEntity).updateEntityGravity(livingEntity, value);
 	}
 
-	@Inject(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z", at = @At(value = "INVOKE", target = "Ljava/util/Map;get(Ljava/lang/Object;)Ljava/lang/Object;"))
+	@Inject(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z", at = @At(value = "INVOKE", target = "Ljava/util/Map;get(Ljava/lang/Object;)Ljava/lang/Object;"), cancellable = true)
 	private void malum$potionUpdateInject(StatusEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir){
-		if((LivingEntity)(Object)this instanceof PlayerEntity player){
+		LivingEntity livingEntity = (LivingEntity)(Object)this;
+		if(!GluttonyEffect.canApplyPotion(livingEntity)){
+			cir.setReturnValue(false);
+		}
+		if(livingEntity instanceof PlayerEntity player){
 			CurioAlchemicalRing.onPotionApplied(player);
 		}
 	}

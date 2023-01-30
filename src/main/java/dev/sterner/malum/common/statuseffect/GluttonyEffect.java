@@ -1,14 +1,24 @@
 package dev.sterner.malum.common.statuseffect;
 
 import com.sammy.lodestone.helpers.ColorHelper;
+import com.sammy.lodestone.helpers.EntityHelper;
 import com.sammy.lodestone.setup.LodestoneAttributeRegistry;
+import dev.sterner.malum.common.registry.MalumSoundRegistry;
 import dev.sterner.malum.common.registry.MalumStatusEffectRegistry;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.world.World;
+
+import java.util.Optional;
+
+import static dev.sterner.malum.common.registry.MalumTagRegistry.GROSS_FOODS;
 
 public class GluttonyEffect extends StatusEffect {
     public GluttonyEffect() {
@@ -16,15 +26,11 @@ public class GluttonyEffect extends StatusEffect {
         addAttributeModifier(LodestoneAttributeRegistry.MAGIC_PROFICIENCY, "4d82fd0a-24b6-45f5-8d7a-983f99fd6783", 2f, EntityAttributeModifier.Operation.ADDITION);
     }
 
-    public static void canApplyPotion(LivingEntity livingEntity) {
-        var collection = livingEntity.getStatusEffects();
-        collection.forEach(statusEffectInstance -> {
-            if (statusEffectInstance.getEffectType().equals(StatusEffects.HUNGER) && livingEntity.hasStatusEffect(MalumStatusEffectRegistry.GLUTTONY)) {
-                //TODO event.setResult(Event.Result.DENY);
-            }
-        });
-    }
-/*
+    public static boolean canApplyPotion(LivingEntity livingEntity) {
+		Optional<StatusEffectInstance> optional =  livingEntity.getStatusEffects().stream().filter(s -> s.getEffectType().equals(StatusEffects.HUNGER)).findAny();
+		return optional.isEmpty() || !livingEntity.hasStatusEffect(MalumStatusEffectRegistry.GLUTTONY);
+	}
+
     public static void finishEating(ItemStack itemStack, LivingEntity livingEntity) {
         if (itemStack.isIn(GROSS_FOODS)) {
             var effect = livingEntity.getStatusEffect(MalumStatusEffectRegistry.GLUTTONY);
@@ -36,7 +42,7 @@ public class GluttonyEffect extends StatusEffect {
         }
     }
 
- */
+
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
