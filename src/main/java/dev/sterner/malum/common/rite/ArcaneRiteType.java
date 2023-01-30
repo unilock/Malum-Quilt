@@ -1,5 +1,6 @@
 package dev.sterner.malum.common.rite;
 
+import com.sammy.lodestone.handlers.WorldEventHandler;
 import com.sammy.lodestone.helpers.BlockHelper;
 import com.sammy.lodestone.systems.blockentity.LodestoneBlockEntityInventory;
 import dev.sterner.malum.common.block.blight.BlightedSoilBlock;
@@ -10,6 +11,7 @@ import dev.sterner.malum.common.network.packet.s2c.block.blight.BlightMistPartic
 import dev.sterner.malum.common.network.packet.s2c.block.blight.BlightTransformItemParticlePacket;
 import dev.sterner.malum.common.recipe.SpiritTransmutationRecipe;
 import dev.sterner.malum.common.rite.effect.MalumRiteEffect;
+import dev.sterner.malum.common.worldevent.TotemCreatedBlightEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
@@ -44,7 +46,7 @@ public class ArcaneRiteType extends MalumRiteType {
 			@SuppressWarnings("ConstantConditions")
 			@Override
 			public void riteEffect(TotemBaseBlockEntity totemBase) {
-				//TODO world event WorldEventHandler.addWorldEvent(totemBase.getWorld(), new TotemCreatedBlightEvent().setPosition(totemBase.getBlockPos()).setBlightData(1, 4, 4));
+				WorldEventHandler.addWorldEvent(totemBase.getWorld(), new TotemCreatedBlightEvent().setPosition(totemBase.getPos()).setBlightData(1, 4, 4));
 			}
 		};
 	}

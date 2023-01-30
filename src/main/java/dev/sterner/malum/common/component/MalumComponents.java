@@ -9,14 +9,11 @@ import dev.onyxstudios.cca.api.v3.world.WorldComponentFactoryRegistry;
 import dev.onyxstudios.cca.api.v3.world.WorldComponentInitializer;
 import dev.sterner.malum.Malum;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.server.world.ServerWorld;
 
 public class MalumComponents implements EntityComponentInitializer, WorldComponentInitializer {
 	public static final ComponentKey<MalumPlayerComponent> PLAYER_COMPONENT = ComponentRegistry.getOrCreate(Malum.id("player"), MalumPlayerComponent.class);
 	public static final ComponentKey<SpiritLivingEntityComponent> SPIRIT_COMPONENT = ComponentRegistry.getOrCreate(Malum.id("spirit"), SpiritLivingEntityComponent.class);
 	public static final ComponentKey<TouchOfDarknessComponent> TOUCH_OF_DARKNESS_COMPONENT = ComponentRegistry.getOrCreate(Malum.id("touch_of_darkness"), TouchOfDarknessComponent.class);
-
-	public static final ComponentKey<MalumWorldComponent> MALUM_WORLD_COMPONENT = ComponentRegistry.getOrCreate(Malum.id("world"), MalumWorldComponent.class);
 
 	@Override
 	public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
@@ -27,6 +24,6 @@ public class MalumComponents implements EntityComponentInitializer, WorldCompone
 
 	@Override
 	public void registerWorldComponentFactories(WorldComponentFactoryRegistry registry) {
-		registry.register(MALUM_WORLD_COMPONENT, world -> new MalumWorldComponent(world));
+
 	}
 }

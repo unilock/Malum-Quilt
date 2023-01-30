@@ -51,7 +51,6 @@
 	"cardinal-components": [
 		"malum:spirit",
 		"malum:player",
-		"malum:touch_of_darkness",
-		"malum:world"
+		"malum:touch_of_darkness"
 	]
 }
