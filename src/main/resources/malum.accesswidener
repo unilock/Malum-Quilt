@@ -95,3 +95,7 @@ accessible method net/minecraft/registry/Registries registerSimple (Lnet/minecra
 accessible method net/minecraft/entity/attribute/EntityAttributeInstance onUpdate ()V
 accessible field net/minecraft/entity/mob/MobEntity goalSelector Lnet/minecraft/entity/ai/goal/GoalSelector;
 accessible method net/minecraft/client/render/entity/LivingEntityRenderer addFeature (Lnet/minecraft/client/render/entity/feature/FeatureRenderer;)Z
+
+accessible      class     net/minecraft/recipe/Ingredient$Entry
+accessible      class     net/minecraft/recipe/Ingredient$TagEntry
+accessible      class     net/minecraft/recipe/Ingredient$StackEntry

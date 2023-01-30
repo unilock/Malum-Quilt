@@ -1,0 +1,17 @@
+{
+  "type": "malum:spirit_repair",
+  "itemIdRegex": "stone_.+",
+  "modIdRegex": "",
+  "durabilityPercentage": 0.5,
+  "inputs": [],
+  "repairMaterial": {
+    "tag": "minecraft:stone_tool_materials",
+    "count": 2
+  },
+  "spirits": [
+    {
+      "type": "earthen",
+      "count": 4
+    }
+  ]
+}
