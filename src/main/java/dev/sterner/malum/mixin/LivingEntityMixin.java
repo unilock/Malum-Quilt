@@ -93,12 +93,10 @@ abstract class LivingEntityMixin extends Entity {
 		}
 	}
 
-	@Inject(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;applyArmorToDamage(Lnet/minecraft/entity/damage/DamageSource;F)F"), cancellable = true)
-	private void malum$eventInject(DamageSource source, float amount, CallbackInfo ci){
-		float result = LivingEntityDamageEvent.ON_DAMAGE_EVENT.invoker().react((LivingEntity) (Object) this, source, amount);
-		if (result <= 0) {
-			ci.cancel();
-		}
+
+	@ModifyVariable(method = "damage", at = @At("HEAD"), argsOnly = true)
+	private float malum$onDamageEvent(float amount, DamageSource source, float amount2) {
+		return LivingEntityDamageEvent.ON_DAMAGE_EVENT.invoker().react((LivingEntity) (Object) this, source, amount);
 	}
 
 	@ModifyVariable(method = "applyEnchantmentsToDamage", at = @At(value = "RETURN", ordinal = 2, shift = At.Shift.BEFORE), index = 2, argsOnly = true)
