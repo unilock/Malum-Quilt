@@ -14,15 +14,13 @@ public class MalumPlayerComponent implements AutoSyncedComponent {
     public int targetedSoulId;
     public int soulFetchCooldown;
 
-    public boolean firstTimeJoin;
-
     public MalumSpiritAffinity affinity;
 
     public float soulWard;
     public float soulWardProgress;
 
-    public float heartOfStone;
-    public float heartOfStoneProgress;
+	public int soulsShattered;
+	public boolean obtainedEncyclopedia;
 
     public MalumPlayerComponent(LivingEntity player) {
         obj = player;
@@ -38,13 +36,8 @@ public class MalumPlayerComponent implements AutoSyncedComponent {
         targetedSoulId = tag.getInt("targetedSoulId");
         soulFetchCooldown = tag.getInt("soulFetchCooldown");
 
-        firstTimeJoin = tag.getBoolean("firstTimeJoin");
-
         soulWard = tag.getFloat("soulWard");
         soulWardProgress = tag.getFloat("soulWardProgress");
-
-        heartOfStone = tag.getFloat("heartOfStone");
-        heartOfStoneProgress = tag.getInt("heartOfStoneProgress");
     }
 
     @Override
@@ -55,15 +48,10 @@ public class MalumPlayerComponent implements AutoSyncedComponent {
         tag.putInt("targetedSoulId", targetedSoulId);
         tag.putInt("soulFetchCooldown", soulFetchCooldown);
 
-        tag.putBoolean("firstTimeJoin", firstTimeJoin);
-
         if (affinity != null) {
             tag.putString("affinity", affinity.identifier);
         }
         tag.putFloat("soulWard", soulWard);
         tag.putFloat("soulWardProgress", soulWardProgress);
-
-        tag.putFloat("heartOfStone", heartOfStone);
-        tag.putFloat("heartOfStoneProgress", heartOfStoneProgress);
     }
 }

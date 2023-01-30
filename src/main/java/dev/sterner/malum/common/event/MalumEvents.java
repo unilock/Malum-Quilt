@@ -1,12 +1,14 @@
 package dev.sterner.malum.common.event;
 
 import dev.sterner.malum.api.event.LivingEntityDamageEvent;
+import dev.sterner.malum.api.event.LivingEntityEvent;
 import dev.sterner.malum.common.item.tools.MalumScytheItem;
 import dev.sterner.malum.common.registry.MalumDamageSourceRegistry;
 import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.registry.MalumParticleRegistry;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
 import dev.sterner.malum.common.util.TrinketsHelper;
+import dev.sterner.malum.common.util.handler.ReapingHandler;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
@@ -16,10 +18,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.MathHelper;
+import org.quiltmc.qsl.entity.event.api.LivingEntityDeathCallback;
 
 public class MalumEvents {
 	public static void init(){
 		LivingEntityDamageEvent.ON_DAMAGE_EVENT.register(MalumEvents::scytheSweep);
+		LivingEntityDeathCallback.EVENT.register(ReapingHandler::tryCreateReapingDrops);
 	}
 
 	private static float scytheSweep(LivingEntity target, DamageSource damageSource, float v) {

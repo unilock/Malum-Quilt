@@ -4,6 +4,7 @@ import dev.sterner.malum.common.enchantment.ReboundEnchantment;
 import dev.sterner.malum.common.event.MalumEvents;
 import dev.sterner.malum.common.event.MalumItemGroupEvents;
 import dev.sterner.malum.common.event.MalumTrinketEvents;
+import dev.sterner.malum.common.reaping.ReapingDataReloadListener;
 import dev.sterner.malum.common.registry.*;
 import dev.sterner.malum.common.spirit.SpiritDataReloadListener;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
@@ -27,7 +28,6 @@ import java.util.Set;
 /**TODO
  * Add all pridewears
  * Add config
- * Fix SpiritRepair recipes from crashing
  * Add boat and sign
  */
 public class Malum implements ModInitializer {
@@ -60,6 +60,7 @@ public class Malum implements ModInitializer {
 
 		UseItemCallback.EVENT.register(ReboundEnchantment::onRightClickItem);
 		ResourceLoader.get(ResourceType.SERVER_DATA).registerReloader(new SpiritDataReloadListenerFabricImpl());
+		ResourceLoader.get(ResourceType.SERVER_DATA).registerReloader(new ReapingDataReloadListenerFabricImpl());
 
 		RegistryEvents.DYNAMIC_REGISTRY_SETUP.register((ctx) -> {
 			ctx.withRegistries(registries -> {
@@ -75,6 +76,13 @@ public class Malum implements ModInitializer {
 		@Override
 		public Identifier getQuiltId() {
 			return new Identifier(MODID, "spirit_data");
+		}
+	}
+
+	public static class ReapingDataReloadListenerFabricImpl extends ReapingDataReloadListener implements IdentifiableResourceReloader {
+		@Override
+		public Identifier getQuiltId() {
+			return new Identifier(MODID, "reaping_data");
 		}
 	}
 

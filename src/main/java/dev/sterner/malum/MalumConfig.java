@@ -70,6 +70,9 @@ public class MalumConfig extends MidnightConfig {
 	@Entry public static boolean GENERATE_CTHONIC_GOLD = true;
 	@Entry public static List<String> CTHONIC_GOLD_ALLOWED_DIMENSIONS = new ArrayList<>(List.of("minecraft:overworld"));
 
+	@MidnightConfig.Comment public static MidnightConfig.Comment award_codex_on_kill;
+	@Entry public static boolean AWARD_CODEX_ON_KILL = true;
+
 	@MidnightConfig.Comment public static MidnightConfig.Comment no_fancy_spirits;
 	@Entry public static boolean NO_FANCY_SPIRITS = false;
 
