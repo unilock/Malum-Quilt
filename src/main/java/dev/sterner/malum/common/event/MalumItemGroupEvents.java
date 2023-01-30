@@ -237,6 +237,8 @@ public class MalumItemGroupEvents {
 		entries.addItem(BLOCK_OF_BLAZING_QUARTZ);
 
 		entries.addItem(NATURAL_QUARTZ_ORE);
+		entries.addItem(NATURAL_QUARTZ_CLUSTER_BLOCK);
+		entries.addItem(BUDDING_NATURAL_QUARTZ);
 		entries.addItem(DEEPSLATE_QUARTZ_ORE);
 		entries.addItem(NATURAL_QUARTZ);
 

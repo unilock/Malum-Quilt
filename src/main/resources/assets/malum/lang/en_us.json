@@ -76,7 +76,14 @@
   "block.malum.iridescent_ether_sconce": "Iridescent Ether Sconce",
   "block.malum.iridescent_ether_torch": "Iridescent Ether Torch",
   "block.malum.natural_quartz_cluster": "Natural Quartz Cluster",
-  "block.malum.natural_quartz_ore": "Natural Quartz Ore",
+  "block.malum.budding_natural_quartz_cluster_block": "Budding Natural Quartz Cluster Block",
+  "block.malum.natural_quartz_cluster_block": "Natural Quartz Cluster Block",
+  "block.malum.small_quartz_bud": "Small Quartz Bud",
+  "block.malum.medium_quartz_bud": "Medium Quartz Bud",
+  "block.malum.large_quartz_bud": "Large Quartz Bud",
+
+
+
   "block.malum.polished_tainted_rock": "Polished Tainted Rock",
   "block.malum.polished_tainted_rock_slab": "Polished Tainted Rock Slab",
   "block.malum.polished_tainted_rock_stairs": "Polished Tainted Rock Stairs",

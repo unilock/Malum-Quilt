@@ -5,7 +5,7 @@
       "alternate_inner_layer_provider": {
         "type": "minecraft:simple_state_provider",
         "state": {
-          "Name": "malum:deepslate_quartz_ore"
+          "Name": "malum:budding_natural_quartz_cluster_block"
         }
       },
       "cannot_replace": "#minecraft:features_cannot_replace",
@@ -18,12 +18,37 @@
       "inner_layer_provider": {
         "type": "minecraft:simple_state_provider",
         "state": {
-          "Name": "malum:deepslate_quartz_ore"
+          "Name": "malum:natural_quartz_cluster_block"
         }
       },
       "inner_placements": [
         {
-          "Name": "minecraft:air"
+          "Name": "malum:small_quartz_bud",
+          "Properties": {
+            "facing": "up",
+            "waterlogged": "false"
+          }
+        },
+        {
+          "Name": "malum:medium_quartz_bud",
+          "Properties": {
+            "facing": "up",
+            "waterlogged": "false"
+          }
+        },
+        {
+          "Name": "malum:large_quartz_bud",
+          "Properties": {
+            "facing": "up",
+            "waterlogged": "false"
+          }
+        },
+        {
+          "Name": "malum:natural_quartz_cluster",
+          "Properties": {
+            "facing": "up",
+            "waterlogged": "false"
+          }
         }
       ],
       "invalid_blocks": "#minecraft:geode_invalid_blocks",
@@ -36,7 +61,7 @@
       "outer_layer_provider": {
         "type": "minecraft:simple_state_provider",
         "state": {
-          "Name": "minecraft:smooth_basalt"
+          "Name": "malum:deepslate_quartz_ore"
         }
       }
     },
@@ -54,10 +79,10 @@
     },
     "invalid_blocks_threshold": 1,
     "layers": {
-      "filling": 1.7,
-      "inner_layer": 2.2,
-      "middle_layer": 3.2,
-      "outer_layer": 4.2
+      "filling": 1.5,
+      "inner_layer": 2.0,
+      "middle_layer": 3.0,
+      "outer_layer": 4.0
     },
     "max_gen_offset": 16,
     "min_gen_offset": -16,

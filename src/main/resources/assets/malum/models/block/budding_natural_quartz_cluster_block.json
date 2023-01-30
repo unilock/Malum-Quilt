@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "malum:block/budding_natural_quartz_cluster_block"
+  }
+}

@@ -154,7 +154,13 @@ public class MalumClient implements ClientModInitializer {
 				SOULWOOD_GROWTH,
 				WEEPING_WELL_SIDE,
 				WEEPING_WELL_CORE,
-				WEEPING_WELL_CORNER
+				WEEPING_WELL_CORNER,
+				BUDDING_NATURAL_QUARTZ,
+				SMALL_QUARTZ_BUD,
+				MEDIUM_QUARTZ_BUD,
+				LARGE_QUARTZ_BUD,
+				NATURAL_QUARTZ_CLUSTER,
+				SOUL_VIAL
 		);
 		registerColors();
 	}

@@ -63,6 +63,7 @@ import net.minecraft.item.*;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
@@ -545,9 +546,14 @@ public interface MalumObjects {
 
 	Block NATURAL_QUARTZ_ORE = register("natural_quartz_ore", new ExperienceDroppingBlock(NATURAL_QUARTZ_PROPERTIES(), UniformIntProvider.create(1, 4)),true);
 	Block DEEPSLATE_QUARTZ_ORE = register("deepslate_quartz_ore", new ExperienceDroppingBlock(DEEPSLATE_QUARTZ_PROPERTIES(), UniformIntProvider.create(2, 5)),true);
-	Block NATURAL_QUARTZ_CLUSTER = register("natural_quartz_cluster", new AmethystClusterBlock(6, 3, NATURAL_QUARTZ_CLUSTER_PROPERTIES()),true);
+	Block NATURAL_QUARTZ_CLUSTER = register("natural_quartz_cluster", new AmethystClusterBlock(7, 3, NATURAL_QUARTZ_CLUSTER_PROPERTIES().nonOpaque().ticksRandomly().strength(1.5F).luminance(state -> 5)),true);
 	Item NATURAL_QUARTZ = register("natural_quartz", new AliasedBlockItem(NATURAL_QUARTZ_CLUSTER, settings()));
 
+	Block NATURAL_QUARTZ_CLUSTER_BLOCK = register("natural_quartz_cluster_block", new NaturalQuartzBlock(NATURAL_QUARTZ_CLUSTER_PROPERTIES().nonOpaque()), true);
+	Block LARGE_QUARTZ_BUD = register("large_quartz_bud", new AmethystClusterBlock(5, 3, AbstractBlock.Settings.copy(NATURAL_QUARTZ_CLUSTER).luminance(state -> 4)), false);
+	Block MEDIUM_QUARTZ_BUD = register("medium_quartz_bud", new AmethystClusterBlock(4, 3, AbstractBlock.Settings.copy(NATURAL_QUARTZ_CLUSTER).luminance(state -> 2)), false);
+	Block SMALL_QUARTZ_BUD = register("small_quartz_bud", new AmethystClusterBlock(3, 4, AbstractBlock.Settings.copy(NATURAL_QUARTZ_CLUSTER).luminance(state -> 1)), false);
+	Block BUDDING_NATURAL_QUARTZ = register("budding_natural_quartz_cluster_block", new BuddingNaturalQuartzBlock( NATURAL_QUARTZ_CLUSTER_PROPERTIES().nonOpaque().ticksRandomly()), true);
 
 	Block BLOCK_OF_RARE_EARTHS = register("block_of_rare_earths", new ExperienceDroppingBlock(RARE_EARTH_PROPERTIES(), UniformIntProvider.create(10, 100)),true);
 
