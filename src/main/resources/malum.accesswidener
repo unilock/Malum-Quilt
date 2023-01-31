@@ -99,3 +99,5 @@ accessible method net/minecraft/client/render/entity/LivingEntityRenderer addFea
 accessible      class     net/minecraft/recipe/Ingredient$Entry
 accessible      class     net/minecraft/recipe/Ingredient$TagEntry
 accessible      class     net/minecraft/recipe/Ingredient$StackEntry
+accessible field net/minecraft/block/AbstractBlock$AbstractBlockState shapeCache Lnet/minecraft/block/AbstractBlock$AbstractBlockState$ShapeCache;
+accessible method net/minecraft/block/AbstractBlock$AbstractBlockState isSideSolid (Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Direction;Lnet/minecraft/block/SideShapeType;)Z

@@ -54,6 +54,7 @@ public class Malum implements ModInitializer {
 		MalumSpiritTypeRegistry.init();
 		MalumRiteRegistry.init();
 		MalumTrinketEvents.init();
+		MalumStructures.init();
 		MalumFeatureRegistry.init();
 		MalumItemGroupEvents.init();
 		MalumEvents.init();
