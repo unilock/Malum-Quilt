@@ -61,15 +61,13 @@ public class WeepingWellStructure extends StructureFeature {
 	@Nullable
 	private BlockPos getValidY(GenerationContext context, BlockPos blockPos){
 		VerticalBlockSample blockView = context.chunkGenerator().getColumnSample(blockPos.getX(), blockPos.getZ(), context.world(), context.randomState());
-		int y;
-		boolean foundAir = false;
-		for(y = min; y < max && !foundAir; y++){
+		for(int y = min; y < max; y += 2){
 			if(blockView.getState(y).isAir()){
-				foundAir = true;
+				if(blockView.getState(y - 1).isAir()){
+					y -= 1;
+				}
+				return new BlockPos(blockPos.getX(), y, blockPos.getZ());
 			}
-		}
-		if(foundAir){
-			return new BlockPos(blockPos.getX(), y, blockPos.getZ());
 		}
 		return null;
 	}
