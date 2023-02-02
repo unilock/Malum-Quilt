@@ -29,7 +29,8 @@
 			"client_init": "dev.sterner.malum.MalumClient",
 			"cardinal-components-entity": "dev.sterner.malum.common.component.MalumComponents",
 			"cardinal-components-world": "dev.sterner.malum.common.component.MalumComponents",
-			"mm:early_risers": "dev.sterner.malum.MalumEarlyRiser"
+			"mm:early_risers": "dev.sterner.malum.MalumEarlyRiser",
+			"fabric-datagen" : "dev.sterner.malum.data.MalumDatagen"
 		},
 		"depends": [
 			{

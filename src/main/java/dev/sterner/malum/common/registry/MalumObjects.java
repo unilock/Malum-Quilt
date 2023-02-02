@@ -63,7 +63,6 @@ import net.minecraft.item.*;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
@@ -89,9 +88,6 @@ public interface MalumObjects {
 	Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
 	Set<MalumScytheItem> SCYTHES = new ReferenceOpenHashSet<>();
 	ArrayList<SignType> SIGN_TYPES = new ArrayList<>();
-
-	SignType RUNEWOOD_SIGN_TYPE = register(new SignType("runewood"));
-	SignType SOULWOOD_SIGN_TYPE = register(new SignType("soulwood"));
 
 	Item ENCYCLOPEDIA_ARCANA = register("encyclopedia_arcana", new EncyclopediaArcanaItem(settings().rarity(Rarity.UNCOMMON)));
 
@@ -450,8 +446,8 @@ public interface MalumObjects {
 	Block RUNEWOOD_ITEM_STAND = register("runewood_item_stand", new ItemStandBlock<>(RUNEWOOD_PROPERTIES().nonOpaque()),true);
 	Block RUNEWOOD_ITEM_PEDESTAL = register("runewood_item_pedestal", new WoodItemPedestalBlock<>(RUNEWOOD_PROPERTIES().nonOpaque()),true);
 
-	Block RUNEWOOD_SIGN = register("runewood_sign", new LodestoneStandingSignBlock(RUNEWOOD_PROPERTIES().nonOpaque().noCollision(), RUNEWOOD_SIGN_TYPE), true);
-	Block RUNEWOOD_WALL_SIGN = register("runewood_wall_sign", new LodestoneWallSignBlock(RUNEWOOD_PROPERTIES().nonOpaque().noCollision(), RUNEWOOD_SIGN_TYPE), false);
+	//Block RUNEWOOD_SIGN = register("runewood_sign", new LodestoneStandingSignBlock(RUNEWOOD_PROPERTIES().nonOpaque().noCollision(), RUNEWOOD_SIGN_TYPE), true);
+	//Block RUNEWOOD_WALL_SIGN = register("runewood_wall_sign", new LodestoneWallSignBlock(RUNEWOOD_PROPERTIES().nonOpaque().noCollision(), RUNEWOOD_SIGN_TYPE), false);
 	//endregion
 
 	//region soulwood
@@ -498,8 +494,8 @@ public interface MalumObjects {
 	Block SOULWOOD_ITEM_STAND = register("soulwood_item_stand", new ItemStandBlock<>(SOULWOOD_PROPERTIES().nonOpaque()),true);
 	Block SOULWOOD_ITEM_PEDESTAL = register("soulwood_item_pedestal", new WoodItemPedestalBlock<>(SOULWOOD_PROPERTIES().nonOpaque()),true);
 
-	Block SOULWOOD_SIGN = register("soulwood_sign", new LodestoneStandingSignBlock(SOULWOOD_PROPERTIES().nonOpaque().noCollision(), SOULWOOD_SIGN_TYPE), true);
-	Block SOULWOOD_WALL_SIGN = register("soulwood_wall_sign", new LodestoneWallSignBlock(SOULWOOD_PROPERTIES().nonOpaque().noCollision(), SOULWOOD_SIGN_TYPE), false);
+	//Block SOULWOOD_SIGN = register("soulwood_sign", new LodestoneStandingSignBlock(SOULWOOD_PROPERTIES().nonOpaque().noCollision(), SOULWOOD_SIGN_TYPE), true);
+	//Block SOULWOOD_WALL_SIGN = register("soulwood_wall_sign", new LodestoneWallSignBlock(SOULWOOD_PROPERTIES().nonOpaque().noCollision(), SOULWOOD_SIGN_TYPE), false);
 	//endregion
 
 
@@ -580,11 +576,6 @@ public interface MalumObjects {
 	Block BLOCK_OF_ASTRAL_WEAVE = register("block_of_astral_weave", new Block(AbstractBlock.Settings.copy(Blocks.LIGHT_BLUE_WOOL)),true);
 	Block BLOCK_OF_HEX_ASH = register("block_of_hex_ash", new Block(AbstractBlock.Settings.copy(Blocks.PURPLE_CONCRETE_POWDER)),true);
 	Block BLOCK_OF_CURSED_GRIT = register("block_of_cursed_grit", new Block(AbstractBlock.Settings.copy(Blocks.RED_CONCRETE_POWDER)),true);
-
-	static SignType register(SignType signType) {
-		SIGN_TYPES.add(signType);
-		return signType;
-	}
 
 	static <T extends Block> T registerEther(String name, T block, boolean isIri, boolean createItem) {
 		BLOCKS.put(block, new Identifier(Malum.MODID, name));
