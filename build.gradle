@@ -90,6 +90,9 @@ dependencies {
 	modImplementation include("maven.modrinth:midnightlib:$midnightlib_version")
 	modImplementation include("com.github.mrsterner:LodestoneLib-Quilt:$lodestone_version")
 	modImplementation("com.jamieswhiteshirt:reach-entity-attributes:${project.reach}")
+
+	implementation("com.github.LlamaLad7:MixinExtras:${project.mixin_extras}")
+	include("com.github.LlamaLad7:MixinExtras:${project.mixin_extras}")
 }
 
 processResources {
@@ -116,6 +119,6 @@ jar {
 		rename { "${it}_${archivesBaseName}" }
 	}
 }
-
-assemble.dependsOn runDatagen
+//TODO runServer crashes, lodestone needs EvnType.CLIENTs
+//assemble.dependsOn runDatagen
 

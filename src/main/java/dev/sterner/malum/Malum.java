@@ -42,10 +42,11 @@ public class Malum implements ModInitializer {
 		MalumEnchantmentRegistry.init();
 		MalumSoundRegistry.init();
 
+		MalumEntityRegistry.init();
 		MalumObjects.init();
 		MalumBlockEntityRegistry.init();
 
-		MalumEntityRegistry.init();
+
 		MalumStatusEffectRegistry.init();
 		MalumTagRegistry.init();
 		MalumRecipeTypeRegistry.init();

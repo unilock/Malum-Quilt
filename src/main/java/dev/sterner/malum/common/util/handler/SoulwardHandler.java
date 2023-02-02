@@ -1,10 +1,8 @@
-package dev.sterner.malum.common.spirit.affinity;
+package dev.sterner.malum.common.util.handler;
 
 import com.mojang.blaze3d.glfw.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.sammy.lodestone.handlers.ScreenParticleHandler;
-import com.sammy.lodestone.helpers.DataHelper;
-import com.sammy.lodestone.helpers.ItemHelper;
 import com.sammy.lodestone.setup.LodestoneScreenParticles;
 import com.sammy.lodestone.setup.LodestoneShaders;
 import com.sammy.lodestone.systems.rendering.VFXBuilders;
@@ -15,18 +13,17 @@ import dev.sterner.malum.api.event.SoulwardDamageAbsorbDamageEvent;
 import dev.sterner.malum.common.component.MalumComponents;
 import dev.sterner.malum.common.component.MalumPlayerComponent;
 import dev.sterner.malum.common.registry.MalumAttributeRegistry;
-import dev.sterner.malum.common.registry.MalumDamageSourceRegistry;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
 import dev.sterner.malum.common.spirit.MalumSpiritAffinity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.particle.ElderGuardianAppearanceParticle;
 import net.minecraft.client.render.ShaderProgram;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.EntityDamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Identifier;
@@ -35,11 +32,10 @@ import org.joml.Vector4f;
 
 import java.util.Objects;
 
-import static dev.sterner.malum.common.registry.MalumObjects.BELT_OF_THE_MAGEBANE;
 import static dev.sterner.malum.common.registry.MalumSpiritTypeRegistry.ARCANE_SPIRIT;
 
-public class ArcaneAffinity extends MalumSpiritAffinity {
-	public ArcaneAffinity() {
+public class SoulwardHandler extends MalumSpiritAffinity {
+	public SoulwardHandler() {
 		super(ARCANE_SPIRIT);
 	}
 

@@ -8,7 +8,7 @@ import dev.sterner.malum.common.registry.MalumDamageSourceRegistry;
 import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.registry.MalumParticleRegistry;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
-import dev.sterner.malum.common.spirit.affinity.ArcaneAffinity;
+import dev.sterner.malum.common.util.handler.SoulwardHandler;
 import dev.sterner.malum.common.statuseffect.AqueousAura;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -57,12 +57,12 @@ abstract class PlayerEntityMixin extends LivingEntity {
 	private void malum$onDamaged(Args args) {
 		DamageSource source = args.get(0);
 		float value = args.get(1);
-		args.set(1, ArcaneAffinity.shieldPlayer(this, source, value));
+		args.set(1, SoulwardHandler.shieldPlayer(this, source, value));
 	}
 
 	@Inject(method = "tick", at = @At("HEAD"))
 	private void malum$tick(CallbackInfo ci) {
-		ArcaneAffinity.recoverSoulWard((PlayerEntity) (Object) this);
+		SoulwardHandler.recoverSoulWard((PlayerEntity) (Object) this);
 	}
 
 	@ModifyVariable(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getMovementSpeed()F"), index = 3)

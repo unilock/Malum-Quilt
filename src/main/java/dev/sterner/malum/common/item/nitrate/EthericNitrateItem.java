@@ -8,6 +8,7 @@ import com.sammy.lodestone.systems.rendering.particle.screen.base.ScreenParticle
 import dev.sterner.malum.common.entity.nitrate.EthericNitrateEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 
 import java.awt.*;
