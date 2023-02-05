@@ -119,6 +119,6 @@ jar {
 		rename { "${it}_${archivesBaseName}" }
 	}
 }
-//TODO runServer crashes, lodestone needs EvnType.CLIENTs
-//assemble.dependsOn runDatagen
+
+assemble.dependsOn runDatagen
 

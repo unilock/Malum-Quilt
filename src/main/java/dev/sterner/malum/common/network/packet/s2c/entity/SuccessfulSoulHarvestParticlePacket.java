@@ -1,7 +1,10 @@
 package dev.sterner.malum.common.network.packet.s2c.entity;
 
-import com.sammy.lodestone.setup.LodestoneParticles;
-import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
+import com.sammy.lodestone.setup.LodestoneParticleRegistry;
+import com.sammy.lodestone.systems.particle.WorldParticleBuilder;
+import com.sammy.lodestone.systems.particle.data.ColorParticleData;
+import com.sammy.lodestone.systems.particle.data.GenericParticleData;
+import com.sammy.lodestone.systems.particle.data.SpinParticleData;
 import dev.sterner.malum.Malum;
 import io.netty.buffer.Unpooled;
 import net.minecraft.client.MinecraftClient;
@@ -45,24 +48,27 @@ public class SuccessfulSoulHarvestParticlePacket {
 
         ClientWorld world = client.world;
         client.execute(() -> {
-            var rand = world.random;
-            ParticleBuilders.create(LodestoneParticles.SPARKLE_PARTICLE)
-                .setAlpha(1.0f, 0).setScale(0.4f, 0).setLifetime(20)
-                .randomOffset(0.5, 0).randomMotion(0, 0.125f)
-                .addMotion(0, 0.28f, 0)
-                .setColor(color, endColor)
-                .setSpin(0.4f)
-                .setGravity(1)
-                .repeat(world, posX, posY, posZ, 40);
+			WorldParticleBuilder.create(LodestoneParticleRegistry.SPARKLE_PARTICLE)
+					.setTransparencyData(GenericParticleData.create(1.0f, 0).build())
+					.setScaleData(GenericParticleData.create(0.4f, 0).build())
+					.setColorData(ColorParticleData.create(color, endColor).build())
+					.setSpinData(SpinParticleData.create(0.4f).build())
+					.setLifetime(20)
+					.setRandomOffset(0.5, 0).setRandomMotion(0, 0.125f)
+					.addMotion(0, 0.28f, 0)
+					.setGravity(1)
+					.repeat(world, posX, posY, posZ, 40);
 
-            ParticleBuilders.create(LodestoneParticles.SPARKLE_PARTICLE)
-                .setAlpha(0.75f, 0).setScale(0.2f, 0).setLifetime(40)
-                .randomOffset(0.5, 0.5).randomMotion(0.125f, 0.05)
-                .addMotion(0, 0.15f, 0)
-                .setColor(color, endColor)
-                .setSpin(0.3f)
-                .setGravity(1)
-                .repeat(world, posX, posY, posZ, 30);
+			WorldParticleBuilder.create(LodestoneParticleRegistry.SPARKLE_PARTICLE)
+					.setTransparencyData(GenericParticleData.create(0.75f, 0).build())
+					.setScaleData(GenericParticleData.create(0.2f, 0).build())
+					.setColorData(ColorParticleData.create(color, endColor).build())
+					.setSpinData(SpinParticleData.create(0.3f).build())
+					.setLifetime(40)
+					.setRandomOffset(0.5, 0.5).setRandomMotion(0.125f, 0.05)
+					.addMotion(0, 0.15f, 0)
+					.setGravity(1)
+					.repeat(world, posX, posY, posZ, 30);
         });
     }
 }

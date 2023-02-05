@@ -1,13 +1,13 @@
 package dev.sterner.malum.common.item.ether;
 
-import com.sammy.lodestone.systems.rendering.particle.screen.emitter.ItemParticleEmitter;
+import com.sammy.lodestone.handlers.screenparticle.ParticleEmitterHandler;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.DyeableItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 
-public abstract class AbstractEtherItem extends BlockItem implements DyeableItem, ItemParticleEmitter {
+public abstract class AbstractEtherItem extends BlockItem implements DyeableItem, ParticleEmitterHandler.ItemParticleSupplier {
     public static final String FIRST_COLOR = "firstColor";
     public static final String SECOND_COLOR = "secondColor";
     public static final int DEFAULT_FIRST_COLOR = 15712278;

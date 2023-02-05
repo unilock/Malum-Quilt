@@ -2,18 +2,21 @@ package dev.sterner.malum.common.util.handler;
 
 import com.mojang.blaze3d.glfw.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.sammy.lodestone.handlers.ScreenParticleHandler;
-import com.sammy.lodestone.setup.LodestoneScreenParticles;
-import com.sammy.lodestone.setup.LodestoneShaders;
+import com.sammy.lodestone.handlers.screenparticle.ScreenParticleHandler;
+import com.sammy.lodestone.setup.LodestoneScreenParticleRegistry;
+import com.sammy.lodestone.setup.LodestoneShaderRegistry;
+import com.sammy.lodestone.systems.particle.ScreenParticleBuilder;
+import com.sammy.lodestone.systems.particle.data.ColorParticleData;
+import com.sammy.lodestone.systems.particle.data.GenericParticleData;
+import com.sammy.lodestone.systems.particle.data.SpinParticleData;
 import com.sammy.lodestone.systems.rendering.VFXBuilders;
-import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
-import com.sammy.lodestone.systems.rendering.particle.screen.base.ScreenParticle;
 import dev.sterner.malum.Malum;
 import dev.sterner.malum.api.event.SoulwardDamageAbsorbDamageEvent;
 import dev.sterner.malum.common.component.MalumComponents;
 import dev.sterner.malum.common.component.MalumPlayerComponent;
 import dev.sterner.malum.common.registry.MalumAttributeRegistry;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
+import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
 import dev.sterner.malum.common.spirit.MalumSpiritAffinity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -131,7 +134,7 @@ public class SoulwardHandler extends MalumSpiritAffinity {
 					RenderSystem.defaultBlendFunc();
 					RenderSystem.setShaderTexture(0, getSoulWardTexture());
 					RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
-					ShaderProgram shader = LodestoneShaders.DISTORTED_TEXTURE.getInstance().get();
+					ShaderProgram shader = LodestoneShaderRegistry.DISTORTED_TEXTURE.getInstance().get();
 					shader.getUniformOrDefault("YFrequency").setFloat(15f);
 					shader.getUniformOrDefault("XFrequency").setFloat(15f);
 					shader.getUniformOrDefault("Speed").setFloat(550f);
@@ -153,18 +156,16 @@ public class SoulwardHandler extends MalumSpiritAffinity {
 								.setUVWithWidth(xTextureOffset, 0, 13, 13, 45)
 								.draw(matrices);
 						if (ScreenParticleHandler.canSpawnParticles) {
-							ParticleBuilders.create(LodestoneScreenParticles.WISP)
+							final float spin = client.world.random.nextFloat() * 6.28f;
+							ScreenParticleBuilder.create(LodestoneScreenParticleRegistry.WISP, ScreenParticleHandler.EARLY_PARTICLES)
 									.setLifetime(20)
-									.setColor(ARCANE_SPIRIT.getColor(), ARCANE_SPIRIT.getEndColor())
-									.setAlphaCoefficient(0.75f)
-									.setScale(0.2f*progress, 0f)
-									.setAlpha(0.05f, 0)
-									.setSpin(client.world.random.nextFloat() * 6.28f)
-									.setSpinOffset(client.world.random.nextFloat() * 6.28f)
-									.randomOffset(2)
-									.randomMotion(0.5f, 0.5f)
-									.addMotion(0, 0.2)
-									.overwriteRenderOrder(ScreenParticle.RenderOrder.BEFORE_UI)
+									.setColorData(ColorParticleData.create(MalumSpiritTypeRegistry.ARCANE_SPIRIT.getColor().brighter(), MalumSpiritTypeRegistry.ARCANE_SPIRIT.getEndColor()).build())
+									.setScaleData(GenericParticleData.create(0.2f * progress, 0f).build())
+									.setTransparencyData(GenericParticleData.create(0.05f, 0).setCoefficient(0.75f).build())
+									.setSpinData(SpinParticleData.create(spin).build())
+									.setRandomOffset(2)
+									.setRandomMotion(0.5f, 0.5f)
+									.addMotion(0, 0.2f)
 									.repeat(x + 5, y + 5, 1);
 						}
 					}

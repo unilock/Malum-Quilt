@@ -1,7 +1,9 @@
 package dev.sterner.malum.common.network.packet.s2c.block.functional;
 
-import com.sammy.lodestone.setup.LodestoneParticles;
-import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
+import com.sammy.lodestone.setup.LodestoneParticleRegistry;
+import com.sammy.lodestone.systems.particle.WorldParticleBuilder;
+import com.sammy.lodestone.systems.particle.data.ColorParticleData;
+import com.sammy.lodestone.systems.particle.data.GenericParticleData;
 import dev.sterner.malum.Malum;
 import dev.sterner.malum.common.spirit.MalumSpiritType;
 import dev.sterner.malum.common.spirit.SpiritHelper;
@@ -56,36 +58,36 @@ public class AltarCraftParticlePacket {
             for (MalumSpiritType type : types) {
                 Color color = type.getColor();
                 Color endColor = type.getEndColor();
-                ParticleBuilders.create(LodestoneParticles.TWINKLE_PARTICLE)
-                    .setAlpha(0.6f, 0f)
-                    .setLifetime(80)
-                    .setScale(0.15f, 0)
-                    .setColor(color, endColor)
-                    .randomOffset(0.1f)
-                    .addMotion(0, 0.26f, 0)
-                    .randomMotion(0.03f, 0.04f)
-                    .setGravity(1)
-                    .repeat(world, posX, posY, posZ, 32);
+				WorldParticleBuilder.create(LodestoneParticleRegistry.TWINKLE_PARTICLE)
+						.setTransparencyData(GenericParticleData.create(0.6f, 0f).build())
+						.setScaleData(GenericParticleData.create(0.15f, 0).build())
+						.setColorData(ColorParticleData.create(color, endColor).build())
+						.setLifetime(80)
+						.setRandomOffset(0.1f)
+						.addMotion(0, 0.26f, 0)
+						.setRandomMotion(0.03f, 0.04f)
+						.setGravity(1)
+						.repeat(world, posX, posY, posZ, 32);
 
-                ParticleBuilders.create(LodestoneParticles.WISP_PARTICLE)
-                    .setAlpha(0.2f, 0f)
-                    .setLifetime(60)
-                    .setScale(0.4f, 0)
-                    .setColor(color, endColor)
-                    .randomOffset(0.25f, 0.1f)
-                    .randomMotion(0.004f, 0.004f)
-                    .enableNoClip()
-                    .repeat(world, posX, posY, posZ, 12);
+				WorldParticleBuilder.create(LodestoneParticleRegistry.WISP_PARTICLE)
+						.setTransparencyData(GenericParticleData.create(0.2f, 0f).build())
+						.setScaleData(GenericParticleData.create(0.4f, 0).build())
+						.setColorData(ColorParticleData.create(color, endColor).build())
+						.setLifetime(60)
+						.setRandomOffset(0.25f, 0.1f)
+						.setRandomMotion(0.004f, 0.004f)
+						.enableNoClip()
+						.repeat(world, posX, posY, posZ, 12);
 
-                ParticleBuilders.create(LodestoneParticles.SPARKLE_PARTICLE)
-                    .setAlpha(0.05f, 0f)
-                    .setLifetime(30)
-                    .setScale(0.2f, 0)
-                    .setColor(color, endColor)
-                    .randomOffset(0.05f, 0.05f)
-                    .randomMotion(0.02f, 0.02f)
-                    .enableNoClip()
-                    .repeat(world, posX, posY, posZ, 8);
+				WorldParticleBuilder.create(LodestoneParticleRegistry.SPARKLE_PARTICLE)
+						.setTransparencyData(GenericParticleData.create(0.05f, 0f).build())
+						.setScaleData(GenericParticleData.create(0.2f, 0).build())
+						.setColorData(ColorParticleData.create(color, endColor).build())
+						.setLifetime(30)
+						.setRandomOffset(0.05f, 0.05f)
+						.setRandomMotion(0.02f, 0.02f)
+						.enableNoClip()
+						.repeat(world, posX, posY, posZ, 8);
             }
         });
     }

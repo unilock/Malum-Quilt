@@ -1,9 +1,12 @@
 package dev.sterner.malum.common.network.packet.s2c.block;
 
-import com.sammy.lodestone.setup.LodestoneParticles;
-import com.sammy.lodestone.systems.rendering.particle.Easing;
-import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
-import com.sammy.lodestone.systems.rendering.particle.SimpleParticleEffect;
+import com.sammy.lodestone.setup.LodestoneParticleRegistry;
+import com.sammy.lodestone.systems.easing.Easing;
+import com.sammy.lodestone.systems.particle.SimpleParticleEffect;
+import com.sammy.lodestone.systems.particle.WorldParticleBuilder;
+import com.sammy.lodestone.systems.particle.data.ColorParticleData;
+import com.sammy.lodestone.systems.particle.data.GenericParticleData;
+import com.sammy.lodestone.systems.particle.data.SpinParticleData;
 import dev.sterner.malum.Malum;
 import io.netty.buffer.Unpooled;
 import net.minecraft.client.MinecraftClient;
@@ -46,20 +49,17 @@ public class MinorBlockSparkleParticlePacket {
             for (int i = 0; i < 3; i++) {
                 int spinDirection = (rand.nextBoolean() ? 1 : -1);
                 int spinOffset = rand.nextInt(360);
-                ParticleBuilders.create(LodestoneParticles.SMOKE_PARTICLE)
-                    .setAlpha(0.02f, 0.095f, 0)
-                    .setAlphaEasing(Easing.SINE_IN, Easing.CIRC_IN)
-                    .setLifetime(50+rand.nextInt(10))
-                    .setSpinOffset(spinOffset)
-                    .setSpin((0.125f+rand.nextFloat()*0.075f)*spinDirection)
-                    .setScale(0.25f, 0.45f, 0)
-                    .setScaleEasing(Easing.QUINTIC_OUT, Easing.SINE_IN)
-                    .setColor(color, color)
-                    .randomOffset(0.4f)
-                    .enableNoClip()
-                    .randomMotion(0.01f, 0.01f)
-                    .overwriteRemovalProtocol(SimpleParticleEffect.SpecialRemovalProtocol.ENDING_CURVE_INVISIBLE)
-                    .repeatRandomFace(world, pos, 1);
+				WorldParticleBuilder.create(LodestoneParticleRegistry.SMOKE_PARTICLE)
+						.setTransparencyData(GenericParticleData.create(0.02f, 0.095f, 0).setEasing(Easing.SINE_IN, Easing.CIRC_IN).build())
+						.setSpinData(SpinParticleData.create((0.125f+rand.nextFloat()*0.075f)*spinDirection).setSpinOffset(spinOffset).build())
+						.setScaleData(GenericParticleData.create(0.25f, 0.45f, 0).setEasing(Easing.QUINTIC_OUT, Easing.SINE_IN).build())
+						.setColorData(ColorParticleData.create(color, color).build())
+						.setLifetime(50+rand.nextInt(10))
+						.setRandomOffset(0.4f)
+						.enableNoClip()
+						.setRandomMotion(0.01f, 0.01f)
+						.setDiscardFunction(SimpleParticleEffect.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
+						.repeatSurroundBlock(world, pos, 1);
             }
         });
     }

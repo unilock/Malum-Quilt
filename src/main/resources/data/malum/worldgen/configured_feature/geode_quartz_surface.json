@@ -79,10 +79,10 @@
     },
     "invalid_blocks_threshold": 1,
     "layers": {
-      "filling": 1.5,
-      "inner_layer": 2.0,
-      "middle_layer": 3.0,
-      "outer_layer": 4.0
+      "filling": 1.0,
+      "inner_layer": 1.4,
+      "middle_layer": 1.8,
+      "outer_layer": 2.2
     },
     "max_gen_offset": 16,
     "min_gen_offset": -16,

@@ -2,9 +2,9 @@ package dev.sterner.malum.common.component;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.Tessellator;
+import com.sammy.lodestone.systems.easing.Easing;
 import com.sammy.lodestone.systems.rendering.ExtendedShader;
 import com.sammy.lodestone.systems.rendering.VFXBuilders;
-import com.sammy.lodestone.systems.rendering.particle.Easing;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
 import dev.sterner.malum.common.block.weeping_well.PrimordialSoupBlock;

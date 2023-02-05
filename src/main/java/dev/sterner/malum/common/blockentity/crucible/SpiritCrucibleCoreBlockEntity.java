@@ -2,13 +2,16 @@ package dev.sterner.malum.common.blockentity.crucible;
 
 import com.sammy.lodestone.helpers.BlockHelper;
 import com.sammy.lodestone.helpers.DataHelper;
-import com.sammy.lodestone.setup.LodestoneParticles;
+import com.sammy.lodestone.setup.LodestoneParticleRegistry;
 import com.sammy.lodestone.systems.blockentity.LodestoneBlockEntityInventory;
+import com.sammy.lodestone.systems.easing.Easing;
 import com.sammy.lodestone.systems.multiblock.MultiBlockCoreEntity;
 import com.sammy.lodestone.systems.multiblock.MultiBlockStructure;
-import com.sammy.lodestone.systems.rendering.particle.Easing;
-import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
-import com.sammy.lodestone.systems.rendering.particle.SimpleParticleEffect;
+import com.sammy.lodestone.systems.particle.SimpleParticleEffect;
+import com.sammy.lodestone.systems.particle.WorldParticleBuilder;
+import com.sammy.lodestone.systems.particle.data.ColorParticleData;
+import com.sammy.lodestone.systems.particle.data.GenericParticleData;
+import com.sammy.lodestone.systems.particle.data.SpinParticleData;
 import dev.sterner.malum.common.blockentity.tablet.ITabletTracker;
 import dev.sterner.malum.common.blockentity.tablet.TwistedTabletBlockEntity;
 import dev.sterner.malum.common.item.impedus.ImpetusItem;
@@ -475,29 +478,26 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
 
                 starParticles(itemPos, color, endColor);
 
-                ParticleBuilders.create(LodestoneParticles.STAR_PARTICLE)
-                    .setAlpha(0.24f / colors.size(), 0f)
-                    .setLifetime(15)
-                    .setScale(0.45f + world.random.nextFloat() * 0.15f, 0)
-                    .randomOffset(0.05)
-                    .setSpinOffset((-0.075f * world.getTime()) % 6.28f)
-                    .setColor(color, endColor)
-                    .enableNoClip()
-                    .repeat(world, tabletItemPos.x, tabletItemPos.y, tabletItemPos.z, 1);
+				WorldParticleBuilder.create(LodestoneParticleRegistry.STAR_PARTICLE)
+						.setTransparencyData(GenericParticleData.create(0.24f / colors.size(), 0f).build())
+						.setScaleData(GenericParticleData.create(0.45f + world.random.nextFloat() * 0.15f, 0).build())
+						.setSpinData(SpinParticleData.create(0).setSpinOffset((0.075f * world.getTime()) % 6.28f).build())
+						.setColorData(ColorParticleData.create(color, endColor).build())
+						.setLifetime(15)
+						.setRandomOffset(0.05)
+						.enableNoClip()
+						.repeat(world, tabletItemPos.x, tabletItemPos.y, tabletItemPos.z, 1);
 
-                ParticleBuilders.create(LodestoneParticles.WISP_PARTICLE)
-                    .setAlpha(0.4f / colors.size(), 0f)
-                    .setLifetime((int) (10 + world.random.nextInt(8) + Math.sin((0.5 * world.getTime()) % 6.28f)))
-                    .setScale(0.2f + world.random.nextFloat() * 0.15f, 0)
-                    .randomOffset(0.05)
-                    .setSpinOffset((0.075f * world.getTime() % 6.28f))
-                    .setSpin(0.1f + world.random.nextFloat() * 0.05f)
-                    .setColor(color.brighter(), endColor)
-                    .setAlphaCoefficient(0.5f)
-                    .setColorCoefficient(0.75f)
-                    .setMotion(velocity.x, velocity.y, velocity.z)
-                    .enableNoClip()
-                    .repeat(world, tabletItemPos.x, tabletItemPos.y, tabletItemPos.z, 1);
+				WorldParticleBuilder.create(LodestoneParticleRegistry.WISP_PARTICLE)
+						.setTransparencyData(GenericParticleData.create(0.4f / colors.size(), 0f).setCoefficient(0.5f).build())
+						.setScaleData(GenericParticleData.create(0.2f + world.random.nextFloat() * 0.15f, 0).build())
+						.setLifetime((int) (10 + world.random.nextInt(8) + Math.sin((0.5 * world.getTime()) % 6.28f)))
+						.setSpinData(SpinParticleData.create(0.1f + world.random.nextFloat() * 0.05f).setSpinOffset((0.075f * world.getTime() % 6.28f)).build())
+						.setColorData(ColorParticleData.create(color.brighter(), endColor).setCoefficient(0.75f).build())
+						.setRandomOffset(0.05)
+						.setMotion(velocity.x, velocity.y, velocity.z)
+						.enableNoClip()
+						.repeat(world, tabletItemPos.x, tabletItemPos.y, tabletItemPos.z, 1);
             }
         }
         if (focusingRecipe != null || repairRecipe != null && !(validTablet.inventory.getStack(0).getItem() instanceof MalumSpiritItem)) {
@@ -529,28 +529,26 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
                         }
                     }
                 }
-                ParticleBuilders.create(LodestoneParticles.WISP_PARTICLE)
-                    .setAlpha(0.30f, 0f)
-                    .setLifetime(40)
-                    .setScale(0.2f, 0)
-                    .randomOffset(0.02f)
-                    .randomMotion(0.01f, 0.01f)
-                    .setColor(color, endColor)
-                    .setColorCoefficient(0.75f)
-                    .randomMotion(0.0025f, 0.0025f)
-                    .addMotion(velocity.x, velocity.y, velocity.z)
-                    .enableNoClip()
-                    .repeat(world, x, y, z, 1);
+				WorldParticleBuilder.create(LodestoneParticleRegistry.WISP_PARTICLE)
+						.setTransparencyData(GenericParticleData.create(0.30f, 0f).build())
+						.setScaleData(GenericParticleData.create(0.2f, 0).build())
+						.setColorData(ColorParticleData.create(color, endColor).setCoefficient(0.75f).build())
+						.setLifetime(40)
+						.setRandomOffset(0.02f)
+						.setRandomMotion(0.0025f, 0.0025f)
+						.addMotion(velocity.x, velocity.y, velocity.z)
+						.enableNoClip()
+						.spawn(world, x, y, z);
 
-                ParticleBuilders.create(LodestoneParticles.WISP_PARTICLE)
-                    .setAlpha(0.12f / spiritInventory.nonEmptyItemAmount, 0f)
-                    .setLifetime(25)
-                    .setScale(0.2f + world.random.nextFloat() * 0.1f, 0)
-                    .randomOffset(0.05)
-                    .setSpinOffset((0.075f * world.getTime() % 6.28f))
-                    .setColor(color, endColor)
-                    .enableNoClip()
-                    .repeat(world, itemPos.x, itemPos.y, itemPos.z, 1);
+				WorldParticleBuilder.create(LodestoneParticleRegistry.WISP_PARTICLE)
+						.setTransparencyData(GenericParticleData.create(0.12f / spiritInventory.nonEmptyItemAmount, 0f).build())
+						.setSpinData(SpinParticleData.create(0).setSpinOffset((0.075f * world.getTime() % 6.28f)).build())
+						.setScaleData(GenericParticleData.create(0.2f + world.random.nextFloat() * 0.1f, 0).build())
+						.setColorData(ColorParticleData.create(color, endColor).build())
+						.setLifetime(25)
+						.setRandomOffset(0.05)
+						.enableNoClip()
+						.spawn(world, itemPos.x, itemPos.y, itemPos.z);
 
                 starParticles(itemPos, color, endColor);
             }
@@ -558,22 +556,17 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
     }
 
     public void starParticles(Vec3d itemPos, Color color, Color endColor) {
-        ParticleBuilders.create(LodestoneParticles.STAR_PARTICLE)
-            .setAlpha(0.07f / spiritInventory.nonEmptyItemAmount, 0.16f / spiritInventory.nonEmptyItemAmount, 0f)
-            .setScaleEasing(Easing.SINE_IN, Easing.SINE_OUT)
-            .setLifetime(25)
-            .setScale(0.2f, 0.45f + world.random.nextFloat() * 0.1f, 0)
-            .setScaleEasing(Easing.QUINTIC_IN, Easing.CUBIC_IN_OUT)
-            .setSpin(0, 0.2f, 0)
-            .setSpinEasing(Easing.CUBIC_IN, Easing.EXPO_IN)
-            .randomOffset(0.1)
-            .randomMotion(0.02f)
-            .setColor(color, endColor)
-            .setColorEasing(Easing.BOUNCE_IN_OUT)
-            .setColorCoefficient(0.5f)
-            .randomMotion(0.0025f, 0.0025f)
-            .enableNoClip()
-            .overwriteRemovalProtocol(SimpleParticleEffect.SpecialRemovalProtocol.ENDING_CURVE_INVISIBLE)
-            .repeat(world, itemPos.x, itemPos.y, itemPos.z, 1);
+		WorldParticleBuilder.create(LodestoneParticleRegistry.STAR_PARTICLE)
+				.setTransparencyData(GenericParticleData.create(0.07f / spiritInventory.nonEmptyItemAmount, 0.16f / spiritInventory.nonEmptyItemAmount, 0f).setEasing(Easing.SINE_IN, Easing.SINE_OUT).build())
+				.setScaleData(GenericParticleData.create(0.2f, 0.45f + world.random.nextFloat() * 0.1f, 0).setEasing(Easing.QUINTIC_IN, Easing.CUBIC_IN_OUT).build())
+				.setSpinData(SpinParticleData.create(0, 0.2f, 0).setEasing(Easing.CUBIC_IN, Easing.EXPO_IN).build())
+				.setColorData(ColorParticleData.create(color, endColor).setEasing(Easing.BOUNCE_IN_OUT).setCoefficient(0.5f).build())
+				.setLifetime(25)
+				.setRandomOffset(0.1)
+				.setRandomMotion(0.02f)
+				.setRandomMotion(0.0025f, 0.0025f)
+				.enableNoClip()
+				.setDiscardFunction(SimpleParticleEffect.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
+				.spawn(world, itemPos.x, itemPos.y, itemPos.z);
     }
 }

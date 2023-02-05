@@ -1,7 +1,8 @@
 package dev.sterner.malum.common.item.spirit;
 
-import com.sammy.lodestone.systems.rendering.particle.screen.base.ScreenParticle;
-import com.sammy.lodestone.systems.rendering.particle.screen.emitter.ItemParticleEmitter;
+import com.sammy.lodestone.handlers.screenparticle.ParticleEmitterHandler;
+import com.sammy.lodestone.systems.particle.screen.LodestoneScreenParticleTextureSheet;
+import com.sammy.lodestone.systems.particle.screen.base.ScreenParticle;
 import dev.sterner.malum.api.interfaces.item.IFloatingGlowItem;
 import dev.sterner.malum.common.spirit.MalumSpiritType;
 import dev.sterner.malum.common.spirit.SpiritHelper;
@@ -15,10 +16,11 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
-
-public class MalumSpiritItem extends Item implements IFloatingGlowItem, ItemParticleEmitter {
+public class MalumSpiritItem extends Item implements IFloatingGlowItem, ParticleEmitterHandler.ItemParticleSupplier {
     public MalumSpiritType type;
 
     public MalumSpiritItem(Settings properties, MalumSpiritType type) {
@@ -42,8 +44,8 @@ public class MalumSpiritItem extends Item implements IFloatingGlowItem, ItemPart
     }
 
     @Environment(EnvType.CLIENT)
-    @Override
-    public void particleTick(ItemStack stack, float x, float y, ScreenParticle.RenderOrder renderOrder) {
-        SpiritHelper.spawnSpiritScreenParticles(type.getColor(), type.getEndColor(), stack, x, y, renderOrder);
-    }
+	@Override
+	public void spawnParticles(HashMap<LodestoneScreenParticleTextureSheet, ArrayList<ScreenParticle>> target, World world, float partialTick, ItemStack stack, float x, float y) {
+		SpiritHelper.spawnSpiritScreenParticles(target, type.getColor(), type.getEndColor(), stack, x, y);
+	}
 }

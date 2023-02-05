@@ -1,10 +1,13 @@
 package dev.sterner.malum.common.network.packet.s2c.entity;
 
 import com.sammy.lodestone.helpers.ColorHelper;
-import com.sammy.lodestone.setup.LodestoneParticles;
-import com.sammy.lodestone.systems.rendering.particle.Easing;
-import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
-import com.sammy.lodestone.systems.rendering.particle.SimpleParticleEffect;
+import com.sammy.lodestone.setup.LodestoneParticleRegistry;
+import com.sammy.lodestone.systems.easing.Easing;
+import com.sammy.lodestone.systems.particle.SimpleParticleEffect;
+import com.sammy.lodestone.systems.particle.WorldParticleBuilder;
+import com.sammy.lodestone.systems.particle.data.ColorParticleData;
+import com.sammy.lodestone.systems.particle.data.GenericParticleData;
+import com.sammy.lodestone.systems.particle.data.SpinParticleData;
 import dev.sterner.malum.Malum;
 import io.netty.buffer.Unpooled;
 import net.minecraft.client.MinecraftClient;
@@ -49,44 +52,36 @@ public class VividNitrateBounceParticlePacket {
                 int spinDirection = (rand.nextBoolean() ? 1 : -1);
                 int spinOffset = rand.nextInt(360);
                 float motionMultiplier = (float) (1+Math.pow(rand.nextFloat(), 2));
-                ParticleBuilders.create(LodestoneParticles.TWINKLE_PARTICLE)
-                    .setAlpha(0.2f, 0.8f, 0)
-                    .setLifetime(15)
-                    .setSpinOffset(spinOffset)
-                    .setSpinCoefficient(1.25f)
-                    .setSpin(0.9f * spinDirection, 0)
-                    .setSpinEasing(Easing.CUBIC_IN)
-                    .setScale(0.075f, 0.25f, 0)
-                    .setScaleCoefficient(0.8f)
-                    .setScaleEasing(Easing.QUINTIC_OUT, Easing.EXPO_IN_OUT)
-                    .setColor(ColorHelper.brighter(color, 2), color)
-                    .enableNoClip()
-                    .randomOffset(0.85f)
-                    .setGravity(1.1f)
-                    .addMotion(0, 0.3f + rand.nextFloat() * 0.15f * motionMultiplier, 0)
-                    .disableNoClip()
-                    .randomMotion(0.2f*motionMultiplier, 0.25f*motionMultiplier)
-                    .overwriteRemovalProtocol(SimpleParticleEffect.SpecialRemovalProtocol.ENDING_CURVE_INVISIBLE)
-                    .repeat(world, posX, posY, posZ, 4);
+				WorldParticleBuilder.create(LodestoneParticleRegistry.TWINKLE_PARTICLE)
+						.setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0).build())
+						.setSpinData(SpinParticleData.create(0.9f * spinDirection, 0).setSpinOffset(spinOffset).setCoefficient(1.25f).setEasing(Easing.CUBIC_IN).build())
+						.setScaleData(GenericParticleData.create(0.075f, 0.25f, 0).setCoefficient(0.8f).setEasing(Easing.QUINTIC_OUT, Easing.EXPO_IN_OUT).build())
+						.setColorData(ColorParticleData.create(ColorHelper.brighter(color, 2), color).build())
+						.setLifetime(15)
+						.enableNoClip()
+						.setRandomOffset(0.85f)
+						.setGravity(1.1f)
+						.addMotion(0, 0.3f + rand.nextFloat() * 0.15f * motionMultiplier, 0)
+						.disableNoClip()
+						.setRandomMotion(0.2f*motionMultiplier, 0.25f*motionMultiplier)
+						.setDiscardFunction(SimpleParticleEffect.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
+						.repeat(world, posX, posY, posZ, 4);
             }
             int spinOffset = rand.nextInt(360);
             for (int i = 0; i < 4; i++) {
                 int spinDirection = (rand.nextBoolean() ? 1 : -1);
                 float scaleMultiplier = (float) (1+Math.pow(rand.nextFloat(), 2));
-                ParticleBuilders.create(LodestoneParticles.SPARKLE_PARTICLE)
-                    .setAlpha(0.4f, 0.08f, 0)
-                    .setAlphaEasing(Easing.SINE_IN, Easing.CIRC_IN)
-                    .setLifetime(15)
-                    .setSpinOffset(spinOffset)
-                    .setSpin((0.125f + rand.nextFloat() * 0.075f) * spinDirection)
-                    .setScale(1.4f*scaleMultiplier, 0.6f, 0)
-                    .setScaleEasing(Easing.EXPO_OUT, Easing.SINE_IN)
-                    .setColor(color.brighter(), color.darker())
-                    .randomOffset(0.6f)
-                    .enableNoClip()
-                    .randomMotion(0.02f, 0.02f)
-                    .overwriteRemovalProtocol(SimpleParticleEffect.SpecialRemovalProtocol.ENDING_CURVE_INVISIBLE)
-                    .repeat(world, posX, posY, posZ, 5);
+				WorldParticleBuilder.create(LodestoneParticleRegistry.SPARKLE_PARTICLE)
+						.setTransparencyData(GenericParticleData.create(0.4f, 0.08f, 0).setEasing(Easing.SINE_IN, Easing.CIRC_IN_OUT).build())
+						.setLifetime(15)
+						.setSpinData(SpinParticleData.create((0.125f + rand.nextFloat() * 0.075f) * spinDirection).setSpinOffset(spinOffset).build())
+						.setScaleData(GenericParticleData.create(1.4f*scaleMultiplier, 0.6f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN).build())
+						.setColorData(ColorParticleData.create(color.brighter(), color.darker()).build())
+						.setRandomOffset(0.6f)
+						.enableNoClip()
+						.setRandomMotion(0.02f, 0.02f)
+						.setDiscardFunction(SimpleParticleEffect.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
+						.repeat(world, posX, posY, posZ, 5);
             }
         });
     }

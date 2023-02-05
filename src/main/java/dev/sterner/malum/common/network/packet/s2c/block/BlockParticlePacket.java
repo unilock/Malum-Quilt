@@ -1,9 +1,12 @@
 package dev.sterner.malum.common.network.packet.s2c.block;
 
-import com.sammy.lodestone.setup.LodestoneParticles;
-import com.sammy.lodestone.systems.rendering.particle.Easing;
-import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
-import com.sammy.lodestone.systems.rendering.particle.SimpleParticleEffect;
+import com.sammy.lodestone.setup.LodestoneParticleRegistry;
+import com.sammy.lodestone.systems.easing.Easing;
+import com.sammy.lodestone.systems.particle.SimpleParticleEffect;
+import com.sammy.lodestone.systems.particle.WorldParticleBuilder;
+import com.sammy.lodestone.systems.particle.data.ColorParticleData;
+import com.sammy.lodestone.systems.particle.data.GenericParticleData;
+import com.sammy.lodestone.systems.particle.data.SpinParticleData;
 import dev.sterner.malum.Malum;
 import io.netty.buffer.Unpooled;
 import net.minecraft.client.MinecraftClient;
@@ -43,31 +46,29 @@ public class BlockParticlePacket {
 
         ClientWorld world = client.world;
         client.execute(() -> {
-            ParticleBuilders.create(LodestoneParticles.WISP_PARTICLE)
-                .setAlpha(0.12f, 0.16f, 0)
-                .setLifetime(10)
-                .setSpin(0.2f)
-                .setScale(0.15f, 0.2f, 0)
-                .setScaleEasing(Easing.QUINTIC_OUT, Easing.SINE_IN)
-                .setColor(color, color)
-                .enableNoClip()
-                .randomOffset(0.1f, 0.1f)
-                .randomMotion(0.001f, 0.001f)
-                .overwriteRemovalProtocol(SimpleParticleEffect.SpecialRemovalProtocol.ENDING_CURVE_INVISIBLE)
-                .repeatSurroundBlock(world, pos, 6, Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST);
+			WorldParticleBuilder.create(LodestoneParticleRegistry.WISP_PARTICLE)
+					.setTransparencyData(GenericParticleData.create(0.12f, 0.16f, 0).setCoefficient(0.8f).setEasing(Easing.QUINTIC_OUT, Easing.SINE_IN).build())
+					.setSpinData(SpinParticleData.create(0.2f).build())
+					.setScaleData(GenericParticleData.create(0.15f, 0.2f, 0.1f).setCoefficient(0.7f).setEasing(Easing.QUINTIC_OUT, Easing.SINE_IN).build())
+					.setColorData(ColorParticleData.create(color, color).build())
+					.setLifetime(25)
+					.enableNoClip()
+					.setRandomOffset(0.1f, 0.1f)
+					.setRandomMotion(0.001f, 0.001f)
+					.setDiscardFunction(SimpleParticleEffect.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
+					.repeatSurroundBlock(world, pos, 6, Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST);
 
-            ParticleBuilders.create(LodestoneParticles.SMOKE_PARTICLE)
-                .setAlpha(0.04f, 0.08f, 0)
-                .setLifetime(15)
-                .setSpin(0.1f)
-                .setScale(0.35f, 0.4f, 0)
-                .setScaleEasing(Easing.QUINTIC_OUT, Easing.SINE_IN)
-                .setColor(color, color)
-                .randomOffset(0.2f)
-                .enableNoClip()
-                .randomMotion(0.001f, 0.001f)
-                .overwriteRemovalProtocol(SimpleParticleEffect.SpecialRemovalProtocol.ENDING_CURVE_INVISIBLE)
-                .repeatSurroundBlock(world, pos, 8, Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST);
+			WorldParticleBuilder.create(LodestoneParticleRegistry.SMOKE_PARTICLE)
+					.setTransparencyData(GenericParticleData.create(0.04f, 0.08f, 0).setCoefficient(0.8f).setEasing(Easing.QUINTIC_OUT, Easing.SINE_IN).build())
+					.setSpinData(SpinParticleData.create(0.1f).build())
+					.setScaleData(GenericParticleData.create(0.35f, 0.4f, 0.1f).setCoefficient(0.7f).setEasing(Easing.QUINTIC_OUT, Easing.SINE_IN).build())
+					.setColorData(ColorParticleData.create(color, color).build())
+					.setLifetime(35)
+					.setRandomOffset(0.2f)
+					.enableNoClip()
+					.setRandomMotion(0.001f, 0.001f)
+					.setDiscardFunction(SimpleParticleEffect.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
+					.repeatSurroundBlock(world, pos, 8, Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST);
         });
     }
 }

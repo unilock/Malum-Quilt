@@ -29,9 +29,10 @@ public class MalumLootTableProviders {
 		}
 
 		@Override
-		public void m_mkxtlejp() {
+		public void generate() {
 
 		}
+
 
 		@Override
 		public void accept(BiConsumer<Identifier, LootTable.Builder> identifierBuilderBiConsumer) {

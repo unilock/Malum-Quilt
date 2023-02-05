@@ -3,10 +3,13 @@ package dev.sterner.malum.common.blockentity.storage;
 import com.sammy.lodestone.forge.ItemHandler;
 import com.sammy.lodestone.forge.LazyOptional;
 import com.sammy.lodestone.helpers.BlockHelper;
-import com.sammy.lodestone.setup.LodestoneParticles;
+import com.sammy.lodestone.setup.LodestoneParticleRegistry;
 import com.sammy.lodestone.systems.blockentity.LodestoneBlockEntity;
 import com.sammy.lodestone.systems.container.ItemInventory;
-import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
+import com.sammy.lodestone.systems.particle.WorldParticleBuilder;
+import com.sammy.lodestone.systems.particle.data.ColorParticleData;
+import com.sammy.lodestone.systems.particle.data.GenericParticleData;
+import com.sammy.lodestone.systems.particle.data.SpinParticleData;
 import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
 import dev.sterner.malum.common.item.spirit.SpiritPouchItem;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
@@ -238,14 +241,14 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity {
 	@Environment(EnvType.CLIENT)
 	public void spawnUseParticles(World world, BlockPos pos, MalumSpiritType type) {
 		Color color = type.getColor();
-		ParticleBuilders.create(LodestoneParticles.WISP_PARTICLE)
-				.setAlpha(0.15f, 0f)
+		WorldParticleBuilder.create(LodestoneParticleRegistry.WISP_PARTICLE)
+				.setTransparencyData(GenericParticleData.create(0.15f, 0f).build())
+				.setScaleData(GenericParticleData.create(0.3f, 0).build())
+				.setSpinData(SpinParticleData.create(0.2f).build())
+				.setColorData(ColorParticleData.create(color, color.darker()).build())
 				.setLifetime(20)
-				.setScale(0.3f, 0)
-				.setSpin(0.2f)
-				.randomMotion(0.02f)
-				.randomOffset(0.1f, 0.1f)
-				.setColor(color, color.darker())
+				.setRandomMotion(0.02f)
+				.setRandomOffset(0.1f, 0.1f)
 				.enableNoClip()
 				.repeat(world, pos.getX() + 0.5f, pos.getY() + 0.5f + Math.sin(world.getTime() / 20f) * 0.2f, pos.getZ() + 0.5f, 10);
 	}

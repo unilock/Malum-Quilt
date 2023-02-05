@@ -1,6 +1,5 @@
 package dev.sterner.malum.client.screen.codex;
 
-import com.sammy.lodestone.handlers.ScreenParticleHandler;
 import dev.sterner.malum.Malum;
 import dev.sterner.malum.client.screen.codex.objects.EntryObject;
 import dev.sterner.malum.client.screen.codex.page.BookPage;
@@ -13,7 +12,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-import static com.sammy.lodestone.systems.rendering.particle.screen.base.ScreenParticle.RenderOrder.BEFORE_TOOLTIPS;
 import static dev.sterner.malum.client.screen.codex.ProgressionBookScreen.isHovering;
 import static dev.sterner.malum.client.screen.codex.ProgressionBookScreen.renderTexture;
 
@@ -81,7 +79,6 @@ public class EntryScreen extends Screen {
 				}
 			}
 		}
-		ScreenParticleHandler.renderParticles(BEFORE_TOOLTIPS);
 	}
 
 	@Override
@@ -148,7 +145,6 @@ public class EntryScreen extends Screen {
 
 	public void close(boolean ignoreNextInput) {
 		ProgressionBookScreen.openScreen(ignoreNextInput);
-		ScreenParticleHandler.wipeParticles();
 		openObject.exit();
 	}
 
@@ -159,7 +155,6 @@ public class EntryScreen extends Screen {
 
 	public static void openScreen(EntryObject newObject) {
 		MinecraftClient.getInstance().setScreen(getInstance(newObject));
-		ScreenParticleHandler.wipeParticles();
 		screen.playSound();
 	}
 

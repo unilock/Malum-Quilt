@@ -1,12 +1,12 @@
 package dev.sterner.malum.client.screen.codex;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.sammy.lodestone.handlers.ScreenParticleHandler;
-import com.sammy.lodestone.setup.LodestoneShaders;
+import com.sammy.lodestone.handlers.screenparticle.ScreenParticleHandler;
+import com.sammy.lodestone.setup.LodestoneShaderRegistry;
+import com.sammy.lodestone.systems.easing.Easing;
 import com.sammy.lodestone.systems.recipe.IRecipeComponent;
 import com.sammy.lodestone.systems.rendering.ExtendedShader;
 import com.sammy.lodestone.systems.rendering.VFXBuilders;
-import com.sammy.lodestone.systems.rendering.particle.Easing;
 import dev.sterner.malum.api.event.ProgressionBookEntriesSetEvent;
 import dev.sterner.malum.client.screen.codex.objects.*;
 import dev.sterner.malum.client.screen.codex.page.*;
@@ -37,7 +37,6 @@ import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import static com.sammy.lodestone.systems.rendering.particle.screen.base.ScreenParticle.RenderOrder.BEFORE_TOOLTIPS;
 import static dev.sterner.malum.Malum.id;
 import static dev.sterner.malum.common.registry.MalumObjects.*;
 import static net.minecraft.client.util.ColorUtil.ARGB32.getArgb;
@@ -353,12 +352,6 @@ public class ProgressionBookScreen extends Screen {
 
 		ENTRIES.add(new BookEntry(
 				"spirit_metals", SOUL_STAINED_STEEL_INGOT, -3, 6)
-				.addPage(new HeadlineTextItemPage("spirit_metals.hallowed_gold", "spirit_metals.hallowed_gold.1", HALLOWED_GOLD_INGOT))
-				.addPage(new TextPage("spirit_metals.hallowed_gold.2"))
-				.addPage(SpiritInfusionPage.fromOutput(HALLOWED_GOLD_INGOT))
-				.addPage(CraftingBookPage.resonatorPage(HALLOWED_SPIRIT_RESONATOR, QUARTZ, HALLOWED_GOLD_INGOT, RUNEWOOD_PLANKS.asItem()))
-				.addPage(new HeadlineTextPage("spirit_metals.hallowed_gold.spirit_jar", "spirit_metals.hallowed_gold.spirit_jar.1"))
-				.addPage(new CraftingBookPage(SPIRIT_JAR.asItem(), GLASS_PANE, HALLOWED_GOLD_INGOT, GLASS_PANE, GLASS_PANE, EMPTY, GLASS_PANE, GLASS_PANE, GLASS_PANE, GLASS_PANE))
 				.addPage(new HeadlineTextItemPage("spirit_metals.soulstained_steel", "spirit_metals.soulstained_steel.1", SOUL_STAINED_STEEL_INGOT))
 				.addPage(new TextPage("spirit_metals.soulstained_steel.2"))
 				.addPage(SpiritInfusionPage.fromOutput(SOUL_STAINED_STEEL_INGOT))
@@ -369,6 +362,12 @@ public class ProgressionBookScreen extends Screen {
 				.addPage(CraftingBookPage.toolPage(SOUL_STAINED_STEEL_SHOVEL, SOUL_STAINED_STEEL_INGOT))
 				.addPage(CraftingBookPage.toolPage(SOUL_STAINED_STEEL_SWORD, SOUL_STAINED_STEEL_INGOT))
 				//.addModCompatPage(new CraftingBookPage(SOUL_STAINED_STEEL_KNIFE, EMPTY, EMPTY, EMPTY, EMPTY, SOUL_STAINED_STEEL_INGOT, EMPTY, STICK), "farmersdelight")
+				.addPage(new HeadlineTextItemPage("spirit_metals.hallowed_gold", "spirit_metals.hallowed_gold.1", HALLOWED_GOLD_INGOT))
+				.addPage(new TextPage("spirit_metals.hallowed_gold.2"))
+				.addPage(SpiritInfusionPage.fromOutput(HALLOWED_GOLD_INGOT))
+				.addPage(CraftingBookPage.resonatorPage(HALLOWED_SPIRIT_RESONATOR, QUARTZ, HALLOWED_GOLD_INGOT, RUNEWOOD_PLANKS.asItem()))
+				.addPage(new HeadlineTextPage("spirit_metals.hallowed_gold.spirit_jar", "spirit_metals.hallowed_gold.spirit_jar.1"))
+				.addPage(new CraftingBookPage(SPIRIT_JAR.asItem(), GLASS_PANE, HALLOWED_GOLD_INGOT, GLASS_PANE, GLASS_PANE, EMPTY, GLASS_PANE, GLASS_PANE, GLASS_PANE, GLASS_PANE))
 		);
 
 		ENTRIES.add(new BookEntry(
@@ -738,7 +737,7 @@ public class ProgressionBookScreen extends Screen {
 		cut();
 
 		renderEntries(poseStack, mouseX, mouseY, partialTicks);
-		ScreenParticleHandler.renderParticles(BEFORE_TOOLTIPS);
+		ScreenParticleHandler.renderEarlyParticles();
 		GL11.glDisable(GL_SCISSOR_TEST);
 
 		renderTransparentTexture(FADE_TEXTURE, poseStack, guiLeft, guiTop, 1, 1, bookWidth, bookHeight, 512, 512);
@@ -855,7 +854,7 @@ public class ProgressionBookScreen extends Screen {
 		renderRiteIcon(rite, stack, corrupted, x, y, 0);
 	}
 	public static void renderRiteIcon(MalumRiteType rite, MatrixStack stack, boolean corrupted, int x, int y, int z) {
-		ExtendedShader shaderInstance = (ExtendedShader) LodestoneShaders.DISTORTED_TEXTURE.getInstance().get();
+		ExtendedShader shaderInstance = (ExtendedShader) LodestoneShaderRegistry.DISTORTED_TEXTURE.getInstance().get();
 		shaderInstance.getUniformOrDefault("YFrequency").setFloat(corrupted ? 5f : 11f);
 		shaderInstance.getUniformOrDefault("XFrequency").setFloat(corrupted ? 12f : 17f);
 		shaderInstance.getUniformOrDefault("Speed").setFloat(2000f * (corrupted ? -0.75f : 1));
@@ -894,7 +893,7 @@ public class ProgressionBookScreen extends Screen {
 	}
 
 	public static void renderWavyIcon(Identifier location, MatrixStack stack, int x, int y, int z) {
-		ExtendedShader shaderInstance = (ExtendedShader) LodestoneShaders.DISTORTED_TEXTURE.getInstance().get();
+		ExtendedShader shaderInstance = (ExtendedShader) LodestoneShaderRegistry.DISTORTED_TEXTURE.getInstance().get();
 		shaderInstance.getUniformOrDefault("YFrequency").setFloat(10f);
 		shaderInstance.getUniformOrDefault("XFrequency").setFloat(12f);
 		shaderInstance.getUniformOrDefault("Speed").setFloat(1000f);
@@ -1208,7 +1207,7 @@ public class ProgressionBookScreen extends Screen {
 
 	public static void openScreen(boolean ignoreNextMouseClick) {
 		MinecraftClient.getInstance().setScreen(getInstance());
-		ScreenParticleHandler.wipeParticles();
+		ScreenParticleHandler.renderEarlyParticles();
 		screen.playSound();
 		screen.ignoreNextMouseInput = ignoreNextMouseClick;
 	}

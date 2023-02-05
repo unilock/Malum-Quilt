@@ -1,12 +1,15 @@
 package dev.sterner.malum.common.blockentity.crucible;
 
 import com.sammy.lodestone.helpers.BlockHelper;
-import com.sammy.lodestone.setup.LodestoneParticles;
+import com.sammy.lodestone.setup.LodestoneParticleRegistry;
 import com.sammy.lodestone.systems.blockentity.LodestoneBlockEntityInventory;
 import com.sammy.lodestone.systems.multiblock.HorizontalDirectionStructure;
 import com.sammy.lodestone.systems.multiblock.MultiBlockCoreEntity;
 import com.sammy.lodestone.systems.multiblock.MultiBlockStructure;
-import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
+import com.sammy.lodestone.systems.particle.WorldParticleBuilder;
+import com.sammy.lodestone.systems.particle.data.ColorParticleData;
+import com.sammy.lodestone.systems.particle.data.GenericParticleData;
+import com.sammy.lodestone.systems.particle.data.SpinParticleData;
 import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import dev.sterner.malum.common.registry.MalumObjects;
@@ -128,39 +131,36 @@ public class SpiritCatalyzerCoreBlockEntity extends MultiBlockCoreEntity impleme
             float random = world.random.nextFloat() * 0.04f;
             Vec3d velocity = startPos.subtract(targetItemPos.add(random, random, random)).normalize().multiply(-0.08f);
 
-            ParticleBuilders.create(LodestoneParticles.WISP_PARTICLE)
-                .setAlpha(alpha * 5f, 0f)
-                .setLifetime((int) (10 + world.random.nextInt(8) + Math.sin((0.2 * world.getTime()) % 6.28f)))
-                .setScale(0.15f + world.random.nextFloat() * 0.15f, 0)
-                .randomOffset(0.05)
-                .setSpinOffset((0.075f * world.getTime() % 6.28f))
-                .setSpin(0.1f + world.random.nextFloat() * 0.05f)
-                .setColor(color.brighter(), endColor)
-                .setAlphaCoefficient(0.5f)
-                .setColorCoefficient(0.75f)
-                .setMotion(velocity.x, velocity.y, velocity.z)
-                .enableNoClip()
-                .repeat(world, startPos.x, startPos.y, startPos.z, 1);
+			WorldParticleBuilder.create(LodestoneParticleRegistry.WISP_PARTICLE)
+					.setTransparencyData(GenericParticleData.create(alpha * 5f, 0f).setCoefficient(0.5f).build())
+					.setScaleData(GenericParticleData.create(0.15f + world.random.nextFloat() * 0.15f, 0).build())
+					.setSpinData(SpinParticleData.create(0.1f + world.random.nextFloat() * 0.05f).setSpinOffset((0.075f * world.getTime() % 6.28f)).build())
+					.setColorData(ColorParticleData.create(color.brighter(), endColor).setCoefficient(0.75f).build())
+					.setLifetime((int) (10 + world.random.nextInt(8) + Math.sin((0.2 * world.getTime()) % 6.28f)))
+					.setRandomOffset(0.05)
+					.setMotion(velocity.x, velocity.y, velocity.z)
+					.enableNoClip()
+					.repeat(world, startPos.x, startPos.y, startPos.z, 1);
 
-            ParticleBuilders.create(LodestoneParticles.WISP_PARTICLE)
-                .setAlpha(alpha * 3, 0f)
-                .setLifetime(15)
-                .setScale(0.2f + world.random.nextFloat() * 0.15f, 0)
-                .randomOffset(0.05)
-                .setSpinOffset((0.15f * world.getTime()) % 6.28f)
-                .setColor(color, endColor)
-                .enableNoClip()
-                .repeat(world, startPos.x, startPos.y, startPos.z, 1);
+			WorldParticleBuilder.create(LodestoneParticleRegistry.WISP_PARTICLE)
+					.setTransparencyData(GenericParticleData.create(alpha * 3, 0f).build())
+					.setScaleData(GenericParticleData.create(0.2f + world.random.nextFloat() * 0.15f, 0).build())
+					.setColorData(ColorParticleData.create(color, endColor).build())
+					.setLifetime(15)
+					.setRandomOffset(0.05)
+					.setSpinData(SpinParticleData.create(0).setSpinOffset((0.15f * world.getTime()) % 6.28f).build())
+					.enableNoClip()
+					.repeat(world, startPos.x, startPos.y, startPos.z, 1);
 
-            ParticleBuilders.create(LodestoneParticles.STAR_PARTICLE)
-                .setAlpha(alpha * 3, 0f)
-                .setLifetime(15)
-                .setScale(0.45f + world.random.nextFloat() * 0.15f, 0)
-                .randomOffset(0.05)
-                .setSpinOffset((0.075f * world.getTime()) % 6.28f)
-                .setColor(color, endColor)
-                .enableNoClip()
-                .repeat(world, startPos.x, startPos.y, startPos.z, 1);
+			WorldParticleBuilder.create(LodestoneParticleRegistry.STAR_PARTICLE)
+					.setTransparencyData(GenericParticleData.create(alpha * 3, 0f).build())
+					.setScaleData(GenericParticleData.create(0.45f + world.random.nextFloat() * 0.15f, 0).build())
+					.setColorData(ColorParticleData.create(color, endColor).build())
+					.setLifetime(15)
+					.setRandomOffset(0.05)
+					.setSpinData(SpinParticleData.create(0).setSpinOffset((0.075f * world.getTime()) % 6.28f).build())
+					.enableNoClip()
+					.repeat(world, startPos.x, startPos.y, startPos.z, 1);
         }
     }
 

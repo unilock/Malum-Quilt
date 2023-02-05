@@ -1,7 +1,8 @@
 package dev.sterner.malum.common.item.nitrate;
 
-import com.sammy.lodestone.systems.rendering.particle.screen.base.ScreenParticle;
-import com.sammy.lodestone.systems.rendering.particle.screen.emitter.ItemParticleEmitter;
+import com.sammy.lodestone.handlers.screenparticle.ParticleEmitterHandler;
+import com.sammy.lodestone.systems.particle.screen.LodestoneScreenParticleTextureSheet;
+import com.sammy.lodestone.systems.particle.screen.base.ScreenParticle;
 import dev.sterner.malum.common.entity.nitrate.AbstractNitrateEntity;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,9 +15,11 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.function.Function;
 
-public class AbstractNitrateItem extends Item implements ItemParticleEmitter {
+public class AbstractNitrateItem extends Item implements ParticleEmitterHandler.ItemParticleSupplier {
     public final Function<PlayerEntity, AbstractNitrateEntity> entitySupplier;
 
     public AbstractNitrateItem(Settings settings, Function<PlayerEntity, AbstractNitrateEntity> entitySupplier) {
@@ -45,8 +48,9 @@ public class AbstractNitrateItem extends Item implements ItemParticleEmitter {
         return TypedActionResult.success(itemstack, world.isClient());
     }
 
-    @Override
-    public void particleTick(ItemStack stack, float x, float y, ScreenParticle.RenderOrder renderOrder) {
 
-    }
+	@Override
+	public void spawnParticles(HashMap<LodestoneScreenParticleTextureSheet, ArrayList<ScreenParticle>> target, World world, float partialTick, ItemStack stack, float x, float y) {
+
+	}
 }

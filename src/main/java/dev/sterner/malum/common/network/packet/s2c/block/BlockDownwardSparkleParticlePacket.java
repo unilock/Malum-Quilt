@@ -1,9 +1,12 @@
 package dev.sterner.malum.common.network.packet.s2c.block;
 
 import com.sammy.lodestone.helpers.ColorHelper;
-import com.sammy.lodestone.setup.LodestoneParticles;
-import com.sammy.lodestone.systems.rendering.particle.Easing;
-import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
+import com.sammy.lodestone.setup.LodestoneParticleRegistry;
+import com.sammy.lodestone.systems.easing.Easing;
+import com.sammy.lodestone.systems.particle.WorldParticleBuilder;
+import com.sammy.lodestone.systems.particle.data.ColorParticleData;
+import com.sammy.lodestone.systems.particle.data.GenericParticleData;
+import com.sammy.lodestone.systems.particle.data.SpinParticleData;
 import dev.sterner.malum.Malum;
 import io.netty.buffer.Unpooled;
 import net.minecraft.client.MinecraftClient;
@@ -47,45 +50,35 @@ public class BlockDownwardSparkleParticlePacket {
             for (int i = 0; i <= 3; i++) {
                 int spinDirection = (rand.nextBoolean() ? 1 : -1);
                 int spinOffset = rand.nextInt(360);
-                ParticleBuilders.create(LodestoneParticles.TWINKLE_PARTICLE)
-                    .setAlpha(0, 0.8f, 0)
-                    .setLifetime(25)
-                    .setSpinOffset(spinOffset)
-                    .setSpinCoefficient(2f)
-                    .setSpin(0, 0.8f*spinDirection, 0.1f*spinDirection)
-                    .setSpinEasing(Easing.CUBIC_IN, Easing.QUINTIC_OUT)
-                    .setScale(0.05f, 0.1f, 0)
-                    .setScaleCoefficient(0.8f)
-                    .setScaleEasing(Easing.QUINTIC_OUT, Easing.EXPO_IN_OUT)
-                    .setColor(ColorHelper.brighter(color, 2), color)
-                    .enableNoClip()
-                    .randomOffset(0.6f)
-                    .setGravity(0.3f)
-                    .disableNoClip()
-                    .randomMotion(0.1f, 0.15f)
-                    .repeat(world, pos.getX()+0.5f, pos.getY()+0.2f, pos.getZ()+0.5f, 1);
+				WorldParticleBuilder.create(LodestoneParticleRegistry.TWINKLE_PARTICLE)
+						.setTransparencyData(GenericParticleData.create(0, 0.8f, 0).build())
+						.setSpinData(SpinParticleData.create(0, 0.8f * spinDirection, 0.1f * spinDirection).setCoefficient(2f).setSpinOffset(spinOffset).setEasing(Easing.CUBIC_IN, Easing.QUINTIC_OUT).build())
+						.setScaleData(GenericParticleData.create(0.05f, 0.1f, 0).setCoefficient(0.8f).setEasing(Easing.QUINTIC_OUT, Easing.SINE_IN).build())
+						.setColorData(ColorParticleData.create(ColorHelper.brighter(color, 2), color).build())
+						.setLifetime(25)
+						.enableNoClip()
+						.setRandomOffset(0.6f)
+						.setGravity(0.3f)
+						.disableNoClip()
+						.setRandomMotion(0.1f, 0.15f)
+						.spawn(world, pos.getX() + 0.5f, pos.getY() + 0.2f, pos.getZ() + 0.5f);
             }
 
 
             for (int i = 0; i < 2; i++) {
                 int spinDirection = (rand.nextBoolean() ? 1 : -1);
                 int spinOffset = rand.nextInt(360);
-                ParticleBuilders.create(LodestoneParticles.SMOKE_PARTICLE)
-                    .setAlpha(0.05f, 0.08f, 0)
-                    .setAlphaCoefficient(0.8f+rand.nextFloat()*0.4f)
-                    .setAlphaEasing(Easing.SINE_IN, Easing.CIRC_IN)
-                    .setLifetime(50+rand.nextInt(10))
-                    .setSpinOffset(spinOffset)
-                    .setSpin((0.1f+rand.nextFloat()*0.05f)*spinDirection)
-                    .setScale(0.35f, 0.5f, 0)
-                    .setScaleCoefficient(0.8f+rand.nextFloat()*0.4f)
-                    .setScaleEasing(Easing.QUINTIC_OUT, Easing.SINE_IN)
-                    .setColor(color, color)
-                    .randomOffset(0.4f)
-                    .enableNoClip()
-                    .addMotion(0, -0.02f, 0)
-                    .randomMotion(0.01f, 0.01f)
-                    .repeatRandomFace(world, pos, 2);
+				WorldParticleBuilder.create(LodestoneParticleRegistry.SMOKE_PARTICLE)
+						.setTransparencyData(GenericParticleData.create(0.05f, 0.08f, 0).setCoefficient(0.8f + rand.nextFloat() * 0.4f).setEasing(Easing.SINE_IN, Easing.CIRC_IN).build())
+						.setSpinData(SpinParticleData.create((0.1f + rand.nextFloat() * 0.05f) * spinDirection).setSpinOffset(spinOffset).build()).setScaleData(GenericParticleData.create(0.35f, 0.5f, 0).setCoefficient(0.8f + rand.nextFloat() * 0.4f).setEasing(Easing.QUINTIC_OUT, Easing.SINE_IN).build())
+						.setColorData(ColorParticleData.create(color, color).build())
+						.setScaleData(GenericParticleData.create(0.35f, 0.5f, 0.25f).setCoefficient(0.8f+rand.nextFloat()*0.4f).setEasing(Easing.QUINTIC_OUT, Easing.CIRC_IN).build())
+						.setLifetime(50 + rand.nextInt(10))
+						.setRandomOffset(0.4f)
+						.enableNoClip()
+						.addMotion(0, -0.02f, 0)
+						.setRandomMotion(0.01f, 0.01f)
+						.repeatSurroundBlock(world, pos, 2);
             }
         });
     }
