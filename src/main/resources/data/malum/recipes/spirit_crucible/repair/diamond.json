@@ -5,7 +5,7 @@
   "durabilityPercentage": 0.5,
   "inputs": [],
   "repairMaterial": {
-    "tag": "forge:gems/diamond",
+    "item": "minecraft:diamond",
     "count": 2
   },
   "spirits": [

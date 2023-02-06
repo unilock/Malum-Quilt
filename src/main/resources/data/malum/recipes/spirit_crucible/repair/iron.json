@@ -7,7 +7,7 @@
     "malum:crude_scythe"
   ],
   "repairMaterial": {
-    "tag": "forge:ingots/iron",
+    "item": "minecraft:iron_ingot",
     "count": 2
   },
   "spirits": [

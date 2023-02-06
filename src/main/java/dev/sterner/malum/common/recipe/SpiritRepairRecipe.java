@@ -142,20 +142,42 @@ public class SpiritRepairRecipe extends ILodestoneRecipe {
 
 		@Override
 		public SpiritRepairRecipe read(Identifier recipeId, JsonObject json) {
-			String group = JsonHelper.getString(json, "group", "");
 			String itemIdRegex = json.get("itemIdRegex").getAsString();
 			String modIdRegex = json.get("modIdRegex").getAsString();
-			float durabilityPercentage = json.get("durabilityPercentage").getAsFloat();
-			List<Item> inputs = SpiritRepairRecipe.Serializer.parseItems(json.getAsJsonArray("inputs"), itemIdRegex, modIdRegex);
+			if (REPAIRABLE == null) {
+				REPAIRABLE = Registries.ITEM.stream().filter(item -> item.isDamageable() && Registries.ITEM.getId(item).getPath().matches(itemIdRegex) && Registries.ITEM.getId(item).getNamespace().matches(modIdRegex)).toList();
+			}
+			float durabilityPercentage = json.getAsJsonPrimitive("durabilityPercentage").getAsFloat();
+
+			JsonArray inputsArray = json.getAsJsonArray("inputs");
+			List<Item> inputs = new ArrayList<>();
+			for (JsonElement jsonElement : inputsArray) {
+				Item input = Registries.ITEM.get(new Identifier(jsonElement.getAsString()));
+				if (input == null) {
+					continue;
+				}
+				inputs.add(input);
+			}
+			for (Item item : REPAIRABLE) {
+				if (item instanceof IRepairOutputOverride repairOutputOverride && repairOutputOverride.ignoreDuringLookup()) {
+					continue;
+				}
+				if (!inputs.contains(item)) {
+					inputs.add(item);
+				}
+			}
+
+			JsonObject repairObject = json.getAsJsonObject("repairMaterial");
+			IngredientWithCount repair = IngredientWithCount.fromJson(repairObject);
+
 			JsonArray spiritsArray = json.getAsJsonArray("spirits");
 			List<SpiritWithCount> spirits = new ArrayList<>();
 			for (int i = 0; i < spiritsArray.size(); i++) {
 				JsonObject spiritObject = spiritsArray.get(i).getAsJsonObject();
 				spirits.add(SpiritWithCount.fromJson(spiritObject));
 			}
-			IngredientWithCount repairMaterial = IngredientWithCount.fromJson(json.getAsJsonObject("repairMaterial"));
-			return new SpiritRepairRecipe(recipeId, durabilityPercentage, inputs, repairMaterial, spirits);
-		}//public SpiritRepairRecipe(Identifier id, float durabilityPercentage, List<Item> inputs, IngredientWithCount repairMaterial, List<SpiritWithCount> spirits) {
+			return new SpiritRepairRecipe(recipeId, durabilityPercentage, inputs, repair, spirits);
+		}
 
 		@Nullable
 		@Override
@@ -187,37 +209,6 @@ public class SpiritRepairRecipe extends ILodestoneRecipe {
 			for (SpiritWithCount item : recipe.spirits) {
 				buffer.writeItemStack(item.getStack());
 			}
-		}
-
-		public static List<Item> parseItems(JsonArray inputsArray, String itemIdRegex, String modIdRegex) {
-			if(REPAIRABLE  == null){
-				REPAIRABLE = Registries.ITEM.getEntries().stream().map(Map.Entry::getValue).filter(Item::isDamageable).collect(Collectors.toList());
-			}
-			List<Item> inputs = new ArrayList<>();
-			for (JsonElement jsonElement : inputsArray) {
-				Item input = Registries.ITEM.get(new Identifier(jsonElement.getAsString()));
-				if (input == null) {
-					continue;
-				}
-				inputs.add(input);
-			}
-			for (Item item : REPAIRABLE) {
-				if (item.getBuiltInRegistryHolder().getRegistryKey().getValue().getPath().matches(itemIdRegex)) {
-					if (!modIdRegex.equals("") && !item.getBuiltInRegistryHolder().getRegistryKey().getValue().getNamespace().matches(modIdRegex)) {
-						continue;
-					}
-					if (item instanceof IRepairOutputOverride repairOutputOverride && repairOutputOverride.ignoreDuringLookup()) {
-						continue;
-					}
-					if (!inputs.contains(item)) {
-						inputs.add(item);
-					}
-				}
-			}
-			if (inputs.isEmpty()) {
-				return null;
-			}
-			return inputs;
 		}
 	}
 }

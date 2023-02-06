@@ -5,7 +5,7 @@
   "durabilityPercentage": 0.5,
   "inputs": [],
   "repairMaterial": {
-    "tag": "forge:ingots/netherite",
+    "item": "minecraft:netherite_ingot",
     "count": 1
   },
   "spirits": [
