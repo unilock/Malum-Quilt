@@ -16,17 +16,17 @@ import java.util.Map;
 public interface MalumParticleRegistry {
 	Map<ParticleType<?>, Identifier> PARTICLE_TYPES = new LinkedHashMap<>();
 
-	DefaultParticleType SCYTHE_CUT_ATTACK_PARTICLE = registerr("scythe_cut_attack", FabricParticleTypes.simple(true));
-	DefaultParticleType SCYTHE_SWEEP_ATTACK_PARTICLE = registerr("scythe_sweep_attack", FabricParticleTypes.simple(true));
+	DefaultParticleType SCYTHE_CUT_ATTACK_PARTICLE = register("scythe_cut_attack", FabricParticleTypes.simple(true));
+	DefaultParticleType SCYTHE_SWEEP_ATTACK_PARTICLE = register("scythe_sweep_attack", FabricParticleTypes.simple(true));
 
-	SpiritFlameParticleType SPIRIT_FLAME_PARTICLE = registerr("spirit_flame", new SpiritFlameParticleType());
+	SpiritFlameParticleType SPIRIT_FLAME_PARTICLE = register("spirit_flame", new SpiritFlameParticleType());
 
-	static SpiritFlameParticleType registerr(String name, SpiritFlameParticleType type) {
+	static SpiritFlameParticleType register(String name, SpiritFlameParticleType type) {
 		PARTICLE_TYPES.put(type, Malum.id(name));
 		return type;
 	}
 
-	static DefaultParticleType registerr(String name, DefaultParticleType type) {
+	static DefaultParticleType register(String name, DefaultParticleType type) {
 		PARTICLE_TYPES.put(type, Malum.id(name));
 		return type;
 	}

@@ -3,6 +3,7 @@ package dev.sterner.malum.common.blockentity.storage;
 import com.sammy.lodestone.helpers.BlockHelper;
 import com.sammy.lodestone.systems.blockentity.ItemHolderBlockEntity;
 import com.sammy.lodestone.systems.blockentity.LodestoneBlockEntityInventory;
+import dev.sterner.malum.client.CommonParticleEffects;
 import dev.sterner.malum.common.blockentity.spirit_altar.IAltarProvider;
 import dev.sterner.malum.common.blockentity.totem.TotemBaseBlockEntity;
 import dev.sterner.malum.common.blockentity.totem.TotemPoleBlockEntity;
@@ -87,7 +88,7 @@ public class ItemStandBlockEntity extends ItemHolderBlockEntity implements IAlta
                 double x = pos.x;
                 double y = pos.y + Math.sin((world.getTime()) / 20f) * 0.05f;
                 double z = pos.z;
-                SpiritHelper.spawnSpiritGlimmerParticles(world, x, y, z, item.type.getColor(), item.type.getEndColor());
+				CommonParticleEffects.spawnSpiritGlimmerParticles(world, x, y, z, item.type.getColor(), item.type.getEndColor());
             }
         }
     }

@@ -1,5 +1,6 @@
 package dev.sterner.malum.common.entity.spirit;
 
+import dev.sterner.malum.client.CommonParticleEffects;
 import dev.sterner.malum.common.entity.FloatingEntity;
 import dev.sterner.malum.common.registry.MalumEntityRegistry;
 import dev.sterner.malum.common.spirit.MalumEntitySpiritData;
@@ -61,7 +62,7 @@ public class SoulEntity extends FloatingEntity {
             double lerpX = MathHelper.lerp(i / cycles, x - motion.x, x);
             double lerpY = MathHelper.lerp(i / cycles, y - motion.y, y);
             double lerpZ = MathHelper.lerp(i / cycles, z - motion.z, z);
-            SpiritHelper.spawnSoulParticles(world, lerpX, lerpY, lerpZ, 0.25f, 1, norm, color, endColor);
+			CommonParticleEffects.spawnSoulParticles(world, lerpX, lerpY, lerpZ, 0.25f, 1, norm, color, endColor);
         }
     }
 

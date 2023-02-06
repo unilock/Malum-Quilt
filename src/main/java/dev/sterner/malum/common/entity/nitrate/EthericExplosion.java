@@ -33,7 +33,7 @@ public class EthericExplosion extends Explosion {
         if (getEntity() != null) {
             return MalumDamageSourceRegistry.SOUL_STRIKE;
         }
-        return MalumDamageSourceRegistry.causeSoulStrikeDamage(getDamageSource().getSource());
+        return MalumDamageSourceRegistry.causeVoodooDamage(getDamageSource().getSource());
     }
 
     public static EthericExplosion explode(World world, @Nullable Entity pEntity, double pX, double pY, double pZ, float pExplosionRadius, DestructionType pMode) {

@@ -21,7 +21,7 @@ public class RejectedEffect extends StatusEffect {
 		MalumComponents.TOUCH_OF_DARKNESS_COMPONENT.maybeGet(entity).ifPresent(l -> {
 			l.afflict(20);
 			if (entity.world.getTime() % 60L == 0) {
-				entity.damage(new DamageSource(MalumDamageSourceRegistry.GUARANTEED_SOUL_SHATTER), 1);
+				entity.damage(MalumDamageSourceRegistry.VOODOO, 1);
 			}
 		});
 	}

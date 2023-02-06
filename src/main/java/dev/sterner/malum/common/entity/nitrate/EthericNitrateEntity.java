@@ -7,6 +7,7 @@ import com.sammy.lodestone.systems.particle.data.ColorParticleData;
 import com.sammy.lodestone.systems.particle.data.GenericParticleData;
 import com.sammy.lodestone.systems.particle.data.SpinParticleData;
 import com.sammy.lodestone.systems.particle.world.LodestoneWorldParticleTextureSheet;
+import dev.sterner.malum.client.CommonParticleEffects;
 import dev.sterner.malum.common.network.packet.s2c.entity.EthericNitrateParticlePacket;
 import dev.sterner.malum.common.registry.MalumEntityRegistry;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
@@ -61,7 +62,7 @@ public class EthericNitrateEntity extends AbstractNitrateEntity{
             double lerpY = MathHelper.lerp(pDelta, oy, y)-motion.y/4f;
             double lerpZ = MathHelper.lerp(pDelta, oz, z)-motion.z/4f;
             float alphaMultiplier = (0.35f + extraAlpha) * Math.min(1, windUp * 2);
-            SpiritHelper.spawnSpiritParticles(world, lerpX, lerpY, lerpZ, alphaMultiplier, norm, firstColor, SECOND_COLOR);
+			CommonParticleEffects.spawnSpiritParticles(world, lerpX, lerpY, lerpZ, alphaMultiplier, norm, firstColor, SECOND_COLOR);
 
 			final ColorParticleData.ColorParticleDataBuilder colorDataBuilder = ColorParticleData.create(SECOND_COLOR, SECOND_SMOKE_COLOR)
 					.setEasing(Easing.QUINTIC_OUT)

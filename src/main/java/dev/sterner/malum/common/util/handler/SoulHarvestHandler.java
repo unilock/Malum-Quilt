@@ -7,9 +7,11 @@ import dev.sterner.malum.Malum;
 import dev.sterner.malum.api.event.EntitySpawnedEvent;
 import dev.sterner.malum.api.event.LivingEntityEvent;
 import dev.sterner.malum.common.component.MalumComponents;
+import dev.sterner.malum.common.entity.boomerang.ScytheBoomerangEntity;
 import dev.sterner.malum.common.entity.spirit.SoulEntity;
 import dev.sterner.malum.common.item.spirit.SoulStaveItem;
 import dev.sterner.malum.common.network.packet.s2c.entity.SuccessfulSoulHarvestParticlePacket;
+import dev.sterner.malum.common.registry.MalumTagRegistry;
 import dev.sterner.malum.common.spirit.MalumEntitySpiritData;
 import dev.sterner.malum.common.spirit.SpiritHelper;
 import net.minecraft.client.MinecraftClient;
@@ -25,8 +27,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Axis;
@@ -48,15 +52,28 @@ import static com.sammy.lodestone.setup.LodestoneRenderLayers.queueUniformChange
 
 public class SoulHarvestHandler {
 	public static void init(){
-		EntitySpawnedEvent.EVENT.register(SoulHarvestHandler::specialSpawn);
+		EntitySpawnedEvent.EVENT.register(SoulHarvestHandler::markAsSpawnerSpawned);
 		LivingEntityEvent.EVENT.register(SoulHarvestHandler::entityTick);
 		LivingEntityEvent.EVENT.register(SoulHarvestHandler::playerTick);
-		LivingEntityEvent.TARGET.register(SoulHarvestHandler::entityTarget);
-		LivingEntityEvent.ADDED.register(SoulHarvestHandler::addEntity);
+		LivingEntityEvent.TARGET.register(SoulHarvestHandler::preventTargeting);
+		LivingEntityEvent.ADDED.register(SoulHarvestHandler::updateAi);
+	}
+	public static void exposeSoul(DamageSource source, float amount, LivingEntity target) {
+		if (amount == 0) {
+			return;
+		}
+		if (source.getAttacker() instanceof LivingEntity attacker) {
+			ItemStack stack = attacker.getMainHandStack();
+			if (source.getSource() instanceof ScytheBoomerangEntity) {
+				stack = ((ScytheBoomerangEntity) source.getSource()).scythe;
+			}
+			if (stack.isIn(MalumTagRegistry.SOUL_HUNTER_WEAPON)) {
+				MalumComponents.SPIRIT_COMPONENT.get(target).exposedSoul = 200;
+			}
+		}
 	}
 
-
-	private static void specialSpawn(Entity entity, World world, float v, float v1, float v2, MobSpawnerLogic mobSpawnerLogic, SpawnReason spawnReason) {
+	private static void markAsSpawnerSpawned(Entity entity, World world, float v, float v1, float v2, MobSpawnerLogic mobSpawnerLogic, SpawnReason spawnReason) {
 		if (spawnReason != null) {
 			if (entity instanceof LivingEntity livingEntity) {
 				MalumComponents.SPIRIT_COMPONENT.maybeGet(livingEntity).ifPresent(ec -> {
@@ -68,7 +85,7 @@ public class SoulHarvestHandler {
 		}
 	}
 
-	private static void addEntity(LivingEntity livingEntity, boolean b) {
+	private static void updateAi(LivingEntity livingEntity, boolean b) {
 		MalumComponents.SPIRIT_COMPONENT.maybeGet(livingEntity).ifPresent(ec -> {
 			if (livingEntity instanceof MobEntity mob) {
 				if (ec.isSoulless()) {
@@ -79,7 +96,7 @@ public class SoulHarvestHandler {
 	}
 
 
-	private static boolean entityTarget(MobEntity mobEntity, @Nullable LivingEntity livingEntity) {
+	private static boolean preventTargeting(MobEntity mobEntity, @Nullable LivingEntity livingEntity) {
 		MalumComponents.SPIRIT_COMPONENT.maybeGet(mobEntity).ifPresent(ec -> {
 			if (ec.isSoulless()) {
 				mobEntity.setTarget(null);
@@ -209,6 +226,7 @@ public class SoulHarvestHandler {
 	public static void removeSentience(MobEntity mob) {
 		mob.goalSelector.getGoals().removeIf(g -> g.getGoal() instanceof LookAtEntityGoal || g.getGoal() instanceof MeleeAttackGoal || g.getGoal() instanceof CreeperIgniteGoal || g.getGoal() instanceof EscapeDangerGoal || g.getGoal() instanceof LookAroundGoal || g.getGoal() instanceof FleeEntityGoal);
 	}
+
 
 	public static class ClientOnly {
 		private static final Identifier SOUL_NOISE = Malum.id("textures/vfx/noise/soul_noise.png");

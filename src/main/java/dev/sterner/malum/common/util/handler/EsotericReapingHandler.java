@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ReapingHandler {
+public class EsotericReapingHandler {
 
 	public static void tryCreateReapingDrops(LivingEntity target, DamageSource damageSource) {
 		LivingEntity attacker = null;
@@ -32,7 +32,7 @@ public class ReapingHandler {
 		if (MalumConfig.AWARD_CODEX_ON_KILL) {
 			if (target.getGroup().equals(EntityGroup.UNDEAD) && attacker instanceof PlayerEntity player) {
 				MalumComponents.PLAYER_COMPONENT.maybeGet(player).ifPresent(c -> {
-					if (!c.obtainedEncyclopedia) {
+					if (!c.obtainedEncyclopedia  && player.getRandom().nextFloat() < 0.2f) {
 						c.obtainedEncyclopedia = true;
 						MalumComponents.PLAYER_COMPONENT.sync(player);
 						SpiritHelper.createSpiritEntities(List.of(MalumObjects.ENCYCLOPEDIA_ARCANA.getDefaultStack()), target, 1.25f, player);

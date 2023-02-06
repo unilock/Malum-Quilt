@@ -6,6 +6,7 @@ import com.sammy.lodestone.systems.blockentity.LodestoneBlockEntityInventory;
 import com.sammy.lodestone.systems.multiblock.MultiBlockCoreEntity;
 import com.sammy.lodestone.systems.multiblock.MultiBlockStructure;
 import dev.sterner.malum.api.interfaces.item.ISoulContainerItem;
+import dev.sterner.malum.client.CommonParticleEffects;
 import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import dev.sterner.malum.common.registry.MalumObjects;
@@ -125,14 +126,14 @@ public class PlinthCoreBlockEntity extends MultiBlockCoreEntity {
                 double x = pos.x;
                 double y = pos.y + Math.sin((world.getTime()) / 20f) * 0.05f;
                 double z = pos.z;
-                SpiritHelper.spawnSpiritGlimmerParticles(world, x, y, z, item.type.getColor(), item.type.getEndColor());
+				CommonParticleEffects.spawnSpiritGlimmerParticles(world, x, y, z, item.type.getColor(), item.type.getEndColor());
             }
             if (data != null) {
                 Vec3d pos = getItemPos();
                 double x = pos.x;
                 double y = pos.y + Math.sin((world.getTime()) / 20f) * 0.08f;
                 double z = pos.z;
-                SpiritHelper.spawnSoulParticles(world, x, y, z, 1, 1, Vec3d.ZERO, data.primaryType.getColor(), data.primaryType.getEndColor());
+				CommonParticleEffects.spawnSoulParticles(world, x, y, z, 1, 1, Vec3d.ZERO, data.primaryType.getColor(), data.primaryType.getEndColor());
             }
         }
     }

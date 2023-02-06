@@ -10,6 +10,7 @@ import com.sammy.lodestone.systems.particle.WorldParticleBuilder;
 import com.sammy.lodestone.systems.particle.data.ColorParticleData;
 import com.sammy.lodestone.systems.particle.data.GenericParticleData;
 import com.sammy.lodestone.systems.particle.data.SpinParticleData;
+import dev.sterner.malum.client.CommonParticleEffects;
 import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
 import dev.sterner.malum.common.item.spirit.SpiritPouchItem;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
@@ -233,7 +234,7 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity {
 				double x = getPos().getX() + 0.5f;
 				double y = getPos().getY() + 0.5f + Math.sin(world.getTime() / 20f) * 0.2f;
 				double z = getPos().getZ() + 0.5f;
-				SpiritHelper.spawnSpiritGlimmerParticles(world, x, y, z, type.getColor(), type.getEndColor());
+				CommonParticleEffects.spawnSpiritGlimmerParticles(world, x, y, z, type.getColor(), type.getEndColor());
 			}
 		}
 	}

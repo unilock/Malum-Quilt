@@ -4,6 +4,7 @@ import com.sammy.lodestone.handlers.screenparticle.ParticleEmitterHandler;
 import com.sammy.lodestone.systems.particle.screen.LodestoneScreenParticleTextureSheet;
 import com.sammy.lodestone.systems.particle.screen.base.ScreenParticle;
 import dev.sterner.malum.api.interfaces.item.IFloatingGlowItem;
+import dev.sterner.malum.client.CommonParticleEffects;
 import dev.sterner.malum.common.spirit.MalumSpiritType;
 import dev.sterner.malum.common.spirit.SpiritHelper;
 import net.fabricmc.api.EnvType;
@@ -46,6 +47,6 @@ public class MalumSpiritItem extends Item implements IFloatingGlowItem, Particle
     @Environment(EnvType.CLIENT)
 	@Override
 	public void spawnParticles(HashMap<LodestoneScreenParticleTextureSheet, ArrayList<ScreenParticle>> target, World world, float partialTick, ItemStack stack, float x, float y) {
-		SpiritHelper.spawnSpiritScreenParticles(target, type.getColor(), type.getEndColor(), stack, x, y);
+		CommonParticleEffects.spawnSpiritScreenParticles(target, type.getColor(), type.getEndColor(), stack, x, y);
 	}
 }

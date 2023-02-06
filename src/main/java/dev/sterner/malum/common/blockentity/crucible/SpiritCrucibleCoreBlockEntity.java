@@ -12,6 +12,7 @@ import com.sammy.lodestone.systems.particle.WorldParticleBuilder;
 import com.sammy.lodestone.systems.particle.data.ColorParticleData;
 import com.sammy.lodestone.systems.particle.data.GenericParticleData;
 import com.sammy.lodestone.systems.particle.data.SpinParticleData;
+import dev.sterner.malum.client.CommonParticleEffects;
 import dev.sterner.malum.common.blockentity.tablet.ITabletTracker;
 import dev.sterner.malum.common.blockentity.tablet.TwistedTabletBlockEntity;
 import dev.sterner.malum.common.item.impedus.ImpetusItem;
@@ -448,7 +449,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
                     double x = getPos().getX() + offset.getX();
                     double y = getPos().getY() + offset.getY();
                     double z = getPos().getZ() + offset.getZ();
-                    SpiritHelper.spawnSpiritGlimmerParticles(world, x, y, z, color, endColor);
+					CommonParticleEffects.spawnSpiritGlimmerParticles(world, x, y, z, color, endColor);
                 }
             }
         }

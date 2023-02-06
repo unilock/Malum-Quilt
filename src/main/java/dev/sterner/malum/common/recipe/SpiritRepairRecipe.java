@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.registry.Registries;
@@ -18,6 +19,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import org.quiltmc.qsl.recipe.api.serializer.QuiltRecipeSerializer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -136,19 +138,18 @@ public class SpiritRepairRecipe extends ILodestoneRecipe {
 		}
 	}
 
-	public static class Serializer implements RecipeSerializer<SpiritRepairRecipe> {
+	public static class Serializer implements RecipeSerializer<SpiritRepairRecipe>{
 
 		public static List<Item> REPAIRABLE;
 
 		@Override
 		public SpiritRepairRecipe read(Identifier recipeId, JsonObject json) {
-			String itemIdRegex = json.get("itemIdRegex").getAsString();
-			String modIdRegex = json.get("modIdRegex").getAsString();
 			if (REPAIRABLE == null) {
-				REPAIRABLE = Registries.ITEM.stream().filter(item -> item.isDamageable() && Registries.ITEM.getId(item).getPath().matches(itemIdRegex) && Registries.ITEM.getId(item).getNamespace().matches(modIdRegex)).toList();
+				REPAIRABLE = Registries.ITEM.getEntries().stream().map(Map.Entry::getValue).filter(Item::isDamageable).collect(Collectors.toList());
 			}
 			float durabilityPercentage = json.getAsJsonPrimitive("durabilityPercentage").getAsFloat();
-
+			String itemIdRegex = json.get("itemIdRegex").getAsString();
+			String modIdRegex = json.get("modIdRegex").getAsString();
 			JsonArray inputsArray = json.getAsJsonArray("inputs");
 			List<Item> inputs = new ArrayList<>();
 			for (JsonElement jsonElement : inputsArray) {
@@ -159,11 +160,16 @@ public class SpiritRepairRecipe extends ILodestoneRecipe {
 				inputs.add(input);
 			}
 			for (Item item : REPAIRABLE) {
-				if (item instanceof IRepairOutputOverride repairOutputOverride && repairOutputOverride.ignoreDuringLookup()) {
-					continue;
-				}
-				if (!inputs.contains(item)) {
-					inputs.add(item);
+				if (Registries.ITEM.getId(item).getPath().matches(itemIdRegex)) {
+					if (!modIdRegex.equals("") && !Registries.ITEM.getId(item).getNamespace().matches(modIdRegex)) {
+						continue;
+					}
+					if (item instanceof IRepairOutputOverride repairOutputOverride && repairOutputOverride.ignoreDuringLookup()) {
+						continue;
+					}
+					if (!inputs.contains(item)) {
+						inputs.add(item);
+					}
 				}
 			}
 

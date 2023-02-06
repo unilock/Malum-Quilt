@@ -26,32 +26,20 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
 public class SpiritHarvestHandler {
-	public static void exposeSoul(DamageSource source, float amount, LivingEntity target) {
-		if (amount == 0) {
-			return;
-		}
-		if (source.getAttacker() instanceof LivingEntity attacker) {
-			ItemStack stack = attacker.getMainHandStack();
-			if (source.getSource() instanceof ScytheBoomerangEntity) {
-				stack = ((ScytheBoomerangEntity) source.getSource()).scythe;
-			}
-			if (stack.isIn(MalumTagRegistry.SOUL_HUNTER_WEAPON)) {
-				MalumComponents.SPIRIT_COMPONENT.get(target).exposedSoul = 200;
-			}
-		}
-	}
+
 
 	public static void shatterSoul(DamageSource source, LivingEntity target) {
 		LivingEntity attacker = null;
-		if (source.getSource() != null && source.getSource().getName().equals(MalumDamageSourceRegistry.GUARANTEED_SOUL_SHATTER)) {
-			SpiritHelper.createSpiritEntities(SpiritHelper.getSpiritItemStacks(target), target, null);
-			return;
-		}
+
 		if (source.getAttacker() instanceof LivingEntity directAttacker) {
 			attacker = directAttacker;
 		}
 		if (attacker == null) {
 			attacker = target.getAttacker();
+		}
+		if (source.getSource() != null && source.getSource().getName().equals(MalumDamageSourceRegistry.VOODOO_IDENTIFIER)) {
+			SpiritHelper.createSpiritEntities(SpiritHelper.getSpiritItemStacks(target), target, null);
+			return;
 		}
 		if (attacker != null) {
 			ItemStack stack = attacker.getMainHandStack();

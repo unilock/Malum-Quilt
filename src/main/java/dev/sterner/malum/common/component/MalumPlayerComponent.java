@@ -1,7 +1,6 @@
 package dev.sterner.malum.common.component;
 
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
-import dev.sterner.malum.common.registry.MalumSpiritAffinityRegistry;
 import dev.sterner.malum.common.spirit.MalumSpiritAffinity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -13,8 +12,6 @@ public class MalumPlayerComponent implements AutoSyncedComponent {
     public UUID targetedSoulUUID;
     public int targetedSoulId;
     public int soulFetchCooldown;
-
-    public MalumSpiritAffinity affinity;
 
     public float soulWard;
     public float soulWardProgress;
@@ -28,8 +25,6 @@ public class MalumPlayerComponent implements AutoSyncedComponent {
 
     @Override
     public void readFromNbt(NbtCompound tag) {
-        affinity = MalumSpiritAffinityRegistry.AFFINITIES.get(tag.getString("affinity"));
-
         if (tag.contains("targetedSoulUUID")) {
             targetedSoulUUID = tag.getUuid("targetedSoulUUID");
         }
@@ -48,9 +43,6 @@ public class MalumPlayerComponent implements AutoSyncedComponent {
         tag.putInt("targetedSoulId", targetedSoulId);
         tag.putInt("soulFetchCooldown", soulFetchCooldown);
 
-        if (affinity != null) {
-            tag.putString("affinity", affinity.identifier);
-        }
         tag.putFloat("soulWard", soulWard);
         tag.putFloat("soulWardProgress", soulWardProgress);
     }

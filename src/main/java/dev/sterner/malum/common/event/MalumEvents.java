@@ -7,7 +7,7 @@ import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.registry.MalumParticleRegistry;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
 import dev.sterner.malum.common.util.TrinketsHelper;
-import dev.sterner.malum.common.util.handler.ReapingHandler;
+import dev.sterner.malum.common.util.handler.EsotericReapingHandler;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
@@ -22,7 +22,7 @@ import org.quiltmc.qsl.entity.event.api.LivingEntityDeathCallback;
 public class MalumEvents {
 	public static void init(){
 		LivingEntityDamageEvent.ON_DAMAGE_EVENT.register(MalumEvents::scytheSweep);
-		LivingEntityDeathCallback.EVENT.register(ReapingHandler::tryCreateReapingDrops);
+		LivingEntityDeathCallback.EVENT.register(EsotericReapingHandler::tryCreateReapingDrops);
 	}
 
 	private static float scytheSweep(LivingEntity target, DamageSource damageSource, float v) {

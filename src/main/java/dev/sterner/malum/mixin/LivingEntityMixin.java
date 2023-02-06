@@ -8,6 +8,7 @@ import dev.sterner.malum.common.item.equipment.trinket.CurioHarmonyNecklace;
 import dev.sterner.malum.common.item.equipment.trinket.CurioVoraciousRing;
 import dev.sterner.malum.common.registry.MalumAttributeRegistry;
 import dev.sterner.malum.common.statuseffect.GluttonyEffect;
+import dev.sterner.malum.common.util.handler.SoulHarvestHandler;
 import dev.sterner.malum.common.util.handler.SpiritHarvestHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -89,7 +90,7 @@ abstract class LivingEntityMixin extends Entity {
 	@Inject(method = "damage", at = @At("HEAD"))
 	private void malum$damage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		if (!world.isClient) {
-			SpiritHarvestHandler.exposeSoul(source, amount, (LivingEntity) (Object) this);
+			SoulHarvestHandler.exposeSoul(source, amount, (LivingEntity) (Object) this);
 		}
 	}
 

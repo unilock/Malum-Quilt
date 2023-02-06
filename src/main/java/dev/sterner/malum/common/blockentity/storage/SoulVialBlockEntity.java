@@ -4,6 +4,7 @@ import com.sammy.lodestone.helpers.BlockHelper;
 import com.sammy.lodestone.helpers.ItemHelper;
 import com.sammy.lodestone.systems.blockentity.LodestoneBlockEntity;
 import dev.sterner.malum.api.interfaces.item.ISoulContainerItem;
+import dev.sterner.malum.client.CommonParticleEffects;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import dev.sterner.malum.common.spirit.MalumEntitySpiritData;
 import dev.sterner.malum.common.spirit.SpiritHelper;
@@ -97,7 +98,7 @@ public class SoulVialBlockEntity extends LodestoneBlockEntity {
         if (world.isClient) {
             if (data != null) {
                 double y = 0.5f + Math.sin(world.getTime() / 20f) * 0.08f;
-                SpiritHelper.spawnSoulParticles(world, pos.getX() + 0.5f, pos.getY() + y, pos.getZ() + 0.5f, 1, 0.75f, Vec3d.ZERO, data.primaryType.getColor(), data.primaryType.getEndColor());
+				CommonParticleEffects.spawnSoulParticles(world, pos.getX() + 0.5f, pos.getY() + y, pos.getZ() + 0.5f, 1, 0.75f, Vec3d.ZERO, data.primaryType.getColor(), data.primaryType.getEndColor());
             }
         }
     }
