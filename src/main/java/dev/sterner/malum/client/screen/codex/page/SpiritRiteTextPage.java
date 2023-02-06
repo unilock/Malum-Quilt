@@ -3,7 +3,7 @@ package dev.sterner.malum.client.screen.codex.page;
 
 import dev.sterner.malum.Malum;
 import dev.sterner.malum.client.screen.codex.ProgressionBookScreen;
-import dev.sterner.malum.common.rite.MalumRiteType;
+import dev.sterner.malum.common.spiritrite.MalumRiteType;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;

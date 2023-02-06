@@ -1,4 +1,4 @@
-package dev.sterner.malum.common.rite.effect;
+package dev.sterner.malum.common.spiritrite.effect;
 
 import dev.sterner.malum.common.blockentity.totem.TotemBaseBlockEntity;
 import dev.sterner.malum.common.network.packet.s2c.entity.MajorEntityEffectParticlePacket;

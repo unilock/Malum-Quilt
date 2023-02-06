@@ -1,6 +1,5 @@
 package dev.sterner.malum.common.registry;
 
-import com.sammy.lodestone.helpers.DataHelper;
 import dev.sterner.malum.Malum;
 import dev.sterner.malum.common.entity.SpiritItemEntity;
 import dev.sterner.malum.common.entity.boomerang.ScytheBoomerangEntity;

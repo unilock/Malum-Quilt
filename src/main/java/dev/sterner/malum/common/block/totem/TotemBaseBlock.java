@@ -1,10 +1,8 @@
 package dev.sterner.malum.common.block.totem;
 
 import com.sammy.lodestone.systems.block.LodestoneEntityBlock;
-import dev.sterner.malum.common.blockentity.mirror.EmitterMirrorBlockEntity;
 import dev.sterner.malum.common.blockentity.totem.TotemBaseBlockEntity;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;

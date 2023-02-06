@@ -2,7 +2,6 @@ package dev.sterner.malum.common.block.obelisk;
 
 import com.sammy.lodestone.systems.block.WaterLoggedEntityBlock;
 import dev.sterner.malum.common.blockentity.obelisk.ObeliskCoreBlockEntity;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.util.function.BooleanBiFunction;

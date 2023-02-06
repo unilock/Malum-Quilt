@@ -1,4 +1,4 @@
-package dev.sterner.malum.common.rite.effect;
+package dev.sterner.malum.common.spiritrite.effect;
 
 public abstract class EntityAffectingRiteEffect extends MalumRiteEffect {
 	public EntityAffectingRiteEffect() {

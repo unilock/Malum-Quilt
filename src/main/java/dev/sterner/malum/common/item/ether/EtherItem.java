@@ -9,7 +9,6 @@ import com.sammy.lodestone.systems.particle.data.SpinParticleData;
 import com.sammy.lodestone.systems.particle.screen.LodestoneScreenParticleTextureSheet;
 import com.sammy.lodestone.systems.particle.screen.base.ScreenParticle;
 import net.minecraft.block.Block;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 

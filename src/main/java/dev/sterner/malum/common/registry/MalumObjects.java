@@ -1,8 +1,6 @@
 package dev.sterner.malum.common.registry;
 
 import com.sammy.lodestone.systems.block.LodestoneLogBlock;
-import com.sammy.lodestone.systems.block.sign.LodestoneStandingSignBlock;
-import com.sammy.lodestone.systems.block.sign.LodestoneWallSignBlock;
 import com.sammy.lodestone.systems.item.tools.magic.*;
 import com.sammy.lodestone.systems.multiblock.MultiBlockItem;
 import com.sammy.lodestone.systems.multiblock.MultiBlockStructure;

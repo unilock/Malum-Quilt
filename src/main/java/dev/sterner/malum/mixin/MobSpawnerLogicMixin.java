@@ -2,9 +2,7 @@ package dev.sterner.malum.mixin;
 
 import dev.sterner.malum.api.event.EntitySpawnedEvent;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.server.world.ServerWorld;

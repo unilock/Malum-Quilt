@@ -120,5 +120,5 @@ jar {
 	}
 }
 
-assemble.dependsOn runDatagen
+//TODO assemble.dependsOn runDatagen
 

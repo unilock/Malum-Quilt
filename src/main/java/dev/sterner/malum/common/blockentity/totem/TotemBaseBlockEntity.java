@@ -8,7 +8,7 @@ import dev.sterner.malum.common.network.packet.s2c.block.TotemBaseActivationPart
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import dev.sterner.malum.common.registry.MalumRiteRegistry;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
-import dev.sterner.malum.common.rite.MalumRiteType;
+import dev.sterner.malum.common.spiritrite.MalumRiteType;
 import dev.sterner.malum.common.spirit.MalumSpiritType;
 import dev.sterner.malum.common.spirit.SpiritHelper;
 import net.minecraft.block.BlockState;

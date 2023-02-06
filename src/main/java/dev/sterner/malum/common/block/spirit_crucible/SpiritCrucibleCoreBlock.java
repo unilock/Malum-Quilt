@@ -2,7 +2,6 @@ package dev.sterner.malum.common.block.spirit_crucible;
 
 import com.sammy.lodestone.systems.block.WaterLoggedEntityBlock;
 import dev.sterner.malum.common.blockentity.crucible.SpiritCrucibleCoreBlockEntity;
-import dev.sterner.malum.common.blockentity.mirror.EmitterMirrorBlockEntity;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;

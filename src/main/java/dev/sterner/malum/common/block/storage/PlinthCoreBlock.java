@@ -3,7 +3,6 @@ package dev.sterner.malum.common.block.storage;
 import com.sammy.lodestone.systems.block.WaterLoggedEntityBlock;
 import dev.sterner.malum.common.blockentity.storage.PlinthCoreBlockEntity;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;

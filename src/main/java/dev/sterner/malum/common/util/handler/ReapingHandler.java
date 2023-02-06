@@ -7,7 +7,6 @@ import dev.sterner.malum.common.reaping.MalumReapingDropsData;
 import dev.sterner.malum.common.reaping.ReapingDataReloadListener;
 import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.spirit.SpiritHelper;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;

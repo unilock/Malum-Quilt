@@ -3,7 +3,6 @@ package dev.sterner.malum.client.particles.spiritflame;
 import com.sammy.lodestone.systems.particle.world.FrameSetParticle;
 import com.sammy.lodestone.systems.particle.world.WorldParticleEffect;
 import net.fabricmc.fabric.impl.client.particle.FabricSpriteProviderImpl;
-import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.client.world.ClientWorld;
 
 public class SpiritFlameParticle extends FrameSetParticle {

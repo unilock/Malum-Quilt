@@ -1,8 +1,8 @@
-package dev.sterner.malum.common.rite;
+package dev.sterner.malum.common.spiritrite;
 
 import dev.sterner.malum.common.registry.MalumStatusEffectRegistry;
-import dev.sterner.malum.common.rite.effect.AuraRiteEffect;
-import dev.sterner.malum.common.rite.effect.MalumRiteEffect;
+import dev.sterner.malum.common.spiritrite.effect.AuraRiteEffect;
+import dev.sterner.malum.common.spiritrite.effect.MalumRiteEffect;
 import net.minecraft.entity.LivingEntity;
 
 import static dev.sterner.malum.common.registry.MalumSpiritTypeRegistry.AERIAL_SPIRIT;

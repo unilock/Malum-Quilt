@@ -7,7 +7,6 @@ import dev.sterner.malum.Malum;
 import dev.sterner.malum.api.event.EntitySpawnedEvent;
 import dev.sterner.malum.api.event.LivingEntityEvent;
 import dev.sterner.malum.common.component.MalumComponents;
-import dev.sterner.malum.common.component.MalumPlayerComponent;
 import dev.sterner.malum.common.entity.spirit.SoulEntity;
 import dev.sterner.malum.common.item.spirit.SoulStaveItem;
 import dev.sterner.malum.common.network.packet.s2c.entity.SuccessfulSoulHarvestParticlePacket;
@@ -37,7 +36,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.MobSpawnerLogic;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import org.joml.Vector3f;
 import org.quiltmc.qsl.networking.api.PlayerLookup;
 
 import java.awt.*;

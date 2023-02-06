@@ -1,8 +1,6 @@
 package dev.sterner.malum.mixin;
 
-import com.mojang.datafixers.kinds.App;
 import dev.sterner.malum.api.event.LivingEntityEvent;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.brain.task.UpdateAttackTargetTask;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -12,7 +10,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
 

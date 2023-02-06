@@ -1,17 +1,13 @@
 package dev.sterner.malum.common.item.spirit;
 
 import com.sammy.lodestone.systems.item.tools.LodestoneSwordItem;
-import dev.emi.trinkets.api.TrinketsApi;
-import dev.sterner.malum.api.interfaces.item.SpiritCollectActivity;
 import dev.sterner.malum.common.network.packet.s2c.entity.MajorEntityEffectParticlePacket;
 import dev.sterner.malum.common.registry.MalumDamageSourceRegistry;
-import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
 import dev.sterner.malum.common.spirit.SpiritHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -21,8 +17,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.quiltmc.qsl.networking.api.PlayerLookup;
-
-import static com.sammy.lodestone.setup.LodestoneAttributeRegistry.MAGIC_PROFICIENCY;
 
 
 public class TyrvingItem extends LodestoneSwordItem {

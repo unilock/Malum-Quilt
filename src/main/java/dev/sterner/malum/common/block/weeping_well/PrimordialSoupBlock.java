@@ -2,7 +2,6 @@ package dev.sterner.malum.common.block.weeping_well;
 
 import dev.sterner.malum.common.component.MalumComponents;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.Entity;

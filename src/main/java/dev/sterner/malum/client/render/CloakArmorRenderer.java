@@ -1,6 +1,5 @@
 package dev.sterner.malum.client.render;
 
-import dev.sterner.malum.client.model.ArmorModel;
 import dev.sterner.malum.client.model.SoulHunterArmorModel;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.minecraft.client.MinecraftClient;

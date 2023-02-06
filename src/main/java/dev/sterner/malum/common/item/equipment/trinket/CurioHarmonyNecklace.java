@@ -5,7 +5,6 @@ import dev.emi.trinkets.api.TrinketsApi;
 import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
 import dev.sterner.malum.common.spirit.MalumEntitySpiritData;
-import dev.sterner.malum.common.spirit.MalumSpiritType;
 import dev.sterner.malum.common.spirit.SpiritHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;

@@ -1,12 +1,12 @@
-package dev.sterner.malum.common.rite;
+package dev.sterner.malum.common.spiritrite;
 
 
 import dev.sterner.malum.common.blockentity.totem.TotemBaseBlockEntity;
 import dev.sterner.malum.common.network.packet.s2c.entity.MajorEntityEffectParticlePacket;
 import dev.sterner.malum.common.network.packet.s2c.entity.MinorEntityEffectParticlePacket;
 import dev.sterner.malum.common.registry.MalumDamageSourceRegistry;
-import dev.sterner.malum.common.rite.effect.EntityAffectingRiteEffect;
-import dev.sterner.malum.common.rite.effect.MalumRiteEffect;
+import dev.sterner.malum.common.spiritrite.effect.EntityAffectingRiteEffect;
+import dev.sterner.malum.common.spiritrite.effect.MalumRiteEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;

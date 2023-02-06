@@ -1,4 +1,4 @@
-package dev.sterner.malum.common.rite.effect;
+package dev.sterner.malum.common.spiritrite.effect;
 
 
 import com.sammy.lodestone.helpers.BlockHelper;

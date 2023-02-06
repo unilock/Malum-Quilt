@@ -1,4 +1,4 @@
-package dev.sterner.malum.common.rite;
+package dev.sterner.malum.common.spiritrite;
 
 import com.sammy.lodestone.handlers.WorldEventHandler;
 import com.sammy.lodestone.helpers.BlockHelper;
@@ -10,7 +10,7 @@ import dev.sterner.malum.common.network.packet.s2c.block.BlockSparkleParticlePac
 import dev.sterner.malum.common.network.packet.s2c.block.blight.BlightMistParticlePacket;
 import dev.sterner.malum.common.network.packet.s2c.block.blight.BlightTransformItemParticlePacket;
 import dev.sterner.malum.common.recipe.SpiritTransmutationRecipe;
-import dev.sterner.malum.common.rite.effect.MalumRiteEffect;
+import dev.sterner.malum.common.spiritrite.effect.MalumRiteEffect;
 import dev.sterner.malum.common.worldevent.TotemCreatedBlightEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;

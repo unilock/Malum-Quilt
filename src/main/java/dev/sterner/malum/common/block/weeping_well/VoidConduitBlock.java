@@ -2,11 +2,9 @@ package dev.sterner.malum.common.block.weeping_well;
 
 import com.sammy.lodestone.systems.block.LodestoneEntityBlock;
 import dev.sterner.malum.common.blockentity.VoidConduitBlockEntity;
-import dev.sterner.malum.common.blockentity.mirror.EmitterMirrorBlockEntity;
 import dev.sterner.malum.common.component.MalumComponents;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;

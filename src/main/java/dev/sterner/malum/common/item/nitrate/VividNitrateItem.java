@@ -9,7 +9,6 @@ import com.sammy.lodestone.systems.particle.data.SpinParticleData;
 import com.sammy.lodestone.systems.particle.screen.LodestoneScreenParticleTextureSheet;
 import com.sammy.lodestone.systems.particle.screen.base.ScreenParticle;
 import dev.sterner.malum.common.entity.nitrate.VividNitrateEntity;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 

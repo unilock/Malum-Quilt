@@ -1,7 +1,6 @@
 package dev.sterner.malum.common.block;
 
 import net.minecraft.block.AmethystClusterBlock;
-import net.minecraft.block.Waterloggable;
 
 public class QuartzClusterBlock extends AmethystClusterBlock {
 

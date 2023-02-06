@@ -1,10 +1,10 @@
-package dev.sterner.malum.common.rite;
+package dev.sterner.malum.common.spiritrite;
 
 
 import com.sammy.lodestone.helpers.DataHelper;
 import dev.sterner.malum.Malum;
 import dev.sterner.malum.common.blockentity.totem.TotemBaseBlockEntity;
-import dev.sterner.malum.common.rite.effect.MalumRiteEffect;
+import dev.sterner.malum.common.spiritrite.effect.MalumRiteEffect;
 import dev.sterner.malum.common.spirit.MalumSpiritType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;

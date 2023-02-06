@@ -1,7 +1,6 @@
 package dev.sterner.malum.common.event;
 
 import dev.sterner.malum.api.event.LivingEntityDamageEvent;
-import dev.sterner.malum.api.event.LivingEntityEvent;
 import dev.sterner.malum.common.item.tools.MalumScytheItem;
 import dev.sterner.malum.common.registry.MalumDamageSourceRegistry;
 import dev.sterner.malum.common.registry.MalumObjects;

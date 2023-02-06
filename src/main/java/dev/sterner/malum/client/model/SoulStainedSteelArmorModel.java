@@ -4,7 +4,6 @@ import dev.sterner.malum.Malum;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.client.render.entity.model.EntityModelPartNames;
 
 public class SoulStainedSteelArmorModel extends ArmorModel{
 	public static EntityModelLayer LAYER = new EntityModelLayer(Malum.id("soul_stained_steel_armor"), "main");

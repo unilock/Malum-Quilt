@@ -1,11 +1,11 @@
-package dev.sterner.malum.common.rite.eldritch;
+package dev.sterner.malum.common.spiritrite.eldritch;
 
 import dev.sterner.malum.common.blockentity.totem.TotemBaseBlockEntity;
 import dev.sterner.malum.common.network.packet.s2c.block.BlockSparkleParticlePacket;
 import dev.sterner.malum.common.network.packet.s2c.block.MinorBlockSparkleParticlePacket;
-import dev.sterner.malum.common.rite.MalumRiteType;
-import dev.sterner.malum.common.rite.effect.BlockAffectingRiteEffect;
-import dev.sterner.malum.common.rite.effect.MalumRiteEffect;
+import dev.sterner.malum.common.spiritrite.MalumRiteType;
+import dev.sterner.malum.common.spiritrite.effect.BlockAffectingRiteEffect;
+import dev.sterner.malum.common.spiritrite.effect.MalumRiteEffect;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
