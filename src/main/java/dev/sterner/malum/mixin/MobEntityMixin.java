@@ -13,6 +13,6 @@ public class MobEntityMixin {
 
 	@Inject(method = "setTarget", at = @At("HEAD"))
 	private void malum$setTargetEvent(LivingEntity target, CallbackInfo ci){
-		LivingEntityEvent.TARGET.invoker().react((MobEntity)(Object)this, target);
+		LivingEntityEvent.ON_TARGETING_EVENT.invoker().react((MobEntity)(Object)this, target);
 	}
 }

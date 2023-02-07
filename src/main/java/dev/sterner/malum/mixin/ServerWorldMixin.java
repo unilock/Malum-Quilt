@@ -17,7 +17,7 @@ public class ServerWorldMixin {
 	@Inject(method = "addEntity", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerEntityManager;addEntity(Lnet/minecraft/world/entity/EntityLike;)Z"))
 	private void malum$eventInject(Entity entity, CallbackInfoReturnable<Boolean> cir){
 		if(entity instanceof LivingEntity livingEntity){
-			LivingEntityEvent.ADDED.invoker().react(livingEntity, false);
+			LivingEntityEvent.ADDED_EVENT.invoker().react(livingEntity, false);
 		}
 
 	}
@@ -25,13 +25,13 @@ public class ServerWorldMixin {
 	@Inject(method = "shouldCreateNewEntityWithPassenger", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;spawnEntityAndPassengers(Lnet/minecraft/entity/Entity;)V"))
 	private void malum$eventInject2(Entity entity, CallbackInfoReturnable<Boolean> cir){
 		if(entity instanceof LivingEntity livingEntity){
-			LivingEntityEvent.ADDED.invoker().react(livingEntity, false);
+			LivingEntityEvent.ADDED_EVENT.invoker().react(livingEntity, false);
 		}
 	}
 
 	@Inject(method = "addPlayer", at = @At("HEAD"))
 	private void malum$eventInject(ServerPlayerEntity player, CallbackInfo ci){
-		LivingEntityEvent.ADDED.invoker().react(player, false);
+		LivingEntityEvent.ADDED_EVENT.invoker().react(player, false);
 	}
 
 }

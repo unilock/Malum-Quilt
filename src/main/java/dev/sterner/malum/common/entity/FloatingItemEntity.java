@@ -1,6 +1,6 @@
 package dev.sterner.malum.common.entity;
 
-import dev.sterner.malum.api.interfaces.item.IFloatingGlowItem;
+import dev.sterner.malum.api.interfaces.item.FloatingGlowItem;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
@@ -25,7 +25,7 @@ public class FloatingItemEntity extends FloatingEntity {
     }
 
     public void setItem(ItemStack stack) {
-        if (stack.getItem() instanceof IFloatingGlowItem glow) {
+        if (stack.getItem() instanceof FloatingGlowItem glow) {
             setColor(glow.getColor(), glow.getEndColor());
         }
         if (!stack.isOf(this.getDefaultItem()) || stack.hasNbt()) {

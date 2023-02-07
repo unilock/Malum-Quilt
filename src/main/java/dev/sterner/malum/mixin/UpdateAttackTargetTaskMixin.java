@@ -19,6 +19,6 @@ public class UpdateAttackTargetTaskMixin {
 	@Inject(method = "m_msxejphh(Ljava/util/function/Predicate;Ljava/util/function/Function;Lnet/minecraft/unmapped/C_ujlmiamh;Lnet/minecraft/unmapped/C_ujlmiamh;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/mob/MobEntity;J)Z",
 			at = @At(value = "INVOKE", target = "Lnet/minecraft/unmapped/C_ujlmiamh;m_klbizcog(Ljava/lang/Object;)V"))
 	private static void malum$injectEvent(Predicate predicate, Function function, C_ujlmiamh c_ujlmiamh, C_ujlmiamh c_ujlmiamh2, ServerWorld world, MobEntity mobEntity, long l, CallbackInfoReturnable<Boolean> cir){
-		LivingEntityEvent.TARGET.invoker().react(mobEntity, null);
+		LivingEntityEvent.ON_TARGETING_EVENT.invoker().react(mobEntity, null);
 	}
 }

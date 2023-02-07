@@ -1,6 +1,6 @@
 package dev.sterner.malum.common.event;
 
-import dev.sterner.malum.api.event.LivingEntityDamageEvent;
+import dev.sterner.malum.api.event.LivingEntityEvent;
 import dev.sterner.malum.common.item.tools.MalumScytheItem;
 import dev.sterner.malum.common.registry.MalumDamageSourceRegistry;
 import dev.sterner.malum.common.registry.MalumObjects;
@@ -21,7 +21,7 @@ import org.quiltmc.qsl.entity.event.api.LivingEntityDeathCallback;
 
 public class MalumEvents {
 	public static void init(){
-		LivingEntityDamageEvent.ON_DAMAGE_EVENT.register(MalumEvents::scytheSweep);
+		LivingEntityEvent.ON_DAMAGE_EVENT.register(MalumEvents::scytheSweep);
 		LivingEntityDeathCallback.EVENT.register(EsotericReapingHandler::tryCreateReapingDrops);
 	}
 

@@ -1,6 +1,5 @@
 package dev.sterner.malum.mixin;
 
-import dev.sterner.malum.api.event.LivingEntityDamageEvent;
 import dev.sterner.malum.api.event.LivingEntityEvent;
 import dev.sterner.malum.common.component.MalumComponents;
 import dev.sterner.malum.common.item.equipment.trinket.CurioAlchemicalRing;
@@ -97,7 +96,7 @@ abstract class LivingEntityMixin extends Entity {
 
 	@ModifyVariable(method = "damage", at = @At("HEAD"), argsOnly = true)
 	private float malum$onDamageEvent(float amount, DamageSource source, float amount2) {
-		return LivingEntityDamageEvent.ON_DAMAGE_EVENT.invoker().react((LivingEntity) (Object) this, source, amount);
+		return LivingEntityEvent.ON_DAMAGE_EVENT.invoker().react((LivingEntity) (Object) this, source, amount);
 	}
 
 	@ModifyVariable(method = "applyEnchantmentsToDamage", at = @At(value = "RETURN", ordinal = 2, shift = At.Shift.BEFORE), index = 2, argsOnly = true)
@@ -113,20 +112,6 @@ abstract class LivingEntityMixin extends Entity {
 	private double malum$setVelocity(double d) {
 		// todo, fix corrupted aerial aura
 		return d;
-	}
-
-	@ModifyArg(method = "jump", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;setVelocity(DDD)V", ordinal = 0), index = 1)
-	private double malum$jump(double y) {
-        /*
-        if (this.getStatusEffect(CORRUPTED_AERIAL_AURA) != null) {
-            //noinspection ConstantConditions
-            return y + this.getStatusEffect(CORRUPTED_AERIAL_AURA).getAmplifier() * 0.15d;
-        }
-
-
-         */
-
-		return y;
 	}
 
 	@Inject(method = "consumeItem", at = @At(value = "INVOKE", shift = At.Shift.BY, by = 2, target = "Lnet/minecraft/item/ItemStack;finishUsing(Lnet/minecraft/world/World;Lnet/minecraft/entity/LivingEntity;)Lnet/minecraft/item/ItemStack;"), locals = LocalCapture.CAPTURE_FAILHARD)
@@ -171,6 +156,6 @@ abstract class LivingEntityMixin extends Entity {
 
 	@Inject(method = "tick", at = @At("HEAD"))
 	private void malum$eventInject(CallbackInfo ci){
-		LivingEntityEvent.EVENT.invoker().react((LivingEntity) (Object)this);
+		LivingEntityEvent.TICK_EVENT.invoker().react((LivingEntity) (Object)this);
 	}
 }

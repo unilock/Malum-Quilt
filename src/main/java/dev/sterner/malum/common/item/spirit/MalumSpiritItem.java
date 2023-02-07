@@ -3,10 +3,9 @@ package dev.sterner.malum.common.item.spirit;
 import com.sammy.lodestone.handlers.screenparticle.ParticleEmitterHandler;
 import com.sammy.lodestone.systems.particle.screen.LodestoneScreenParticleTextureSheet;
 import com.sammy.lodestone.systems.particle.screen.base.ScreenParticle;
-import dev.sterner.malum.api.interfaces.item.IFloatingGlowItem;
+import dev.sterner.malum.api.interfaces.item.FloatingGlowItem;
 import dev.sterner.malum.client.CommonParticleEffects;
 import dev.sterner.malum.common.spirit.MalumSpiritType;
-import dev.sterner.malum.common.spirit.SpiritHelper;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -21,7 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class MalumSpiritItem extends Item implements IFloatingGlowItem, ParticleEmitterHandler.ItemParticleSupplier {
+public class MalumSpiritItem extends Item implements FloatingGlowItem, ParticleEmitterHandler.ItemParticleSupplier {
     public MalumSpiritType type;
 
     public MalumSpiritItem(Settings properties, MalumSpiritType type) {

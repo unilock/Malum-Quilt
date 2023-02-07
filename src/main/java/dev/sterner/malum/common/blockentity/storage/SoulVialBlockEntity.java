@@ -3,11 +3,10 @@ package dev.sterner.malum.common.blockentity.storage;
 import com.sammy.lodestone.helpers.BlockHelper;
 import com.sammy.lodestone.helpers.ItemHelper;
 import com.sammy.lodestone.systems.blockentity.LodestoneBlockEntity;
-import dev.sterner.malum.api.interfaces.item.ISoulContainerItem;
+import dev.sterner.malum.api.interfaces.item.SoulContainerItem;
 import dev.sterner.malum.client.CommonParticleEffects;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import dev.sterner.malum.common.spirit.MalumEntitySpiritData;
-import dev.sterner.malum.common.spirit.SpiritHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.LivingEntity;
@@ -52,7 +51,7 @@ public class SoulVialBlockEntity extends LodestoneBlockEntity {
     @Override
     public ActionResult onUse(PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
-        if (stack.getItem() instanceof ISoulContainerItem) {
+        if (stack.getItem() instanceof SoulContainerItem) {
             if (data == null) {
                 if (stack.hasNbt() && stack.getNbt().contains(MalumEntitySpiritData.SOUL_DATA)) {
                     data = MalumEntitySpiritData.load(stack.getNbt());

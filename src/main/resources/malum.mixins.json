@@ -6,7 +6,6 @@
   "mixins": [
     "ArmorMaterialsMixin",
     "AxeItemMixin",
-    "ConfiguredFeatureUtilMixin",
     "CookingRecipeSerializerMixin",
     "EnchantingTableBlockMixin",
     "EnchantmentScreenHandlerMixin",
@@ -16,7 +15,6 @@
     "LivingEntityMixin",
     "MobEntityMixin",
     "MobSpawnerLogicMixin",
-    "PlacedFeatureUtilMixin",
     "PlayerEntityMixin",
     "ServerEntityManagerMixin",
     "ServerWorldMixin",
@@ -31,8 +29,7 @@
     "client.InGameHudMixin",
     "client.ItemColorsMixin",
     "client.ItemRendererMixin",
-    "client.LivingEntityRendererMixin",
-    "client.MinecraftClientMixin"
+    "client.LivingEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,12 +1,11 @@
 package dev.sterner.malum.common.entity.spirit;
 
 import com.sammy.lodestone.helpers.ColorHelper;
-import dev.sterner.malum.api.interfaces.item.IFloatingGlowItem;
+import dev.sterner.malum.api.interfaces.item.FloatingGlowItem;
 import dev.sterner.malum.client.CommonParticleEffects;
 import dev.sterner.malum.common.entity.FloatingItemEntity;
 import dev.sterner.malum.common.registry.MalumEntityRegistry;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
-import dev.sterner.malum.common.spirit.SpiritHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -41,7 +40,7 @@ public class MirrorItemEntity extends FloatingItemEntity {
 
     @Override
     public void setItem(ItemStack pStack) {
-        if (!(pStack.getItem() instanceof IFloatingGlowItem)) {
+        if (!(pStack.getItem() instanceof FloatingGlowItem)) {
             setColor(ColorHelper.brighter(MalumSpiritTypeRegistry.ARCANE_SPIRIT.getColor(), 2), MalumSpiritTypeRegistry.ARCANE_SPIRIT.getEndColor());
         }
         super.setItem(pStack);

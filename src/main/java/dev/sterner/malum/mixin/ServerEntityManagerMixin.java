@@ -15,7 +15,7 @@ public class ServerEntityManagerMixin<T extends EntityLike> {
 	@Inject(method = "addEntity(Lnet/minecraft/world/entity/EntityLike;Z)Z", at = @At("HEAD"))
 	private void malum$injectEvent(T entity, boolean existing, CallbackInfoReturnable<Boolean> cir){
 		if(entity instanceof LivingEntity livingEntity){
-			LivingEntityEvent.ADDED.invoker().react(livingEntity, existing);
+			LivingEntityEvent.ADDED_EVENT.invoker().react(livingEntity, existing);
 		}
 	}
 }

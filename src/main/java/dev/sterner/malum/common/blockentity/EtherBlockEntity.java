@@ -139,7 +139,7 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
 							.setRandomOffset(0.15f, 0.2f)
 							.addMotion(0, 0.0035f, 0)
 							.setRandomMotion(0.001f, 0.005f)
-							.addActor(p -> p.setVelocity(p.getParticleSpeed().multiply(0.985f-world.random.nextFloat() * 0.04f)))
+							.addActor(p -> p.setVelocity(p.getVelocity().multiply(0.985f-world.random.nextFloat() * 0.04f)))
 							.enableNoClip()
 							.setDiscardFunction(SimpleParticleEffect.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
 							.spawn(world, x, y, z);
@@ -152,7 +152,7 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
 							.setRandomOffset(0.1f, 0.225f)
 							.addMotion(0, velocity / 2f, 0)
 							.setRandomMotion(0, 0.015f)
-							.addActor(p -> p.setVelocity(p.getParticleSpeed().multiply(0.97f-world.random.nextFloat() * 0.025f)))
+							.addActor(p -> p.setVelocity(p.getVelocity().multiply(0.97f-world.random.nextFloat() * 0.025f)))
 							.enableNoClip()
 							.setDiscardFunction(SimpleParticleEffect.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
 							.spawn(world, x, y, z);

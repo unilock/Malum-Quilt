@@ -5,13 +5,12 @@ import com.sammy.lodestone.helpers.ItemHelper;
 import com.sammy.lodestone.systems.blockentity.LodestoneBlockEntityInventory;
 import com.sammy.lodestone.systems.multiblock.MultiBlockCoreEntity;
 import com.sammy.lodestone.systems.multiblock.MultiBlockStructure;
-import dev.sterner.malum.api.interfaces.item.ISoulContainerItem;
+import dev.sterner.malum.api.interfaces.item.SoulContainerItem;
 import dev.sterner.malum.client.CommonParticleEffects;
 import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.spirit.MalumEntitySpiritData;
-import dev.sterner.malum.common.spirit.SpiritHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -73,7 +72,7 @@ public class PlinthCoreBlockEntity extends MultiBlockCoreEntity {
     @Override
     public ActionResult onUse(PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
-        if (stack.getItem() instanceof ISoulContainerItem) {
+        if (stack.getItem() instanceof SoulContainerItem) {
             if (world.isClient) {
                 return ActionResult.CONSUME;
             }

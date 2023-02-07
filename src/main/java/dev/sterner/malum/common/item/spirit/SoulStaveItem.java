@@ -1,6 +1,6 @@
 package dev.sterner.malum.common.item.spirit;
 
-import dev.sterner.malum.api.interfaces.item.ISoulContainerItem;
+import dev.sterner.malum.api.interfaces.item.SoulContainerItem;
 import dev.sterner.malum.common.component.MalumComponents;
 import dev.sterner.malum.common.entity.spirit.SoulEntity;
 import dev.sterner.malum.common.spirit.MalumEntitySpiritData;
@@ -21,7 +21,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class SoulStaveItem extends Item implements ISoulContainerItem {
+public class SoulStaveItem extends Item implements SoulContainerItem {
     public SoulStaveItem(Settings settings) {
         super(settings);
     }
@@ -62,7 +62,7 @@ public class SoulStaveItem extends Item implements ISoulContainerItem {
     public TypedActionResult<ItemStack> interactWithSoul(PlayerEntity player, Hand hand, SoulEntity soul) {
         ItemStack stack = player.getStackInHand(hand);
         ItemStack otherStack = player.getStackInHand(hand.equals(Hand.MAIN_HAND) ? Hand.OFF_HAND : Hand.MAIN_HAND);
-        if (otherStack.getItem() instanceof ISoulContainerItem) {
+        if (otherStack.getItem() instanceof SoulContainerItem) {
             return TypedActionResult.fail(stack);
         }
         if (!soul.spiritData.equals(MalumEntitySpiritData.EMPTY) && (!stack.getOrCreateNbt().contains(MalumEntitySpiritData.SOUL_DATA))) {

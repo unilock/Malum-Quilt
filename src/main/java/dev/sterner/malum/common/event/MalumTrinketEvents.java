@@ -2,7 +2,7 @@ package dev.sterner.malum.common.event;
 
 
 import dev.sterner.malum.api.event.ExplosionEvent;
-import dev.sterner.malum.api.event.LivingEntityDamageEvent;
+import dev.sterner.malum.api.event.LivingEntityEvent;
 import dev.sterner.malum.api.event.SoulwardDamageAbsorbDamageEvent;
 import dev.sterner.malum.common.registry.MalumDamageSourceRegistry;
 import dev.sterner.malum.common.registry.MalumObjects;
@@ -26,8 +26,8 @@ import java.util.List;
 public class MalumTrinketEvents {
 
 	public static void init(){
-		LivingEntityDamageEvent.ON_DAMAGE_EVENT.register(MalumTrinketEvents::waterNecklace);
-		LivingEntityDamageEvent.ON_DAMAGE_EVENT.register(MalumTrinketEvents::takeDamageEvent);
+		LivingEntityEvent.ON_DAMAGE_EVENT.register(MalumTrinketEvents::waterNecklace);
+		LivingEntityEvent.ON_DAMAGE_EVENT.register(MalumTrinketEvents::takeDamageEvent);
 		SoulwardDamageAbsorbDamageEvent.ON_ABSORB_DAMAGE_EVENT.register(MalumTrinketEvents::onSoulwardAbsorbDamage);
 		ExplosionEvent.DETONATE.register(MalumTrinketEvents::processExplosion);
 	}

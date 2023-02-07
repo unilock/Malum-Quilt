@@ -1,7 +1,7 @@
 package dev.sterner.malum.common.item.spirit;
 
 import com.sammy.lodestone.helpers.ItemHelper;
-import dev.sterner.malum.api.interfaces.item.ISoulContainerItem;
+import dev.sterner.malum.api.interfaces.item.SoulContainerItem;
 import dev.sterner.malum.common.entity.spirit.SoulEntity;
 import dev.sterner.malum.common.spirit.MalumEntitySpiritData;
 import net.minecraft.block.Block;
@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class SoulVialItem extends BlockItem implements ISoulContainerItem {
+public class SoulVialItem extends BlockItem implements SoulContainerItem {
     public SoulVialItem(Block block, Settings settings) {
         super(block, settings);
     }

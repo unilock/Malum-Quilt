@@ -10,7 +10,7 @@ import net.minecraft.util.math.Vec3d;
 
 import java.util.ArrayList;
 
-public interface ISoulContainerItem {
+public interface SoulContainerItem {
 
     TypedActionResult<ItemStack> interactWithSoul(PlayerEntity player, Hand hand, SoulEntity soul);
 

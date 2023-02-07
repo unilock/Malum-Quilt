@@ -58,7 +58,7 @@ public class MinorEntityEffectParticlePacket {
 						.enableNoClip()
 						.setRandomOffset(0.2f, 0.2f)
 						.setRandomMotion(0.02f)
-						.addActor(p -> p.setVelocity(p.getParticleSpeed().multiply(0.95f)))
+						.addActor(p -> p.setVelocity(p.getVelocity().multiply(0.95f)))
 						.repeat(world, posX, posY, posZ, 4);
             }
 			WorldParticleBuilder.create(LodestoneParticleRegistry.WISP_PARTICLE)
@@ -70,7 +70,7 @@ public class MinorEntityEffectParticlePacket {
 					.enableNoClip()
 					.setRandomOffset(0.05f, 0.05f)
 					.setRandomMotion(0.05f)
-					.addActor(p -> p.setVelocity(p.getParticleSpeed().multiply(0.5f)))
+					.addActor(p -> p.setVelocity(p.getVelocity().multiply(0.5f)))
 					.repeat(world, posX, posY, posZ, 6);
 
 			WorldParticleBuilder.create(LodestoneParticleRegistry.SMOKE_PARTICLE)
@@ -82,7 +82,7 @@ public class MinorEntityEffectParticlePacket {
 					.enableNoClip()
 					.setRandomOffset(0.15f, 0.15f)
 					.setRandomMotion(0.015f, 0.015f)
-					.addActor(p -> p.setVelocity(p.getParticleSpeed().multiply(0.92f)))
+					.addActor(p -> p.setVelocity(p.getVelocity().multiply(0.92f)))
 					.repeat(world, posX, posY, posZ, 10);
         });
     }
