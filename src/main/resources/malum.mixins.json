@@ -20,7 +20,8 @@
     "ServerWorldMixin",
     "SpawnHelperMixin",
     "UpdateAttackTargetTaskMixin",
-    "WorldChunkMixin"
+    "WorldChunkMixin",
+    "plugin.MojangWhy"
   ],
   "client": [
     "client.EnchantmentTargetMixin",

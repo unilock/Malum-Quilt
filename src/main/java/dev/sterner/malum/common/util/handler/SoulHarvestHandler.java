@@ -53,11 +53,12 @@ import static com.sammy.lodestone.setup.LodestoneRenderLayers.queueUniformChange
 public class SoulHarvestHandler {
 	public static void init(){
 		EntitySpawnedEvent.EVENT.register(SoulHarvestHandler::markAsSpawnerSpawned);
-		LivingEntityEvent.EVENT.register(SoulHarvestHandler::entityTick);
-		LivingEntityEvent.EVENT.register(SoulHarvestHandler::playerTick);
-		LivingEntityEvent.TARGET.register(SoulHarvestHandler::preventTargeting);
-		LivingEntityEvent.ADDED.register(SoulHarvestHandler::updateAi);
+		LivingEntityEvent.TICK_EVENT.register(SoulHarvestHandler::entityTick);
+		LivingEntityEvent.TICK_EVENT.register(SoulHarvestHandler::playerTick);
+		LivingEntityEvent.ON_TARGETING_EVENT.register(SoulHarvestHandler::preventTargeting);
+		LivingEntityEvent.ADDED_EVENT.register(SoulHarvestHandler::updateAi);
 	}
+
 	public static void exposeSoul(DamageSource source, float amount, LivingEntity target) {
 		if (amount == 0) {
 			return;

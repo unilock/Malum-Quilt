@@ -11,7 +11,7 @@ import dev.sterner.malum.common.network.packet.s2c.block.blight.BlightMistPartic
 import dev.sterner.malum.common.network.packet.s2c.block.blight.BlightTransformItemParticlePacket;
 import dev.sterner.malum.common.recipe.SpiritTransmutationRecipe;
 import dev.sterner.malum.common.spiritrite.effect.MalumRiteEffect;
-import dev.sterner.malum.common.worldevent.TotemCreatedBlightEvent;
+import dev.sterner.malum.common.event.world.TotemCreatedBlightEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;

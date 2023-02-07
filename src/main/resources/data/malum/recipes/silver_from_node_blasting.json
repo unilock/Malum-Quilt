@@ -1,0 +1,21 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:item_tags_populated",
+      "values": [
+        "c:silver_nuggets"
+      ]
+    }
+  ],
+
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "malum:silver_node"
+  },
+  "result": {
+    "tag": "c:silver_nuggets",
+    "count": 6
+  },
+  "experience": 0.25,
+  "cookingtime": 100
+}

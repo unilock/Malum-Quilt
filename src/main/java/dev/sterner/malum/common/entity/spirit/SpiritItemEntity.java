@@ -1,7 +1,8 @@
-package dev.sterner.malum.common.entity;
+package dev.sterner.malum.common.entity.spirit;
 
 import com.sammy.lodestone.helpers.ItemHelper;
 import dev.sterner.malum.client.CommonParticleEffects;
+import dev.sterner.malum.common.entity.FloatingItemEntity;
 import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
 import dev.sterner.malum.common.registry.MalumAttributeRegistry;
 import dev.sterner.malum.common.registry.MalumEntityRegistry;
@@ -36,16 +37,17 @@ public class SpiritItemEntity extends FloatingItemEntity {
         maxAge = 800;
     }
 
-    public float getRange() {
-        return world.isSpaceEmpty(this) ? range : range * 5f;
-    }
+	@Override
+	public boolean isFireImmune() {
+		return true;
+	}
 
     public void setOwner(UUID ownerUuid) {
         this.ownerUuid = ownerUuid;
         updateOwner();
     }
-    public void updateOwner()
-    {
+
+    public void updateOwner() {
         if (!world.isClient) {
             owner = (LivingEntity) ((ServerWorld) world).getEntity(ownerUuid);
             if (owner != null)
@@ -60,13 +62,13 @@ public class SpiritItemEntity extends FloatingItemEntity {
         Vec3d motion = getVelocity();
         Vec3d norm = motion.normalize().multiply(0.05f);
         float extraAlpha = (float) motion.length();
-        float cycles = 4;
-        for (int i = 0; i < cycles; i++) {
-            double lerpX = MathHelper.lerp(i / cycles, x - motion.x, x);
-            double lerpY = MathHelper.lerp(i / cycles, y - motion.y, y);
-            double lerpZ = MathHelper.lerp(i / cycles, z - motion.z, z);
-			CommonParticleEffects.spawnSpiritParticles(world, lerpX, lerpY, lerpZ, 0.20f+extraAlpha, norm, color, endColor);
-        }
+		float cycles = 2;
+		for (int i = 0; i < cycles; i++) {
+			double lerpX = MathHelper.lerp(i / cycles, x - motion.x, x);
+			double lerpY = MathHelper.lerp(i / cycles, y - motion.y, y);
+			double lerpZ = MathHelper.lerp(i / cycles, z - motion.z, z);
+			CommonParticleEffects.spawnSpiritParticles(world, lerpX, lerpY, lerpZ, 0.55f + extraAlpha, norm, color, endColor);
+		}
     }
 
     @Override
@@ -84,7 +86,7 @@ public class SpiritItemEntity extends FloatingItemEntity {
         }
         Vec3d desiredLocation = owner.getPos().add(0, owner.getHeight() / 3, 0);
         float distance = (float) squaredDistanceTo(desiredLocation);
-        float velocity = windUp < 0.2f ? 0 : Math.min(windUp-0.2f, 0.35f)*5f;
+        float velocity = windUp < 0.25f ? 0 : Math.min(windUp - 0.25f, 0.8f) * 5f;
         moveTime++;
         Vec3d desiredVel = desiredLocation.subtract(getPos()).normalize().multiply(velocity, velocity, velocity);
         float easing = 0.01f;

@@ -41,9 +41,17 @@ public class MalumItemGroupEvents {
 		e.addItem(GOLD_IMPETUS);
 		e.addItem(GOLD_NODE);
 
+		e.addItem(CRACKED_SILVER_IMPETUS);
+		e.addItem(SILVER_IMPETUS);
+		e.addItem(SILVER_NODE);
+
+		e.addItem(CRACKED_ZINC_IMPETUS);
+		e.addItem(ZINC_IMPETUS);
+		e.addItem(ZINC_NODE);
+
 		e.addItem(CRACKED_ALCHEMICAL_IMPETUS);
 		e.addItem(ALCHEMICAL_IMPETUS);
-		//TODO add compat, lead, silver, aluminium, nickel, uranium, zinc, tin
+		//TODO add compat, lead, aluminium, nickel, uranium, tin
 
 	}
 

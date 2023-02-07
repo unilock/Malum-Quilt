@@ -1,0 +1,43 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:item_tags_populated",
+      "values": [
+        "c:silver_ingots"
+      ]
+    }
+  ],
+
+  "type": "malum:spirit_infusion",
+  "input": {
+    "item": "malum:alchemical_impetus",
+    "count": 1
+  },
+  "output": {
+    "item": "malum:silver_impetus"
+  },
+  "extra_items": [
+    {
+      "item": "minecraft:gunpowder",
+      "count": 4
+    },
+    {
+      "item": "malum:cthonic_gold",
+      "count": 1
+    },
+    {
+      "tag": "c:silver_ingots",
+      "count": 6
+    }
+  ],
+  "spirits": [
+    {
+      "type": "earthen",
+      "count": 8
+    },
+    {
+      "type": "infernal",
+      "count": 8
+    }
+  ]
+}

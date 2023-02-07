@@ -1,28 +1,15 @@
 package dev.sterner.malum.common.spirit;
 
 import com.sammy.lodestone.helpers.ItemHelper;
-import com.sammy.lodestone.setup.LodestoneParticleRegistry;
-import com.sammy.lodestone.setup.LodestoneScreenParticleRegistry;
-import com.sammy.lodestone.systems.easing.Easing;
-import com.sammy.lodestone.systems.particle.ScreenParticleBuilder;
-import com.sammy.lodestone.systems.particle.SimpleParticleEffect;
-import com.sammy.lodestone.systems.particle.WorldParticleBuilder;
-import com.sammy.lodestone.systems.particle.data.ColorParticleData;
-import com.sammy.lodestone.systems.particle.data.GenericParticleData;
-import com.sammy.lodestone.systems.particle.data.SpinParticleData;
-import com.sammy.lodestone.systems.particle.screen.LodestoneScreenParticleTextureSheet;
-import com.sammy.lodestone.systems.particle.screen.base.ScreenParticle;
 import dev.sterner.malum.Malum;
 import dev.sterner.malum.MalumConfig;
 import dev.sterner.malum.common.component.MalumComponents;
-import dev.sterner.malum.common.entity.SpiritItemEntity;
-import dev.sterner.malum.common.entity.spirit.PlayerBoundItemEntity;
+import dev.sterner.malum.common.entity.spirit.SpiritItemEntity;
 import dev.sterner.malum.common.recipe.SpiritWithCount;
 import dev.sterner.malum.common.registry.MalumAttributeRegistry;
 import dev.sterner.malum.common.registry.MalumEnchantmentRegistry;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
@@ -36,10 +23,8 @@ import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 
 import static net.minecraft.entity.EquipmentSlot.MAINHAND;

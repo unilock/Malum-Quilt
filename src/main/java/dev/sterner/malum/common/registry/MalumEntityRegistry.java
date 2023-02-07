@@ -1,7 +1,7 @@
 package dev.sterner.malum.common.registry;
 
 import dev.sterner.malum.Malum;
-import dev.sterner.malum.common.entity.SpiritItemEntity;
+import dev.sterner.malum.common.entity.spirit.SpiritItemEntity;
 import dev.sterner.malum.common.entity.boomerang.ScytheBoomerangEntity;
 import dev.sterner.malum.common.entity.nitrate.EthericNitrateEntity;
 import dev.sterner.malum.common.entity.nitrate.VividNitrateEntity;

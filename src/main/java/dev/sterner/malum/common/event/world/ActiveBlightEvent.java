@@ -1,4 +1,4 @@
-package dev.sterner.malum.common.worldevent;
+package dev.sterner.malum.common.event.world;
 
 import com.sammy.lodestone.systems.worldevent.WorldEventInstance;
 import com.sammy.lodestone.systems.worldgen.LodestoneBlockFiller;

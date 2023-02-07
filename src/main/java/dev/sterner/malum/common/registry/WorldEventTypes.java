@@ -1,8 +1,8 @@
 package dev.sterner.malum.common.registry;
 
 import com.sammy.lodestone.systems.worldevent.WorldEventType;
-import dev.sterner.malum.common.worldevent.ActiveBlightEvent;
-import dev.sterner.malum.common.worldevent.TotemCreatedBlightEvent;
+import dev.sterner.malum.common.event.world.ActiveBlightEvent;
+import dev.sterner.malum.common.event.world.TotemCreatedBlightEvent;
 
 import static com.sammy.lodestone.setup.worldevent.LodestoneWorldEventTypeRegistry.registerEventType;
 
