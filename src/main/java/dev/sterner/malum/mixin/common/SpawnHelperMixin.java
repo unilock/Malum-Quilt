@@ -1,4 +1,4 @@
-package dev.sterner.malum.mixin;
+package dev.sterner.malum.mixin.common;
 
 import dev.sterner.malum.api.event.EntitySpawnedEvent;
 import net.minecraft.block.BlockState;

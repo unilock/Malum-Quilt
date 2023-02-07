@@ -1,4 +1,4 @@
-package dev.sterner.malum.mixin;
+package dev.sterner.malum.mixin.common;
 
 import com.google.gson.JsonObject;
 import net.minecraft.item.ItemStack;

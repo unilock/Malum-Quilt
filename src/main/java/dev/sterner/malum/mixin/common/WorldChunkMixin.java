@@ -1,4 +1,4 @@
-package dev.sterner.malum.mixin;
+package dev.sterner.malum.mixin.common;
 
 import com.sammy.lodestone.forge.CustomUpdateTagHandlingBlockEntity;
 import net.minecraft.block.entity.BlockEntity;

@@ -1,4 +1,4 @@
-package dev.sterner.malum.mixin;
+package dev.sterner.malum.mixin.common;
 
 import dev.sterner.malum.common.item.tools.MalumScytheItem;
 import net.minecraft.client.item.TooltipContext;

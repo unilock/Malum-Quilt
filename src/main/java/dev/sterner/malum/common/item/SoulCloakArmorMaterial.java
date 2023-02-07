@@ -1,6 +1,6 @@
 package dev.sterner.malum.common.item;
 
-import dev.sterner.malum.mixin.ArmorMaterialsMixin;
+import dev.sterner.malum.mixin.common.ArmorMaterialsMixin;
 import net.minecraft.entity.EquipmentSlot;
 
 public class SoulCloakArmorMaterial extends ArmorMaterialsMixin {

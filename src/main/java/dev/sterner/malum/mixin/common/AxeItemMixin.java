@@ -1,4 +1,4 @@
-package dev.sterner.malum.mixin;
+package dev.sterner.malum.mixin.common;
 
 import dev.sterner.malum.common.block.totem.TotemPoleBlock;
 import net.minecraft.block.BlockState;

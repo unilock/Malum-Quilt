@@ -1,4 +1,4 @@
-package dev.sterner.malum.mixin;
+package dev.sterner.malum.mixin.common;
 
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterials;
