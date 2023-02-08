@@ -7,6 +7,8 @@ plugins {
 archivesBaseName = project.archives_base_name
 version = "${project.version}+${project.minecraft_version}"
 group = project.maven_group
+sourceCompatibility = 1.17 // java 17
+targetCompatibility = 1.17
 
 loom {
 	accessWidenerPath = file("src/main/resources/malum.accesswidener")
@@ -119,6 +121,11 @@ jar {
 	from('LICENSE') {
 		rename { "${it}_${archivesBaseName}" }
 	}
+}
+
+wrapper {
+	gradleVersion = "7.6"
+	distributionType = Wrapper.DistributionType.ALL
 }
 
 //TODO assemble.dependsOn runDatagen
