@@ -25,7 +25,7 @@ public class MalumSpiritType {
 	private final Color endColor;
 	public final String identifier;
 
-	private final Supplier<Item> splinterItem;
+	public Supplier<Item> splinterItem;
 
 	public MalumSpiritType(String identifier, Color color, Supplier<Item> splinterItem) {
 		this.identifier = identifier;
