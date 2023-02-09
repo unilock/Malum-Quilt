@@ -9,8 +9,8 @@ import net.minecraft.block.*;
 import net.minecraft.item.Items;
 import net.minecraft.registry.HolderLookup;
 import net.minecraft.registry.tag.ItemTags;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -73,7 +73,7 @@ public class MalumTagProviders {
 
 		}
 
-		@Nonnull
+		@NotNull
 		private Block[] getModBlocks(Predicate<Block> predicate) {
 			List<Block> ret = new ArrayList<>(Collections.emptyList());
 			BLOCKS.keySet().stream().filter(predicate).forEach(ret::add);
