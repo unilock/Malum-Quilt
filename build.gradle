@@ -65,7 +65,6 @@ dependencies {
 
 	mappings "org.quiltmc:quilt-mappings:${project.minecraft_version}+build.${project.quilt_mappings}:intermediary-v2"
 	modImplementation "org.quiltmc:quilt-loader:${project.quilt_loader}"
-	modImplementation "org.quiltmc:qsl:${qsl_version}+${minecraft_version}"
 	modImplementation "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${project.quilted_fabric_api_version}-${project.minecraft_version}"
 
 	modImplementation("dev.emi:trinkets:${project.trinkets}") {
@@ -94,7 +93,7 @@ dependencies {
 	modRuntimeOnly("maven.modrinth:sodium:${project.sodium}")
 
 	modImplementation include("maven.modrinth:midnightlib:$midnightlib_version")
-	modImplementation include("com.github.mrsterner:LodestoneLib-Quilt:$lodestone_version")
+	modImplementation("com.github.mrsterner:LodestoneLib-Quilt:$lodestone_version")
 	modImplementation("com.jamieswhiteshirt:reach-entity-attributes:${project.reach}")
 
 	implementation("com.github.LlamaLad7:MixinExtras:${project.mixin_extras}")
