@@ -54,6 +54,9 @@ repositories {
 		name = "Reach Entity Attributes"
 		url = "https://maven.jamieswhiteshirt.com/libs-release"
 	}
+	maven {
+		url = "https://maven.quiltmc.org/repository/snapshot"
+	}
 	mavenCentral()
 }
 
