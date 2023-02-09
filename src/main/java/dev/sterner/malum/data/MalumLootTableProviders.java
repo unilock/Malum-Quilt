@@ -49,7 +49,7 @@ public class MalumLootTableProviders {
 		}
 
 		@Override
-		public void generate() {
+		public void m_mkxtlejp() {
 
 		}
 
