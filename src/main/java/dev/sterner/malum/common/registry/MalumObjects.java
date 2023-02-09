@@ -84,6 +84,7 @@ import static net.minecraft.item.Items.GLASS_BOTTLE;
 public interface MalumObjects {
 	Map<Block, Identifier> BLOCKS = new LinkedHashMap<>();
 	Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
+	Map<Supplier<MalumSpiritItem>, String> SPIRITS = new LinkedHashMap<>();
 	Set<MalumScytheItem> SCYTHES = new ReferenceOpenHashSet<>();
 	ArrayList<SignType> SIGN_TYPES = new ArrayList<>();
 
@@ -101,14 +102,14 @@ public interface MalumObjects {
 	//endregion
 
 	//region spirits
-	Item SACRED_SPIRIT = register("sacred_spirit", new MalumSpiritItem(settings(), MalumSpiritTypeRegistry.SACRED_SPIRIT));
-	Item WICKED_SPIRIT = register("wicked_spirit", new MalumSpiritItem(settings(), MalumSpiritTypeRegistry.WICKED_SPIRIT));
-	Item ARCANE_SPIRIT = register("arcane_spirit", new MalumSpiritItem(settings(), MalumSpiritTypeRegistry.ARCANE_SPIRIT));
-	Item ELDRITCH_SPIRIT = register("eldritch_spirit", new MalumSpiritItem(settings(), MalumSpiritTypeRegistry.ELDRITCH_SPIRIT));
-	Item EARTHEN_SPIRIT = register("earthen_spirit", new MalumSpiritItem(settings(), MalumSpiritTypeRegistry.EARTHEN_SPIRIT));
-	Item INFERNAL_SPIRIT = register("infernal_spirit", new MalumSpiritItem(settings(), MalumSpiritTypeRegistry.INFERNAL_SPIRIT));
-	Item AERIAL_SPIRIT = register("aerial_spirit", new MalumSpiritItem(settings(), MalumSpiritTypeRegistry.AERIAL_SPIRIT));
-	Item AQUEOUS_SPIRIT = register("aqueous_spirit", new MalumSpiritItem(settings(), MalumSpiritTypeRegistry.AQUEOUS_SPIRIT));
+	MalumSpiritItem SACRED_SPIRIT = registerSpirit("sacred_spirit", new MalumSpiritItem(settings(), MalumSpiritTypeRegistry.SACRED_SPIRIT));
+	MalumSpiritItem WICKED_SPIRIT = registerSpirit("wicked_spirit", new MalumSpiritItem(settings(), MalumSpiritTypeRegistry.WICKED_SPIRIT));
+	MalumSpiritItem ARCANE_SPIRIT = registerSpirit("arcane_spirit", new MalumSpiritItem(settings(), MalumSpiritTypeRegistry.ARCANE_SPIRIT));
+	MalumSpiritItem ELDRITCH_SPIRIT = registerSpirit("eldritch_spirit", new MalumSpiritItem(settings(), MalumSpiritTypeRegistry.ELDRITCH_SPIRIT));
+	MalumSpiritItem EARTHEN_SPIRIT = registerSpirit("earthen_spirit", new MalumSpiritItem(settings(), MalumSpiritTypeRegistry.EARTHEN_SPIRIT));
+	MalumSpiritItem INFERNAL_SPIRIT = registerSpirit("infernal_spirit", new MalumSpiritItem(settings(), MalumSpiritTypeRegistry.INFERNAL_SPIRIT));
+	MalumSpiritItem AERIAL_SPIRIT = registerSpirit("aerial_spirit", new MalumSpiritItem(settings(), MalumSpiritTypeRegistry.AERIAL_SPIRIT));
+	MalumSpiritItem AQUEOUS_SPIRIT = registerSpirit("aqueous_spirit", new MalumSpiritItem(settings(), MalumSpiritTypeRegistry.AQUEOUS_SPIRIT));
 	//endregion
 
 	//region ores
@@ -629,14 +630,6 @@ public interface MalumObjects {
 		return block;
 	}
 
-	static <T extends Block> T registerS(String name, Supplier<T> block, boolean createItem) {
-		BLOCKS.put(block.get(), new Identifier(Malum.MODID, name));
-		if (createItem) {
-			ITEMS.put(new BlockItem(block.get(), settings()), BLOCKS.get(block));
-		}
-		return block.get();
-	}
-
 	static <T extends Block> T registerMultiBlock(String name, T block, Supplier<? extends MultiBlockStructure> structure, boolean createItem) {
 		BLOCKS.put(block, new Identifier(Malum.MODID, name));
 		if (createItem) {
@@ -647,6 +640,12 @@ public interface MalumObjects {
 
 	static <T extends Item> T register(String name, T item) {
 		ITEMS.put(item, new Identifier(Malum.MODID, name));
+		return item;
+	}
+
+	static MalumSpiritItem registerSpirit(String name, MalumSpiritItem item) {
+		ITEMS.put(item, new Identifier(Malum.MODID, name));
+		SPIRITS.put(() -> item, name);
 		return item;
 	}
 

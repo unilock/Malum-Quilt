@@ -37,13 +37,16 @@ public class Malum implements ModInitializer {
 
 	@Override
 	public void onInitialize(ModContainer mod) {
+		MalumObjects.init();
+		MalumSpiritTypeRegistry.init();
+
 		MalumAttributeRegistry.init();
 		MalumParticleRegistry.init();
 		MalumEnchantmentRegistry.init();
 		MalumSoundRegistry.init();
 
+
 		MalumEntityRegistry.init();
-		MalumObjects.init();
 		MalumBlockEntityRegistry.init();
 
 
@@ -52,7 +55,7 @@ public class Malum implements ModInitializer {
 		MalumRecipeTypeRegistry.init();
 		MalumRecipeSerializerRegistry.init();
 		MalumScreenHandlerRegistry.init();
-		MalumSpiritTypeRegistry.init();
+
 		MalumRiteRegistry.init();
 		MalumTrinketEvents.init();
 		MalumItemGroupEvents.init();
