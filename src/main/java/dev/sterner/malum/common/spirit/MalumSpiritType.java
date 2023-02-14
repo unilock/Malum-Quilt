@@ -2,6 +2,7 @@ package dev.sterner.malum.common.spirit;
 
 import com.sammy.lodestone.helpers.ColorHelper;
 import dev.sterner.malum.Malum;
+import dev.sterner.malum.api.event.SpiritTypeAddEvent;
 import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
 import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
@@ -46,7 +47,7 @@ public class MalumSpiritType {
 		SPIRITS.put(() -> MalumObjects.INFERNAL_SPIRIT, "infernal");
 		SPIRITS.put(() -> MalumObjects.EARTHEN_SPIRIT, "earthen");
 		SPIRITS.put(() -> MalumObjects.SACRED_SPIRIT, "sacred");
-
+		SpiritTypeAddEvent.EVENT.invoker().addSpiritType(SPIRITS);
 
 		this.identifier = identifier;
 		this.color = color;

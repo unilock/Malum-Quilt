@@ -1,7 +1,7 @@
 plugins {
 	id 'maven-publish'
 	id 'io.github.juuxel.loom-quiltflower' version '1.8.+'
-	id 'org.quiltmc.loom' version '1.0+'
+	id 'org.quiltmc.loom' version '1.0.+'
 }
 
 archivesBaseName = project.archives_base_name
@@ -53,9 +53,6 @@ repositories {
 	maven {
 		name = "Reach Entity Attributes"
 		url = "https://maven.jamieswhiteshirt.com/libs-release"
-	}
-	maven {
-		url = "https://maven.quiltmc.org/repository/snapshot"
 	}
 	mavenCentral()
 }
