@@ -52,7 +52,7 @@ public class WeepingWellStructure extends StructureFeature {
 	protected Optional<GenerationStub> findGenerationPos(GenerationContext context) {
 		BlockPos blockPos = new BlockPos(context.chunkPos().getStartX(), 0, context.chunkPos().getStartZ());
 		BlockPos validPos = new BlockPos(blockPos.getX(), getValidY(context.chunkGenerator().getColumnSample(blockPos.getX(), blockPos.getZ(), context.world(), context.randomState())), blockPos.getZ());
-		if (validPos.getY() != -1 && isSufficientlyFlat(context, validPos, 3)) {
+		if (validPos.getY() != min - 1 && isSufficientlyFlat(context, validPos, 3)) {
 			return StructurePoolBasedGenerator.m_drsiegyr(context, this.startPool, this.startJigsawName, this.size, validPos.down(-offsetInGround), false, Optional.empty(), this.maxDistanceFromCenter);
 		}
 		return Optional.empty();
@@ -78,7 +78,7 @@ public class WeepingWellStructure extends StructureFeature {
 	public int getValidY(VerticalBlockSample sample){
 		int maxLength = 0;
 		int currentLength = 0;
-		int maxIndex = -1;
+		int maxIndex = min - 1;
 		for (int i = min; i < max; i += size) {
 			if (sample.getState(i).isAir()) {
 				// check if there are at least 8 more true values
