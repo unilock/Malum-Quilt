@@ -51,25 +51,11 @@ public class WeepingWellStructure extends StructureFeature {
 	@Override
 	protected Optional<GenerationStub> findGenerationPos(GenerationContext context) {
 		BlockPos blockPos = new BlockPos(context.chunkPos().getStartX(), 0, context.chunkPos().getStartZ());
-		BlockPos validPos = getValidY(context, blockPos);
-		if (validPos != null && isSufficientlyFlat(context, validPos, 3)) {
+		BlockPos validPos = new BlockPos(blockPos.getX(), getValidY(context.chunkGenerator().getColumnSample(blockPos.getX(), blockPos.getZ(), context.world(), context.randomState())), blockPos.getZ());
+		if (validPos.getY() != -1 && isSufficientlyFlat(context, validPos, 3)) {
 			return StructurePoolBasedGenerator.m_drsiegyr(context, this.startPool, this.startJigsawName, this.size, validPos.down(-offsetInGround), false, Optional.empty(), this.maxDistanceFromCenter);
 		}
 		return Optional.empty();
-	}
-
-	@Nullable
-	private BlockPos getValidY(GenerationContext context, BlockPos blockPos){
-		VerticalBlockSample blockView = context.chunkGenerator().getColumnSample(blockPos.getX(), blockPos.getZ(), context.world(), context.randomState());
-		for(int y = min; y < max; y += 2){
-			if(blockView.getState(y).isAir()){
-				if(blockView.getState(y - 1).isAir()){
-					y -= 1;
-				}
-				return new BlockPos(blockPos.getX(), y, blockPos.getZ());
-			}
-		}
-		return null;
 	}
 
 	public boolean isSufficientlyFlat(GenerationContext context, BlockPos origin, int check) {
@@ -87,6 +73,33 @@ public class WeepingWellStructure extends StructureFeature {
 			}
 		}
 		return count >= check * check * 2;
+	}
+
+	public int getValidY(VerticalBlockSample sample){
+		int maxLength = 0;
+		int currentLength = 0;
+		int maxIndex = -1;
+		for (int i = min; i < max; i += size) {
+			if (sample.getState(i).isAir()) {
+				// check if there are at least 8 more true values
+				int j = i + 1;
+				while (j < max && sample.getState(j).isAir()) {
+					j++;
+				}
+				int sequenceLength = j - i;
+				if (sequenceLength >= size) {
+					currentLength += sequenceLength;
+					if (currentLength > maxLength) {
+						maxLength = currentLength;
+						maxIndex = i;
+					}
+					i = j - 1; // skip the sequence we just found
+				}
+			} else {
+				currentLength = 0;
+			}
+		}
+		return maxIndex;
 	}
 
 
