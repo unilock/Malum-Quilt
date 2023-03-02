@@ -1,9 +1,7 @@
 package dev.sterner.malum.common.registry;
 
-import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
 import dev.sterner.malum.common.spirit.MalumSpiritType;
 import dev.sterner.malum.common.spirit.SpiritTypeProperty;
-import net.minecraft.item.Item;
 
 import java.awt.*;
 import java.util.LinkedHashMap;

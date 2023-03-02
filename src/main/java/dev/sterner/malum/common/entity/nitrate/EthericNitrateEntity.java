@@ -11,7 +11,6 @@ import dev.sterner.malum.client.CommonParticleEffects;
 import dev.sterner.malum.common.network.packet.s2c.entity.EthericNitrateParticlePacket;
 import dev.sterner.malum.common.registry.MalumEntityRegistry;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
-import dev.sterner.malum.common.spirit.SpiritHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.MathHelper;

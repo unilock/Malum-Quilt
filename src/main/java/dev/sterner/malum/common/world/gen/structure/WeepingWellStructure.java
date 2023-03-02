@@ -11,7 +11,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.chunk.VerticalBlockSample;
 import net.minecraft.world.gen.feature.StructureFeature;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +80,7 @@ public class WeepingWellStructure extends StructureFeature {
 		int maxIndex = min - 1;
 		for (int i = min; i < max; i += size) {
 			if (sample.getState(i).isAir()) {
-				// check if there are at least 8 more true values
+				// check if there are at least size more true values
 				int j = i + 1;
 				while (j < max && sample.getState(j).isAir()) {
 					j++;

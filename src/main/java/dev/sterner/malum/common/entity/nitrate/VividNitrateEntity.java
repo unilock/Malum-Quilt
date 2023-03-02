@@ -12,7 +12,6 @@ import com.sammy.lodestone.systems.particle.world.LodestoneWorldParticleTextureS
 import dev.sterner.malum.client.CommonParticleEffects;
 import dev.sterner.malum.common.network.packet.s2c.entity.VividNitrateBounceParticlePacket;
 import dev.sterner.malum.common.registry.MalumEntityRegistry;
-import dev.sterner.malum.common.spirit.SpiritHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.world.ServerWorld;

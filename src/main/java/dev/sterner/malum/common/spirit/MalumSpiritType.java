@@ -8,7 +8,6 @@ import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Style;
@@ -20,9 +19,7 @@ import net.minecraft.util.hit.BlockHitResult;
 import java.awt.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Supplier;
-import java.util.stream.Stream;
 
 public class MalumSpiritType {
 	public Map<Supplier<MalumSpiritItem>, String> SPIRITS = new LinkedHashMap<>();

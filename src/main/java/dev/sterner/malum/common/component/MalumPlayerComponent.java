@@ -1,7 +1,6 @@
 package dev.sterner.malum.common.component;
 
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
-import dev.sterner.malum.common.spirit.MalumSpiritAffinity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.NbtCompound;
 
