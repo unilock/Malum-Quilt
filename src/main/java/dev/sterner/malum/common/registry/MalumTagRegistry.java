@@ -2,6 +2,7 @@ package dev.sterner.malum.common.registry;
 
 import dev.sterner.malum.Malum;
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
@@ -33,6 +34,7 @@ public interface MalumTagRegistry {
 
 	TagKey<Block> GREATER_AERIAL_WHITELIST = blockMalumTag("greater_aerial_whitelist");
 
+	TagKey<EntityType<?>> SURVIVES_REJECTION = entityMalumTag("survives_rejection");
 
 	static TagKey<Block> blockModTag(String path) {
 		return TagKey.of(RegistryKeys.BLOCK, new Identifier(path));
@@ -44,6 +46,10 @@ public interface MalumTagRegistry {
 
 	static TagKey<Item> itemMalumTag(String path) {
 		return TagKey.of(RegistryKeys.ITEM, new Identifier(Malum.MODID, path));
+	}
+
+	static TagKey<EntityType<?>> entityMalumTag(String path) {
+		return TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(Malum.MODID, path));
 	}
 
 	static void init() {

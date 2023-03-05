@@ -10,10 +10,7 @@ import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
 import dev.sterner.malum.common.block.weeping_well.PrimordialSoupBlock;
 import dev.sterner.malum.common.network.packet.s2c.VoidRejectionPacket;
 import dev.sterner.malum.common.network.packet.s2c.block.VoidConduitParticlePacket;
-import dev.sterner.malum.common.registry.MalumDamageSourceRegistry;
-import dev.sterner.malum.common.registry.MalumShaderRegistry;
-import dev.sterner.malum.common.registry.MalumSoundRegistry;
-import dev.sterner.malum.common.registry.MalumStatusEffectRegistry;
+import dev.sterner.malum.common.registry.*;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
@@ -145,7 +142,7 @@ public class TouchOfDarknessComponent implements AutoSyncedComponent, ServerTick
 	}
 
 	public void reject(LivingEntity livingEntity) {
-		if (!(livingEntity instanceof PlayerEntity)) {
+		if (!livingEntity.getType().isIn(MalumTagRegistry.SURVIVES_REJECTION)) {
 			livingEntity.remove(Entity.RemovalReason.DISCARDED);
 			return;
 		}
