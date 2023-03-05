@@ -13,7 +13,7 @@ public class MalumDatagen implements DataGeneratorEntrypoint {
 		pack.addProvider(MalumTagProviders.MalumItemTags::new);
 		pack.addProvider(MalumTagProviders.MalumEntityTypeTags::new);
 
-		pack.addProvider(MalumLanguageProvider::new);
+		//TODO pack.addProvider(MalumLanguageProvider::new);
 		pack.addProvider(MalumLootTableProviders.BlockLoot::new);
 		pack.addProvider(MalumLootTableProviders.EntityLoot::new);
 		pack.addProvider(MalumModelProvider::new);

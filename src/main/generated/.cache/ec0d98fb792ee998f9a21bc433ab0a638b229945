@@ -1,4 +1,4 @@
-// 1.19.3	2023-03-06T00:34:54.444056935	Malum/Tags for minecraft:item
+// 1.19.3	2023-03-06T00:57:01.174754226	Malum/Tags for minecraft:item
 8a23702b05296c8af5014d6aa6e9265ded85c7d9 data/minecraft/tags/items/doors.json
 8a23702b05296c8af5014d6aa6e9265ded85c7d9 data/minecraft/tags/items/slabs.json
 8ce5141289ec9aa4d9eef1f34fe715fbc66e49ac data/malum/tags/items/soul_hunter_weapon.json
@@ -20,16 +20,16 @@ b0fcce8c4bceedee20ccbac51123f66d42d7d184 data/malum/tags/items/scythe.json
 8a23702b05296c8af5014d6aa6e9265ded85c7d9 data/minecraft/tags/items/wooden_doors.json
 8a23702b05296c8af5014d6aa6e9265ded85c7d9 data/minecraft/tags/items/wooden_pressure_plates.json
 8a23702b05296c8af5014d6aa6e9265ded85c7d9 data/minecraft/tags/items/logs_that_burn.json
-8a23702b05296c8af5014d6aa6e9265ded85c7d9 data/minecraft/tags/items/anvil.json
 8a23702b05296c8af5014d6aa6e9265ded85c7d9 data/minecraft/tags/items/fences.json
+8a23702b05296c8af5014d6aa6e9265ded85c7d9 data/minecraft/tags/items/anvil.json
 8a23702b05296c8af5014d6aa6e9265ded85c7d9 data/minecraft/tags/items/sand.json
-8a23702b05296c8af5014d6aa6e9265ded85c7d9 data/minecraft/tags/items/wool.json
 8a23702b05296c8af5014d6aa6e9265ded85c7d9 data/minecraft/tags/items/wooden_slabs.json
+8a23702b05296c8af5014d6aa6e9265ded85c7d9 data/minecraft/tags/items/wool.json
 8a23702b05296c8af5014d6aa6e9265ded85c7d9 data/minecraft/tags/items/wooden_stairs.json
 d2f9dcf499450557dffee89c9c2741d0e9127ffa data/malum/tags/items/sapballs.json
 8a23702b05296c8af5014d6aa6e9265ded85c7d9 data/minecraft/tags/items/logs.json
-8a23702b05296c8af5014d6aa6e9265ded85c7d9 data/minecraft/tags/items/leaves.json
 8a23702b05296c8af5014d6aa6e9265ded85c7d9 data/minecraft/tags/items/small_flowers.json
+8a23702b05296c8af5014d6aa6e9265ded85c7d9 data/minecraft/tags/items/leaves.json
 8a23702b05296c8af5014d6aa6e9265ded85c7d9 data/minecraft/tags/items/saplings.json
 8a23702b05296c8af5014d6aa6e9265ded85c7d9 data/minecraft/tags/items/buttons.json
 8a23702b05296c8af5014d6aa6e9265ded85c7d9 data/minecraft/tags/items/trapdoors.json
