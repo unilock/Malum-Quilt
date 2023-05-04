@@ -88,7 +88,7 @@ public interface MalumObjects {
 	Set<MalumScytheItem> SCYTHES = new ReferenceOpenHashSet<>();
 	ArrayList<SignType> SIGN_TYPES = new ArrayList<>();
 
-	Item ENCYCLOPEDIA_ARCANA = register("encyclopedia_arcana", new EncyclopediaArcanaItem(settings().rarity(Rarity.UNCOMMON)));
+	Item ENCYCLOPEDIA_ARCANA = register("encyclopedia_arcana", new EncyclopediaArcanaItem(settings().group(MalumItemGroupEvents.MALUM).rarity(Rarity.UNCOMMON)));
 
 	//region runewood
 	Item HOLY_SAP = register("holy_sap", new Item(settings().group(MalumItemGroupEvents.MALUM_NATURAL_WONDERS).recipeRemainder(GLASS_BOTTLE)));

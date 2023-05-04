@@ -29,11 +29,11 @@ public class ScytheBoomerangEntityRenderer extends EntityRenderer<ScytheBoomeran
 	public void render(ScytheBoomerangEntity entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
 		matrices.push();
 		ItemStack itemstack = entity.getStack();
-		BakedModel model = this.itemRenderer.getHeldItemModel(itemstack, entity.world, null, 1);
-		matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(90F));
+		BakedModel ibakedmodel = this.itemRenderer.getHeldItemModel(itemstack, entity.world, null, 1);
+		matrices.multiply(Vec3f.POSITIVE_X.getRadialQuaternion(90F*((float)Math.PI/180F)));
 		matrices.scale(2f, 2f, 2f);
-		matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion((entity.age + tickDelta) * 0.9f));
-		itemRenderer.renderItem(itemstack, itemstack.getItem() instanceof MalumScytheItem ? ModelTransformation.Mode.NONE : ModelTransformation.Mode.FIXED, false, matrices, vertexConsumers, light, OverlayTexture.DEFAULT_UV, model);
+		matrices.multiply(Vec3f.POSITIVE_Z.getRadialQuaternion((entity.age + tickDelta) * 0.8f));
+		itemRenderer.renderItem(itemstack, ModelTransformation.Mode.NONE, false, matrices, vertexConsumers, light, OverlayTexture.DEFAULT_UV, ibakedmodel);
 
 		matrices.pop();
 

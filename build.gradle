@@ -90,8 +90,8 @@ dependencies {
 	modRuntimeOnly("maven.modrinth:sodium:${project.sodium}")
 
 	modImplementation include("maven.modrinth:midnightlib:$midnightlib_version")
-	modImplementation("com.github.mrsterner:LodestoneLib-Quilt:$lodestone_version")
-	modImplementation("com.jamieswhiteshirt:reach-entity-attributes:${project.reach}")
+	modImplementation include("com.github.mrsterner:LodestoneLib-Quilt:$lodestone_version")
+	modImplementation include("com.jamieswhiteshirt:reach-entity-attributes:${project.reach}")
 
 	implementation("com.github.LlamaLad7:MixinExtras:${project.mixin_extras}")
 	include("com.github.LlamaLad7:MixinExtras:${project.mixin_extras}")
