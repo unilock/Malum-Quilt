@@ -3,10 +3,10 @@ package dev.sterner.malum.common.world.gen.structure;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.sterner.malum.common.registry.MalumStructures;
-import net.minecraft.registry.Holder;
 import net.minecraft.structure.StructureType;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
+import net.minecraft.util.Holder;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.chunk.VerticalBlockSample;
@@ -48,11 +48,11 @@ public class WeepingWellStructure extends StructureFeature {
 	}
 
 	@Override
-	protected Optional<GenerationStub> findGenerationPos(GenerationContext context) {
+	public Optional<GenerationStub> findGenerationPos(GenerationContext context) {
 		BlockPos blockPos = new BlockPos(context.chunkPos().getStartX(), 0, context.chunkPos().getStartZ());
 		BlockPos validPos = new BlockPos(blockPos.getX(), getValidY(context.chunkGenerator().getColumnSample(blockPos.getX(), blockPos.getZ(), context.world(), context.randomState())), blockPos.getZ());
 		if (validPos.getY() != min - 1 && isSufficientlyFlat(context, validPos, 3)) {
-			return StructurePoolBasedGenerator.m_drsiegyr(context, this.startPool, this.startJigsawName, this.size, validPos.down(-offsetInGround), false, Optional.empty(), this.maxDistanceFromCenter);
+			return StructurePoolBasedGenerator.method_30419(context, this.startPool, this.startJigsawName, this.size, validPos.down(-offsetInGround), false, Optional.empty(), this.maxDistanceFromCenter);
 		}
 		return Optional.empty();
 	}

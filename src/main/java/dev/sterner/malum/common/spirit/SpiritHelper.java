@@ -14,12 +14,12 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.random.RandomGenerator;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -131,7 +131,7 @@ public final class SpiritHelper {
 	}
 
 	public static MalumEntitySpiritData getEntitySpiritData(LivingEntity entity) {
-		Identifier key = Registries.ENTITY_TYPE.getId(entity.getType());
+		Identifier key = Registry.ENTITY_TYPE.getId(entity.getType());
 		if (SpiritDataReloadListener.HAS_NO_DATA.contains(key))
 			return null;
 

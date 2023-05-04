@@ -17,7 +17,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.MathHelper;
-import org.quiltmc.qsl.entity.event.api.LivingEntityDeathCallback;
+import org.quiltmc.qsl.entity_events.api.LivingEntityDeathCallback;
 
 public class MalumEvents {
 	public static void init(){

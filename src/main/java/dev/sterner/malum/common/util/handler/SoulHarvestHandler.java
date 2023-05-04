@@ -1,7 +1,7 @@
 package dev.sterner.malum.common.util.handler;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.sammy.lodestone.setup.LodestoneRenderLayers;
+import com.sammy.lodestone.setup.LodestoneRenderLayerRegistry;
 import com.sammy.lodestone.systems.rendering.VFXBuilders;
 import dev.sterner.malum.Malum;
 import dev.sterner.malum.api.event.EntitySpawnedEvent;
@@ -33,10 +33,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Axis;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.MobSpawnerLogic;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -48,7 +48,7 @@ import java.util.List;
 
 import static com.sammy.lodestone.handlers.RenderHandler.DELAYED_RENDER;
 import static com.sammy.lodestone.helpers.RenderHelper.FULL_BRIGHT;
-import static com.sammy.lodestone.setup.LodestoneRenderLayers.queueUniformChanges;
+import static com.sammy.lodestone.setup.LodestoneRenderLayerRegistry.queueUniformChanges;
 
 public class SoulHarvestHandler {
 	public static void init(){
@@ -231,9 +231,9 @@ public class SoulHarvestHandler {
 
 	public static class ClientOnly {
 		private static final Identifier SOUL_NOISE = Malum.id("textures/vfx/noise/soul_noise.png");
-		private static final RenderLayer SOUL_NOISE_TYPE = LodestoneRenderLayers.RADIAL_NOISE.apply(SOUL_NOISE);
+		private static final RenderLayer SOUL_NOISE_TYPE = LodestoneRenderLayerRegistry.RADIAL_NOISE.apply(SOUL_NOISE);
 		private static final Identifier PREVIEW_NOISE =  Malum.id("textures/vfx/noise/harvest_noise.png");
-		private static final RenderLayer PREVIEW_NOISE_TYPE = LodestoneRenderLayers.RADIAL_SCATTER_NOISE.apply(PREVIEW_NOISE);
+		private static final RenderLayer PREVIEW_NOISE_TYPE = LodestoneRenderLayerRegistry.RADIAL_SCATTER_NOISE.apply(PREVIEW_NOISE);
 
 		@SuppressWarnings("all")
 		public static void addRenderLayer(EntityRenderer<?> render) {
@@ -288,7 +288,7 @@ public class SoulHarvestHandler {
 
 				poseStack.translate(toPlayer.x, toPlayer.y + target.getHeight() / 2f, toPlayer.z);
 				poseStack.multiply(MinecraftClient.getInstance().getEntityRenderDispatcher().camera.getRotation());
-				poseStack.multiply(Axis.Y_POSITIVE.rotationDegrees(180f));
+				poseStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180f));
 
 				//preview
 				VFXBuilders.createWorld().setPosColorTexLightmapDefaultFormat()

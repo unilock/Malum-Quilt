@@ -1,6 +1,6 @@
 package dev.sterner.malum.mixin.client;
 
-import com.sammy.lodestone.helpers.NbtHelper;
+import dev.sterner.malum.Malum;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
 import net.minecraft.client.color.block.BlockColors;
 import net.minecraft.client.color.item.ItemColors;
@@ -18,21 +18,21 @@ public class ItemColorsMixin {
 	private static void malum$create(BlockColors blockColors, CallbackInfoReturnable<ItemColors> cir, ItemColors itemColors) {
 		itemColors.register((stack, tintIndex) -> {
 			if (tintIndex != 0) return -1;
-			return NbtHelper.getOrDefaultInt(nbt -> NbtHelper.getOrThrowInt(nbt.getCompound("display"), "FirstColor"), 15712278, stack.getNbt());
+			return Malum.getOrDefaultInt(nbt -> Malum.getOrThrowInt(nbt.getCompound("display"), "FirstColor"), 15712278, stack.getNbt());
 		}, ETHER, ETHER_TORCH, TAINTED_ETHER_BRAZIER, TWISTED_ETHER_BRAZIER);
 		itemColors.register((stack, tintIndex) -> {
 			if (tintIndex == 1) return -1;
 			if (tintIndex == 0) {
-				return NbtHelper.getOrDefaultInt(nbt -> NbtHelper.getOrThrowInt(nbt.getCompound("display"), "FirstColor"), 15712278, stack.getNbt());
+				return Malum.getOrDefaultInt(nbt -> Malum.getOrThrowInt(nbt.getCompound("display"), "FirstColor"), 15712278, stack.getNbt());
 			}
-			return NbtHelper.getOrDefaultInt(nbt -> NbtHelper.getOrThrowInt(nbt.getCompound("display"), "SecondColor"), 4607909, stack.getNbt());
+			return Malum.getOrDefaultInt(nbt -> Malum.getOrThrowInt(nbt.getCompound("display"), "SecondColor"), 4607909, stack.getNbt());
 		}, IRIDESCENT_ETHER_TORCH, TAINTED_IRIDESCENT_ETHER_BRAZIER, TWISTED_IRIDESCENT_ETHER_BRAZIER);
 		itemColors.register((stack, tintIndex) -> {
 			if (tintIndex == -1) return -1;
 			if (tintIndex == 0) {
-				return NbtHelper.getOrDefaultInt(nbt -> NbtHelper.getOrThrowInt(nbt.getCompound("display"), "FirstColor"), 15712278, stack.getNbt());
+				return Malum.getOrDefaultInt(nbt -> Malum.getOrThrowInt(nbt.getCompound("display"), "FirstColor"), 15712278, stack.getNbt());
 			}
-			return NbtHelper.getOrDefaultInt(nbt -> NbtHelper.getOrThrowInt(nbt.getCompound("display"), "SecondColor"), 4607909, stack.getNbt());
+			return Malum.getOrDefaultInt(nbt -> Malum.getOrThrowInt(nbt.getCompound("display"), "SecondColor"), 4607909, stack.getNbt());
 		}, IRIDESCENT_ETHER);
 		itemColors.register((stack, tintIndex) -> {
 			if (tintIndex != 0) return -1;

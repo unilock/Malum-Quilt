@@ -3,7 +3,7 @@ package dev.sterner.malum.client.render.entity;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.sammy.lodestone.helpers.ColorHelper;
 import com.sammy.lodestone.helpers.EntityHelper;
-import com.sammy.lodestone.setup.LodestoneRenderLayers;
+import com.sammy.lodestone.setup.LodestoneRenderLayerRegistry;
 import com.sammy.lodestone.systems.easing.Easing;
 import com.sammy.lodestone.systems.rendering.VFXBuilders;
 import dev.sterner.malum.Malum;
@@ -18,7 +18,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import org.joml.Vector4f;
+import net.minecraft.util.math.Vector4f;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class EthericNitrateEntityRenderer extends EntityRenderer<EthericNitrateE
 	public final ItemRenderer itemRenderer;
 
 	private static final Identifier LIGHT_TRAIL = Malum.id("textures/vfx/light_trail.png");
-	private static final RenderLayer LIGHT_TYPE = LodestoneRenderLayers.ADDITIVE_TEXTURE_TRIANGLE.apply(LIGHT_TRAIL);
+	private static final RenderLayer LIGHT_TYPE = LodestoneRenderLayerRegistry.ADDITIVE_TEXTURE_TRIANGLE.apply(LIGHT_TRAIL);
 
 	public EthericNitrateEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx);

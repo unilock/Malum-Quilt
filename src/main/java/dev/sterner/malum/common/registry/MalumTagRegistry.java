@@ -4,9 +4,9 @@ import dev.sterner.malum.Malum;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.TagKey;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 public interface MalumTagRegistry {
 	TagKey<Item> SCYTHE = itemMalumTag("scythe");
@@ -37,19 +37,19 @@ public interface MalumTagRegistry {
 	TagKey<EntityType<?>> SURVIVES_REJECTION = entityMalumTag("survives_rejection");
 
 	static TagKey<Block> blockModTag(String path) {
-		return TagKey.of(RegistryKeys.BLOCK, new Identifier(path));
+		return TagKey.of(Registry.BLOCK_KEY, new Identifier(path));
 	}
 
 	static TagKey<Block> blockMalumTag(String path) {
-		return TagKey.of(RegistryKeys.BLOCK, new Identifier(Malum.MODID, path));
+		return TagKey.of(Registry.BLOCK_KEY, new Identifier(Malum.MODID, path));
 	}
 
 	static TagKey<Item> itemMalumTag(String path) {
-		return TagKey.of(RegistryKeys.ITEM, new Identifier(Malum.MODID, path));
+		return TagKey.of(Registry.ITEM_KEY, new Identifier(Malum.MODID, path));
 	}
 
 	static TagKey<EntityType<?>> entityMalumTag(String path) {
-		return TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(Malum.MODID, path));
+		return TagKey.of(Registry.ENTITY_TYPE_KEY, new Identifier(Malum.MODID, path));
 	}
 
 	static void init() {

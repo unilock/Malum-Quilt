@@ -1,12 +1,14 @@
 package dev.sterner.malum.data;
 
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.entity.effect.StatusEffect;
 
 public class MalumLanguageProvider extends FabricLanguageProvider {
-	protected MalumLanguageProvider(FabricDataOutput dataOutput) {
-		super(dataOutput);
+
+
+	public MalumLanguageProvider(FabricDataGenerator dataGenerator) {
+		super(dataGenerator);
 	}
 
 	@Override

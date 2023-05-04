@@ -11,10 +11,9 @@ import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.Axis;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
-import org.joml.Vector3f;
 
 public class SpiritCrucibleBlockEntityRenderer implements BlockEntityRenderer<SpiritCrucibleCoreBlockEntity> {
 	public SpiritCrucibleBlockEntityRenderer(BlockEntityRendererFactory.Context context) {
@@ -31,9 +30,9 @@ public class SpiritCrucibleBlockEntityRenderer implements BlockEntityRenderer<Sp
 				ItemStack item = inventory.getStack(i);
 				if (!item.isEmpty()) {
 					matrices.push();
-					Vector3f offset = new Vector3f(entity.spiritOffset(spiritsRendered++, tickDelta).m_sruzucpd());
-					matrices.translate(offset.x(), offset.y(), offset.z());
-					matrices.multiply(Axis.Y_POSITIVE.rotationDegrees(((world.getTime() % 360) + tickDelta) * 3));
+					Vec3f offset = new Vec3f(entity.spiritOffset(spiritsRendered++, tickDelta));
+					matrices.translate(offset.getX(), offset.getY(), offset.getZ());
+					matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(((world.getTime() % 360) + tickDelta) * 3));
 					matrices.scale(0.5f, 0.5f, 0.5f);
 					itemRenderer.renderItem(item, ModelTransformation.Mode.FIXED, light, OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, 0);
 					matrices.pop();
@@ -45,7 +44,7 @@ public class SpiritCrucibleBlockEntityRenderer implements BlockEntityRenderer<Sp
 			matrices.push();
 			Vec3d offset = entity.itemOffset();
 			matrices.translate(offset.x, offset.y, offset.z);
-			matrices.multiply(Axis.Y_POSITIVE.rotationDegrees(((world.getTime() % 360) + tickDelta) * 3));
+			matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(((world.getTime() % 360) + tickDelta) * 3));
 			matrices.scale(0.45f, 0.45f, 0.45f);
 			itemRenderer.renderItem(stack, ModelTransformation.Mode.FIXED, light, OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, 0);
 			matrices.pop();

@@ -23,8 +23,8 @@ public class MalumBlockEntity extends BlockEntity implements BlockEntityExtensio
 	}
 
 	@Override
-	public NbtCompound toSyncedNbt() {
-		NbtCompound tag = super.toSyncedNbt();
+	public NbtCompound toInitialChunkDataNbt() {
+		NbtCompound tag = super.toInitialChunkDataNbt();
 		this.writeNbt(tag);
 		return tag;
 	}

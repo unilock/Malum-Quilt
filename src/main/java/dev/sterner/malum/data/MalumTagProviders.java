@@ -3,35 +3,34 @@ package dev.sterner.malum.data;
 import dev.sterner.malum.common.item.NodeItem;
 import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.registry.MalumTagRegistry;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.block.*;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Items;
-import net.minecraft.registry.HolderLookup;
-import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.tag.ItemTags;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import java.util.function.Predicate;
 
 import static dev.sterner.malum.common.registry.MalumObjects.*;
 import static dev.sterner.malum.common.registry.MalumTagRegistry.*;
-import static net.minecraft.registry.tag.BlockTags.*;
+import static net.minecraft.tag.BlockTags.*;
 
 public class MalumTagProviders {
 
 	public static class MalumBlockTags extends FabricTagProvider.BlockTagProvider {
-		public MalumBlockTags(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-			super(output, registriesFuture);
+
+		public MalumBlockTags(FabricDataGenerator dataGenerator) {
+			super(dataGenerator);
 		}
 
-
 		@Override
-		protected void configure(HolderLookup.Provider arg) {
+		protected void generateTags() {
 			getOrCreateTagBuilder(SLABS).add(getModBlocks(b -> b instanceof SlabBlock));
 			getOrCreateTagBuilder(STAIRS).add(getModBlocks(b -> b instanceof StairsBlock));
 			getOrCreateTagBuilder(WALLS).add(getModBlocks(b -> b instanceof WallBlock));
@@ -70,8 +69,6 @@ public class MalumTagProviders {
 
 			getOrCreateTagBuilder(MalumTagRegistry.ENDLESS_FLAME);
 			getOrCreateTagBuilder(MalumTagRegistry.GREATER_AERIAL_WHITELIST);
-
-
 		}
 
 		@NotNull
@@ -80,15 +77,18 @@ public class MalumTagProviders {
 			BLOCKS.keySet().stream().filter(predicate).forEach(ret::add);
 			return ret.toArray(new Block[0]);
 		}
+
+
 	}
 
 	public static class MalumItemTags extends FabricTagProvider.ItemTagProvider {
-		public MalumItemTags(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> completableFuture) {
-			super(dataOutput, completableFuture, new MalumTagProviders.MalumBlockTags(dataOutput, completableFuture));
+
+		public MalumItemTags(FabricDataGenerator dataGenerator, @Nullable BlockTagProvider blockTagProvider) {
+			super(dataGenerator, blockTagProvider);
 		}
 
 		@Override
-		protected void configure(HolderLookup.Provider arg) {
+		protected void generateTags() {
 			this.copy(WOOL, ItemTags.WOOL);
 			this.copy(PLANKS, ItemTags.PLANKS);
 			this.copy(STONE_BRICKS, ItemTags.STONE_BRICKS);
@@ -108,7 +108,6 @@ public class MalumTagProviders {
 			this.copy(SLABS, ItemTags.SLABS);
 			this.copy(WALLS, ItemTags.WALLS);
 			this.copy(STAIRS, ItemTags.STAIRS);
-			this.copy(ANVILS, ItemTags.ANVILS);
 			this.copy(LEAVES, ItemTags.LEAVES);
 			this.copy(WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
 			this.copy(TRAPDOORS, ItemTags.TRAPDOORS);
@@ -133,17 +132,17 @@ public class MalumTagProviders {
 
 			getOrCreateTagBuilder(SOUL_HUNTER_WEAPON).add(TYRVING, CRUDE_SCYTHE, SOUL_STAINED_STEEL_SCYTHE, CREATIVE_SCYTHE);
 			getOrCreateTagBuilder(SOUL_HUNTER_WEAPON).add(SOUL_STAINED_STEEL_AXE, SOUL_STAINED_STEEL_PICKAXE, SOUL_STAINED_STEEL_SHOVEL, SOUL_STAINED_STEEL_SWORD, SOUL_STAINED_STEEL_HOE);
-
 		}
 	}
 
 	public static class MalumEntityTypeTags extends FabricTagProvider.EntityTypeTagProvider {
-		public MalumEntityTypeTags(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
-			super(output, completableFuture);
+
+		public MalumEntityTypeTags(FabricDataGenerator dataGenerator) {
+			super(dataGenerator);
 		}
 
 		@Override
-		protected void configure(HolderLookup.Provider arg) {
+		protected void generateTags() {
 			getOrCreateTagBuilder(SURVIVES_REJECTION).add(EntityType.PLAYER);
 		}
 	}

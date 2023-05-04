@@ -2,7 +2,7 @@ package dev.sterner.malum.client.render.entity;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.sammy.lodestone.helpers.ColorHelper;
-import com.sammy.lodestone.setup.LodestoneRenderLayers;
+import com.sammy.lodestone.setup.LodestoneRenderLayerRegistry;
 import com.sammy.lodestone.systems.rendering.VFXBuilders;
 import dev.sterner.malum.Malum;
 import dev.sterner.malum.common.entity.spirit.SoulEntity;
@@ -15,23 +15,23 @@ import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Axis;
+import net.minecraft.util.math.Vec3f;
 
 import java.awt.*;
 
 import static com.sammy.lodestone.handlers.RenderHandler.DELAYED_RENDER;
 import static com.sammy.lodestone.helpers.RenderHelper.FULL_BRIGHT;
-import static com.sammy.lodestone.setup.LodestoneRenderLayers.queueUniformChanges;
+import static com.sammy.lodestone.setup.LodestoneRenderLayerRegistry.queueUniformChanges;
 
 public class SoulEntityRenderer extends EntityRenderer<SoulEntity> {
 	public final ItemRenderer itemRenderer;
 
 	private static final Identifier SOUL_NOISE = Malum.id("textures/vfx/noise/soul_noise.png");
-	private static final RenderLayer SOUL_NOISE_TYPE = LodestoneRenderLayers.RADIAL_NOISE.apply(SOUL_NOISE);
+	private static final RenderLayer SOUL_NOISE_TYPE = LodestoneRenderLayerRegistry.RADIAL_NOISE.apply(SOUL_NOISE);
 	private static final Identifier SECONDARY_SOUL_NOISE = Malum.id("textures/vfx/noise/soul_noise_secondary.png");
-	private static final RenderLayer SECONDARY_SOUL_NOISE_TYPE = LodestoneRenderLayers.RADIAL_SCATTER_NOISE.apply(SECONDARY_SOUL_NOISE);
+	private static final RenderLayer SECONDARY_SOUL_NOISE_TYPE = LodestoneRenderLayerRegistry.RADIAL_SCATTER_NOISE.apply(SECONDARY_SOUL_NOISE);
 	private static final Identifier TRINARY_SOUL_NOISE = Malum.id("textures/vfx/noise/soul_noise_trinary.png");
-	private static final RenderLayer TRINARY_SOUL_NOISE_TYPE = LodestoneRenderLayers.RADIAL_SCATTER_NOISE.apply(TRINARY_SOUL_NOISE);
+	private static final RenderLayer TRINARY_SOUL_NOISE_TYPE = LodestoneRenderLayerRegistry.RADIAL_SCATTER_NOISE.apply(TRINARY_SOUL_NOISE);
 
 
 	public SoulEntityRenderer(EntityRendererFactory.Context ctx) {
@@ -52,7 +52,7 @@ public class SoulEntityRenderer extends EntityRenderer<SoulEntity> {
 
 	public static void renderSoul(MatrixStack matrices, Color color) {
 		matrices.multiply(MinecraftClient.getInstance().getEntityRenderDispatcher().getRotation());
-		matrices.multiply(Axis.Y_POSITIVE.rotationDegrees(180f));
+		matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180f));
 
 		VertexConsumer soulNoise = DELAYED_RENDER.getBuffer(queueUniformChanges(SOUL_NOISE_TYPE,
 				(instance) -> {

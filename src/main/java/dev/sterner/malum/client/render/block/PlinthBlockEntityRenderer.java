@@ -12,8 +12,8 @@ import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.Axis;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
 
 public class PlinthBlockEntityRenderer implements BlockEntityRenderer<PlinthCoreBlockEntity> {
@@ -42,7 +42,7 @@ public class PlinthBlockEntityRenderer implements BlockEntityRenderer<PlinthCore
 				double y = Math.sin(((world.getTime() % 360) + tickDelta) / 20f) * 0.05f;
 				matrices.translate(0, y, 0);
 			}
-			matrices.multiply(Axis.Y_POSITIVE.rotationDegrees(((world.getTime() % 360) + tickDelta) * 3));
+			matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(((world.getTime() % 360) + tickDelta) * 3));
 			matrices.scale(0.45f, 0.45f, 0.45f);
 			itemRenderer.renderItem(stack, ModelTransformation.Mode.FIXED, light, OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, 0);
 			matrices.pop();

@@ -95,6 +95,8 @@ dependencies {
 
 	implementation("com.github.LlamaLad7:MixinExtras:${project.mixin_extras}")
 	include("com.github.LlamaLad7:MixinExtras:${project.mixin_extras}")
+
+	runtimeOnly('org.joml:joml:1.10.4')
 }
 
 processResources {

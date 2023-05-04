@@ -8,8 +8,7 @@ import dev.sterner.malum.common.reaping.ReapingDataReloadListener;
 import dev.sterner.malum.common.registry.*;
 import dev.sterner.malum.common.spirit.SpiritDataReloadListener;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKeys;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.random.RandomGenerator;
@@ -23,6 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Set;
+import java.util.function.Function;
 
 
 /**TODO
@@ -58,24 +58,16 @@ public class Malum implements ModInitializer {
 
 		MalumRiteRegistry.init();
 		MalumTrinketEvents.init();
-		MalumItemGroupEvents.init();
 		MalumEvents.init();
 
 		MalumStructures.init();
 		MalumFeatureRegistry.init();
+		MalumConfiguredFeatureRegistry.init();
 		MalumPlacedFeatureRegistry.init();
 
 		UseItemCallback.EVENT.register(ReboundEnchantment::onRightClickItem);
 		ResourceLoader.get(ResourceType.SERVER_DATA).registerReloader(new SpiritDataReloadListenerFabricImpl());
 		ResourceLoader.get(ResourceType.SERVER_DATA).registerReloader(new ReapingDataReloadListenerFabricImpl());
-
-		RegistryEvents.DYNAMIC_REGISTRY_SETUP.register((ctx) -> {
-			ctx.withRegistries(registries -> {
-				Registry<ConfiguredFeature<?, ?>> configured = registries.get(RegistryKeys.CONFIGURED_FEATURE);
-				MalumConfiguredFeatureRegistry.init(configured);
-				MalumPlacedFeatureRegistry.init(configured, registries);
-			}, Set.of(RegistryKeys.PLACED_FEATURE, RegistryKeys.CONFIGURED_FEATURE));
-		});
 	}
 
 
@@ -95,5 +87,21 @@ public class Malum implements ModInitializer {
 
 	public static Identifier id(String name){
 		return new Identifier(MODID, name);
+	}
+
+	//TODO Add this to Lodestone
+	public static int getOrDefaultInt(Function<NbtCompound, Integer> getter, int defaultValue, NbtCompound nbt) {
+		try {
+			return getter.apply(nbt);
+		} catch (Exception ignored) {
+			return defaultValue;
+		}
+	}
+
+	public static int getOrThrowInt(NbtCompound nbt, String value) {
+		if (!nbt.contains(value)) {
+			throw new NullPointerException();
+		}
+		return nbt.getInt(value);
 	}
 }

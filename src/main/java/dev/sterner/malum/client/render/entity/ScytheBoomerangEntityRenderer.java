@@ -13,7 +13,7 @@ import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Axis;
+import net.minecraft.util.math.Vec3f;
 
 public class ScytheBoomerangEntityRenderer extends EntityRenderer<ScytheBoomerangEntity> {
 	public final ItemRenderer itemRenderer;
@@ -30,9 +30,9 @@ public class ScytheBoomerangEntityRenderer extends EntityRenderer<ScytheBoomeran
 		matrices.push();
 		ItemStack itemstack = entity.getStack();
 		BakedModel model = this.itemRenderer.getHeldItemModel(itemstack, entity.world, null, 1);
-		matrices.multiply(Axis.X_POSITIVE.rotationDegrees(90F));
+		matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(90F));
 		matrices.scale(2f, 2f, 2f);
-		matrices.multiply(Axis.Z_POSITIVE.rotation((entity.age + tickDelta) * 0.9f));
+		matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion((entity.age + tickDelta) * 0.9f));
 		itemRenderer.renderItem(itemstack, itemstack.getItem() instanceof MalumScytheItem ? ModelTransformation.Mode.NONE : ModelTransformation.Mode.FIXED, false, matrices, vertexConsumers, light, OverlayTexture.DEFAULT_UV, model);
 
 		matrices.pop();

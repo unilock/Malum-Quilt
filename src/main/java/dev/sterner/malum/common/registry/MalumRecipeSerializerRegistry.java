@@ -3,9 +3,8 @@ package dev.sterner.malum.common.registry;
 import dev.sterner.malum.common.recipe.*;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
-import net.minecraft.registry.Registry;
+import net.minecraft.util.registry.Registry;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -31,6 +30,6 @@ public interface MalumRecipeSerializerRegistry {
     }
 
     static void init() {
-        RECIPE_SERIALIZER.forEach((id, serializer) -> Registry.register(Registries.RECIPE_SERIALIZER, id, serializer));
+        RECIPE_SERIALIZER.forEach((id, serializer) -> Registry.register(Registry.RECIPE_SERIALIZER, id, serializer));
     }
 }

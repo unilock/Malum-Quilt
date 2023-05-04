@@ -66,12 +66,12 @@ public class BlightedSoilBlock extends Block implements Fertilizable {
         return VoxelShapes.fullCube();
     }
 
-    @Override
-    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
-        return true;
-    }
+	@Override
+	public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+		return true;
+	}
 
-    @Override
+	@Override
     public boolean canGrow(World world, RandomGenerator random, BlockPos pos, BlockState state) {
         return true;
     }

@@ -12,7 +12,7 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
+import net.minecraft.util.registry.Registry;
 
 import java.util.Collection;
 
@@ -29,7 +29,7 @@ public class CurioAlchemicalRing extends TrinketItem implements SpiritCollectAct
 
                 effect.forEach(statusEffectInstance -> {
                     StatusEffect type = statusEffectInstance.getEffectType();
-                    float multiplier = MalumStatusEffectRegistry.ALCHEMICAL_PROFICIENCY_MAP.getOrDefault(Registries.STATUS_EFFECT.getKey(type), 1f);
+                    float multiplier = MalumStatusEffectRegistry.ALCHEMICAL_PROFICIENCY_MAP.getOrDefault(Registry.STATUS_EFFECT.getKey(type), 1f);
                     if (type.isBeneficial()) {
                         EntityHelper.extendEffect(statusEffectInstance, livingEntity, (int) (statusEffectInstance.getDuration()*0.25f*multiplier));
                     }
@@ -45,7 +45,7 @@ public class CurioAlchemicalRing extends TrinketItem implements SpiritCollectAct
     @Override
     public void collect(ItemStack spirit, LivingEntity livingEntity, SlotReference slot, ItemStack trinket, double arcaneResonance) {
         livingEntity.getActiveStatusEffects().forEach((statusEffect, statusEffectInstance) -> {
-            float multiplier = MalumStatusEffectRegistry.ALCHEMICAL_PROFICIENCY_MAP.getOrDefault(Registries.STATUS_EFFECT.getKey(statusEffect), 1f);
+            float multiplier = MalumStatusEffectRegistry.ALCHEMICAL_PROFICIENCY_MAP.getOrDefault(Registry.STATUS_EFFECT.getKey(statusEffect), 1f);
             if (statusEffect.isBeneficial()) {
                 int base = 40 +(int)(arcaneResonance*20);
                 EntityHelper.extendEffect(statusEffectInstance, livingEntity, (int) (base*multiplier), 1200);

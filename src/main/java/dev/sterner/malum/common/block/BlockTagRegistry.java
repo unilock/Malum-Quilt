@@ -2,9 +2,9 @@ package dev.sterner.malum.common.block;
 
 import dev.sterner.malum.Malum;
 import net.minecraft.block.Block;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.TagKey;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 public class BlockTagRegistry {
     public static final TagKey<Block> BLIGHTED_BLOCKS = malumTag("blighted_blocks");
@@ -27,10 +27,10 @@ public class BlockTagRegistry {
 
 
     private static TagKey<Block> modTag(String path) {
-        return TagKey.of(RegistryKeys.BLOCK, new Identifier(path));
+        return TagKey.of(Registry.BLOCK_KEY, new Identifier(path));
     }
 
     private static TagKey<Block> malumTag(String path) {
-        return TagKey.of(RegistryKeys.BLOCK, new Identifier(Malum.MODID, path));
+        return TagKey.of(Registry.BLOCK_KEY, new Identifier(Malum.MODID, path));
     }
 }

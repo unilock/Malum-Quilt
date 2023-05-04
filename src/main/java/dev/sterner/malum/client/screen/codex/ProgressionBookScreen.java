@@ -28,7 +28,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
-import org.joml.Vector4f;
+import net.minecraft.util.math.Vector4f;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;

@@ -13,8 +13,8 @@ import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -142,7 +142,7 @@ public class SpiritRepairRecipe extends ILodestoneRecipe {
 		@Override
 		public SpiritRepairRecipe read(Identifier recipeId, JsonObject json) {
 			if (REPAIRABLE == null) {
-				REPAIRABLE = Registries.ITEM.getEntries().stream().map(Map.Entry::getValue).filter(Item::isDamageable).collect(Collectors.toList());
+				REPAIRABLE = Registry.ITEM.getEntries().stream().map(Map.Entry::getValue).filter(Item::isDamageable).collect(Collectors.toList());
 			}
 			float durabilityPercentage = json.getAsJsonPrimitive("durabilityPercentage").getAsFloat();
 			String itemIdRegex = json.get("itemIdRegex").getAsString();
@@ -150,15 +150,15 @@ public class SpiritRepairRecipe extends ILodestoneRecipe {
 			JsonArray inputsArray = json.getAsJsonArray("inputs");
 			List<Item> inputs = new ArrayList<>();
 			for (JsonElement jsonElement : inputsArray) {
-				Item input = Registries.ITEM.get(new Identifier(jsonElement.getAsString()));
+				Item input = Registry.ITEM.get(new Identifier(jsonElement.getAsString()));
 				if (input == null) {
 					continue;
 				}
 				inputs.add(input);
 			}
 			for (Item item : REPAIRABLE) {
-				if (Registries.ITEM.getId(item).getPath().matches(itemIdRegex)) {
-					if (!modIdRegex.equals("") && !Registries.ITEM.getId(item).getNamespace().matches(modIdRegex)) {
+				if (Registry.ITEM.getId(item).getPath().matches(itemIdRegex)) {
+					if (!modIdRegex.equals("") && !Registry.ITEM.getId(item).getNamespace().matches(modIdRegex)) {
 						continue;
 					}
 					if (item instanceof IRepairOutputOverride repairOutputOverride && repairOutputOverride.ignoreDuringLookup()) {

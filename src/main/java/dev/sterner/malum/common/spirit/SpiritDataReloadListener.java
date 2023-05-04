@@ -6,11 +6,11 @@ import dev.sterner.malum.Malum;
 import dev.sterner.malum.common.recipe.SpiritWithCount;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.registry.Registries;
 import net.minecraft.resource.JsonDataLoader;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.profiler.Profiler;
+import net.minecraft.util.registry.Registry;
 
 import java.util.*;
 
@@ -61,7 +61,7 @@ public class SpiritDataReloadListener extends JsonDataLoader {
 			JsonObject object = entry.getAsJsonObject();
 			String name = object.getAsJsonPrimitive("registry_name").getAsString();
 			Identifier resourceLocation = new Identifier(name);
-			if (!Registries.ENTITY_TYPE.containsId(resourceLocation)) {
+			if (!Registry.ENTITY_TYPE.containsId(resourceLocation)) {
 				continue;
 			}
 			if (!object.has("primary_type")) {

@@ -1,4 +1,5 @@
 {
+  "name": "malum:weeping_well",
   "fallback": "minecraft:empty",
   "elements": [
     {

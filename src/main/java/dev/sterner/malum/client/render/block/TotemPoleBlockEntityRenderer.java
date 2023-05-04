@@ -2,7 +2,7 @@ package dev.sterner.malum.client.render.block;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.sammy.lodestone.handlers.RenderHandler;
-import com.sammy.lodestone.setup.LodestoneRenderLayers;
+import com.sammy.lodestone.setup.LodestoneRenderLayerRegistry;
 import com.sammy.lodestone.systems.rendering.VFXBuilders;
 import dev.sterner.malum.common.blockentity.totem.TotemPoleBlockEntity;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
@@ -16,8 +16,8 @@ import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.Direction;
-import org.joml.Quaternionf;
-import org.joml.Vector3f;
+import net.minecraft.util.math.Quaternion;
+import net.minecraft.util.math.Vec3f;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -45,13 +45,13 @@ public class TotemPoleBlockEntityRenderer implements BlockEntityRenderer<TotemPo
 
 	public void renderQuad(SpriteIdentifier material, Color color, float alpha, Direction direction, MatrixStack matrices) {
 		Sprite sprite = material.getSprite();
-		VertexConsumer consumer = RenderHandler.DELAYED_RENDER.getBuffer(LodestoneRenderLayers.ADDITIVE_BLOCK);
+		VertexConsumer consumer = RenderHandler.DELAYED_RENDER.getBuffer(LodestoneRenderLayerRegistry.ADDITIVE_BLOCK);
 
-		Vector3f[] positions = new Vector3f[]{new Vector3f(0, 0, 2.01f), new Vector3f(2, 0, 2.01f), new Vector3f(2, 2, 2.01f), new Vector3f(0, 2, 2.01f)};
+		Vec3f[] positions = new Vec3f[]{new Vec3f(0, 0, 2.01f), new Vec3f(2, 0, 2.01f), new Vec3f(2, 2, 2.01f), new Vec3f(0, 2, 2.01f)};
 
 		matrices.push();
 		matrices.translate(0.5f, 0.5f, 0.5f);
-		matrices.multiply(new Quaternionf().rotateY(-direction.asRotation()*((float)Math.PI/180F)));
+		matrices.multiply(Vec3f.POSITIVE_Y.getRadialQuaternion(-direction.asRotation()*((float)Math.PI/180F)));
 		matrices.translate(-0.5f, -0.5f, -0.5f);
 		VFXBuilders.createWorld()
 				.setPosColorTexLightmapDefaultFormat()

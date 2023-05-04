@@ -29,10 +29,10 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.item.Item;
-import net.minecraft.registry.Registries;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.registry.Registry;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.client.ClientModInitializer;
 import org.quiltmc.qsl.block.extensions.api.client.BlockRenderLayerMap;
@@ -85,13 +85,13 @@ public class MalumClient implements ClientModInitializer {
 		BuiltinItemRendererRegistry.INSTANCE.register(SPIRIT_JAR.asItem(), new SpiritJarItemRenderer());
 
 		for (Item item : MalumObjects.SCYTHES) {
-			Identifier scytheId = Registries.ITEM.getId(item);
+			Identifier scytheId = Registry.ITEM.getId(item);
 			ScytheItemRenderer scytheItemRenderer = new ScytheItemRenderer(scytheId);
 			ResourceLoader.get(ResourceType.CLIENT_RESOURCES).registerReloader(scytheItemRenderer);
 			BuiltinItemRendererRegistry.INSTANCE.register(item, scytheItemRenderer);
 			ModelLoadingRegistry.INSTANCE.registerModelProvider((manager, out) -> {
-				out.accept(new ModelIdentifier(scytheId.withPath(scytheId.getPath() + "_gui"), "inventory"));
-				out.accept(new ModelIdentifier(scytheId.withPath(scytheId.getPath() + "_handheld"), "inventory"));
+				out.accept(new ModelIdentifier(scytheId + "_gui", "inventory"));
+				out.accept(new ModelIdentifier(scytheId + "_handheld", "inventory"));
 			});
 		}
 

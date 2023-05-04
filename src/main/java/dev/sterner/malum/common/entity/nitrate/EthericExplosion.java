@@ -30,7 +30,7 @@ public class EthericExplosion extends Explosion {
 
     @Override
     public DamageSource getDamageSource() {
-        if (getEntity() != null) {
+        if (getCausingEntity() != null) {
             return MalumDamageSourceRegistry.SOUL_STRIKE;
         }
         return MalumDamageSourceRegistry.causeVoodooDamage(getDamageSource().getSource());

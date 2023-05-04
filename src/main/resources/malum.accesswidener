@@ -24,7 +24,6 @@ accessible field net/minecraft/item/ArmorItem attributeModifiers Lcom/google/com
 accessible	class	net/minecraft/client/render/RenderLayer$MultiPhase
 accessible	class	net/minecraft/block/entity/BlockEntityType$BlockEntityFactory
 accessible	class	net/minecraft/client/particle/ParticleManager$SimpleSpriteProvider
-accessible	class	net/minecraft/registry/Registries$RegistryBootstrap
 accessible	class	net/minecraft/network/NetworkState$PacketHandler
 accessible	field	net/minecraft/client/gl/ShaderEffect	passes	Ljava/util/List;
 accessible	field	net/minecraft/client/render/RenderPhase	name	Ljava/lang/String;
@@ -78,26 +77,20 @@ accessible	method	net/minecraft/block/TallPlantBlock	onBreakInCreative	(Lnet/min
 accessible	method	net/minecraft/entity/effect/StatusEffect	<init>	(Lnet/minecraft/entity/effect/StatusEffectType;I)V
 accessible	method	net/minecraft/util/hit/BlockHitResult	<init>	(ZLnet/minecraft/util/math/Vec3d;Lnet/minecraft/util/math/Direction;Lnet/minecraft/util/math/BlockPos;Z)V
 accessible	method	net/minecraft/recipe/Ingredient	ofEntries	(Ljava/util/stream/Stream;)Lnet/minecraft/recipe/Ingredient;
-accessible	method	net/minecraft/recipe/Ingredient$TagEntry	<init>	(Lnet/minecraft/registry/tag/TagKey;)V
 accessible	method	net/minecraft/recipe/Ingredient$StackEntry	<init>	(Lnet/minecraft/item/ItemStack;)V
 accessible	method	net/minecraft/item/ItemStack	<init>	(Lnet/minecraft/item/ItemConvertible;ILjava/util/Optional;)V
 
 accessible method com/mojang/blaze3d/vertex/BufferBuilder isBuilding ()Z
-accessible method net/minecraft/registry/Registries registerSimple (Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/registry/Registries$RegistryBootstrap;)Lnet/minecraft/registry/Registry;
-accessible class net/minecraft/registry/Registries$RegistryBootstrap
 accessible class net/minecraft/particle/DefaultParticleType
 extendable class net/minecraft/enchantment/EnchantmentTarget
-accessible class net/minecraft/recipe/Ingredient$TagEntry
 accessible method net/minecraft/world/gen/trunk/TrunkPlacerType     <init> (Lcom/mojang/serialization/Codec;)V
 accessible method net/minecraft/world/gen/foliage/FoliagePlacerType <init> (Lcom/mojang/serialization/Codec;)V
 extendable class net/minecraft/world/gen/foliage/FoliagePlacer$TreeNode
-accessible method net/minecraft/registry/Registries registerSimple (Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/registry/Registries$RegistryBootstrap;)Lnet/minecraft/registry/Registry;
 accessible method net/minecraft/entity/attribute/EntityAttributeInstance onUpdate ()V
 accessible field net/minecraft/entity/mob/MobEntity goalSelector Lnet/minecraft/entity/ai/goal/GoalSelector;
 accessible method net/minecraft/client/render/entity/LivingEntityRenderer addFeature (Lnet/minecraft/client/render/entity/feature/FeatureRenderer;)Z
 
 accessible      class     net/minecraft/recipe/Ingredient$Entry
-accessible      class     net/minecraft/recipe/Ingredient$TagEntry
 accessible      class     net/minecraft/recipe/Ingredient$StackEntry
 accessible field net/minecraft/block/AbstractBlock$AbstractBlockState shapeCache Lnet/minecraft/block/AbstractBlock$AbstractBlockState$ShapeCache;
 accessible method net/minecraft/block/AbstractBlock$AbstractBlockState isSideSolid (Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Direction;Lnet/minecraft/block/SideShapeType;)Z

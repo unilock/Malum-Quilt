@@ -30,7 +30,7 @@ import java.util.Map;
 
 import static dev.sterner.malum.common.world.gen.feature.RunewoodTreeFeature.canPlace;
 import static dev.sterner.malum.common.world.gen.feature.RunewoodTreeFeature.updateLeaves;
-import static net.minecraft.registry.tag.BlockTags.*;
+import static net.minecraft.tag.BlockTags.*;
 
 public class SoulwoodTreeFeature extends Feature<DefaultFeatureConfig> {
     private static final OctaveSimplexNoiseSampler BLIGHT_NOISE = new OctaveSimplexNoiseSampler(new ChunkRandom(new LegacySimpleRandom(1234L)), ImmutableList.of(0));

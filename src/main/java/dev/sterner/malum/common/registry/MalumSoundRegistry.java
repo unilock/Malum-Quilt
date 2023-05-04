@@ -1,12 +1,11 @@
 package dev.sterner.malum.common.registry;
 
 import dev.sterner.malum.Malum;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -331,13 +330,13 @@ public interface MalumSoundRegistry {
 
 	static SoundEvent register(String name) {
 		Identifier id = new Identifier(Malum.MODID, name);
-		SoundEvent soundEvent = SoundEvent.createVariableRangeEvent(id);
+		SoundEvent soundEvent = new SoundEvent(id);
 		SOUND_EVENTS.put(id, soundEvent);
 		return soundEvent;
 	}
 
 
 	static void init() {
-		SOUND_EVENTS.forEach((id, sound) -> Registry.register(Registries.SOUND_EVENT, id, sound));
+		SOUND_EVENTS.forEach((id, sound) -> Registry.register(Registry.SOUND_EVENT, id, sound));
 	}
 }

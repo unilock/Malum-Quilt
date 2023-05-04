@@ -1,7 +1,6 @@
 package dev.sterner.malum.common.blockentity;
 
 import com.sammy.lodestone.helpers.ColorHelper;
-import com.sammy.lodestone.helpers.NbtHelper;
 import com.sammy.lodestone.setup.LodestoneParticleRegistry;
 import com.sammy.lodestone.systems.blockentity.LodestoneBlockEntity;
 import com.sammy.lodestone.systems.easing.Easing;
@@ -10,6 +9,7 @@ import com.sammy.lodestone.systems.particle.WorldParticleBuilder;
 import com.sammy.lodestone.systems.particle.data.ColorParticleData;
 import com.sammy.lodestone.systems.particle.data.GenericParticleData;
 import com.sammy.lodestone.systems.particle.data.SpinParticleData;
+import dev.sterner.malum.Malum;
 import dev.sterner.malum.common.block.ether.EtherBrazierBlock;
 import dev.sterner.malum.common.block.ether.EtherTorchBlock;
 import dev.sterner.malum.common.block.ether.EtherWallTorchBlock;
@@ -57,18 +57,18 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
         nbt.putInt("SecondColor", secondColorRGB);
     }
 
-    @Override
-    public NbtCompound toSyncedNbt() {
-        NbtCompound tag = super.toSyncedNbt();
+	@Override
+    public NbtCompound toInitialChunkDataNbt() {
+        NbtCompound tag = super.toInitialChunkDataNbt();
         this.writeNbt(tag);
         return tag;
     }
 
 
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        firstColorRGB = NbtHelper.getOrDefaultInt(nbt -> nbt.getCompound("display").getInt("FirstColor"), 15712278, itemStack.getNbt());
+        firstColorRGB = Malum.getOrDefaultInt(nbt -> nbt.getCompound("display").getInt("FirstColor"), 15712278, itemStack.getNbt());
         this.firstColor = new Color(firstColorRGB);
-        secondColorRGB = NbtHelper.getOrDefaultInt(nbt -> nbt.getCompound("display").getInt("SecondColor"), 4607909, itemStack.getNbt());
+        secondColorRGB = Malum.getOrDefaultInt(nbt -> nbt.getCompound("display").getInt("SecondColor"), 4607909, itemStack.getNbt());
         this.secondColor = new Color(secondColorRGB);
     }
 

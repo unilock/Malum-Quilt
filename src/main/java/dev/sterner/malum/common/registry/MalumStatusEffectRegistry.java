@@ -2,9 +2,8 @@ package dev.sterner.malum.common.registry;
 
 import dev.sterner.malum.common.statuseffect.*;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -43,6 +42,6 @@ public interface MalumStatusEffectRegistry {
 	}
 
 	static void init() {
-		STATUS_EFFECTS.forEach((id, effect) -> Registry.register(Registries.STATUS_EFFECT, id, effect));
+		STATUS_EFFECTS.forEach((id, effect) -> Registry.register(Registry.STATUS_EFFECT, id, effect));
 	}
 }

@@ -3,7 +3,7 @@ package dev.sterner.malum.data;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
 import com.mojang.datafixers.util.Pair;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
 import net.minecraft.block.Blocks;
@@ -44,15 +44,15 @@ public class MalumLootTableProviders {
 
 		private final List<Pair<Supplier<Consumer<BiConsumer<Identifier, LootTable.Builder>>>, LootContextType>> tables = new ArrayList<>();
 
-		public BlockLoot(FabricDataOutput dataOutput) {
-			super(dataOutput);
+		public BlockLoot(FabricDataGenerator dataGenerator) {
+			super(dataGenerator);
 		}
+
 
 		@Override
-		public void generate() {
+		protected void generateBlockLootTables() {
 
 		}
-
 
 		@Override
 		public void accept(BiConsumer<Identifier, LootTable.Builder> identifierBuilderBiConsumer) {
@@ -63,9 +63,10 @@ public class MalumLootTableProviders {
 	public static class EntityLoot extends SimpleFabricLootTableProvider {
 		private final Map<Identifier, LootTable.Builder> loot = Maps.newHashMap();
 
-		public EntityLoot(FabricDataOutput output) {
-			super(output, LootContextTypes.ENTITY);
+		public EntityLoot(FabricDataGenerator dataGenerator, LootContextType lootContextType) {
+			super(dataGenerator, lootContextType);
 		}
+
 
 		protected void generateLoot() {
 

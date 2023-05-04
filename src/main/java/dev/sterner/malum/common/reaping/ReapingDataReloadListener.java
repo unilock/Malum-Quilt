@@ -3,11 +3,11 @@ package dev.sterner.malum.common.reaping;
 import com.google.gson.*;
 import dev.sterner.malum.Malum;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.registry.Registries;
 import net.minecraft.resource.JsonDataLoader;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.profiler.Profiler;
+import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +29,7 @@ public class ReapingDataReloadListener extends JsonDataLoader {
 			JsonObject object = objectIn.get(location).getAsJsonObject();
 			String name = object.getAsJsonPrimitive("registry_name").getAsString();
 			Identifier resourceLocation = new Identifier(name);
-			if (!Registries.ENTITY_TYPE.containsId(resourceLocation)) {
+			if (!Registry.ENTITY_TYPE.containsId(resourceLocation)) {
 				continue;
 			}
 			if (REAPING_DATA.containsKey(resourceLocation)) {

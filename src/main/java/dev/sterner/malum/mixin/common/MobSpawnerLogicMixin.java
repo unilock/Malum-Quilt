@@ -22,7 +22,7 @@ import java.util.Optional;
 public class MobSpawnerLogicMixin {
 
 	@Inject(method = "serverTick",at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/MobEntity;initialize(Lnet/minecraft/world/ServerWorldAccess;Lnet/minecraft/world/LocalDifficulty;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/EntityData;Lnet/minecraft/nbt/NbtCompound;)Lnet/minecraft/entity/EntityData;"), locals = LocalCapture.CAPTURE_FAILEXCEPTION)
-	public void serverTick(ServerWorld world, BlockPos pos, CallbackInfo ci, boolean bl, RandomGenerator randomGenerator, MobSpawnerEntry mobSpawnerEntry, int i, NbtCompound nbtCompound, Optional optional, NbtList nbtList, int j, double d, double e, double f, BlockPos blockPos, Entity entity) {
+	public void serverTick(ServerWorld world, BlockPos pos, CallbackInfo ci, boolean bl, int i, NbtCompound nbtCompound, Optional optional, NbtList nbtList, int j, RandomGenerator randomGenerator, double d, double e, double f, BlockPos blockPos, Entity entity) {
 		EntitySpawnedEvent.EVENT.invoker().onEntitySpawned(entity, world, (float)entity.getX(), (float)entity.getY(), (float)entity.getZ(), (MobSpawnerLogic) (Object) this, SpawnReason.SPAWNER);
 	}
 }
