@@ -1,9 +1,8 @@
 package dev.sterner.malum.common.blockentity;
 
-import com.sammy.lodestone.forge.BlockEntityExtensions;
+import com.sammy.lodestone.systems.blockentity.LodestoneBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -12,7 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class MalumBlockEntity extends BlockEntity implements BlockEntityExtensions {
+public class MalumBlockEntity extends LodestoneBlockEntity {
 	public boolean needsSync;
 	public MalumBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
 		super(type, pos, state);

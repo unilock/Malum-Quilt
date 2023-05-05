@@ -54,6 +54,8 @@ repositories {
 		name = "Reach Entity Attributes"
 		url = "https://maven.jamieswhiteshirt.com/libs-release"
 	}
+	maven { url = "https://mvn.devos.one/releases/" }
+	maven { url = "https://mvn.devos.one/snapshots/" }
 	mavenCentral()
 }
 
@@ -97,6 +99,7 @@ dependencies {
 	include("com.github.LlamaLad7:MixinExtras:${project.mixin_extras}")
 
 	runtimeOnly('org.joml:joml:1.10.4')
+	modImplementation include("io.github.fabricators_of_create.Porting-Lib:Porting-Lib:${project.port_lib_version}+${project.minecraft_version}")
 }
 
 processResources {

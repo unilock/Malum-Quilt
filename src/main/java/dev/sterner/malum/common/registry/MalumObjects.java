@@ -135,7 +135,7 @@ public interface MalumObjects {
 	Item GRIM_TALC = register("grim_talc", new Item(settings().group(MalumItemGroupEvents.MALUM)));
 	Item ALCHEMICAL_CALX = register("alchemical_calx", new Item(settings().group(MalumItemGroupEvents.MALUM)));
 	Item ASTRAL_WEAVE = register("astral_weave", new Item(settings().group(MalumItemGroupEvents.MALUM)));
-	Item RARE_EARTHS = register("rare_earths", new Item(settings().group(MalumItemGroupEvents.MALUM)));
+	Item RARE_EARTHS = register("rare_earths", new Item(settings()));
 	Item HEX_ASH = register("hex_ash", new Item(settings().group(MalumItemGroupEvents.MALUM)));
 	Item CTHONIC_GOLD = register("cthonic_gold", new Item(settings().group(MalumItemGroupEvents.MALUM)));
 
@@ -241,20 +241,20 @@ public interface MalumObjects {
 	Item BELT_OF_THE_PROSPECTOR = register("belt_of_the_prospector", new CurioProspectorBelt(settings().group(MalumItemGroupEvents.MALUM)));
 	Item BELT_OF_THE_MAGEBANE = register("belt_of_the_magebane", new CurioMagebaneBelt(settings().group(MalumItemGroupEvents.MALUM)));
 
-	Item ESOTERIC_SPOOL = register("esoteric_spool", new Item(settings().group(MalumItemGroupEvents.MALUM)));
-	Item ANCIENT_WEAVE = register("ancient_weave", new AncientWeaveItem(settings().group(MalumItemGroupEvents.MALUM)));
+	Item ESOTERIC_SPOOL = register("esoteric_spool", new Item(settings()));
+	Item ANCIENT_WEAVE = register("ancient_weave", new AncientWeaveItem(settings()));
 
 	Item CREATIVE_SCYTHE = register("creative_scythe", new MagicScytheItem(ToolMaterials.IRON, 9993, 9.1f, 999f, settings().maxDamage(-1)));
-	Item TOKEN_OF_GRATITUDE = register("token_of_gratitude", new CurioTokenOfGratitude(settings().group(MalumItemGroupEvents.MALUM)));
+	Item TOKEN_OF_GRATITUDE = register("token_of_gratitude", new CurioTokenOfGratitude(settings()));
 
 	//BLOCKS
 
 	Block SPIRIT_ALTAR = register("spirit_altar", new SpiritAltarBlock<>(RUNEWOOD_PROPERTIES().nonOpaque()), MalumItemGroupEvents.MALUM, true);
 	Block SPIRIT_JAR = registerJar("spirit_jar", new SpiritJarBlock<>(SPIRIT_JAR_PROPERTIES().nonOpaque()), true);
-	Block ALTERATION_PLINTH = register("alteration_plinth", new AlterationPlinthBlock<>(SOULWOOD_PROPERTIES().nonOpaque()), MalumItemGroupEvents.MALUM, true);
+	Block ALTERATION_PLINTH = register("alteration_plinth", new AlterationPlinthBlock<>(SOULWOOD_PROPERTIES().nonOpaque()), true);
 
 	Block SOUL_VIAL = registerVial("soul_vial", new SoulVialBlock<>(SOUL_VIAL_PROPERTIES().nonOpaque()), true);
-	Block EMITTER_MIRROR = register("emitter_mirror", new EmitterMirrorBlock<>(HALLOWED_GOLD_PROPERTIES().nonOpaque()), MalumItemGroupEvents.MALUM, true);
+	Block EMITTER_MIRROR = register("emitter_mirror", new EmitterMirrorBlock<>(HALLOWED_GOLD_PROPERTIES().nonOpaque()), true);
 
 	Block MOTE_OF_MANA = register("mote_of_mana", new Block(TAINTED_ROCK_PROPERTIES().nonOpaque()), true);
 
@@ -272,8 +272,8 @@ public interface MalumObjects {
 	Block SPIRIT_CATALYZER = registerMultiBlock("spirit_catalyzer", new SpiritCatalyzerCoreBlock<>(TAINTED_ROCK_PROPERTIES().nonOpaque()), SpiritCatalyzerCoreBlockEntity.STRUCTURE, true);
 	Block SPIRIT_CATALYZER_COMPONENT = register("spirit_catalyzer_component", new SpiritCatalyzerComponentBlock(TAINTED_ROCK_PROPERTIES().nonOpaque(), Items.AIR), MalumItemGroupEvents.MALUM, false);
 
-	Block SOULWOOD_PLINTH = registerMultiBlock("soulwood_plinth", new PlinthCoreBlock<>(SOULWOOD_PROPERTIES().nonOpaque()), PlinthCoreBlockEntity.STRUCTURE, true);
-	Block SOULWOOD_PLINTH_COMPONENT = register("soulwood_plinth_component", new PlinthComponentBlock(SOULWOOD_PROPERTIES().nonOpaque()), MalumItemGroupEvents.MALUM, false);
+	Block SOULWOOD_PLINTH = registerMultiBlock("soulwood_plinth", new PlinthCoreBlock<>(SOULWOOD_PROPERTIES().nonOpaque()), null, PlinthCoreBlockEntity.STRUCTURE, true);
+	Block SOULWOOD_PLINTH_COMPONENT = register("soulwood_plinth_component", new PlinthComponentBlock(SOULWOOD_PROPERTIES().nonOpaque()), false);
 
 	Block SOULWOOD_FUSION_PLATE = registerMultiBlock("soulwood_fusion_plate", new FusionPlateCoreBlock<>(SOULWOOD_PROPERTIES().nonOpaque()),null,  FusionPlateBlockEntity.STRUCTURE, true);
 	Block SOULWOOD_FUSION_PLATE_COMPONENT = register("soulwood_fusion_plate_component", new FusionPlateComponentBlock(SOULWOOD_PROPERTIES().nonOpaque(), Items.AIR), false);
@@ -536,16 +536,16 @@ public interface MalumObjects {
 
 	Block NATURAL_QUARTZ_ORE = register("natural_quartz_ore", new ExperienceDroppingBlock(NATURAL_QUARTZ_PROPERTIES(), UniformIntProvider.create(1, 4)), MalumItemGroupEvents.MALUM,true);
 	Block DEEPSLATE_QUARTZ_ORE = register("deepslate_quartz_ore", new ExperienceDroppingBlock(DEEPSLATE_QUARTZ_PROPERTIES(), UniformIntProvider.create(2, 5)), MalumItemGroupEvents.MALUM,true);
-	Block NATURAL_QUARTZ_CLUSTER = register("natural_quartz_cluster", new AmethystClusterBlock(7, 3, NATURAL_QUARTZ_CLUSTER_PROPERTIES().nonOpaque().ticksRandomly().strength(1.5F).luminance(state -> 5)), MalumItemGroupEvents.MALUM,true);
+	Block NATURAL_QUARTZ_CLUSTER = register("natural_quartz_cluster", new AmethystClusterBlock(7, 3, NATURAL_QUARTZ_CLUSTER_PROPERTIES().ticksRandomly().strength(1.5F).luminance(state -> 5)), MalumItemGroupEvents.MALUM,false);
 	Item NATURAL_QUARTZ = register("natural_quartz", new AliasedBlockItem(NATURAL_QUARTZ_CLUSTER, settings().group(MalumItemGroupEvents.MALUM)));
 
-	Block NATURAL_QUARTZ_CLUSTER_BLOCK = register("natural_quartz_cluster_block", new NaturalQuartzBlock(NATURAL_QUARTZ_CLUSTER_PROPERTIES().nonOpaque()), MalumItemGroupEvents.MALUM, true);
+	Block NATURAL_QUARTZ_CLUSTER_BLOCK = register("natural_quartz_cluster_block", new NaturalQuartzBlock(NATURAL_QUARTZ_CLUSTER_PROPERTIES()), MalumItemGroupEvents.MALUM, true);
 	Block LARGE_QUARTZ_BUD = register("large_quartz_bud", new AmethystClusterBlock(5, 3, AbstractBlock.Settings.copy(NATURAL_QUARTZ_CLUSTER).luminance(state -> 4)), MalumItemGroupEvents.MALUM, false);
 	Block MEDIUM_QUARTZ_BUD = register("medium_quartz_bud", new AmethystClusterBlock(4, 3, AbstractBlock.Settings.copy(NATURAL_QUARTZ_CLUSTER).luminance(state -> 2)), MalumItemGroupEvents.MALUM, false);
 	Block SMALL_QUARTZ_BUD = register("small_quartz_bud", new AmethystClusterBlock(3, 4, AbstractBlock.Settings.copy(NATURAL_QUARTZ_CLUSTER).luminance(state -> 1)), MalumItemGroupEvents.MALUM, false);
-	Block BUDDING_NATURAL_QUARTZ = register("budding_natural_quartz_cluster_block", new BuddingNaturalQuartzBlock( NATURAL_QUARTZ_CLUSTER_PROPERTIES().nonOpaque().ticksRandomly()), MalumItemGroupEvents.MALUM, true);
+	Block BUDDING_NATURAL_QUARTZ = register("budding_natural_quartz_cluster_block", new BuddingNaturalQuartzBlock( NATURAL_QUARTZ_CLUSTER_PROPERTIES().ticksRandomly()), MalumItemGroupEvents.MALUM, true);
 
-	Block BLOCK_OF_RARE_EARTHS = register("block_of_rare_earths", new ExperienceDroppingBlock(RARE_EARTH_PROPERTIES(), UniformIntProvider.create(10, 100)), MalumItemGroupEvents.MALUM,true);
+	Block BLOCK_OF_RARE_EARTHS = register("block_of_rare_earths", new ExperienceDroppingBlock(RARE_EARTH_PROPERTIES(), UniformIntProvider.create(10, 100)),true);
 
 	Block BRILLIANT_STONE = register("brilliant_stone", new ExperienceDroppingBlock(BRILLIANCE_PROPERTIES(), UniformIntProvider.create(14, 18)), MalumItemGroupEvents.MALUM,true);
 	Block BRILLIANT_DEEPSLATE = register("brilliant_deepslate", new ExperienceDroppingBlock(DEEPSLATE_BRILLIANCE_PROPERTIES(), UniformIntProvider.create(16, 26)), MalumItemGroupEvents.MALUM,true);
@@ -612,7 +612,7 @@ public interface MalumObjects {
 	static <T extends Block> T registerVial(String name, T block, boolean createItem) {
 		BLOCKS.put(block, new Identifier(Malum.MODID, name));
 		if (createItem) {
-			ITEMS.put(new SoulVialItem(block, settings().group(MalumItemGroupEvents.MALUM)), BLOCKS.get(block));
+			ITEMS.put(new SoulVialItem(block, settings()), BLOCKS.get(block));
 		}
 		return block;
 	}
