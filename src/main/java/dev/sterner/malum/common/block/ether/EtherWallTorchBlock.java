@@ -52,11 +52,6 @@ public class EtherWallTorchBlock<T extends EtherBlockEntity> extends EtherBlock<
     }
 
     @Override
-    public String getTranslationKey() {
-        return this.asItem().getTranslationKey();
-    }
-
-    @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         Direction direction = state.get(FACING);
         BlockPos blockPos = pos.offset(direction.getOpposite());
