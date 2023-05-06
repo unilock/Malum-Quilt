@@ -30,7 +30,8 @@
 			"cardinal-components-entity": "dev.sterner.malum.common.component.MalumComponents",
 			"cardinal-components-world": "dev.sterner.malum.common.component.MalumComponents",
 			"mm:early_risers": "dev.sterner.malum.MalumEarlyRiser",
-			"fabric-datagen" : "dev.sterner.malum.data.MalumDatagen"
+			"fabric-datagen" : "dev.sterner.malum.data.MalumDatagen",
+			"emi": "dev.sterner.malum.compat.emi.EMIPlugin"
 		},
 		"depends": [
 			{
