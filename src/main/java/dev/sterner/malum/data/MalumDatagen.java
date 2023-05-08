@@ -7,9 +7,9 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 public class MalumDatagen implements DataGeneratorEntrypoint {
 	@Override
 	public void onInitializeDataGenerator(FabricDataGenerator dataGenerator) {
-
-		dataGenerator.addProvider(MalumTagProviders.MalumBlockTags::new);
-		//dataGenerator.addProvider(MalumTagProviders.MalumItemTags::new);
+		MalumTagProviders.MalumBlockTags blockTagsProvider = new MalumTagProviders.MalumBlockTags(dataGenerator);
+		dataGenerator.addProvider(blockTagsProvider);
+		dataGenerator.addProvider((p) -> new MalumTagProviders.MalumItemTags(p, blockTagsProvider));
 		dataGenerator.addProvider(MalumTagProviders.MalumEntityTypeTags::new);
 
 		//TODO pack.addProvider(MalumLanguageProvider::new);

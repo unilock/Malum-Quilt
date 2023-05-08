@@ -1,20 +1,26 @@
 package dev.sterner.malum.data;
 
+import dev.sterner.malum.Malum;
 import dev.sterner.malum.common.item.NodeItem;
-import dev.sterner.malum.common.registry.MalumObjects;
-import dev.sterner.malum.common.registry.MalumTagRegistry;
+import dev.sterner.malum.common.registry.MalumBlockProperties;
+import me.alphamode.forgetags.Tags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Items;
 import net.minecraft.tag.ItemTags;
+import net.minecraft.tag.TagKey;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import static dev.sterner.malum.common.registry.MalumObjects.*;
@@ -24,6 +30,7 @@ import static net.minecraft.tag.BlockTags.*;
 public class MalumTagProviders {
 
 	public static class MalumBlockTags extends FabricTagProvider.BlockTagProvider {
+		public static final Map<MalumBlockProperties.BlockSettings, MalumDatagenBlockData> CACHE = new HashMap<>();
 
 		public MalumBlockTags(FabricDataGenerator dataGenerator) {
 			super(dataGenerator);
@@ -31,44 +38,17 @@ public class MalumTagProviders {
 
 		@Override
 		protected void generateTags() {
-			getOrCreateTagBuilder(SLABS).add(getModBlocks(b -> b instanceof SlabBlock));
-			getOrCreateTagBuilder(STAIRS).add(getModBlocks(b -> b instanceof StairsBlock));
-			getOrCreateTagBuilder(WALLS).add(getModBlocks(b -> b instanceof WallBlock));
-			getOrCreateTagBuilder(FENCES).add(getModBlocks(b -> b instanceof FenceBlock));
-			getOrCreateTagBuilder(FENCE_GATES).add(getModBlocks(b -> b instanceof FenceGateBlock));
-			getOrCreateTagBuilder(LEAVES).add(getModBlocks(b -> b instanceof LeavesBlock));
-
-			getOrCreateTagBuilder(DOORS).add(getModBlocks(b -> b instanceof DoorBlock));
-			getOrCreateTagBuilder(TRAPDOORS).add(getModBlocks(b -> b instanceof TrapdoorBlock));
-			getOrCreateTagBuilder(BUTTONS).add(getModBlocks(b -> b instanceof AbstractButtonBlock));
-			getOrCreateTagBuilder(PRESSURE_PLATES).add(getModBlocks(b -> b instanceof PressurePlateBlock));
-			getOrCreateTagBuilder(DIRT).add(getModBlocks(b -> b instanceof GrassBlock || b instanceof FarmlandBlock));
-			getOrCreateTagBuilder(SAPLINGS).add(getModBlocks(b -> b instanceof SaplingBlock));
-
-			getOrCreateTagBuilder(LOGS).add(getModBlocks(b -> b.getBuiltInRegistryHolder().getRegistryKey().getValue().getPath().endsWith("_log") || b.getBuiltInRegistryHolder().getRegistryKey().getValue().getPath().endsWith("wood")));
-			getOrCreateTagBuilder(PLANKS).add(getModBlocks(b -> b.getBuiltInRegistryHolder().getRegistryKey().getValue().getPath().endsWith("_planks")));
-			getOrCreateTagBuilder(WOODEN_BUTTONS).add(getModBlocks(b -> b.getBuiltInRegistryHolder().getRegistryKey().getValue().getPath().endsWith("_button") && b.getBuiltInRegistryHolder().getRegistryKey().getValue().getPath().contains("wood")));
-			getOrCreateTagBuilder(WOODEN_FENCES).add(getModBlocks(b -> b.getBuiltInRegistryHolder().getRegistryKey().getValue().getPath().endsWith("_fence") && b.getBuiltInRegistryHolder().getRegistryKey().getValue().getPath().contains("wood")));
-			getOrCreateTagBuilder(WOODEN_DOORS).add(getModBlocks(b -> b.getBuiltInRegistryHolder().getRegistryKey().getValue().getPath().endsWith("_door") && b.getBuiltInRegistryHolder().getRegistryKey().getValue().getPath().contains("wood")));
-			getOrCreateTagBuilder(WOODEN_STAIRS).add(getModBlocks(b -> b.getBuiltInRegistryHolder().getRegistryKey().getValue().getPath().endsWith("_stairs") && b.getBuiltInRegistryHolder().getRegistryKey().getValue().getPath().contains("wood")));
-			getOrCreateTagBuilder(WOODEN_SLABS).add(getModBlocks(b -> b.getBuiltInRegistryHolder().getRegistryKey().getValue().getPath().endsWith("_slab") && b.getBuiltInRegistryHolder().getRegistryKey().getValue().getPath().contains("wood")));
-			getOrCreateTagBuilder(WOODEN_TRAPDOORS).add(getModBlocks(b -> b.getBuiltInRegistryHolder().getRegistryKey().getValue().getPath().endsWith("_trapdoor") && b.getBuiltInRegistryHolder().getRegistryKey().getValue().getPath().contains("wood")));
-			getOrCreateTagBuilder(WOODEN_PRESSURE_PLATES).add(getModBlocks(b -> b.getBuiltInRegistryHolder().getRegistryKey().getValue().getPath().endsWith("_pressure_plate") && b.getBuiltInRegistryHolder().getRegistryKey().getValue().getPath().contains("wood")));
-
-			getOrCreateTagBuilder(MalumTagRegistry.BLIGHTED_BLOCKS).add(BLIGHTED_SOIL);
-			getOrCreateTagBuilder(MalumTagRegistry.BLIGHTED_PLANTS).add(BLIGHTED_WEED, BLIGHTED_TUMOR, SOULWOOD_GROWTH);
-
-			for (Block block : getModBlocks(b -> b.getBuiltInRegistryHolder().getRegistryKey().getValue().getPath().contains("tainted_"))) {
-				getOrCreateTagBuilder(MalumTagRegistry.TAINTED_ROCK).add(block);
-			}
-			for (Block block : getModBlocks(b -> b.getBuiltInRegistryHolder().getRegistryKey().getValue().getPath().contains("twisted_"))) {
-				getOrCreateTagBuilder(MalumTagRegistry.TWISTED_ROCK).add(block);
-			}
-			getOrCreateTagBuilder(MalumTagRegistry.RITE_IMMUNE).add(RUNEWOOD_TOTEM_BASE, RUNEWOOD_TOTEM_POLE, SOULWOOD_TOTEM_BASE, SOULWOOD_TOTEM_POLE);
-			getOrCreateTagBuilder(MalumTagRegistry.RITE_IMMUNE).add(MalumObjects.TAINTED_ROCK, MalumObjects.TWISTED_ROCK);
-
-			getOrCreateTagBuilder(MalumTagRegistry.ENDLESS_FLAME);
-			getOrCreateTagBuilder(MalumTagRegistry.GREATER_AERIAL_WHITELIST);
+			BLOCKS.keySet().forEach((block) ->
+			{
+				Malum.LOGGER.info("Block: " + block);
+				MalumBlockProperties.BlockSettings settings = (MalumBlockProperties.BlockSettings) block.settings;
+				MalumDatagenBlockData data = settings.getDatagenData();
+				data.getTags().forEach((tag) ->
+				{
+					Malum.LOGGER.info("- " + tag.id().toString());
+					getOrCreateTagBuilder(tag).add(block);
+				});
+			});
 		}
 
 		@NotNull
@@ -89,6 +69,8 @@ public class MalumTagProviders {
 
 		@Override
 		protected void generateTags() {
+			getOrCreateTagBuilder(Tags.Items.GEMS).add(PROCESSED_SOULSTONE, BLAZING_QUARTZ);
+
 			this.copy(WOOL, ItemTags.WOOL);
 			this.copy(PLANKS, ItemTags.PLANKS);
 			this.copy(STONE_BRICKS, ItemTags.STONE_BRICKS);
@@ -118,12 +100,19 @@ public class MalumTagProviders {
 			this.copy(FLOWERS, ItemTags.FLOWERS);
 			this.copy(GOLD_ORES, ItemTags.GOLD_ORES);
 			this.copy(SOUL_FIRE_BASE_BLOCKS, ItemTags.SOUL_FIRE_BASE_BLOCKS);
+			this.copy(Tags.Blocks.ORES, Tags.Items.ORES);
 
+			getOrCreateTagBuilder(Tags.Items.SLIMEBALLS).add(HOLY_SAPBALL, UNHOLY_SAPBALL);
 			getOrCreateTagBuilder(SAPBALLS).add(HOLY_SAPBALL, UNHOLY_SAPBALL);
+			getOrCreateTagBuilder(Tags.Items.GEMS_QUARTZ).add(NATURAL_QUARTZ);
+			getOrCreateTagBuilder(Tags.Items.ORES_QUARTZ).add(NATURAL_QUARTZ_ORE.asItem(), DEEPSLATE_QUARTZ_ORE.asItem());
 			getOrCreateTagBuilder(GROSS_FOODS).add(Items.ROTTEN_FLESH, ROTTING_ESSENCE);
 			ITEMS.keySet().stream().filter(i -> i instanceof NodeItem).forEach(i -> {
 				getOrCreateTagBuilder(METAL_NODES).add(i);
 			});
+
+			getOrCreateTagBuilder(PROSPECTORS_TREASURE).addTags(Tags.Items.ORES, Tags.Items.STORAGE_BLOCKS, Tags.Items.INGOTS, Tags.Items.NUGGETS, Tags.Items.GEMS, Tags.Items.RAW_MATERIALS, ItemTags.COALS, METAL_NODES);
+			getOrCreateTagBuilder(PROSPECTORS_TREASURE).addOptional(new Identifier("tetra", "geode"));
 
 			getOrCreateTagBuilder(RUNEWOOD_LOGS_BLOCK).add(RUNEWOOD_LOG.asItem(), STRIPPED_RUNEWOOD_LOG.asItem(), RUNEWOOD.asItem(), STRIPPED_RUNEWOOD.asItem(), EXPOSED_RUNEWOOD_LOG.asItem(), REVEALED_RUNEWOOD_LOG.asItem());
 			getOrCreateTagBuilder(SOULWOOD_LOGS_BLOCK).add(SOULWOOD_LOG.asItem(), STRIPPED_SOULWOOD_LOG.asItem(), SOULWOOD.asItem(), STRIPPED_SOULWOOD.asItem(), EXPOSED_SOULWOOD_LOG.asItem(), REVEALED_SOULWOOD_LOG.asItem(), BLIGHTED_SOULWOOD.asItem());
@@ -132,6 +121,10 @@ public class MalumTagProviders {
 
 			getOrCreateTagBuilder(SOUL_HUNTER_WEAPON).add(TYRVING, CRUDE_SCYTHE, SOUL_STAINED_STEEL_SCYTHE, CREATIVE_SCYTHE);
 			getOrCreateTagBuilder(SOUL_HUNTER_WEAPON).add(SOUL_STAINED_STEEL_AXE, SOUL_STAINED_STEEL_PICKAXE, SOUL_STAINED_STEEL_SHOVEL, SOUL_STAINED_STEEL_SWORD, SOUL_STAINED_STEEL_HOE);
+
+			getOrCreateTagBuilder(Tags.Items.NUGGETS).add(COPPER_NUGGET, HALLOWED_GOLD_NUGGET, SOUL_STAINED_STEEL_NUGGET);
+
+			getOrCreateTagBuilder(TagKey.of(Registry.ITEM_KEY, new Identifier("c", "copper_nuggets"))).add(COPPER_NUGGET);
 		}
 	}
 
