@@ -527,8 +527,8 @@ public interface MalumObjects {
 
 
 	//endregion
-	Block BLAZING_TORCH = register("blazing_torch", new TorchBlock(RUNEWOOD().noCollision().breakInstantly().luminance((b) -> 14), ParticleTypes.FLAME), MalumItemGroupEvents.MALUM, true);
-	Block WALL_BLAZING_TORCH = register("wall_blazing_torch", new WallTorchBlock(RUNEWOOD().noCollision().breakInstantly().luminance((b) -> 14), ParticleTypes.FLAME), false);
+	Block BLAZING_TORCH = register("blazing_torch", new TorchBlock(RUNEWOOD_PROPERTIES().noCollision().breakInstantly().luminance((b) -> 14), ParticleTypes.FLAME), MalumItemGroupEvents.MALUM, true);
+	Block WALL_BLAZING_TORCH = register("wall_blazing_torch", new WallTorchBlock(RUNEWOOD_PROPERTIES().noCollision().breakInstantly().luminance((b) -> 14), ParticleTypes.FLAME), false);
 
 	Block BLOCK_OF_ARCANE_CHARCOAL = register("block_of_arcane_charcoal", new Block(ARCANE_CHARCOAL_BLOCK()), MalumItemGroupEvents.MALUM,true);
 
