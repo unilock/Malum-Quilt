@@ -1,4 +1,7 @@
 {
   "replace": false,
-  "values": []
+  "values": [
+    "malum:runewood_sapling",
+    "malum:soulwood_growth"
+  ]
 }

@@ -14,11 +14,12 @@ loom {
 	accessWidenerPath = file("src/main/resources/malum.accesswidener")
 	runs {
 		datagen {
-			server()
+			inherit client
 
 			name "Minecraft Data"
 			vmArg "-Dfabric-api.datagen"
 			vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
+			//vmArg "-Dfabric-api.datagen.modid=${project.archives_base_name}"
 
 			runDir "build/datagen"
 		}
@@ -155,5 +156,5 @@ publishing {
 	}
 }
 
-//TODO assemble.dependsOn runDatagen
+assemble.dependsOn runDatagen
 

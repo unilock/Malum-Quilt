@@ -60,7 +60,6 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.SignType;
@@ -76,10 +75,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
 
+import static dev.sterner.malum.common.block.BlockTagRegistry.*;
 import static dev.sterner.malum.common.item.ItemTiers.ItemTierEnum.SOUL_STAINED_STEEL;
 import static dev.sterner.malum.common.registry.MalumBlockProperties.*;
 import static dev.sterner.malum.common.registry.MalumObjects.*;
-import static net.minecraft.item.Items.GLASS_BOTTLE;
+import static net.minecraft.item.Items.*;
+import static net.minecraft.tag.BlockTags.*;
 
 public interface MalumObjects {
 	Map<Block, Identifier> BLOCKS = new LinkedHashMap<>();
@@ -249,327 +250,327 @@ public interface MalumObjects {
 
 	//BLOCKS
 
-	Block SPIRIT_ALTAR = register("spirit_altar", new SpiritAltarBlock<>(RUNEWOOD_PROPERTIES().nonOpaque()), MalumItemGroupEvents.MALUM, true);
-	Block SPIRIT_JAR = registerJar("spirit_jar", new SpiritJarBlock<>(SPIRIT_JAR_PROPERTIES().nonOpaque()), true);
-	Block ALTERATION_PLINTH = register("alteration_plinth", new AlterationPlinthBlock<>(SOULWOOD_PROPERTIES().nonOpaque()), true);
+	Block SPIRIT_ALTAR = register("spirit_altar", new SpiritAltarBlock<>(RUNEWOOD().nonOpaque()), MalumItemGroupEvents.MALUM, true);
+	Block SPIRIT_JAR = registerJar("spirit_jar", new SpiritJarBlock<>(SPIRIT_JAR().nonOpaque()), true);
+	Block ALTERATION_PLINTH = register("alteration_plinth", new AlterationPlinthBlock<>(SOULWOOD().nonOpaque()), true);
 
-	Block SOUL_VIAL = registerVial("soul_vial", new SoulVialBlock<>(SOUL_VIAL_PROPERTIES().nonOpaque()), true);
-	Block EMITTER_MIRROR = register("emitter_mirror", new EmitterMirrorBlock<>(HALLOWED_GOLD_PROPERTIES().nonOpaque()), true);
+	Block SOUL_VIAL = registerVial("soul_vial", new SoulVialBlock<>(SOUL_VIAL().nonOpaque()), true);
+	Block EMITTER_MIRROR = register("emitter_mirror", new EmitterMirrorBlock<>(HALLOWED_GOLD().nonOpaque()), true);
 
-	Block MOTE_OF_MANA = register("mote_of_mana", new Block(TAINTED_ROCK_PROPERTIES().nonOpaque()), true);
+	Block MOTE_OF_MANA = register("mote_of_mana", new Block(TAINTED_ROCK().nonOpaque()), true);
 
-	Block TWISTED_TABLET = register("twisted_tablet", new TwistedTabletBlock<>(TAINTED_ROCK_PROPERTIES().nonOpaque()), MalumItemGroupEvents.MALUM, true);
+	Block TWISTED_TABLET = register("twisted_tablet", new TwistedTabletBlock<>(TAINTED_ROCK().nonOpaque()), MalumItemGroupEvents.MALUM, true);
 
-	Block RUNEWOOD_OBELISK = registerMultiBlock("runewood_obelisk", new RunewoodObeliskCoreBlock(RUNEWOOD_PROPERTIES().nonOpaque()), RunewoodObeliskBlockEntity.STRUCTURE, true);
-	Block RUNEWOOD_OBELISK_COMPONENT = register("runewood_obelisk_component", new ObeliskComponentBlock(RUNEWOOD_PROPERTIES().nonOpaque(), Items.AIR), MalumItemGroupEvents.MALUM, false);
+	Block RUNEWOOD_OBELISK = registerMultiBlock("runewood_obelisk", new RunewoodObeliskCoreBlock(RUNEWOOD().nonOpaque()), RunewoodObeliskBlockEntity.STRUCTURE, true);
+	Block RUNEWOOD_OBELISK_COMPONENT = register("runewood_obelisk_component", new ObeliskComponentBlock(RUNEWOOD().nonOpaque(), Items.AIR), MalumItemGroupEvents.MALUM, false);
 
-	Block BRILLIANT_OBELISK = registerMultiBlock("brilliant_obelisk", new BrillianceObeliskCoreBlock(RUNEWOOD_PROPERTIES().nonOpaque()), BrilliantObeliskBlockEntity.STRUCTURE, true);
-	Block BRILLIANT_OBELISK_COMPONENT = register("brilliant_obelisk_component", new ObeliskComponentBlock(RUNEWOOD_PROPERTIES().nonOpaque(), Items.AIR), MalumItemGroupEvents.MALUM, false);
+	Block BRILLIANT_OBELISK = registerMultiBlock("brilliant_obelisk", new BrillianceObeliskCoreBlock(RUNEWOOD().nonOpaque()), BrilliantObeliskBlockEntity.STRUCTURE, true);
+	Block BRILLIANT_OBELISK_COMPONENT = register("brilliant_obelisk_component", new ObeliskComponentBlock(RUNEWOOD().nonOpaque(), Items.AIR), MalumItemGroupEvents.MALUM, false);
 
-	Block SPIRIT_CRUCIBLE = registerMultiBlock("spirit_crucible", new SpiritCrucibleCoreBlock<>(TAINTED_ROCK_PROPERTIES().nonOpaque()), SpiritCrucibleCoreBlockEntity.STRUCTURE, true);
-	Block SPIRIT_CRUCIBLE_COMPONENT = register("spirit_crucible_component", new SpiritCrucibleComponentBlock(TAINTED_ROCK_PROPERTIES().nonOpaque()), MalumItemGroupEvents.MALUM, false);
+	Block SPIRIT_CRUCIBLE = registerMultiBlock("spirit_crucible", new SpiritCrucibleCoreBlock<>(TAINTED_ROCK().nonOpaque()), SpiritCrucibleCoreBlockEntity.STRUCTURE, true);
+	Block SPIRIT_CRUCIBLE_COMPONENT = register("spirit_crucible_component", new SpiritCrucibleComponentBlock(TAINTED_ROCK().nonOpaque()), MalumItemGroupEvents.MALUM, false);
 
-	Block SPIRIT_CATALYZER = registerMultiBlock("spirit_catalyzer", new SpiritCatalyzerCoreBlock<>(TAINTED_ROCK_PROPERTIES().nonOpaque()), SpiritCatalyzerCoreBlockEntity.STRUCTURE, true);
-	Block SPIRIT_CATALYZER_COMPONENT = register("spirit_catalyzer_component", new SpiritCatalyzerComponentBlock(TAINTED_ROCK_PROPERTIES().nonOpaque(), Items.AIR), MalumItemGroupEvents.MALUM, false);
+	Block SPIRIT_CATALYZER = registerMultiBlock("spirit_catalyzer", new SpiritCatalyzerCoreBlock<>(TAINTED_ROCK().nonOpaque()), SpiritCatalyzerCoreBlockEntity.STRUCTURE, true);
+	Block SPIRIT_CATALYZER_COMPONENT = register("spirit_catalyzer_component", new SpiritCatalyzerComponentBlock(TAINTED_ROCK().nonOpaque(), Items.AIR), MalumItemGroupEvents.MALUM, false);
 
-	Block SOULWOOD_PLINTH = registerMultiBlock("soulwood_plinth", new PlinthCoreBlock<>(SOULWOOD_PROPERTIES().nonOpaque()), null, PlinthCoreBlockEntity.STRUCTURE, true);
-	Block SOULWOOD_PLINTH_COMPONENT = register("soulwood_plinth_component", new PlinthComponentBlock(SOULWOOD_PROPERTIES().nonOpaque()), false);
+	Block SOULWOOD_PLINTH = registerMultiBlock("soulwood_plinth", new PlinthCoreBlock<>(SOULWOOD().nonOpaque()), null, PlinthCoreBlockEntity.STRUCTURE, true);
+	Block SOULWOOD_PLINTH_COMPONENT = register("soulwood_plinth_component", new PlinthComponentBlock(SOULWOOD().nonOpaque()), false);
 
-	Block SOULWOOD_FUSION_PLATE = registerMultiBlock("soulwood_fusion_plate", new FusionPlateCoreBlock<>(SOULWOOD_PROPERTIES().nonOpaque()),null,  FusionPlateBlockEntity.STRUCTURE, true);
-	Block SOULWOOD_FUSION_PLATE_COMPONENT = register("soulwood_fusion_plate_component", new FusionPlateComponentBlock(SOULWOOD_PROPERTIES().nonOpaque(), Items.AIR), false);
+	Block SOULWOOD_FUSION_PLATE = registerMultiBlock("soulwood_fusion_plate", new FusionPlateCoreBlock<>(SOULWOOD().nonOpaque()),null,  FusionPlateBlockEntity.STRUCTURE, true);
+	Block SOULWOOD_FUSION_PLATE_COMPONENT = register("soulwood_fusion_plate_component", new FusionPlateComponentBlock(SOULWOOD().nonOpaque(), Items.AIR), false);
 
-	Block VOID_CONDUIT = register("void_conduit",new VoidConduitBlock<>(PRIMORDIAL_SOUP_PROPERTIES().nonOpaque()), true);
-	Block PRIMORDIAL_SOUP = register("primordial_soup", new PrimordialSoupBlock(PRIMORDIAL_SOUP_PROPERTIES().nonOpaque()), true);
-	Block WEEPING_WELL_CORNER = register("weeping_well_corner", new WeepingWellBlock(WEEPING_WELL_PROPERTIES()), true);
-	Block WEEPING_WELL_SIDE = register("weeping_well_side", new WeepingWellBlock(WEEPING_WELL_PROPERTIES()), true);
-	Block WEEPING_WELL_CORE = register("weeping_well_core", new WeepingWellBlock(WEEPING_WELL_PROPERTIES()), true);
+	Block VOID_CONDUIT = register("void_conduit",new VoidConduitBlock<>(PRIMORDIAL_SOUP().nonOpaque()), true);
+	Block PRIMORDIAL_SOUP = register("primordial_soup", new PrimordialSoupBlock(PRIMORDIAL_SOUP().nonOpaque()), true);
+	Block WEEPING_WELL_CORNER = register("weeping_well_corner", new WeepingWellBlock(WEEPING_WELL()), true);
+	Block WEEPING_WELL_SIDE = register("weeping_well_side", new WeepingWellBlock(WEEPING_WELL()), true);
+	Block WEEPING_WELL_CORE = register("weeping_well_core", new WeepingWellBlock(WEEPING_WELL()), true);
 
-	Block BLOCK_OF_CTHONIC_GOLD = register("block_of_cthonic_gold", new Block(AURUM_PROPERTIES()), MalumItemGroupEvents.MALUM, true);
+	Block BLOCK_OF_CTHONIC_GOLD = register("block_of_cthonic_gold", new Block(CTHONIC_GOLD_ORE()), MalumItemGroupEvents.MALUM, true);
 	//endregion
 
 	//region tainted rock
-	Block TAINTED_ROCK = register("tainted_rock", new Block(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS, true);
-	Block SMOOTH_TAINTED_ROCK = register("smooth_tainted_rock", new Block(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block POLISHED_TAINTED_ROCK = register("polished_tainted_rock", new Block(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TAINTED_ROCK = register("tainted_rock", new Block(TAINTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS, true);
+	Block SMOOTH_TAINTED_ROCK = register("smooth_tainted_rock", new Block(TAINTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block POLISHED_TAINTED_ROCK = register("polished_tainted_rock", new Block(TAINTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
 
-	Block TAINTED_ROCK_BRICKS = register("tainted_rock_bricks", new Block(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_TAINTED_ROCK_BRICKS = register("cracked_tainted_rock_bricks", new Block(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block SMALL_TAINTED_ROCK_BRICKS = register("small_tainted_rock_bricks", new Block(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TAINTED_ROCK_BRICKS = register("tainted_rock_bricks", new Block(TAINTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_TAINTED_ROCK_BRICKS = register("cracked_tainted_rock_bricks", new Block(TAINTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block SMALL_TAINTED_ROCK_BRICKS = register("small_tainted_rock_bricks", new Block(TAINTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
 
-	Block TAINTED_ROCK_TILES = register("tainted_rock_tiles", new Block(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_TAINTED_ROCK_TILES = register("cracked_tainted_rock_tiles", new Block(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_SMALL_TAINTED_ROCK_BRICKS = register("cracked_small_tainted_rock_bricks", new Block(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TAINTED_ROCK_TILES = register("tainted_rock_tiles", new Block(TAINTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_TAINTED_ROCK_TILES = register("cracked_tainted_rock_tiles", new Block(TAINTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_SMALL_TAINTED_ROCK_BRICKS = register("cracked_small_tainted_rock_bricks", new Block(TAINTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
 
-	Block TAINTED_ROCK_COLUMN = register("tainted_rock_column", new PillarBlock(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block TAINTED_ROCK_COLUMN_CAP = register("tainted_rock_column_cap", new PillarCapBlock(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TAINTED_ROCK_COLUMN = register("tainted_rock_column", new PillarBlock(TAINTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TAINTED_ROCK_COLUMN_CAP = register("tainted_rock_column_cap", new PillarCapBlock(TAINTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
 
-	Block CUT_TAINTED_ROCK = register("cut_tainted_rock", new Block(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CHISELED_TAINTED_ROCK = register("chiseled_tainted_rock", new Block(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CUT_TAINTED_ROCK = register("cut_tainted_rock", new Block(TAINTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CHISELED_TAINTED_ROCK = register("chiseled_tainted_rock", new Block(TAINTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
 
-	Block TAINTED_ROCK_SLAB = register("tainted_rock_slab", new SlabBlock(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS, true);
-	Block SMOOTH_TAINTED_ROCK_SLAB = register("smooth_tainted_rock_slab", new SlabBlock(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block POLISHED_TAINTED_ROCK_SLAB = register("polished_tainted_rock_slab", new SlabBlock(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block TAINTED_ROCK_BRICKS_SLAB = register("tainted_rock_bricks_slab", new SlabBlock(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_TAINTED_ROCK_BRICKS_SLAB = register("cracked_tainted_rock_bricks_slab", new SlabBlock(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block SMALL_TAINTED_ROCK_BRICKS_SLAB = register("small_tainted_rock_bricks_slab", new SlabBlock(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block TAINTED_ROCK_TILES_SLAB = register("tainted_rock_tiles_slab", new SlabBlock(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_TAINTED_ROCK_TILES_SLAB = register("cracked_tainted_rock_tiles_slab", new SlabBlock(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_SMALL_TAINTED_ROCK_BRICKS_SLAB = register("cracked_small_tainted_rock_bricks_slab", new SlabBlock(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TAINTED_ROCK_SLAB = register("tainted_rock_slab", new SlabBlock(TAINTED_ROCK().addTags(SLABS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS, true);
+	Block SMOOTH_TAINTED_ROCK_SLAB = register("smooth_tainted_rock_slab", new SlabBlock(TAINTED_ROCK().addTags(SLABS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block POLISHED_TAINTED_ROCK_SLAB = register("polished_tainted_rock_slab", new SlabBlock(TAINTED_ROCK().addTags(SLABS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TAINTED_ROCK_BRICKS_SLAB = register("tainted_rock_bricks_slab", new SlabBlock(TAINTED_ROCK().addTags(SLABS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_TAINTED_ROCK_BRICKS_SLAB = register("cracked_tainted_rock_bricks_slab", new SlabBlock(TAINTED_ROCK().addTags(SLABS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block SMALL_TAINTED_ROCK_BRICKS_SLAB = register("small_tainted_rock_bricks_slab", new SlabBlock(TAINTED_ROCK().addTags(SLABS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TAINTED_ROCK_TILES_SLAB = register("tainted_rock_tiles_slab", new SlabBlock(TAINTED_ROCK().addTags(SLABS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_TAINTED_ROCK_TILES_SLAB = register("cracked_tainted_rock_tiles_slab", new SlabBlock(TAINTED_ROCK().addTags(SLABS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_SMALL_TAINTED_ROCK_BRICKS_SLAB = register("cracked_small_tainted_rock_bricks_slab", new SlabBlock(TAINTED_ROCK().addTags(SLABS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
 
-	Block TAINTED_ROCK_STAIRS = register("tainted_rock_stairs", new StairsBlock(TAINTED_ROCK.getDefaultState(), TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block SMOOTH_TAINTED_ROCK_STAIRS = register("smooth_tainted_rock_stairs", new StairsBlock(TAINTED_ROCK.getDefaultState(), TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block POLISHED_TAINTED_ROCK_STAIRS = register("polished_tainted_rock_stairs", new StairsBlock(TAINTED_ROCK.getDefaultState(), TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block TAINTED_ROCK_BRICKS_STAIRS = register("tainted_rock_bricks_stairs", new StairsBlock(TAINTED_ROCK.getDefaultState(), TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_TAINTED_ROCK_BRICKS_STAIRS = register("cracked_tainted_rock_bricks_stairs", new StairsBlock(TAINTED_ROCK.getDefaultState(), TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block SMALL_TAINTED_ROCK_BRICKS_STAIRS = register("small_tainted_rock_bricks_stairs", new StairsBlock(TAINTED_ROCK.getDefaultState(), TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block TAINTED_ROCK_TILES_STAIRS = register("tainted_rock_tiles_stairs", new StairsBlock(TAINTED_ROCK.getDefaultState(), TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_TAINTED_ROCK_TILES_STAIRS = register("cracked_tainted_rock_tiles_stairs", new StairsBlock(TAINTED_ROCK.getDefaultState(), TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_SMALL_TAINTED_ROCK_BRICKS_STAIRS = register("cracked_small_tainted_rock_bricks_stairs", new StairsBlock(TAINTED_ROCK.getDefaultState(), TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TAINTED_ROCK_STAIRS = register("tainted_rock_stairs", new StairsBlock(TAINTED_ROCK.getDefaultState(), TAINTED_ROCK().addTags(STAIRS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block SMOOTH_TAINTED_ROCK_STAIRS = register("smooth_tainted_rock_stairs", new StairsBlock(TAINTED_ROCK.getDefaultState(), TAINTED_ROCK().addTags(STAIRS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block POLISHED_TAINTED_ROCK_STAIRS = register("polished_tainted_rock_stairs", new StairsBlock(TAINTED_ROCK.getDefaultState(), TAINTED_ROCK().addTags(STAIRS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TAINTED_ROCK_BRICKS_STAIRS = register("tainted_rock_bricks_stairs", new StairsBlock(TAINTED_ROCK.getDefaultState(), TAINTED_ROCK().addTags(STAIRS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_TAINTED_ROCK_BRICKS_STAIRS = register("cracked_tainted_rock_bricks_stairs", new StairsBlock(TAINTED_ROCK.getDefaultState(), TAINTED_ROCK().addTags(STAIRS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block SMALL_TAINTED_ROCK_BRICKS_STAIRS = register("small_tainted_rock_bricks_stairs", new StairsBlock(TAINTED_ROCK.getDefaultState(), TAINTED_ROCK().addTags(STAIRS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TAINTED_ROCK_TILES_STAIRS = register("tainted_rock_tiles_stairs", new StairsBlock(TAINTED_ROCK.getDefaultState(), TAINTED_ROCK().addTags(STAIRS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_TAINTED_ROCK_TILES_STAIRS = register("cracked_tainted_rock_tiles_stairs", new StairsBlock(TAINTED_ROCK.getDefaultState(), TAINTED_ROCK().addTags(STAIRS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_SMALL_TAINTED_ROCK_BRICKS_STAIRS = register("cracked_small_tainted_rock_bricks_stairs", new StairsBlock(TAINTED_ROCK.getDefaultState(), TAINTED_ROCK().addTags(STAIRS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
 
-	Block TAINTED_ROCK_PRESSURE_PLATE = register("tainted_rock_pressure_plate", new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block TAINTED_ROCK_BUTTON = register("tainted_rock_button", new StoneButtonBlock(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TAINTED_ROCK_PRESSURE_PLATE = register("tainted_rock_pressure_plate", new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, TAINTED_ROCK().addTags(PRESSURE_PLATES)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TAINTED_ROCK_BUTTON = register("tainted_rock_button", new StoneButtonBlock(TAINTED_ROCK().addTags(BUTTONS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
 
-	Block TAINTED_ROCK_WALL = register("tainted_rock_wall", new WallBlock(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block TAINTED_ROCK_BRICKS_WALL = register("tainted_rock_bricks_wall", new WallBlock(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block SMALL_TAINTED_ROCK_BRICKS_WALL = register("small_tainted_rock_bricks_wall", new WallBlock(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_TAINTED_ROCK_BRICKS_WALL = register("cracked_tainted_rock_bricks_wall", new WallBlock(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block TAINTED_ROCK_TILES_WALL = register("tainted_rock_tiles_wall", new WallBlock(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_SMALL_TAINTED_ROCK_BRICKS_WALL = register("cracked_small_tainted_rock_bricks_wall", new WallBlock(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_TAINTED_ROCK_TILES_WALL = register("cracked_tainted_rock_tiles_wall", new WallBlock(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TAINTED_ROCK_WALL = register("tainted_rock_wall", new WallBlock(TAINTED_ROCK().addTags(WALLS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TAINTED_ROCK_BRICKS_WALL = register("tainted_rock_bricks_wall", new WallBlock(TAINTED_ROCK().addTags(WALLS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block SMALL_TAINTED_ROCK_BRICKS_WALL = register("small_tainted_rock_bricks_wall", new WallBlock(TAINTED_ROCK().addTags(WALLS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_TAINTED_ROCK_BRICKS_WALL = register("cracked_tainted_rock_bricks_wall", new WallBlock(TAINTED_ROCK().addTags(WALLS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TAINTED_ROCK_TILES_WALL = register("tainted_rock_tiles_wall", new WallBlock(TAINTED_ROCK().addTags(WALLS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_SMALL_TAINTED_ROCK_BRICKS_WALL = register("cracked_small_tainted_rock_bricks_wall", new WallBlock(TAINTED_ROCK().addTags(WALLS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_TAINTED_ROCK_TILES_WALL = register("cracked_tainted_rock_tiles_wall", new WallBlock(TAINTED_ROCK().addTags(WALLS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
 
-	Block TAINTED_ROCK_ITEM_STAND = register("tainted_rock_item_stand", new ItemStandBlock<>(TAINTED_ROCK_PROPERTIES().nonOpaque()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block TAINTED_ROCK_ITEM_PEDESTAL = register("tainted_rock_item_pedestal", new ItemPedestalBlock<>(TAINTED_ROCK_PROPERTIES().nonOpaque()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TAINTED_ROCK_ITEM_STAND = register("tainted_rock_item_stand", new ItemStandBlock<>(TAINTED_ROCK().nonOpaque()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TAINTED_ROCK_ITEM_PEDESTAL = register("tainted_rock_item_pedestal", new ItemPedestalBlock<>(TAINTED_ROCK().nonOpaque()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
 	//endregion
 
 	//region twisted rock
-	Block TWISTED_ROCK = register("twisted_rock", new Block(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block SMOOTH_TWISTED_ROCK = register("smooth_twisted_rock", new Block(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block POLISHED_TWISTED_ROCK = register("polished_twisted_rock", new Block(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TWISTED_ROCK = register("twisted_rock", new Block(TWISTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block SMOOTH_TWISTED_ROCK = register("smooth_twisted_rock", new Block(TWISTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block POLISHED_TWISTED_ROCK = register("polished_twisted_rock", new Block(TWISTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
 
-	Block TWISTED_ROCK_BRICKS = register("twisted_rock_bricks", new Block(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_TWISTED_ROCK_BRICKS = register("cracked_twisted_rock_bricks", new Block(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block SMALL_TWISTED_ROCK_BRICKS = register("small_twisted_rock_bricks", new Block(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TWISTED_ROCK_BRICKS = register("twisted_rock_bricks", new Block(TWISTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_TWISTED_ROCK_BRICKS = register("cracked_twisted_rock_bricks", new Block(TWISTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block SMALL_TWISTED_ROCK_BRICKS = register("small_twisted_rock_bricks", new Block(TWISTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
 
-	Block TWISTED_ROCK_TILES = register("twisted_rock_tiles", new Block(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_TWISTED_ROCK_TILES = register("cracked_twisted_rock_tiles", new Block(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_SMALL_TWISTED_ROCK_BRICKS = register("cracked_small_twisted_rock_bricks", new Block(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TWISTED_ROCK_TILES = register("twisted_rock_tiles", new Block(TWISTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_TWISTED_ROCK_TILES = register("cracked_twisted_rock_tiles", new Block(TWISTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_SMALL_TWISTED_ROCK_BRICKS = register("cracked_small_twisted_rock_bricks", new Block(TWISTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
 
-	Block TWISTED_ROCK_COLUMN = register("twisted_rock_column", new PillarBlock(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block TWISTED_ROCK_COLUMN_CAP = register("twisted_rock_column_cap", new PillarCapBlock(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TWISTED_ROCK_COLUMN = register("twisted_rock_column", new PillarBlock(TWISTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TWISTED_ROCK_COLUMN_CAP = register("twisted_rock_column_cap", new PillarCapBlock(TWISTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
 
-	Block CUT_TWISTED_ROCK = register("cut_twisted_rock", new Block(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CHISELED_TWISTED_ROCK = register("chiseled_twisted_rock", new Block(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CUT_TWISTED_ROCK = register("cut_twisted_rock", new Block(TWISTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CHISELED_TWISTED_ROCK = register("chiseled_twisted_rock", new Block(TWISTED_ROCK()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
 
-	Block TWISTED_ROCK_SLAB = register("twisted_rock_slab", new SlabBlock(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block SMOOTH_TWISTED_ROCK_SLAB = register("smooth_twisted_rock_slab", new SlabBlock(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block POLISHED_TWISTED_ROCK_SLAB = register("polished_twisted_rock_slab", new SlabBlock(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block TWISTED_ROCK_BRICKS_SLAB = register("twisted_rock_bricks_slab", new SlabBlock(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_TWISTED_ROCK_BRICKS_SLAB = register("cracked_twisted_rock_bricks_slab", new SlabBlock(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block SMALL_TWISTED_ROCK_BRICKS_SLAB = register("small_twisted_rock_bricks_slab", new SlabBlock(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block TWISTED_ROCK_TILES_SLAB = register("twisted_rock_tiles_slab", new SlabBlock(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_TWISTED_ROCK_TILES_SLAB = register("cracked_twisted_rock_tiles_slab", new SlabBlock(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_SMALL_TWISTED_ROCK_BRICKS_SLAB = register("cracked_small_twisted_rock_bricks_slab", new SlabBlock(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TWISTED_ROCK_SLAB = register("twisted_rock_slab", new SlabBlock(TWISTED_ROCK().addTags(SLABS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block SMOOTH_TWISTED_ROCK_SLAB = register("smooth_twisted_rock_slab", new SlabBlock(TWISTED_ROCK().addTags(SLABS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block POLISHED_TWISTED_ROCK_SLAB = register("polished_twisted_rock_slab", new SlabBlock(TWISTED_ROCK().addTags(SLABS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TWISTED_ROCK_BRICKS_SLAB = register("twisted_rock_bricks_slab", new SlabBlock(TWISTED_ROCK().addTags(SLABS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_TWISTED_ROCK_BRICKS_SLAB = register("cracked_twisted_rock_bricks_slab", new SlabBlock(TWISTED_ROCK().addTags(SLABS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block SMALL_TWISTED_ROCK_BRICKS_SLAB = register("small_twisted_rock_bricks_slab", new SlabBlock(TWISTED_ROCK().addTags(SLABS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TWISTED_ROCK_TILES_SLAB = register("twisted_rock_tiles_slab", new SlabBlock(TWISTED_ROCK().addTags(SLABS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_TWISTED_ROCK_TILES_SLAB = register("cracked_twisted_rock_tiles_slab", new SlabBlock(TWISTED_ROCK().addTags(SLABS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_SMALL_TWISTED_ROCK_BRICKS_SLAB = register("cracked_small_twisted_rock_bricks_slab", new SlabBlock(TWISTED_ROCK().addTags(SLABS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
 
-	Block TWISTED_ROCK_STAIRS = register("twisted_rock_stairs", new StairsBlock(TWISTED_ROCK.getDefaultState(), TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block SMOOTH_TWISTED_ROCK_STAIRS = register("smooth_twisted_rock_stairs", new StairsBlock(TWISTED_ROCK.getDefaultState(), TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block POLISHED_TWISTED_ROCK_STAIRS = register("polished_twisted_rock_stairs", new StairsBlock(TWISTED_ROCK.getDefaultState(), TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block TWISTED_ROCK_BRICKS_STAIRS = register("twisted_rock_bricks_stairs", new StairsBlock(TWISTED_ROCK.getDefaultState(), TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_TWISTED_ROCK_BRICKS_STAIRS = register("cracked_twisted_rock_bricks_stairs", new StairsBlock(TWISTED_ROCK.getDefaultState(), TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block SMALL_TWISTED_ROCK_BRICKS_STAIRS = register("small_twisted_rock_bricks_stairs", new StairsBlock(TWISTED_ROCK.getDefaultState(), TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block TWISTED_ROCK_TILES_STAIRS = register("twisted_rock_tiles_stairs", new StairsBlock(TWISTED_ROCK.getDefaultState(), TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_TWISTED_ROCK_TILES_STAIRS = register("cracked_twisted_rock_tiles_stairs", new StairsBlock(TWISTED_ROCK.getDefaultState(), TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_SMALL_TWISTED_ROCK_BRICKS_STAIRS = register("cracked_small_twisted_rock_bricks_stairs", new StairsBlock(TWISTED_ROCK.getDefaultState(), TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TWISTED_ROCK_STAIRS = register("twisted_rock_stairs", new StairsBlock(TWISTED_ROCK.getDefaultState(), TWISTED_ROCK().addTags(STAIRS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block SMOOTH_TWISTED_ROCK_STAIRS = register("smooth_twisted_rock_stairs", new StairsBlock(TWISTED_ROCK.getDefaultState(), TWISTED_ROCK().addTags(STAIRS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block POLISHED_TWISTED_ROCK_STAIRS = register("polished_twisted_rock_stairs", new StairsBlock(TWISTED_ROCK.getDefaultState(), TWISTED_ROCK().addTags(STAIRS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TWISTED_ROCK_BRICKS_STAIRS = register("twisted_rock_bricks_stairs", new StairsBlock(TWISTED_ROCK.getDefaultState(), TWISTED_ROCK().addTags(STAIRS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_TWISTED_ROCK_BRICKS_STAIRS = register("cracked_twisted_rock_bricks_stairs", new StairsBlock(TWISTED_ROCK.getDefaultState(), TWISTED_ROCK().addTags(STAIRS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block SMALL_TWISTED_ROCK_BRICKS_STAIRS = register("small_twisted_rock_bricks_stairs", new StairsBlock(TWISTED_ROCK.getDefaultState(), TWISTED_ROCK().addTags(STAIRS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TWISTED_ROCK_TILES_STAIRS = register("twisted_rock_tiles_stairs", new StairsBlock(TWISTED_ROCK.getDefaultState(), TWISTED_ROCK().addTags(STAIRS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_TWISTED_ROCK_TILES_STAIRS = register("cracked_twisted_rock_tiles_stairs", new StairsBlock(TWISTED_ROCK.getDefaultState(), TWISTED_ROCK().addTags(STAIRS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_SMALL_TWISTED_ROCK_BRICKS_STAIRS = register("cracked_small_twisted_rock_bricks_stairs", new StairsBlock(TWISTED_ROCK.getDefaultState(), TWISTED_ROCK().addTags(STAIRS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
 
-	Block TWISTED_ROCK_PRESSURE_PLATE = register("twisted_rock_pressure_plate", new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block TWISTED_ROCK_BUTTON = register("twisted_rock_button",  new StoneButtonBlock(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TWISTED_ROCK_PRESSURE_PLATE = register("twisted_rock_pressure_plate", new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, TWISTED_ROCK().addTags(PRESSURE_PLATES)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TWISTED_ROCK_BUTTON = register("twisted_rock_button",  new StoneButtonBlock(TWISTED_ROCK().addTags(BUTTONS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
 
 
-	Block TWISTED_ROCK_WALL = register("twisted_rock_wall", new WallBlock(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block TWISTED_ROCK_BRICKS_WALL = register("twisted_rock_bricks_wall", new WallBlock(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block SMALL_TWISTED_ROCK_BRICKS_WALL = register("small_twisted_rock_bricks_wall", new WallBlock(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_TWISTED_ROCK_BRICKS_WALL = register("cracked_twisted_rock_bricks_wall", new WallBlock(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block TWISTED_ROCK_TILES_WALL = register("twisted_rock_tiles_wall", new WallBlock(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_SMALL_TWISTED_ROCK_BRICKS_WALL = register("cracked_small_twisted_rock_bricks_wall", new WallBlock(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block CRACKED_TWISTED_ROCK_TILES_WALL = register("cracked_twisted_rock_tiles_wall", new WallBlock(TWISTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TWISTED_ROCK_WALL = register("twisted_rock_wall", new WallBlock(TWISTED_ROCK().addTags(WALLS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TWISTED_ROCK_BRICKS_WALL = register("twisted_rock_bricks_wall", new WallBlock(TWISTED_ROCK().addTags(WALLS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block SMALL_TWISTED_ROCK_BRICKS_WALL = register("small_twisted_rock_bricks_wall", new WallBlock(TWISTED_ROCK().addTags(WALLS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_TWISTED_ROCK_BRICKS_WALL = register("cracked_twisted_rock_bricks_wall", new WallBlock(TWISTED_ROCK().addTags(WALLS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TWISTED_ROCK_TILES_WALL = register("twisted_rock_tiles_wall", new WallBlock(TWISTED_ROCK().addTags(WALLS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_SMALL_TWISTED_ROCK_BRICKS_WALL = register("cracked_small_twisted_rock_bricks_wall", new WallBlock(TWISTED_ROCK().addTags(WALLS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block CRACKED_TWISTED_ROCK_TILES_WALL = register("cracked_twisted_rock_tiles_wall", new WallBlock(TWISTED_ROCK().addTags(WALLS)), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
 
-	Block TWISTED_ROCK_ITEM_STAND = register("twisted_rock_item_stand", new ItemStandBlock<>(TWISTED_ROCK_PROPERTIES().nonOpaque()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
-	Block TWISTED_ROCK_ITEM_PEDESTAL = register("twisted_rock_item_pedestal", new ItemPedestalBlock<>(TWISTED_ROCK_PROPERTIES().nonOpaque()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TWISTED_ROCK_ITEM_STAND = register("twisted_rock_item_stand", new ItemStandBlock<>(TWISTED_ROCK().nonOpaque()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
+	Block TWISTED_ROCK_ITEM_PEDESTAL = register("twisted_rock_item_pedestal", new ItemPedestalBlock<>(TWISTED_ROCK().nonOpaque()), MalumItemGroupEvents.MALUM_ARCANE_ROCKS,true);
 	//endregion
 
 	//region runewood
-	Block RUNEWOOD_SAPLING = register("runewood_sapling", new SaplingBlock(new RunewoodSaplingGenerator(), RUNEWOOD_PLANTS_PROPERTIES().ticksRandomly()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block RUNEWOOD_LEAVES = register("runewood_leaves", new MalumLeavesBlock(RUNEWOOD_LEAVES_PROPERTIES(), new Color(175, 65, 48), new Color(251, 193, 76)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block RUNEWOOD_SAPLING = register("runewood_sapling", new SaplingBlock(new RunewoodSaplingGenerator(), RUNEWOOD_SAPLING().ticksRandomly()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block RUNEWOOD_LEAVES = register("runewood_leaves", new MalumLeavesBlock(RUNEWOOD_LEAVES(), new Color(175, 65, 48), new Color(251, 193, 76)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	Block STRIPPED_RUNEWOOD_LOG = register("stripped_runewood_log", new PillarBlock(RUNEWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block RUNEWOOD_LOG = register("runewood_log", new MalumLogBlock(STRIPPED_RUNEWOOD_LOG, RUNEWOOD_PROPERTIES(), false), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block STRIPPED_RUNEWOOD = register("stripped_runewood", new PillarBlock(RUNEWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block RUNEWOOD = register("runewood", new LodestoneLogBlock(STRIPPED_RUNEWOOD, RUNEWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block STRIPPED_RUNEWOOD_LOG = register("stripped_runewood_log", new PillarBlock(RUNEWOOD().addTags(LOGS, LOGS_THAT_BURN, RUNEWOOD_LOGS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block RUNEWOOD_LOG = register("runewood_log", new MalumLogBlock(STRIPPED_RUNEWOOD_LOG, RUNEWOOD().addTags(LOGS, LOGS_THAT_BURN, RUNEWOOD_LOGS), false), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block STRIPPED_RUNEWOOD = register("stripped_runewood", new PillarBlock(RUNEWOOD().addTags(LOGS, LOGS_THAT_BURN, RUNEWOOD_LOGS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block RUNEWOOD = register("runewood", new LodestoneLogBlock(STRIPPED_RUNEWOOD, RUNEWOOD().addTags(LOGS, LOGS_THAT_BURN, RUNEWOOD_LOGS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	Block REVEALED_RUNEWOOD_LOG = register("revealed_runewood_log", new SapFilledLogBlock(RUNEWOOD_PROPERTIES(), STRIPPED_RUNEWOOD_LOG, HOLY_SAP, MalumSpiritTypeRegistry.INFERNAL_SPIRIT.getColor()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block EXPOSED_RUNEWOOD_LOG = register("exposed_runewood_log", new LodestoneLogBlock(REVEALED_RUNEWOOD_LOG, RUNEWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block REVEALED_RUNEWOOD_LOG = register("revealed_runewood_log", new SapFilledLogBlock(RUNEWOOD().addTags(LOGS, LOGS_THAT_BURN, RUNEWOOD_LOGS), STRIPPED_RUNEWOOD_LOG, HOLY_SAP, MalumSpiritTypeRegistry.INFERNAL_SPIRIT.getColor()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block EXPOSED_RUNEWOOD_LOG = register("exposed_runewood_log", new LodestoneLogBlock(REVEALED_RUNEWOOD_LOG, RUNEWOOD().addTags(LOGS, LOGS_THAT_BURN, RUNEWOOD_LOGS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	Block RUNEWOOD_PLANKS = register("runewood_planks", new Block(RUNEWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block RUNEWOOD_PLANKS_SLAB = register("runewood_planks_slab", new SlabBlock(RUNEWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block RUNEWOOD_PLANKS_STAIRS = register("runewood_planks_stairs", new StairsBlock(RUNEWOOD_PLANKS.getDefaultState(), RUNEWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block RUNEWOOD_PLANKS = register("runewood_planks", new Block(RUNEWOOD().addTags(PLANKS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block RUNEWOOD_PLANKS_SLAB = register("runewood_planks_slab", new SlabBlock(RUNEWOOD().addTags(SLABS, WOODEN_SLABS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block RUNEWOOD_PLANKS_STAIRS = register("runewood_planks_stairs", new StairsBlock(RUNEWOOD_PLANKS.getDefaultState(), RUNEWOOD().addTags(STAIRS, WOODEN_STAIRS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	Block VERTICAL_RUNEWOOD_PLANKS = register("vertical_runewood_planks", new Block(RUNEWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block VERTICAL_RUNEWOOD_PLANKS_SLAB = register("vertical_runewood_planks_slab", new SlabBlock(RUNEWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block VERTICAL_RUNEWOOD_PLANKS_STAIRS = register("vertical_runewood_planks_stairs", new StairsBlock(VERTICAL_RUNEWOOD_PLANKS.getDefaultState(), RUNEWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block VERTICAL_RUNEWOOD_PLANKS = register("vertical_runewood_planks", new Block(RUNEWOOD().addTags(PLANKS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block VERTICAL_RUNEWOOD_PLANKS_SLAB = register("vertical_runewood_planks_slab", new SlabBlock(RUNEWOOD().addTags(SLABS, WOODEN_SLABS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block VERTICAL_RUNEWOOD_PLANKS_STAIRS = register("vertical_runewood_planks_stairs", new StairsBlock(VERTICAL_RUNEWOOD_PLANKS.getDefaultState(), RUNEWOOD().addTags(STAIRS, WOODEN_STAIRS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	Block RUNEWOOD_PANEL = register("runewood_panel", new Block(RUNEWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block RUNEWOOD_PANEL_SLAB = register("runewood_panel_slab", new SlabBlock(RUNEWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block RUNEWOOD_PANEL_STAIRS = register("runewood_panel_stairs", new StairsBlock(RUNEWOOD_PANEL.getDefaultState(), RUNEWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block RUNEWOOD_PANEL = register("runewood_panel", new Block(RUNEWOOD()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block RUNEWOOD_PANEL_SLAB = register("runewood_panel_slab", new SlabBlock(RUNEWOOD().addTags(SLABS, WOODEN_SLABS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block RUNEWOOD_PANEL_STAIRS = register("runewood_panel_stairs", new StairsBlock(RUNEWOOD_PANEL.getDefaultState(), RUNEWOOD().addTags(STAIRS, WOODEN_STAIRS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	Block RUNEWOOD_TILES = register("runewood_tiles", new Block(RUNEWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block RUNEWOOD_TILES_SLAB = register("runewood_tiles_slab", new SlabBlock(RUNEWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block RUNEWOOD_TILES_STAIRS = register("runewood_tiles_stairs", new StairsBlock(RUNEWOOD_TILES.getDefaultState(), RUNEWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block RUNEWOOD_TILES = register("runewood_tiles", new Block(RUNEWOOD()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block RUNEWOOD_TILES_SLAB = register("runewood_tiles_slab", new SlabBlock(RUNEWOOD().addTags(SLABS, WOODEN_SLABS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block RUNEWOOD_TILES_STAIRS = register("runewood_tiles_stairs", new StairsBlock(RUNEWOOD_TILES.getDefaultState(), RUNEWOOD().addTags(STAIRS, WOODEN_STAIRS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	Block CUT_RUNEWOOD_PLANKS = register("cut_runewood_planks", new Block(RUNEWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block RUNEWOOD_BEAM = register("runewood_beam", new PillarBlock(RUNEWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block CUT_RUNEWOOD_PLANKS = register("cut_runewood_planks", new Block(RUNEWOOD().addTags(PLANKS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block RUNEWOOD_BEAM = register("runewood_beam", new PillarBlock(RUNEWOOD()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	Block RUNEWOOD_DOOR = register("runewood_door", new DoorBlock(RUNEWOOD_PROPERTIES().nonOpaque()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block RUNEWOOD_TRAPDOOR = register("runewood_trapdoor", new TrapdoorBlock(RUNEWOOD_PROPERTIES().nonOpaque()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block SOLID_RUNEWOOD_TRAPDOOR = register("solid_runewood_trapdoor", new TrapdoorBlock(RUNEWOOD_PROPERTIES().nonOpaque()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block RUNEWOOD_DOOR = register("runewood_door", new DoorBlock(RUNEWOOD().addTags(DOORS, WOODEN_DOORS).nonOpaque()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block RUNEWOOD_TRAPDOOR = register("runewood_trapdoor", new TrapdoorBlock(RUNEWOOD().addTags(TRAPDOORS, WOODEN_TRAPDOORS).nonOpaque()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOLID_RUNEWOOD_TRAPDOOR = register("solid_runewood_trapdoor", new TrapdoorBlock(RUNEWOOD().addTags(TRAPDOORS, WOODEN_TRAPDOORS).nonOpaque()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	Block RUNEWOOD_PLANKS_BUTTON = register("runewood_planks_button", new WoodenButtonBlock(RUNEWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block RUNEWOOD_PLANKS_PRESSURE_PLATE = register("runewood_planks_pressure_plate", new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, RUNEWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block RUNEWOOD_PLANKS_BUTTON = register("runewood_planks_button", new WoodenButtonBlock(RUNEWOOD().addTags(BUTTONS, WOODEN_BUTTONS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block RUNEWOOD_PLANKS_PRESSURE_PLATE = register("runewood_planks_pressure_plate", new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, RUNEWOOD().addTags(PRESSURE_PLATES, WOODEN_PRESSURE_PLATES)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	Block RUNEWOOD_PLANKS_FENCE = register("runewood_planks_fence", new FenceBlock(RUNEWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block RUNEWOOD_PLANKS_FENCE_GATE = register("runewood_planks_fence_gate", new FenceGateBlock(RUNEWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block RUNEWOOD_PLANKS_FENCE = register("runewood_planks_fence", new FenceBlock(RUNEWOOD().addTags(FENCES, WOODEN_FENCES)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block RUNEWOOD_PLANKS_FENCE_GATE = register("runewood_planks_fence_gate", new FenceGateBlock(RUNEWOOD().addTags(FENCE_GATES)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	Block RUNEWOOD_ITEM_STAND = register("runewood_item_stand", new ItemStandBlock<>(RUNEWOOD_PROPERTIES().nonOpaque()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block RUNEWOOD_ITEM_PEDESTAL = register("runewood_item_pedestal", new WoodItemPedestalBlock<>(RUNEWOOD_PROPERTIES().nonOpaque()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block RUNEWOOD_ITEM_STAND = register("runewood_item_stand", new ItemStandBlock<>(RUNEWOOD().nonOpaque()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block RUNEWOOD_ITEM_PEDESTAL = register("runewood_item_pedestal", new WoodItemPedestalBlock<>(RUNEWOOD().nonOpaque()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	//Block RUNEWOOD_SIGN = register("runewood_sign", new LodestoneStandingSignBlock(RUNEWOOD_PROPERTIES().nonOpaque().noCollision(), RUNEWOOD_SIGN_TYPE), true);
-	//Block RUNEWOOD_WALL_SIGN = register("runewood_wall_sign", new LodestoneWallSignBlock(RUNEWOOD_PROPERTIES().nonOpaque().noCollision(), RUNEWOOD_SIGN_TYPE), false);
+	//Block RUNEWOOD_SIGN = register("runewood_sign", new LodestoneStandingSignBlock(RUNEWOOD().nonOpaque().noCollision(), RUNEWOOD_SIGN_TYPE), true);
+	//Block RUNEWOOD_WALL_SIGN = register("runewood_wall_sign", new LodestoneWallSignBlock(RUNEWOOD().nonOpaque().noCollision(), RUNEWOOD_SIGN_TYPE), false);
 	//endregion
 
 	//region soulwood
-	Block SOULWOOD_GROWTH = register("soulwood_growth", new SoulwoodGrowthBlock(new SoulwoodSaplingGenerator(), BLIGHT_PLANTS_PROPERTIES().ticksRandomly()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block SOULWOOD_LEAVES = register("soulwood_leaves", new MalumLeavesBlock(SOULWOOD_LEAVES_PROPERTIES(), new Color(152, 6, 45), new Color(224, 30, 214)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOULWOOD_GROWTH = register("soulwood_growth", new SoulwoodGrowthBlock(new SoulwoodSaplingGenerator(), BLIGHTED_PLANTS().addTags(SAPLINGS).ticksRandomly()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOULWOOD_LEAVES = register("soulwood_leaves", new MalumLeavesBlock(SOULWOOD_LEAVES(), new Color(152, 6, 45), new Color(224, 30, 214)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	Block STRIPPED_SOULWOOD_LOG = register("stripped_soulwood_log", new PillarBlock(SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block SOULWOOD_LOG = register("soulwood_log", new SoulwoodLogBlock(STRIPPED_SOULWOOD_LOG,SOULWOOD_PROPERTIES(), true), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block STRIPPED_SOULWOOD = register("stripped_soulwood", new PillarBlock(SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block SOULWOOD = register("soulwood", new SoulwoodBlock(STRIPPED_SOULWOOD, SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block STRIPPED_SOULWOOD_LOG = register("stripped_soulwood_log", new PillarBlock(SOULWOOD().addTags(LOGS, LOGS_THAT_BURN, SOULWOOD_LOGS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOULWOOD_LOG = register("soulwood_log", new SoulwoodLogBlock(STRIPPED_SOULWOOD_LOG,SOULWOOD().addTags(LOGS, LOGS_THAT_BURN, SOULWOOD_LOGS), true), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block STRIPPED_SOULWOOD = register("stripped_soulwood", new PillarBlock(SOULWOOD().addTags(LOGS, LOGS_THAT_BURN, SOULWOOD_LOGS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOULWOOD = register("soulwood", new SoulwoodBlock(STRIPPED_SOULWOOD, SOULWOOD().addTags(LOGS, LOGS_THAT_BURN, SOULWOOD_LOGS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	Block REVEALED_SOULWOOD_LOG = register("revealed_soulwood_log", new SapFilledSoulwoodLogBlock(SOULWOOD_PROPERTIES(), STRIPPED_SOULWOOD_LOG, UNHOLY_SAP, new Color(214, 46, 83)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block EXPOSED_SOULWOOD_LOG = register("exposed_soulwood_log", new SoulwoodBlock(REVEALED_SOULWOOD_LOG, SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block REVEALED_SOULWOOD_LOG = register("revealed_soulwood_log", new SapFilledSoulwoodLogBlock(SOULWOOD().addTags(LOGS, LOGS_THAT_BURN, SOULWOOD_LOGS), STRIPPED_SOULWOOD_LOG, UNHOLY_SAP, new Color(214, 46, 83)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block EXPOSED_SOULWOOD_LOG = register("exposed_soulwood_log", new SoulwoodBlock(REVEALED_SOULWOOD_LOG, SOULWOOD().addTags(LOGS, LOGS_THAT_BURN, SOULWOOD_LOGS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	Block SOULWOOD_PLANKS = register("soulwood_planks", new Block(SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block SOULWOOD_PLANKS_SLAB = register("soulwood_planks_slab", new SlabBlock(SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block SOULWOOD_PLANKS_STAIRS = register("soulwood_planks_stairs", new StairsBlock(SOULWOOD_PLANKS.getDefaultState(), SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOULWOOD_PLANKS = register("soulwood_planks", new Block(SOULWOOD().addTags(PLANKS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOULWOOD_PLANKS_SLAB = register("soulwood_planks_slab", new SlabBlock(SOULWOOD().addTags(SLABS, WOODEN_SLABS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOULWOOD_PLANKS_STAIRS = register("soulwood_planks_stairs", new StairsBlock(SOULWOOD_PLANKS.getDefaultState(), SOULWOOD().addTags(STAIRS, WOODEN_STAIRS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	Block VERTICAL_SOULWOOD_PLANKS = register("vertical_soulwood_planks", new Block(SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block VERTICAL_SOULWOOD_PLANKS_SLAB = register("vertical_soulwood_planks_slab", new SlabBlock(SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block VERTICAL_SOULWOOD_PLANKS_STAIRS = register("vertical_soulwood_planks_stairs", new StairsBlock(VERTICAL_SOULWOOD_PLANKS.getDefaultState(), SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block VERTICAL_SOULWOOD_PLANKS = register("vertical_soulwood_planks", new Block(SOULWOOD().addTags(PLANKS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block VERTICAL_SOULWOOD_PLANKS_SLAB = register("vertical_soulwood_planks_slab", new SlabBlock(SOULWOOD().addTags(SLABS, WOODEN_SLABS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block VERTICAL_SOULWOOD_PLANKS_STAIRS = register("vertical_soulwood_planks_stairs", new StairsBlock(VERTICAL_SOULWOOD_PLANKS.getDefaultState(), SOULWOOD().addTags(STAIRS, WOODEN_STAIRS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	Block SOULWOOD_PANEL = register("soulwood_panel", new Block(SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block SOULWOOD_PANEL_SLAB = register("soulwood_panel_slab", new SlabBlock(SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block SOULWOOD_PANEL_STAIRS = register("soulwood_panel_stairs", new StairsBlock(SOULWOOD_PANEL.getDefaultState(), SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOULWOOD_PANEL = register("soulwood_panel", new Block(SOULWOOD()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOULWOOD_PANEL_SLAB = register("soulwood_panel_slab", new SlabBlock(SOULWOOD().addTags(SLABS, WOODEN_SLABS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOULWOOD_PANEL_STAIRS = register("soulwood_panel_stairs", new StairsBlock(SOULWOOD_PANEL.getDefaultState(), SOULWOOD().addTags(STAIRS, WOODEN_STAIRS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	Block SOULWOOD_TILES = register("soulwood_tiles", new Block(SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block SOULWOOD_TILES_SLAB = register("soulwood_tiles_slab", new SlabBlock(SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block SOULWOOD_TILES_STAIRS = register("soulwood_tiles_stairs", new StairsBlock(SOULWOOD_TILES.getDefaultState(), SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOULWOOD_TILES = register("soulwood_tiles", new Block(SOULWOOD()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOULWOOD_TILES_SLAB = register("soulwood_tiles_slab", new SlabBlock(SOULWOOD().addTags(SLABS, WOODEN_SLABS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOULWOOD_TILES_STAIRS = register("soulwood_tiles_stairs", new StairsBlock(SOULWOOD_TILES.getDefaultState(), SOULWOOD().addTags(STAIRS, WOODEN_STAIRS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	Block CUT_SOULWOOD_PLANKS = register("cut_soulwood_planks", new Block(SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block SOULWOOD_BEAM = register("soulwood_beam", new PillarBlock(SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block CUT_SOULWOOD_PLANKS = register("cut_soulwood_planks", new Block(SOULWOOD().addTags(PLANKS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOULWOOD_BEAM = register("soulwood_beam", new PillarBlock(SOULWOOD()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	Block SOULWOOD_DOOR = register("soulwood_door", new DoorBlock(SOULWOOD_PROPERTIES().nonOpaque()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block SOULWOOD_TRAPDOOR = register("soulwood_trapdoor", new TrapdoorBlock(SOULWOOD_PROPERTIES().nonOpaque()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block SOLID_SOULWOOD_TRAPDOOR = register("solid_soulwood_trapdoor", new TrapdoorBlock(SOULWOOD_PROPERTIES().nonOpaque()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOULWOOD_DOOR = register("soulwood_door", new DoorBlock(SOULWOOD().addTags(DOORS, WOODEN_DOORS).nonOpaque()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOULWOOD_TRAPDOOR = register("soulwood_trapdoor", new TrapdoorBlock(SOULWOOD().addTags(TRAPDOORS, WOODEN_TRAPDOORS).nonOpaque()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOLID_SOULWOOD_TRAPDOOR = register("solid_soulwood_trapdoor", new TrapdoorBlock(SOULWOOD().addTags(TRAPDOORS, WOODEN_TRAPDOORS).nonOpaque()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	Block SOULWOOD_PLANKS_BUTTON = register("soulwood_planks_button", new WoodenButtonBlock(SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block SOULWOOD_PLANKS_PRESSURE_PLATE = register("soulwood_planks_pressure_plate", new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOULWOOD_PLANKS_BUTTON = register("soulwood_planks_button", new WoodenButtonBlock(SOULWOOD().addTags(BUTTONS, WOODEN_BUTTONS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOULWOOD_PLANKS_PRESSURE_PLATE = register("soulwood_planks_pressure_plate", new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, SOULWOOD().addTags(PRESSURE_PLATES, WOODEN_PRESSURE_PLATES)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	Block SOULWOOD_PLANKS_FENCE = register("soulwood_planks_fence", new FenceBlock(SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block SOULWOOD_PLANKS_FENCE_GATE = register("soulwood_planks_fence_gate", new FenceGateBlock(SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOULWOOD_PLANKS_FENCE = register("soulwood_planks_fence", new FenceBlock(SOULWOOD().addTags(FENCES, WOODEN_FENCES)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOULWOOD_PLANKS_FENCE_GATE = register("soulwood_planks_fence_gate", new FenceGateBlock(SOULWOOD().addTags(FENCE_GATES)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	Block SOULWOOD_ITEM_STAND = register("soulwood_item_stand", new ItemStandBlock<>(SOULWOOD_PROPERTIES().nonOpaque()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
-	Block SOULWOOD_ITEM_PEDESTAL = register("soulwood_item_pedestal", new WoodItemPedestalBlock<>(SOULWOOD_PROPERTIES().nonOpaque()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOULWOOD_ITEM_STAND = register("soulwood_item_stand", new ItemStandBlock<>(SOULWOOD().nonOpaque()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
+	Block SOULWOOD_ITEM_PEDESTAL = register("soulwood_item_pedestal", new WoodItemPedestalBlock<>(SOULWOOD().nonOpaque()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS,true);
 
-	//Block SOULWOOD_SIGN = register("soulwood_sign", new LodestoneStandingSignBlock(SOULWOOD_PROPERTIES().nonOpaque().noCollision(), SOULWOOD_SIGN_TYPE), true);
-	//Block SOULWOOD_WALL_SIGN = register("soulwood_wall_sign", new LodestoneWallSignBlock(SOULWOOD_PROPERTIES().nonOpaque().noCollision(), SOULWOOD_SIGN_TYPE), false);
+	//Block SOULWOOD_SIGN = register("soulwood_sign", new LodestoneStandingSignBlock(SOULWOOD().nonOpaque().noCollision(), SOULWOOD_SIGN_TYPE), true);
+	//Block SOULWOOD_WALL_SIGN = register("soulwood_wall_sign", new LodestoneWallSignBlock(SOULWOOD().nonOpaque().noCollision(), SOULWOOD_SIGN_TYPE), false);
 	//endregion
 
 
 
 	//region blight
-	Block BLIGHTED_EARTH = register("blighted_earth", new BlightedSoilBlock(BLIGHT_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS, true);
-	Block BLIGHTED_SOIL = register("blighted_soil", new BlightedSoilBlock(BLIGHT_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS, true);
-	Block BLIGHTED_WEED = register("blighted_weed", new BlightedGrassBlock(BLIGHT_PLANTS_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS, true);
-	Block BLIGHTED_TUMOR = register("blighted_tumor", new BlightedGrassBlock(BLIGHT_PLANTS_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS, true);
-	Block BLIGHTED_SOULWOOD = register("blighted_soulwood", new BlightedSoulwoodBlock(SOULWOOD_PROPERTIES()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS, true);
+	Block BLIGHTED_EARTH = register("blighted_earth", new BlightedSoilBlock(BLIGHT()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS, true);
+	Block BLIGHTED_SOIL = register("blighted_soil", new BlightedSoilBlock(BLIGHT()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS, true);
+	Block BLIGHTED_WEED = register("blighted_weed", new BlightedGrassBlock(BLIGHTED_PLANTS()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS, true);
+	Block BLIGHTED_TUMOR = register("blighted_tumor", new BlightedGrassBlock(BLIGHTED_PLANTS()), MalumItemGroupEvents.MALUM_NATURAL_WONDERS, true);
+	Block BLIGHTED_SOULWOOD = register("blighted_soulwood", new BlightedSoulwoodBlock(SOULWOOD().addTags(LOGS, LOGS_THAT_BURN, SOULWOOD_LOGS)), MalumItemGroupEvents.MALUM_NATURAL_WONDERS, true);
 	Item BLIGHTED_GUNK = register("blighted_gunk", new Item(settings().group(MalumItemGroupEvents.MALUM_NATURAL_WONDERS)));
 	//endregion
 
-	Block RUNEWOOD_TOTEM_BASE = register("runewood_totem_base", new TotemBaseBlock<>(RUNEWOOD_PROPERTIES().nonOpaque(), false), MalumItemGroupEvents.MALUM, true);
-	Block RUNEWOOD_TOTEM_POLE = register("runewood_totem_pole", new TotemPoleBlock<>(RUNEWOOD_LOG, RUNEWOOD_PROPERTIES().nonOpaque(), false), MalumItemGroupEvents.MALUM, false);
+	Block RUNEWOOD_TOTEM_BASE = register("runewood_totem_base", new TotemBaseBlock<>(RUNEWOOD().addTags(RITE_IMMUNE).nonOpaque(), false), MalumItemGroupEvents.MALUM, true);
+	Block RUNEWOOD_TOTEM_POLE = register("runewood_totem_pole", new TotemPoleBlock<>(RUNEWOOD_LOG, RUNEWOOD().addTags(RITE_IMMUNE).nonOpaque(), false), MalumItemGroupEvents.MALUM, false);
 
-	Block SOULWOOD_TOTEM_BASE = register("soulwood_totem_base", new TotemBaseBlock<>(SOULWOOD_PROPERTIES().nonOpaque(), true), MalumItemGroupEvents.MALUM, true);
-	Block SOULWOOD_TOTEM_POLE = register("soulwood_totem_pole", new TotemPoleBlock<>(SOULWOOD_LOG, SOULWOOD_PROPERTIES().nonOpaque(), true), MalumItemGroupEvents.MALUM, false);
+	Block SOULWOOD_TOTEM_BASE = register("soulwood_totem_base", new TotemBaseBlock<>(SOULWOOD().addTags(RITE_IMMUNE).nonOpaque(), true), MalumItemGroupEvents.MALUM, true);
+	Block SOULWOOD_TOTEM_POLE = register("soulwood_totem_pole", new TotemPoleBlock<>(SOULWOOD_LOG, SOULWOOD().addTags(RITE_IMMUNE).nonOpaque(), true), MalumItemGroupEvents.MALUM, false);
 
 	//region ether
-	Block WALL_ETHER_TORCH = register("wall_ether_torch", new EtherWallTorchBlock<>(RUNEWOOD_PROPERTIES().noCollision().breakInstantly().luminance((b) -> 14)), MalumItemGroupEvents.MALUM, false);
-	Block ETHER_TORCH = registerEtherTorch("ether_torch", new EtherTorchBlock<>(RUNEWOOD_PROPERTIES().noCollision().breakInstantly().luminance((b) -> 14)), WALL_ETHER_TORCH, false, true);
+	Block WALL_ETHER_TORCH = register("wall_ether_torch", new EtherWallTorchBlock<>(RUNEWOOD().noCollision().breakInstantly().luminance((b) -> 14)), MalumItemGroupEvents.MALUM, false);
+	Block ETHER_TORCH = registerEtherTorch("ether_torch", new EtherTorchBlock<>(RUNEWOOD().noCollision().breakInstantly().luminance((b) -> 14)), WALL_ETHER_TORCH, false, true);
 
-	Block ETHER = registerEther("ether", new EtherBlock<>(ETHER_BLOCK_PROPERTIES()), false, true);
-	Block TAINTED_ETHER_BRAZIER = registerEtherBrazier("tainted_ether_brazier", new EtherBrazierBlock<>(TAINTED_ROCK_PROPERTIES().luminance((b) -> 14).nonOpaque()), false, true);
-	Block TWISTED_ETHER_BRAZIER = registerEtherBrazier("twisted_ether_brazier", new EtherBrazierBlock<>(TWISTED_ROCK_PROPERTIES().luminance((b) -> 14).nonOpaque()), false, true);
+	Block ETHER = registerEther("ether", new EtherBlock<>(ETHER()), false, true);
+	Block TAINTED_ETHER_BRAZIER = registerEtherBrazier("tainted_ether_brazier", new EtherBrazierBlock<>(TAINTED_ROCK().luminance((b) -> 14).nonOpaque()), false, true);
+	Block TWISTED_ETHER_BRAZIER = registerEtherBrazier("twisted_ether_brazier", new EtherBrazierBlock<>(TWISTED_ROCK().luminance((b) -> 14).nonOpaque()), false, true);
 
-	Block IRIDESCENT_WALL_ETHER_TORCH = register("iridescent_wall_ether_torch", new EtherWallTorchBlock<>(RUNEWOOD_PROPERTIES().noCollision().breakInstantly().luminance((b) -> 14)), false);
-	Block IRIDESCENT_ETHER_TORCH = registerEtherTorch("iridescent_ether_torch", new EtherTorchBlock<>(RUNEWOOD_PROPERTIES().noCollision().breakInstantly().luminance((b) -> 14)), IRIDESCENT_WALL_ETHER_TORCH, true, true);
+	Block IRIDESCENT_WALL_ETHER_TORCH = register("iridescent_wall_ether_torch", new EtherWallTorchBlock<>(RUNEWOOD().noCollision().breakInstantly().luminance((b) -> 14)), false);
+	Block IRIDESCENT_ETHER_TORCH = registerEtherTorch("iridescent_ether_torch", new EtherTorchBlock<>(RUNEWOOD().noCollision().breakInstantly().luminance((b) -> 14)), IRIDESCENT_WALL_ETHER_TORCH, true, true);
 
-	Block IRIDESCENT_ETHER = registerEther("iridescent_ether", new EtherBlock<>(ETHER_BLOCK_PROPERTIES()), true , true);
-	Block TAINTED_IRIDESCENT_ETHER_BRAZIER = registerEtherBrazier("tainted_iridescent_ether_brazier", new EtherBrazierBlock<>(TAINTED_ROCK_PROPERTIES().luminance((b) -> 14).nonOpaque()), true, true);
-	Block TWISTED_IRIDESCENT_ETHER_BRAZIER = registerEtherBrazier("twisted_iridescent_ether_brazier", new EtherBrazierBlock<>(TWISTED_ROCK_PROPERTIES().luminance((b) -> 14).nonOpaque()), true, true);
+	Block IRIDESCENT_ETHER = registerEther("iridescent_ether", new EtherBlock<>(ETHER()), true , true);
+	Block TAINTED_IRIDESCENT_ETHER_BRAZIER = registerEtherBrazier("tainted_iridescent_ether_brazier", new EtherBrazierBlock<>(TAINTED_ROCK().luminance((b) -> 14).nonOpaque()), true, true);
+	Block TWISTED_IRIDESCENT_ETHER_BRAZIER = registerEtherBrazier("twisted_iridescent_ether_brazier", new EtherBrazierBlock<>(TWISTED_ROCK().luminance((b) -> 14).nonOpaque()), true, true);
 
 
 	//endregion
 	Block BLAZING_TORCH = register("blazing_torch", new TorchBlock(RUNEWOOD_PROPERTIES().noCollision().breakInstantly().luminance((b) -> 14), ParticleTypes.FLAME), MalumItemGroupEvents.MALUM, true);
 	Block WALL_BLAZING_TORCH = register("wall_blazing_torch", new WallTorchBlock(RUNEWOOD_PROPERTIES().noCollision().breakInstantly().luminance((b) -> 14), ParticleTypes.FLAME), false);
 
-	Block BLOCK_OF_ARCANE_CHARCOAL = register("block_of_arcane_charcoal", new Block(ARCANE_CHARCOAL_PROPERTIES()), MalumItemGroupEvents.MALUM,true);
+	Block BLOCK_OF_ARCANE_CHARCOAL = register("block_of_arcane_charcoal", new Block(ARCANE_CHARCOAL_BLOCK()), MalumItemGroupEvents.MALUM,true);
 
-	Block BLAZING_QUARTZ_ORE = register("blazing_quartz_ore", new ExperienceDroppingBlock(BLAZE_QUARTZ_ORE_PROPERTIES().luminance((b) -> 6), UniformIntProvider.create(4, 7)), MalumItemGroupEvents.MALUM,true);
-	Block BLOCK_OF_BLAZING_QUARTZ = register("block_of_blazing_quartz", new Block(BLAZE_QUARTZ_PROPERTIES().luminance((b) -> 14)), MalumItemGroupEvents.MALUM,true);
+	Block BLAZING_QUARTZ_ORE = register("blazing_quartz_ore", new ExperienceDroppingBlock(BLAZING_QUARTZ_ORE().luminance((b) -> 6), UniformIntProvider.create(4, 7)), MalumItemGroupEvents.MALUM,true);
+	Block BLOCK_OF_BLAZING_QUARTZ = register("block_of_blazing_quartz", new Block(BLAZING_QUARTZ_BLOCK().luminance((b) -> 14)), MalumItemGroupEvents.MALUM,true);
 
-	Block NATURAL_QUARTZ_ORE = register("natural_quartz_ore", new ExperienceDroppingBlock(NATURAL_QUARTZ_PROPERTIES(), UniformIntProvider.create(1, 4)), MalumItemGroupEvents.MALUM,true);
-	Block DEEPSLATE_QUARTZ_ORE = register("deepslate_quartz_ore", new ExperienceDroppingBlock(DEEPSLATE_QUARTZ_PROPERTIES(), UniformIntProvider.create(2, 5)), MalumItemGroupEvents.MALUM,true);
-	Block NATURAL_QUARTZ_CLUSTER = register("natural_quartz_cluster", new AmethystClusterBlock(7, 3, NATURAL_QUARTZ_CLUSTER_PROPERTIES().ticksRandomly().strength(1.5F).luminance(state -> 5)), MalumItemGroupEvents.MALUM,false);
+	Block NATURAL_QUARTZ_ORE = register("natural_quartz_ore", new ExperienceDroppingBlock(NATURAL_QUARTZ_ORE(false), UniformIntProvider.create(1, 4)), MalumItemGroupEvents.MALUM,true);
+	Block DEEPSLATE_QUARTZ_ORE = register("deepslate_quartz_ore", new ExperienceDroppingBlock(NATURAL_QUARTZ_ORE(true), UniformIntProvider.create(2, 5)), MalumItemGroupEvents.MALUM,true);
+	Block NATURAL_QUARTZ_CLUSTER = register("natural_quartz_cluster", new AmethystClusterBlock(7, 3, NATURAL_QUARTZ_CLUSTER().ticksRandomly().strength(1.5F).luminance(state -> 5)), MalumItemGroupEvents.MALUM,false);
 	Item NATURAL_QUARTZ = register("natural_quartz", new AliasedBlockItem(NATURAL_QUARTZ_CLUSTER, settings().group(MalumItemGroupEvents.MALUM)));
 
-	Block NATURAL_QUARTZ_CLUSTER_BLOCK = register("natural_quartz_cluster_block", new NaturalQuartzBlock(NATURAL_QUARTZ_CLUSTER_PROPERTIES()), MalumItemGroupEvents.MALUM, true);
-	Block LARGE_QUARTZ_BUD = register("large_quartz_bud", new AmethystClusterBlock(5, 3, AbstractBlock.Settings.copy(NATURAL_QUARTZ_CLUSTER).luminance(state -> 4)), MalumItemGroupEvents.MALUM, false);
-	Block MEDIUM_QUARTZ_BUD = register("medium_quartz_bud", new AmethystClusterBlock(4, 3, AbstractBlock.Settings.copy(NATURAL_QUARTZ_CLUSTER).luminance(state -> 2)), MalumItemGroupEvents.MALUM, false);
-	Block SMALL_QUARTZ_BUD = register("small_quartz_bud", new AmethystClusterBlock(3, 4, AbstractBlock.Settings.copy(NATURAL_QUARTZ_CLUSTER).luminance(state -> 1)), MalumItemGroupEvents.MALUM, false);
-	Block BUDDING_NATURAL_QUARTZ = register("budding_natural_quartz_cluster_block", new BuddingNaturalQuartzBlock( NATURAL_QUARTZ_CLUSTER_PROPERTIES().ticksRandomly()), MalumItemGroupEvents.MALUM, true);
+	Block NATURAL_QUARTZ_CLUSTER_BLOCK = register("natural_quartz_cluster_block", new NaturalQuartzBlock(NATURAL_QUARTZ_CLUSTER()), MalumItemGroupEvents.MALUM, true);
+	Block LARGE_QUARTZ_BUD = register("large_quartz_bud", new AmethystClusterBlock(5, 3, BlockSettings.copyOf(NATURAL_QUARTZ_CLUSTER).luminance(state -> 4)), MalumItemGroupEvents.MALUM, false);
+	Block MEDIUM_QUARTZ_BUD = register("medium_quartz_bud", new AmethystClusterBlock(4, 3, BlockSettings.copyOf(NATURAL_QUARTZ_CLUSTER).luminance(state -> 2)), MalumItemGroupEvents.MALUM, false);
+	Block SMALL_QUARTZ_BUD = register("small_quartz_bud", new AmethystClusterBlock(3, 4, BlockSettings.copyOf(NATURAL_QUARTZ_CLUSTER).luminance(state -> 1)), MalumItemGroupEvents.MALUM, false);
+	Block BUDDING_NATURAL_QUARTZ = register("budding_natural_quartz_cluster_block", new BuddingNaturalQuartzBlock( NATURAL_QUARTZ_CLUSTER().ticksRandomly()), MalumItemGroupEvents.MALUM, true);
 
-	Block BLOCK_OF_RARE_EARTHS = register("block_of_rare_earths", new ExperienceDroppingBlock(RARE_EARTH_PROPERTIES(), UniformIntProvider.create(10, 100)),true);
+	Block BLOCK_OF_RARE_EARTHS = register("block_of_rare_earths", new ExperienceDroppingBlock(CTHONIC_GOLD_ORE(), UniformIntProvider.create(10, 100)),true);
 
-	Block BRILLIANT_STONE = register("brilliant_stone", new ExperienceDroppingBlock(BRILLIANCE_PROPERTIES(), UniformIntProvider.create(14, 18)), MalumItemGroupEvents.MALUM,true);
-	Block BRILLIANT_DEEPSLATE = register("brilliant_deepslate", new ExperienceDroppingBlock(DEEPSLATE_BRILLIANCE_PROPERTIES(), UniformIntProvider.create(16, 26)), MalumItemGroupEvents.MALUM,true);
-	Block BLOCK_OF_BRILLIANCE = register("block_of_brilliance", new Block(BRILLIANCE_PROPERTIES()), MalumItemGroupEvents.MALUM,true);
+	Block BRILLIANT_STONE = register("brilliant_stone", new ExperienceDroppingBlock(BRILLIANCE_ORE(false), UniformIntProvider.create(14, 18)), MalumItemGroupEvents.MALUM,true);
+	Block BRILLIANT_DEEPSLATE = register("brilliant_deepslate", new ExperienceDroppingBlock(BRILLIANCE_ORE(true), UniformIntProvider.create(16, 26)), MalumItemGroupEvents.MALUM,true);
+	Block BLOCK_OF_BRILLIANCE = register("block_of_brilliance", new Block(BRILLIANCE_BLOCK()), MalumItemGroupEvents.MALUM,true);
 
-	Block SOULSTONE_ORE = register("soulstone_ore", new ExperienceDroppingBlock(SOULSTONE_PROPERTIES()), MalumItemGroupEvents.MALUM,true);
-	Block DEEPSLATE_SOULSTONE_ORE = register("deepslate_soulstone_ore", new ExperienceDroppingBlock(DEEPSLATE_SOULSTONE_PROPERTIES().strength(6f, 4f)), MalumItemGroupEvents.MALUM,true);
+	Block SOULSTONE_ORE = register("soulstone_ore", new ExperienceDroppingBlock(SOULSTONE_ORE(false)), MalumItemGroupEvents.MALUM,true);
+	Block DEEPSLATE_SOULSTONE_ORE = register("deepslate_soulstone_ore", new ExperienceDroppingBlock(SOULSTONE_ORE(true).strength(6f, 4f)), MalumItemGroupEvents.MALUM,true);
 
 
-	Block BLOCK_OF_RAW_SOULSTONE = register("block_of_raw_soulstone", new Block(SOULSTONE_PROPERTIES()), MalumItemGroupEvents.MALUM,true);
-	Block BLOCK_OF_SOULSTONE = register("block_of_soulstone", new Block(SOULSTONE_PROPERTIES()), MalumItemGroupEvents.MALUM,true);
+	Block BLOCK_OF_RAW_SOULSTONE = register("block_of_raw_soulstone", new Block(SOULSTONE_BLOCK()), MalumItemGroupEvents.MALUM,true);
+	Block BLOCK_OF_SOULSTONE = register("block_of_soulstone", new Block(SOULSTONE_BLOCK()), MalumItemGroupEvents.MALUM,true);
 
-	Block BLOCK_OF_HALLOWED_GOLD = register("block_of_hallowed_gold", new Block(HALLOWED_GOLD_PROPERTIES()), MalumItemGroupEvents.MALUM,true);
-	Block BLOCK_OF_SOUL_STAINED_STEEL = register("block_of_soul_stained_steel", new Block(SOUL_STAINED_STEEL_BLOCK_PROPERTIES()), MalumItemGroupEvents.MALUM,true);
+	Block BLOCK_OF_HALLOWED_GOLD = register("block_of_hallowed_gold", new Block(HALLOWED_GOLD()), MalumItemGroupEvents.MALUM,true);
+	Block BLOCK_OF_SOUL_STAINED_STEEL = register("block_of_soul_stained_steel", new Block(SOUL_STAINED_STEEL_BLOCK()), MalumItemGroupEvents.MALUM,true);
 
-	Block THE_DEVICE = register("the_device", new TheDevice(TAINTED_ROCK_PROPERTIES()), MalumItemGroupEvents.MALUM,true);
+	Block THE_DEVICE = register("the_device", new TheDevice(TAINTED_ROCK()), MalumItemGroupEvents.MALUM,true);
 
 	// Block BLOCK_OF_RARE_EARTHS = register("block_of_rare_earths", new OreBlock(RARE_EARTH_PROPERTIES(), UniformIntProvider.create(10, 100)));
-	Block BLOCK_OF_ROTTING_ESSENCE = register("block_of_rotting_essence", new Block(AbstractBlock.Settings.copy(Blocks.FIRE_CORAL_BLOCK)), MalumItemGroupEvents.MALUM,true);
-	Block BLOCK_OF_GRIM_TALC = register("block_of_grim_talc", new Block(AbstractBlock.Settings.copy(Blocks.BONE_BLOCK)), MalumItemGroupEvents.MALUM,true);
-	Block BLOCK_OF_ALCHEMICAL_CALX = register("block_of_alchemical_calx", new Block(AbstractBlock.Settings.copy(Blocks.CALCITE)), MalumItemGroupEvents.MALUM,true);
-	Block BLOCK_OF_ASTRAL_WEAVE = register("block_of_astral_weave", new Block(AbstractBlock.Settings.copy(Blocks.LIGHT_BLUE_WOOL)), MalumItemGroupEvents.MALUM,true);
-	Block BLOCK_OF_HEX_ASH = register("block_of_hex_ash", new Block(AbstractBlock.Settings.copy(Blocks.PURPLE_CONCRETE_POWDER)), MalumItemGroupEvents.MALUM,true);
-	Block BLOCK_OF_CURSED_GRIT = register("block_of_cursed_grit", new Block(AbstractBlock.Settings.copy(Blocks.RED_CONCRETE_POWDER)), MalumItemGroupEvents.MALUM,true);
+	Block BLOCK_OF_ROTTING_ESSENCE = register("block_of_rotting_essence", new Block(BlockSettings.copyOf(Blocks.FIRE_CORAL_BLOCK)), MalumItemGroupEvents.MALUM,true);
+	Block BLOCK_OF_GRIM_TALC = register("block_of_grim_talc", new Block(BlockSettings.copyOf(Blocks.BONE_BLOCK)), MalumItemGroupEvents.MALUM,true);
+	Block BLOCK_OF_ALCHEMICAL_CALX = register("block_of_alchemical_calx", new Block(BlockSettings.copyOf(Blocks.CALCITE)), MalumItemGroupEvents.MALUM,true);
+	Block BLOCK_OF_ASTRAL_WEAVE = register("block_of_astral_weave", new Block(BlockSettings.copyOf(Blocks.LIGHT_BLUE_WOOL)), MalumItemGroupEvents.MALUM,true);
+	Block BLOCK_OF_HEX_ASH = register("block_of_hex_ash", new Block(BlockSettings.copyOf(Blocks.PURPLE_CONCRETE_POWDER)), MalumItemGroupEvents.MALUM,true);
+	Block BLOCK_OF_CURSED_GRIT = register("block_of_cursed_grit", new Block(BlockSettings.copyOf(Blocks.RED_CONCRETE_POWDER)), MalumItemGroupEvents.MALUM,true);
 
 	static <T extends Block> T registerEther(String name, T block, boolean isIri, boolean createItem) {
 		BLOCKS.put(block, new Identifier(Malum.MODID, name));
