@@ -100,6 +100,9 @@ dependencies {
 
 	runtimeOnly('org.joml:joml:1.10.4')
 	modImplementation include("io.github.fabricators_of_create.Porting-Lib:Porting-Lib:${project.port_lib_version}+${project.minecraft_version}")
+
+	modCompileOnly "dev.emi:emi:$emi_version:api"
+	modLocalRuntime "dev.emi:emi:$emi_version"
 }
 
 processResources {
