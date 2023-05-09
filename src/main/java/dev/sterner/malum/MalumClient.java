@@ -20,14 +20,18 @@ import dev.sterner.malum.common.network.packet.s2c.block.functional.AltarConsume
 import dev.sterner.malum.common.network.packet.s2c.block.functional.AltarCraftParticlePacket;
 import dev.sterner.malum.common.network.packet.s2c.entity.*;
 import dev.sterner.malum.common.registry.*;
+import dev.sterner.malum.common.spirit.MalumSpiritType;
 import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
+import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
+import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.ModelIdentifier;
+import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.item.Item;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
@@ -40,10 +44,13 @@ import org.quiltmc.qsl.networking.api.client.ClientPlayNetworking;
 import org.quiltmc.qsl.resource.loader.api.ResourceLoader;
 
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 import static dev.sterner.malum.common.registry.MalumObjects.*;
 
 public class MalumClient implements ClientModInitializer {
+
 	@Override
 	public void onInitializeClient(ModContainer mod) {
 		EntityModelLayerRegistry.registerModelLayer(SoulHunterArmorModel.LAYER, SoulHunterArmorModel::getTexturedModelData);
@@ -163,6 +170,15 @@ public class MalumClient implements ClientModInitializer {
 				SOUL_VIAL
 		);
 		registerColors();
+
+		ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE)
+			.register((spriteAtlasTexture, registry) -> {
+				MalumSpiritTypeRegistry.SPIRITS.forEach((s, t) -> {
+					SpriteIdentifier spriteIdentifier = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, t.getOverlayTexture());
+					TotemPoleBlockEntityRenderer.overlayHashmap.put(t, spriteIdentifier);
+					registry.register(t.getOverlayTexture());
+					});
+			});
 	}
 
 	private void registerColors() {

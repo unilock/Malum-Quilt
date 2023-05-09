@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.sammy.lodestone.handlers.RenderHandler;
 import com.sammy.lodestone.setup.LodestoneRenderLayerRegistry;
 import com.sammy.lodestone.systems.rendering.VFXBuilders;
+import dev.sterner.malum.MalumClient;
 import dev.sterner.malum.common.blockentity.totem.TotemPoleBlockEntity;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
 import dev.sterner.malum.common.spirit.MalumSpiritType;
@@ -26,12 +27,10 @@ import java.util.Map;
 import static com.sammy.lodestone.helpers.RenderHelper.FULL_BRIGHT;
 
 public class TotemPoleBlockEntityRenderer implements BlockEntityRenderer<TotemPoleBlockEntity> {
+
 	public static Map<MalumSpiritType, SpriteIdentifier> overlayHashmap = new HashMap<>();
 
 	public TotemPoleBlockEntityRenderer(BlockEntityRendererFactory.Context context) {
-		MalumSpiritTypeRegistry.SPIRITS.forEach((s, t) ->
-				overlayHashmap.put(t, new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, t.getOverlayTexture()))
-		);
 	}
 
 	@Override
