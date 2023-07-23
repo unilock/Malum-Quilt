@@ -1,0 +1,52 @@
+[versions]
+# The latest versions are available at https://lambdaurora.dev/tools/import_quilt.html
+minecraft = "1.19.2"
+quilt_mappings = "1.19.2+build.22"
+quilt_loader = "0.18.6"
+
+quilted_fabric_api = "4.0.0-beta.30+0.76.0-1.19.2"
+
+cardinal_components_api = "5.0.0"
+emi = "0.7.3+1.19.2"
+fabric_asm = "v2.3"
+joml = "1.10.4"
+lodestone = "0.3.2-1.19.2"
+midnightlib = "0.5.2"
+mixin_extras = "0.1.1"
+porting_lib = "2.1.926+1.19.2"
+reach_entity_attributes = "2.3.0"
+satin = "1.9.0"
+sodium = "mc1.19.2-0.4.4"
+trinkets = "3.4.1"
+
+[libraries]
+minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
+quilt_mappings = { module = "org.quiltmc:quilt-mappings", version.ref = "quilt_mappings" }
+quilt_loader = { module = "org.quiltmc:quilt-loader", version.ref = "quilt_loader" }
+
+quilted_fabric_api = { module = "org.quiltmc.quilted-fabric-api:quilted-fabric-api", version.ref = "quilted_fabric_api" }
+quilted_fabric_api_deprecated = { module = "org.quiltmc.quilted-fabric-api:quilted-fabric-api-deprecated", version.ref = "quilted_fabric_api" }
+
+cca_base = { module = "dev.onyxstudios.cardinal-components-api:cardinal-components-base", version.ref = "cardinal_components_api" }
+cca_entity = { module = "dev.onyxstudios.cardinal-components-api:cardinal-components-entity", version.ref = "cardinal_components_api" }
+cca_world = { module = "dev.onyxstudios.cardinal-components-api:cardinal-components-world", version.ref = "cardinal_components_api" }
+emi = { module = "dev.emi:emi", version.ref = "emi" }
+fabric_asm = { module = "com.github.Chocohead:Fabric-ASM", version.ref = "fabric_asm" }
+joml = { module = "org.joml:joml", version.ref = "joml" }
+lodestone = { module = "com.github.mrsterner:LodestoneLib-Quilt", version.ref = "lodestone" }
+midnightlib = { module = "maven.modrinth:midnightlib", version.ref = "midnightlib" }
+mixin_extras = { module = "com.github.LlamaLad7:MixinExtras", version.ref = "mixin_extras" }
+porting_lib = { module = "io.github.fabricators_of_create.Porting-Lib:Porting-Lib", version.ref = "porting_lib" }
+reach_entity_attributes = { module = "com.jamieswhiteshirt:reach-entity-attributes", version.ref = "reach_entity_attributes" }
+satin = { module = "io.github.ladysnake:satin", version.ref = "satin" }
+sodium = { module = "maven.modrinth:sodium", version.ref = "sodium" }
+trinkets = { module = "dev.emi:trinkets", version.ref = "trinkets" }
+
+# If you have multiple similar dependencies, you can declare a dependency bundle and reference it on the build script with "libs.bundles.example".
+[bundles]
+quilted_fabric_api = ["quilted_fabric_api", "quilted_fabric_api_deprecated"]
+# todo: doesn't work
+# cardinal_components_api = ["cca_base", "cca_entity", "cca_world"]
+
+[plugins]
+quilt_loom = { id = "org.quiltmc.loom", version = "1.2.+" }
