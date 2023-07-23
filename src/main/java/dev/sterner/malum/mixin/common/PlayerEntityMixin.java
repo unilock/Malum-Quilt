@@ -2,6 +2,7 @@ package dev.sterner.malum.mixin.common;
 
 
 import dev.emi.trinkets.api.TrinketsApi;
+import dev.onyxstudios.cca.api.v3.component.ComponentProvider;
 import dev.sterner.malum.common.item.spirit.TyrvingItem;
 import dev.sterner.malum.common.item.tools.MalumScytheItem;
 import dev.sterner.malum.common.registry.MalumDamageSourceRegistry;
@@ -36,7 +37,7 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 import static dev.sterner.malum.common.registry.MalumAttributeRegistry.SCYTHE_PROFICIENCY;
 
 @Mixin(PlayerEntity.class)
-abstract class PlayerEntityMixin extends LivingEntity {
+abstract class PlayerEntityMixin extends LivingEntity implements ComponentProvider {
 	protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
 		super(entityType, world);
 	}
