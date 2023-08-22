@@ -73,7 +73,7 @@ dependencies {
 		exclude group: 'net.fabricmc.fabric-api'
 	}
 
-	modCompileOnly "dev.emi:emi:${libs.versions.emi.get()}:api" // todo: wrong
+	modCompileOnly "dev.emi:emi-fabric:${libs.versions.emi.get()}:api" // todo: wrong
 	modLocalRuntime libs.emi
 
 	modImplementation include(libs.fabric.asm.get())
