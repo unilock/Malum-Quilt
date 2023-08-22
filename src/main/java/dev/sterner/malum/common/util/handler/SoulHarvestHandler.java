@@ -10,7 +10,7 @@ import dev.sterner.malum.common.component.MalumComponents;
 import dev.sterner.malum.common.entity.boomerang.ScytheBoomerangEntity;
 import dev.sterner.malum.common.entity.spirit.SoulEntity;
 import dev.sterner.malum.common.item.spirit.SoulStaveItem;
-import dev.sterner.malum.common.network.packet.s2c.entity.SuccessfulSoulHarvestParticlePacket;
+import dev.sterner.malum.common.network.packet.s2c.server.entity.SuccessfulSoulHarvestParticlePacket;
 import dev.sterner.malum.common.registry.MalumTagRegistry;
 import dev.sterner.malum.common.spirit.MalumEntitySpiritData;
 import dev.sterner.malum.common.spirit.SpiritHelper;

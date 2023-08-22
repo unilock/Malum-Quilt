@@ -2,7 +2,7 @@ package dev.sterner.malum.common.block.blight;
 
 import com.sammy.lodestone.systems.worldgen.LodestoneBlockFiller;
 import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
-import dev.sterner.malum.common.network.packet.s2c.block.blight.BlightMistParticlePacket;
+import dev.sterner.malum.common.network.packet.s2c.server.block.blight.BlightMistParticlePacket;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
 import dev.sterner.malum.common.world.gen.feature.SoulwoodTreeFeature;
 import net.minecraft.block.Block;
@@ -24,7 +24,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
 import org.quiltmc.qsl.networking.api.PlayerLookup;
 
 public class BlightedSoilBlock extends Block implements Fertilizable {

@@ -10,7 +10,7 @@ import com.sammy.lodestone.systems.particle.data.ColorParticleData;
 import com.sammy.lodestone.systems.particle.data.GenericParticleData;
 import com.sammy.lodestone.systems.particle.data.SpinParticleData;
 import com.sammy.lodestone.systems.particle.world.LodestoneWorldParticleTextureSheet;
-import dev.sterner.malum.common.network.packet.s2c.block.VoidConduitParticlePacket;
+import dev.sterner.malum.common.network.packet.s2c.server.block.VoidConduitParticlePacket;
 import dev.sterner.malum.common.recipe.FavorOfTheVoidRecipe;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import dev.sterner.malum.common.registry.MalumObjects;

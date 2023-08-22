@@ -12,15 +12,14 @@ import dev.sterner.malum.client.render.item.SpiritJarItemRenderer;
 import dev.sterner.malum.client.screen.SpiritPouchScreen;
 import dev.sterner.malum.common.block.MalumLeavesBlock;
 import dev.sterner.malum.common.blockentity.EtherBlockEntity;
-import dev.sterner.malum.common.network.packet.s2c.VoidRejectionPacket;
-import dev.sterner.malum.common.network.packet.s2c.block.*;
-import dev.sterner.malum.common.network.packet.s2c.block.blight.BlightMistParticlePacket;
-import dev.sterner.malum.common.network.packet.s2c.block.blight.BlightTransformItemParticlePacket;
-import dev.sterner.malum.common.network.packet.s2c.block.functional.AltarConsumeParticlePacket;
-import dev.sterner.malum.common.network.packet.s2c.block.functional.AltarCraftParticlePacket;
-import dev.sterner.malum.common.network.packet.s2c.entity.*;
+import dev.sterner.malum.common.network.packet.s2c.client.VoidRejectionPacket;
+import dev.sterner.malum.common.network.packet.s2c.client.block.*;
+import dev.sterner.malum.common.network.packet.s2c.client.block.blight.BlightMistParticlePacket;
+import dev.sterner.malum.common.network.packet.s2c.client.block.blight.BlightTransformItemParticlePacket;
+import dev.sterner.malum.common.network.packet.s2c.client.block.functional.AltarConsumeParticlePacket;
+import dev.sterner.malum.common.network.packet.s2c.client.block.functional.AltarCraftParticlePacket;
+import dev.sterner.malum.common.network.packet.s2c.client.entity.*;
 import dev.sterner.malum.common.registry.*;
-import dev.sterner.malum.common.spirit.MalumSpiritType;
 import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
@@ -44,8 +43,6 @@ import org.quiltmc.qsl.networking.api.client.ClientPlayNetworking;
 import org.quiltmc.qsl.resource.loader.api.ResourceLoader;
 
 import java.awt.*;
-import java.util.HashMap;
-import java.util.Map;
 
 import static dev.sterner.malum.common.registry.MalumObjects.*;
 

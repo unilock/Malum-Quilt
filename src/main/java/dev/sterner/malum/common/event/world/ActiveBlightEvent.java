@@ -3,7 +3,7 @@ package dev.sterner.malum.common.event.world;
 import com.sammy.lodestone.systems.worldevent.WorldEventInstance;
 import com.sammy.lodestone.systems.worldgen.LodestoneBlockFiller;
 import dev.sterner.malum.common.block.blight.BlightedSoilBlock;
-import dev.sterner.malum.common.network.packet.s2c.block.blight.BlightMistParticlePacket;
+import dev.sterner.malum.common.network.packet.s2c.server.block.blight.BlightMistParticlePacket;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
 import dev.sterner.malum.common.registry.WorldEventTypes;
 import dev.sterner.malum.common.world.gen.feature.SoulwoodTreeFeature;

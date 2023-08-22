@@ -4,7 +4,7 @@ import com.sammy.lodestone.helpers.BlockHelper;
 import com.sammy.lodestone.systems.blockentity.LodestoneBlockEntity;
 import dev.sterner.malum.common.block.totem.TotemBaseBlock;
 import dev.sterner.malum.common.blockentity.storage.ItemStandBlockEntity;
-import dev.sterner.malum.common.network.packet.s2c.block.TotemBaseActivationParticlePacket;
+import dev.sterner.malum.common.network.packet.s2c.server.block.TotemBaseActivationParticlePacket;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import dev.sterner.malum.common.registry.MalumRiteRegistry;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;

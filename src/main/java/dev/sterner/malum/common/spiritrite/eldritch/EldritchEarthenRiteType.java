@@ -2,7 +2,7 @@ package dev.sterner.malum.common.spiritrite.eldritch;
 
 
 import dev.sterner.malum.common.blockentity.totem.TotemBaseBlockEntity;
-import dev.sterner.malum.common.network.packet.s2c.block.BlockSparkleParticlePacket;
+import dev.sterner.malum.common.network.packet.s2c.server.block.BlockSparkleParticlePacket;
 import dev.sterner.malum.common.spiritrite.MalumRiteType;
 import dev.sterner.malum.common.spiritrite.effect.BlockAffectingRiteEffect;
 import dev.sterner.malum.common.spiritrite.effect.MalumRiteEffect;

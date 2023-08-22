@@ -10,7 +10,7 @@ import com.sammy.lodestone.systems.particle.data.GenericParticleData;
 import com.sammy.lodestone.systems.particle.data.SpinParticleData;
 import com.sammy.lodestone.systems.particle.world.LodestoneWorldParticleTextureSheet;
 import dev.sterner.malum.client.CommonParticleEffects;
-import dev.sterner.malum.common.network.packet.s2c.entity.VividNitrateBounceParticlePacket;
+import dev.sterner.malum.common.network.packet.s2c.server.entity.VividNitrateBounceParticlePacket;
 import dev.sterner.malum.common.registry.MalumEntityRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

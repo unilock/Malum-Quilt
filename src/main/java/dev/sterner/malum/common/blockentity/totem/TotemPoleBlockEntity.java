@@ -12,7 +12,7 @@ import com.sammy.lodestone.systems.particle.data.GenericParticleData;
 import com.sammy.lodestone.systems.particle.data.SpinParticleData;
 import dev.sterner.malum.common.block.totem.TotemPoleBlock;
 import dev.sterner.malum.common.blockentity.storage.ItemStandBlockEntity;
-import dev.sterner.malum.common.network.packet.s2c.block.BlockParticlePacket;
+import dev.sterner.malum.common.network.packet.s2c.server.block.BlockParticlePacket;
 import dev.sterner.malum.common.registry.MalumBlockEntityRegistry;
 import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;

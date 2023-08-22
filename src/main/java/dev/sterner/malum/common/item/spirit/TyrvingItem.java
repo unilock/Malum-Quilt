@@ -1,7 +1,7 @@
 package dev.sterner.malum.common.item.spirit;
 
 import com.sammy.lodestone.systems.item.tools.LodestoneSwordItem;
-import dev.sterner.malum.common.network.packet.s2c.entity.MajorEntityEffectParticlePacket;
+import dev.sterner.malum.common.network.packet.s2c.server.entity.MajorEntityEffectParticlePacket;
 import dev.sterner.malum.common.registry.MalumDamageSourceRegistry;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;

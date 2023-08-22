@@ -8,7 +8,7 @@ import com.sammy.lodestone.systems.particle.data.GenericParticleData;
 import com.sammy.lodestone.systems.particle.data.SpinParticleData;
 import com.sammy.lodestone.systems.particle.world.LodestoneWorldParticleTextureSheet;
 import dev.sterner.malum.client.CommonParticleEffects;
-import dev.sterner.malum.common.network.packet.s2c.entity.EthericNitrateParticlePacket;
+import dev.sterner.malum.common.network.packet.s2c.server.entity.EthericNitrateParticlePacket;
 import dev.sterner.malum.common.registry.MalumEntityRegistry;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
 import net.minecraft.entity.LivingEntity;

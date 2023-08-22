@@ -2,9 +2,9 @@ package dev.sterner.malum.common.spiritrite;
 
 import dev.sterner.malum.common.block.BlockTagRegistry;
 import dev.sterner.malum.common.blockentity.totem.TotemBaseBlockEntity;
-import dev.sterner.malum.common.network.packet.s2c.block.BlockSparkleParticlePacket;
-import dev.sterner.malum.common.network.packet.s2c.block.FireBlockExtinguishSparkleParticlePacket;
-import dev.sterner.malum.common.network.packet.s2c.entity.MajorEntityEffectParticlePacket;
+import dev.sterner.malum.common.network.packet.s2c.server.block.BlockSparkleParticlePacket;
+import dev.sterner.malum.common.network.packet.s2c.server.block.FireBlockExtinguishSparkleParticlePacket;
+import dev.sterner.malum.common.network.packet.s2c.server.entity.MajorEntityEffectParticlePacket;
 import dev.sterner.malum.common.registry.MalumStatusEffectRegistry;
 import dev.sterner.malum.common.spiritrite.effect.AuraRiteEffect;
 import dev.sterner.malum.common.spiritrite.effect.MalumRiteEffect;

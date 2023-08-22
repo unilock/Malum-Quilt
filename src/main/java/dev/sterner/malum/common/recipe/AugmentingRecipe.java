@@ -5,7 +5,7 @@ import com.sammy.lodestone.forge.CraftingHelper;
 import com.sammy.lodestone.systems.blockentity.LodestoneBlockEntityInventory;
 import com.sammy.lodestone.systems.recipe.ILodestoneRecipe;
 import dev.sterner.malum.common.blockentity.spirit_altar.IAltarProvider;
-import dev.sterner.malum.common.network.packet.s2c.block.blight.BlightTransformItemParticlePacket;
+import dev.sterner.malum.common.network.packet.s2c.server.block.blight.BlightTransformItemParticlePacket;
 import dev.sterner.malum.common.registry.MalumRecipeSerializerRegistry;
 import dev.sterner.malum.common.registry.MalumRecipeTypeRegistry;
 import dev.sterner.malum.common.registry.MalumSoundRegistry;
