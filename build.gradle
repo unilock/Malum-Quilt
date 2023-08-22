@@ -48,6 +48,7 @@ repositories {
 	maven { url = 'https://mvn.devos.one/snapshots' }
 	maven { url = 'https://jitpack.io' }
 	mavenCentral()
+	mavenLocal()
 }
 
 // All the dependencies are declared at gradle/libs.version.toml and referenced with "libs.<id>"
