@@ -23,10 +23,12 @@
       "count": 3
     },
     {
-      "type": "earthen"
+      "type": "earthen",
+      "count": 1
     },
     {
-      "type": "arcane"
+      "type": "arcane",
+      "count": 1
     }
   ]
 }

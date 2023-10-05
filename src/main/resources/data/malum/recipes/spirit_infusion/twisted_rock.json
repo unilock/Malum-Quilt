@@ -11,10 +11,12 @@
   "extra_items": [],
   "spirits": [
     {
-      "type": "wicked"
+      "type": "wicked",
+      "count": 1
     },
     {
-      "type": "arcane"
+      "type": "arcane",
+      "count": 1
     }
   ]
 }

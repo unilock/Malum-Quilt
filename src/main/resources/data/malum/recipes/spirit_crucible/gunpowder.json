@@ -11,7 +11,8 @@
   },
   "spirits": [
     {
-      "type": "earthen"
+      "type": "earthen",
+      "count": 1
     }
   ]
 }

@@ -11,7 +11,8 @@
   "extra_items": [],
   "spirits": [
     {
-      "type": "arcane"
+      "type": "arcane",
+      "count": 1
     },
     {
       "type": "infernal",

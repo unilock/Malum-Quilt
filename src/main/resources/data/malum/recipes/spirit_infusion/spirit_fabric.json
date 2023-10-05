@@ -24,10 +24,12 @@
       "count": 2
     },
     {
-      "type": "earthen"
+      "type": "earthen",
+      "count": 1
     },
     {
-      "type": "aerial"
+      "type": "aerial",
+      "count": 1
     }
   ]
 }

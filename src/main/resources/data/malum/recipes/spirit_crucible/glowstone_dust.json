@@ -11,7 +11,8 @@
   },
   "spirits": [
     {
-      "type": "infernal"
+      "type": "infernal",
+      "count": 1
     }
   ]
 }

@@ -11,10 +11,12 @@
   "extra_items": [],
   "spirits": [
     {
-      "type": "sacred"
+      "type": "sacred",
+      "count": 1
     },
     {
-      "type": "arcane"
+      "type": "arcane",
+      "count": 1
     }
   ]
 }
