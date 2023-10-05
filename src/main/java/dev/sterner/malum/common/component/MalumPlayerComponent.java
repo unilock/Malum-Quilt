@@ -32,6 +32,9 @@ public class MalumPlayerComponent implements AutoSyncedComponent {
 
         soulWard = tag.getFloat("soulWard");
         soulWardProgress = tag.getFloat("soulWardProgress");
+
+		soulsShattered = tag.getInt("soulsShattered");
+		obtainedEncyclopedia = tag.getBoolean("obtainedEncyclopedia");
     }
 
     @Override
@@ -44,5 +47,8 @@ public class MalumPlayerComponent implements AutoSyncedComponent {
 
         tag.putFloat("soulWard", soulWard);
         tag.putFloat("soulWardProgress", soulWardProgress);
+
+		tag.putInt("soulsShattered", soulsShattered);
+		tag.putBoolean("obtainedEncyclopedia", obtainedEncyclopedia);
     }
 }
